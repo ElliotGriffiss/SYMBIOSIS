@@ -22,11 +22,17 @@ public class HostController : MonoBehaviour
     private Vector2 inputValue;
     private Vector2 direction;
 
+
+    private void Start()
+    {
+        Parsite.SetupParasite();    
+    }
+
     protected virtual void Update()
     {
         if (Input.GetMouseButton(0))
         {
-            Parsite.FireBullet(direction);
+            Parsite.ActivateParasite(direction);
         }
 
         inputValue.x = Input.GetAxisRaw("Horizontal"); //Setting the x and y values of the "movement" var based on what keys are down

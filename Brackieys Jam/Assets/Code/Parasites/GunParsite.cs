@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseParsite : MonoBehaviour
+public class GunParsite : BaseParsite
 {
     [SerializeField] private Transform BulletOrigin;
     [SerializeField] private Rigidbody2D BulletPrefab;
@@ -17,7 +17,7 @@ public class BaseParsite : MonoBehaviour
     /// <summary>
     /// sets up the object pool of bullets
     /// </summary>
-    private void Start()
+    public override void SetupParasite()
     {
         for (int i = 0; i < MaxNumberOfBullets; i++)
         {
@@ -46,7 +46,7 @@ public class BaseParsite : MonoBehaviour
         return null;
     }
 
-    public void FireBullet(Vector2 direction)
+    public override void ActivateParasite(Vector2 direction)
     {
         // Used to enforce the fie rate without putting an update loop in this class.
         if (Time.time - LastFireTime > FireRate)
