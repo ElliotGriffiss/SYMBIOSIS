@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]  private float moveSpeed;
 
+    private Animator animator;
     private Rigidbody2D rb;
 
     private Vector2 movement;
@@ -13,13 +14,14 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); //Getting rigidbody that is attached to the player
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal"); //Setting the x and y values of the "movement" var based on what keys are down
         movement.y = Input.GetAxisRaw("Vertical"); //^^
+        animator.SetFloat("Speed", movement.sqrMagnitude);
         lookAtMouse();
     }
 
