@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameData;
 
-public class EnemyController : MonoBehaviour
+public class AggresiveEnemyController : MonoBehaviour
 {
     [Header("Enemy Data")]
     [SerializeField] private Rigidbody2D MyRigidBody;
     [Space]
-    [SerializeField] private AIType AI;
     [SerializeField] private EnemyState State = EnemyState.Idle;
     [SerializeField] private int Health = 5;
     [SerializeField] private float MovementSpeed = 3;
     [SerializeField] private float StateDuration;
+    [SerializeField] protected float BounceBackForce;
 
     private Transform attacker;
     private Vector2 movementDirection;
@@ -61,6 +61,10 @@ public class EnemyController : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
 
+            MyRigidBody.velocity = Vector3.zero;
+            MyRigidBody.angularVelocity = 0f;
+            MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * BounceBackForce, ForceMode2D.Impulse);
+
             Health--;
 
             if (Health < 1)
@@ -78,18 +82,9 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.tag != "Bullet")
         {
-            if (AI == AIType.Aggressive)
-            {
-                attacker = collision.transform;
-                State = EnemyState.Attacking;
-                currentStateTime = 0;
-            }
-            else if (AI == AIType.Cowardly)
-            {
-                State = EnemyState.Fleeing;
-                movementDirection = (collision.transform.position + transform.position).normalized;
-                currentStateTime = 0;
-            }
+            attacker = collision.transform;
+            State = EnemyState.Attacking;
+            currentStateTime = 0;
         }
     }
 

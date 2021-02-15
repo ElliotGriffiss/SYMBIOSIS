@@ -7,11 +7,4 @@ namespace GameData
         Attacking,
         Fleeing,
     }
-
-    public enum AIType
-    {
-        Passive,
-        Aggressive,
-        Cowardly,
-    }
 }
