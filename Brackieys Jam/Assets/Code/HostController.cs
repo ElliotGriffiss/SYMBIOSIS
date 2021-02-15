@@ -7,6 +7,7 @@ public class HostController : MonoBehaviour
 {
     [Header("Scene References")]
     [SerializeField] private Rigidbody2D Rigidbody;
+    [SerializeField] private Animator animator;
 
     [SerializeField] private BaseParsite Parsite;
 
@@ -37,6 +38,8 @@ public class HostController : MonoBehaviour
 
         inputValue.x = Input.GetAxisRaw("Horizontal"); //Setting the x and y values of the "movement" var based on what keys are down
         inputValue.y = Input.GetAxisRaw("Vertical"); //^^
+
+        animator.SetFloat("Speed", inputValue.sqrMagnitude);
 
         LookAtMouse();
     }
