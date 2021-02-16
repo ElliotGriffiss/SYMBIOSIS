@@ -20,9 +20,9 @@ public class HostController : BaseHost
         LookAtMouse();
     }
 
-    protected void OnCollisionEnter2D(Collision2D collision)
+    public override void HandleCollisonEnter(Collision2D collision)
     {
-        if (collision.gameObject.tag != "Bullet")
+        if (collision.gameObject.tag == "Enemy")
         {
             Rigidbody.velocity = Vector3.zero;
             Rigidbody.angularVelocity = 0f;

@@ -60,6 +60,8 @@ public class AggresiveEnemyController : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Hit: "+ collision.gameObject.tag);
+
         if (collision.gameObject.tag == "Bullet")
         {
             collision.gameObject.SetActive(false);

@@ -24,7 +24,7 @@ public class TentacleController : BaseHost
 
         LookAtMouse();
     }
-    protected void OnCollisionEnter2D(Collision2D collision)
+    public override void HandleCollisonEnter(Collision2D collision)
     {
         if (collision.gameObject.tag != "Bullet")
         {

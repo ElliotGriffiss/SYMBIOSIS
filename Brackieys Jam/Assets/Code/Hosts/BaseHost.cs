@@ -9,7 +9,7 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected Animator animator;
 
     [SerializeField] protected BaseParsite Parasite;
-    [SerializeField] protected Transform ParasiteOrigin;
+    [SerializeField] public Transform ParasiteOrigin;
 
     [Header("Data")]
     [SerializeField] protected int Health = 10;
@@ -31,10 +31,20 @@ public class BaseHost : MonoBehaviour
     public virtual void ChangeParasite(BaseParsite parasite)
     {
         Parasite = parasite;
-        Parasite.transform.parent = transform;
+        Parasite.transform.parent = ParasiteOrigin;
         Parasite.transform.position = ParasiteOrigin.position;
-        Parasite.transform.rotation = Quaternion.identity;
+        Parasite.transform.localRotation = Quaternion.identity;
         Parasite.SetupParasite();
+    }
+
+    public virtual void HandleCollisonEnter(Collision2D collision)
+    {
+
+    }
+
+    public virtual void HandleTriggerEnter(Collider2D collider)
+    {
+
     }
 
     protected virtual void LookAtMouse()

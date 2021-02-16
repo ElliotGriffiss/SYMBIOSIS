@@ -10,8 +10,8 @@ public class SymbioteCreationGUI : MonoBehaviour
     [SerializeField] private BaseHost[] Hosts;
     [SerializeField] private BaseParsite[] Parasites;
 
-    private int CurrentlySelectedHost = 0;
-    private int CurrentlySelectedParaste = 0;
+    [SerializeField] private int CurrentlySelectedHost = 0;
+    [SerializeField] private int CurrentlySelectedParaste = 0;
 
     public void ToggleActiveState()
     {
@@ -20,7 +20,7 @@ public class SymbioteCreationGUI : MonoBehaviour
 
     public void Start()
     {
-        UpdateCurrentHost(0);
+        UpdateCurrentHost(CurrentlySelectedHost);
         //UpdateCurrentParasite(0);
     }
 
@@ -31,7 +31,7 @@ public class SymbioteCreationGUI : MonoBehaviour
         Hosts[CurrentlySelectedHost].gameObject.SetActive(true);
         Hosts[CurrentlySelectedHost].transform.position = SymbioteSpawnPoint.position;
         Hosts[CurrentlySelectedHost].InitializeHost();
-        Camera.UpdateFollowTarget(Hosts[CurrentlySelectedHost].transform);
+        Camera.UpdateFollowTarget(Hosts[CurrentlySelectedHost].ParasiteOrigin);
 
         UpdateCurrentParasite(CurrentlySelectedParaste);
     }
