@@ -90,5 +90,18 @@ public class HostController : BaseHost
                 Debug.Log("You died!");
             }
         }
+        else if (collision.gameObject.tag == "EnemyBullet" && AbilityIsActive == false)
+        {
+            collision.gameObject.SetActive(false);
+
+            CurrentHealth -= 2;
+            UpdateHealthBar();
+            Debug.Log("You got hit");
+
+            if (CurrentHealth < 1)
+            {
+                Debug.Log("You died!");
+            }
+        }
     }
 }

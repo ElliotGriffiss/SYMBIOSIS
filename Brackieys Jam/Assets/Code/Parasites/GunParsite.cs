@@ -43,7 +43,7 @@ public class GunParsite : BaseParsite
         bullet.gameObject.SetActive(false);
 
         BulletPool.Add(bullet);
-        return null;
+        return bullet;
     }
 
     public override void ActivateParasite(Vector2 direction)

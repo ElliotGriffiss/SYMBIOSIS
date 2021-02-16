@@ -14,7 +14,7 @@ public class TentacleController : BaseHost
 
     protected Transform[] GameObjects;
     protected SpriteRenderer[] Sprites;
-    private bool canMove = true;
+    private IEnumerator MovementSequence;
 
     public override void InitializeHost()
     {
@@ -25,6 +25,7 @@ public class TentacleController : BaseHost
         GameObjects = GetComponentsInChildren<Transform>();
         Sprites = GetComponentsInChildren<SpriteRenderer>();
 
+        animator.SetBool("isMoving", true);
         ToggleActiveAbility(AbilityIsActive);
         UpdateHealthBar();
     }
@@ -37,9 +38,17 @@ public class TentacleController : BaseHost
         {
             Parasite.ActivateParasite(direction);
         }
-        if (canMove == true)
+
+        if (MovementSequence == null && Input.GetAxisRaw("Vertical") > 0f)
         {
-            StartCoroutine(MoveCo(waitTime, moveTime));
+            MovementSequence = MoveCo(waitTime, moveTime);
+            StartCoroutine(MovementSequence);
+        }
+        else if (MovementSequence != null && Input.GetAxisRaw("Vertical") == 0f)
+        {
+            animator.SetBool("isMoving", true);
+            StopCoroutine(MovementSequence);
+            MovementSequence = null;
         }
 
         if (Input.GetAxis("Fire2") > 0 && CurrentCooldown > BaseAbilityCooldown)
@@ -90,6 +99,19 @@ public class TentacleController : BaseHost
                 Debug.Log("You died!");
             }
         }
+        else if (collision.gameObject.tag == "EnemyBullet")
+        {
+            collision.gameObject.SetActive(false);
+
+            CurrentHealth -= 2;
+            UpdateHealthBar();
+            Debug.Log("You got hit");
+
+            if (CurrentHealth < 1)
+            {
+                Debug.Log("You died!");
+            }
+        }
     }
 
     private void ToggleActiveAbility(bool active)
@@ -109,13 +131,12 @@ public class TentacleController : BaseHost
     
     private IEnumerator MoveCo(float waitTime, float moveTime)
     {
-        canMove = false;
+        animator.SetBool("isMoving", false);
         yield return new WaitForSeconds(waitTime);
         Rigidbody.AddForce(direction.normalized * baseForwardSpeed, ForceMode2D.Impulse);
         animator.SetBool("isMoving", true);
         yield return new WaitForSeconds(moveTime);
-        Rigidbody.velocity = Vector2.zero;
-        animator.SetBool("isMoving", false);
-        canMove = true;
+        //Rigidbody.velocity = Vector2.zero;
+        MovementSequence = null;
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Host
   - Enemy
   - Spike
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
