@@ -60,9 +60,7 @@ public class AggresiveEnemyController : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Hit: "+ collision.gameObject.tag);
-
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.collider.gameObject.tag == "Bullet")
         {
             collision.gameObject.SetActive(false);
 
@@ -71,6 +69,19 @@ public class AggresiveEnemyController : MonoBehaviour
             MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * BounceBackForce, ForceMode2D.Impulse);
 
             Health--;
+
+            if (Health < 1)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+        else if (collision.collider.gameObject.tag == "Spike")
+        {
+            MyRigidBody.velocity = Vector3.zero;
+            MyRigidBody.angularVelocity = 0f;
+            MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * BounceBackForce, ForceMode2D.Impulse);
+
+            Health-= 3;
 
             if (Health < 1)
             {

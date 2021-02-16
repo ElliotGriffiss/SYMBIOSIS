@@ -13,6 +13,7 @@ public class CowardlyEnemyController : MonoBehaviour
     [SerializeField] private int Health = 5;
     [SerializeField] private float MovementSpeed = 3;
     [SerializeField] private float StateDuration;
+    [SerializeField] protected float BounceBackForce;
 
     private Vector2 movementDirection;
     private float currentStateTime = float.PositiveInfinity; // ensures a new state is always chosen
@@ -53,11 +54,28 @@ public class CowardlyEnemyController : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.collider.gameObject.tag == "Bullet")
         {
             collision.gameObject.SetActive(false);
 
+            MyRigidBody.velocity = Vector3.zero;
+            MyRigidBody.angularVelocity = 0f;
+            MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * BounceBackForce, ForceMode2D.Impulse);
+
             Health--;
+
+            if (Health < 1)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+        else if (collision.collider.gameObject.tag == "Spike")
+        {
+            MyRigidBody.velocity = Vector3.zero;
+            MyRigidBody.angularVelocity = 0f;
+            MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * BounceBackForce, ForceMode2D.Impulse);
+
+            Health -=3;
 
             if (Health < 1)
             {

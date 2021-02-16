@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1592048019651714150}
   - component: {fileID: 2647658290547433001}
   m_Layer: 0
-  m_Name: Host Sprtie
+  m_Name: Host Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,7 +228,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6932885408933277846}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.153, y: 1.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -254,10 +254,15 @@ MonoBehaviour:
   animator: {fileID: 2647658290547433001}
   Parasite: {fileID: 0}
   ParasiteOrigin: {fileID: 8269579951344957471}
-  Health: 10
+  HealthBar: {fileID: 0}
+  AbilityBar: {fileID: 0}
+  BaseHealth: 10
+  BaseAbilityDuration: 10
+  BaseAbilityCooldown: 10
   baseForwardSpeed: 5
   baseStrafeSpeed: 4
   BounceBackForce: 5
+  HostSprite: {fileID: 1592048019651714150}
 --- !u!50 &7630703106993362202
 Rigidbody2D:
   serializedVersion: 4

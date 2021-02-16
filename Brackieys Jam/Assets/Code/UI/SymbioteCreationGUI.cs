@@ -21,7 +21,6 @@ public class SymbioteCreationGUI : MonoBehaviour
     public void Start()
     {
         UpdateCurrentHost(CurrentlySelectedHost);
-        //UpdateCurrentParasite(0);
     }
 
     public void UpdateCurrentHost(int index)
@@ -30,10 +29,10 @@ public class SymbioteCreationGUI : MonoBehaviour
         CurrentlySelectedHost = index;
         Hosts[CurrentlySelectedHost].gameObject.SetActive(true);
         Hosts[CurrentlySelectedHost].transform.position = SymbioteSpawnPoint.position;
-        Hosts[CurrentlySelectedHost].InitializeHost();
-        Camera.UpdateFollowTarget(Hosts[CurrentlySelectedHost].ParasiteOrigin);
+        Camera.UpdateFollowTarget(Hosts[CurrentlySelectedHost].transform);
 
         UpdateCurrentParasite(CurrentlySelectedParaste);
+        Hosts[CurrentlySelectedHost].InitializeHost();
     }
 
     public void UpdateCurrentParasite(int index)
