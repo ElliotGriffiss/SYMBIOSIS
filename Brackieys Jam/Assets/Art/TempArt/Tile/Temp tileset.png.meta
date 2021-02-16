@@ -110,24 +110,6 @@ TextureImporter:
   - first:
       213: 796030498122958056
     second: Temp tileset_35
-  - first:
-      213: 3019458734639830403
-    second: Temp tileset_36
-  - first:
-      213: 4596635729929278445
-    second: Temp tileset_37
-  - first:
-      213: 5685819212846982775
-    second: Temp tileset_38
-  - first:
-      213: 6741342298589032834
-    second: Temp tileset_39
-  - first:
-      213: -6696651112287043352
-    second: Temp tileset_40
-  - first:
-      213: -3025530051571796794
-    second: Temp tileset_41
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -370,8 +352,8 @@ TextureImporter:
       name: Temp tileset_6
       rect:
         serializedVersion: 2
-        x: 120
-        y: 100
+        x: 0
+        y: 80
         width: 20
         height: 20
       alignment: 0
@@ -391,7 +373,7 @@ TextureImporter:
       name: Temp tileset_7
       rect:
         serializedVersion: 2
-        x: 0
+        x: 20
         y: 80
         width: 20
         height: 20
@@ -412,7 +394,7 @@ TextureImporter:
       name: Temp tileset_8
       rect:
         serializedVersion: 2
-        x: 20
+        x: 40
         y: 80
         width: 20
         height: 20
@@ -433,7 +415,7 @@ TextureImporter:
       name: Temp tileset_9
       rect:
         serializedVersion: 2
-        x: 40
+        x: 60
         y: 80
         width: 20
         height: 20
@@ -454,7 +436,7 @@ TextureImporter:
       name: Temp tileset_10
       rect:
         serializedVersion: 2
-        x: 60
+        x: 80
         y: 80
         width: 20
         height: 20
@@ -475,7 +457,7 @@ TextureImporter:
       name: Temp tileset_11
       rect:
         serializedVersion: 2
-        x: 80
+        x: 100
         y: 80
         width: 20
         height: 20
@@ -496,8 +478,8 @@ TextureImporter:
       name: Temp tileset_12
       rect:
         serializedVersion: 2
-        x: 100
-        y: 80
+        x: 0
+        y: 60
         width: 20
         height: 20
       alignment: 0
@@ -517,8 +499,8 @@ TextureImporter:
       name: Temp tileset_13
       rect:
         serializedVersion: 2
-        x: 120
-        y: 80
+        x: 20
+        y: 60
         width: 20
         height: 20
       alignment: 0
@@ -538,7 +520,7 @@ TextureImporter:
       name: Temp tileset_14
       rect:
         serializedVersion: 2
-        x: 0
+        x: 40
         y: 60
         width: 20
         height: 20
@@ -559,7 +541,7 @@ TextureImporter:
       name: Temp tileset_15
       rect:
         serializedVersion: 2
-        x: 20
+        x: 60
         y: 60
         width: 20
         height: 20
@@ -580,7 +562,7 @@ TextureImporter:
       name: Temp tileset_16
       rect:
         serializedVersion: 2
-        x: 40
+        x: 80
         y: 60
         width: 20
         height: 20
@@ -601,7 +583,7 @@ TextureImporter:
       name: Temp tileset_17
       rect:
         serializedVersion: 2
-        x: 60
+        x: 100
         y: 60
         width: 20
         height: 20
@@ -622,8 +604,8 @@ TextureImporter:
       name: Temp tileset_18
       rect:
         serializedVersion: 2
-        x: 80
-        y: 60
+        x: 0
+        y: 40
         width: 20
         height: 20
       alignment: 0
@@ -643,8 +625,8 @@ TextureImporter:
       name: Temp tileset_19
       rect:
         serializedVersion: 2
-        x: 100
-        y: 60
+        x: 20
+        y: 40
         width: 20
         height: 20
       alignment: 0
@@ -664,8 +646,8 @@ TextureImporter:
       name: Temp tileset_20
       rect:
         serializedVersion: 2
-        x: 120
-        y: 60
+        x: 40
+        y: 40
         width: 20
         height: 20
       alignment: 0
@@ -685,7 +667,7 @@ TextureImporter:
       name: Temp tileset_21
       rect:
         serializedVersion: 2
-        x: 0
+        x: 60
         y: 40
         width: 20
         height: 20
@@ -706,7 +688,7 @@ TextureImporter:
       name: Temp tileset_22
       rect:
         serializedVersion: 2
-        x: 20
+        x: 80
         y: 40
         width: 20
         height: 20
@@ -727,7 +709,7 @@ TextureImporter:
       name: Temp tileset_23
       rect:
         serializedVersion: 2
-        x: 40
+        x: 100
         y: 40
         width: 20
         height: 20
@@ -748,8 +730,8 @@ TextureImporter:
       name: Temp tileset_24
       rect:
         serializedVersion: 2
-        x: 60
-        y: 40
+        x: 0
+        y: 20
         width: 20
         height: 20
       alignment: 0
@@ -769,8 +751,8 @@ TextureImporter:
       name: Temp tileset_25
       rect:
         serializedVersion: 2
-        x: 80
-        y: 40
+        x: 20
+        y: 20
         width: 20
         height: 20
       alignment: 0
@@ -790,8 +772,8 @@ TextureImporter:
       name: Temp tileset_26
       rect:
         serializedVersion: 2
-        x: 100
-        y: 40
+        x: 40
+        y: 20
         width: 20
         height: 20
       alignment: 0
@@ -811,8 +793,8 @@ TextureImporter:
       name: Temp tileset_27
       rect:
         serializedVersion: 2
-        x: 120
-        y: 40
+        x: 60
+        y: 20
         width: 20
         height: 20
       alignment: 0
@@ -832,7 +814,7 @@ TextureImporter:
       name: Temp tileset_28
       rect:
         serializedVersion: 2
-        x: 0
+        x: 80
         y: 20
         width: 20
         height: 20
@@ -853,7 +835,7 @@ TextureImporter:
       name: Temp tileset_29
       rect:
         serializedVersion: 2
-        x: 20
+        x: 100
         y: 20
         width: 20
         height: 20
@@ -874,8 +856,8 @@ TextureImporter:
       name: Temp tileset_30
       rect:
         serializedVersion: 2
-        x: 40
-        y: 20
+        x: 0
+        y: 0
         width: 20
         height: 20
       alignment: 0
@@ -895,8 +877,8 @@ TextureImporter:
       name: Temp tileset_31
       rect:
         serializedVersion: 2
-        x: 60
-        y: 20
+        x: 20
+        y: 0
         width: 20
         height: 20
       alignment: 0
@@ -916,8 +898,8 @@ TextureImporter:
       name: Temp tileset_32
       rect:
         serializedVersion: 2
-        x: 80
-        y: 20
+        x: 40
+        y: 0
         width: 20
         height: 20
       alignment: 0
@@ -937,8 +919,8 @@ TextureImporter:
       name: Temp tileset_33
       rect:
         serializedVersion: 2
-        x: 100
-        y: 20
+        x: 60
+        y: 0
         width: 20
         height: 20
       alignment: 0
@@ -958,8 +940,8 @@ TextureImporter:
       name: Temp tileset_34
       rect:
         serializedVersion: 2
-        x: 120
-        y: 20
+        x: 80
+        y: 0
         width: 20
         height: 20
       alignment: 0
@@ -979,7 +961,7 @@ TextureImporter:
       name: Temp tileset_35
       rect:
         serializedVersion: 2
-        x: 0
+        x: 100
         y: 0
         width: 20
         height: 20
@@ -992,132 +974,6 @@ TextureImporter:
       bones: []
       spriteID: 8e40ffe35811c0b00800000000000000
       internalID: 796030498122958056
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Temp tileset_36
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 0
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 385582ca8b547e920800000000000000
-      internalID: 3019458734639830403
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Temp tileset_37
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 0
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: de39d44a7d78acf30800000000000000
-      internalID: 4596635729929278445
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Temp tileset_38
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 0
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 776e5d6037618ee40800000000000000
-      internalID: 5685819212846982775
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Temp tileset_39
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 281f6b87a1f0e8d50800000000000000
-      internalID: 6741342298589032834
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Temp tileset_40
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 0
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8e008633b47b013a0800000000000000
-      internalID: -6696651112287043352
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Temp tileset_41
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 0
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c43bc2b2782306d0800000000000000
-      internalID: -3025530051571796794
       vertices: []
       indices: 
       edges: []
