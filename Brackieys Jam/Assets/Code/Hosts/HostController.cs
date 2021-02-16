@@ -3,37 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameData;
 
-public class HostController : MonoBehaviour
+public class HostController : BaseHost
 {
-    [Header("Scene References")]
-    [SerializeField] private Rigidbody2D Rigidbody;
-    [SerializeField] private Animator animator;
-
-    [SerializeField] private BaseParsite Parsite;
-
-    [Header("Data")]
-    [SerializeField] protected int Health = 10;
-
-    [SerializeField] protected float baseForwardSpeed;
-    [SerializeField] protected float baseStrafeSpeed;
-
-    [SerializeField] protected float BounceBackForce;
-
-
-    private Vector2 inputValue;
-    private Vector2 direction;
-
-
-    private void Start()
-    {
-        Parsite.SetupParasite();    
-    }
-
     protected virtual void Update()
     {
         if (Input.GetMouseButton(0))
         {
-            Parsite.ActivateParasite(direction);
+            Parasite.ActivateParasite(direction);
         }
 
         inputValue.x = Input.GetAxisRaw("Horizontal"); //Setting the x and y values of the "movement" var based on what keys are down

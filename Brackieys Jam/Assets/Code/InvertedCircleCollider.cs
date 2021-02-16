@@ -8,6 +8,11 @@ public class InvertedCircleCollider : MonoBehaviour
 
     [Range(2, 100)][SerializeField] private int NumEdges;
 
+    public float GetBoundryRadius()
+    {
+        return transform.lossyScale.x * Radius; // This will only work if the height and width of the object are the same
+    }
+
     private void Start()
     {
         Generate();

@@ -6,6 +6,7 @@ using GameData;
 public class PassiveEnemyController : MonoBehaviour
 {
     [Header("Enemy Data")]
+    [SerializeField] private SpriteRenderer Sprite;
     [SerializeField] private Rigidbody2D MyRigidBody;
     [Space]
     [SerializeField] private EnemyState State = EnemyState.Idle;
@@ -34,10 +35,12 @@ public class PassiveEnemyController : MonoBehaviour
         if (Random.Range(100, 0) > 30)
         {
             State = EnemyState.Moving;
+            Sprite.color = Color.green;
             movementDirection = GenerateRandomMovementVector();
         }
         else
         {
+            Sprite.color = Color.blue;
             State = EnemyState.Idle;
         }
 

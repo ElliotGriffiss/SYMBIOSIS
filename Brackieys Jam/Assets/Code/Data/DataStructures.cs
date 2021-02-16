@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace GameData
 {
     public enum EnemyState
@@ -6,5 +8,12 @@ namespace GameData
         Moving,
         Attacking,
         Fleeing,
+    }
+
+    [System.Serializable]
+    public struct EnemySpawnData
+    {
+        public GameObject EnemyPrefab;
+        public int MaxNumberToSpawn;
     }
 }

@@ -6,6 +6,7 @@ using GameData;
 public class AggresiveEnemyController : MonoBehaviour
 {
     [Header("Enemy Data")]
+    [SerializeField] private SpriteRenderer Sprite;
     [SerializeField] private Rigidbody2D MyRigidBody;
     [Space]
     [SerializeField] private EnemyState State = EnemyState.Idle;
@@ -41,11 +42,13 @@ public class AggresiveEnemyController : MonoBehaviour
         if (Random.Range(100, 0) > 30)
         {
             State = EnemyState.Moving;
+            Sprite.color = Color.green;
             movementDirection = GenerateRandomMovementVector();
         }
         else
         {
             State = EnemyState.Idle;
+            Sprite.color = Color.blue;
         }
 
         currentStateTime = 0;
@@ -84,6 +87,7 @@ public class AggresiveEnemyController : MonoBehaviour
         {
             attacker = collision.transform;
             State = EnemyState.Attacking;
+            Sprite.color = Color.red;
             currentStateTime = 0;
         }
     }

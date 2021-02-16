@@ -6,6 +6,7 @@ using GameData;
 public class CowardlyEnemyController : MonoBehaviour
 {
     [Header("Enemy Data")]
+    [SerializeField] private SpriteRenderer Sprite;
     [SerializeField] private Rigidbody2D MyRigidBody;
     [Space]
     [SerializeField] private EnemyState State = EnemyState.Idle;
@@ -34,10 +35,12 @@ public class CowardlyEnemyController : MonoBehaviour
         if (Random.Range(100, 0) > 30)
         {
             State = EnemyState.Moving;
+            Sprite.color = Color.green;
             movementDirection = GenerateRandomMovementVector();
         }
         else
         {
+            Sprite.color = Color.blue;
             State = EnemyState.Idle;
         }
 
@@ -71,6 +74,7 @@ public class CowardlyEnemyController : MonoBehaviour
     {
         if (collision.gameObject.tag != "Bullet")
         {
+             Sprite.color = Color.yellow;
              State = EnemyState.Fleeing;
              movementDirection = (collision.transform.position + transform.position).normalized;
              currentStateTime = 0;

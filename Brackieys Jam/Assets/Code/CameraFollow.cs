@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-	[SerializeField] private Transform FollowTransform;
 	[SerializeField] private float FollowSpeed;
 	[SerializeField] private Vector3 CameraOffset;
-    private void Start()
+	private Transform FollowTransform;
+
+	public void UpdateFollowTarget(Transform target)
     {
-		FollowTransform = GameObject.FindGameObjectWithTag("Host").GetComponent<Transform>();
+        FollowTransform = target;
     }
+
     private void FixedUpdate()
 	{
-		Vector3 smoothedPosition = Vector3.Lerp(transform.position, FollowTransform.position + CameraOffset, FollowSpeed);
-		transform.position = smoothedPosition;
+		if (FollowTransform != null)
+		{
+			Vector3 smoothedPosition = Vector3.Lerp(transform.position, FollowTransform.position + CameraOffset, FollowSpeed);
+			transform.position = smoothedPosition;
+		}
 	}
 }
