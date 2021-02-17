@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunParsite : BaseParsite
+public class SpreadShotParasite : BaseParsite
 {
-    [SerializeField] private Transform BulletOrigin;
+    [SerializeField] private Transform[] BulletOrigins;
     [SerializeField] private DamageComponent BulletPrefab;
 
     [SerializeField] private int MaxNumberOfBullets = 10;
@@ -14,7 +14,6 @@ public class GunParsite : BaseParsite
     private List<DamageComponent> BulletPool = new List<DamageComponent>();
     private float LastFireTime = 0;
     private bool HasPool = false;
-
 
     /// <summary>
     /// sets up the object pool of bullets
@@ -62,19 +61,23 @@ public class GunParsite : BaseParsite
         return bullet;
     }
 
+
     public override void ActivateParasite(Vector2 direction)
     {
         // Used to enforce the fie rate without putting an update loop in this class.
         if (Time.time - LastFireTime > FireRate)
         {
-            DamageComponent bullet = GetBulletFromThePool();
+            foreach (Transform trans in BulletOrigins)
+            {
+                DamageComponent bullet = GetBulletFromThePool();
+                direction = trans.position - transform.position;
 
-            bullet.gameObject.transform.position = BulletOrigin.position;
-            bullet.gameObject.transform.rotation = Quaternion.Euler(direction);
-            bullet.gameObject.SetActive(true);
-            bullet.Rigidbody.velocity = direction * BulletSpeed;
-
-            LastFireTime = Time.time;
+                bullet.transform.position = trans.position;
+                bullet.transform.rotation = Quaternion.Euler(direction);
+                bullet.gameObject.SetActive(true);
+                bullet.Rigidbody.velocity = direction * BulletSpeed;
+                LastFireTime = Time.time;
+            }
         }
     }
 }

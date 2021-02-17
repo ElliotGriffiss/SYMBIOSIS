@@ -6,13 +6,15 @@ public class SpikeParsite : BaseParsite
 {
     [SerializeField] private float ChargeSpeed;
     [SerializeField] private float ChargeCoolDown;
+    [SerializeField] private DamageComponent Damage;
 
     private Rigidbody2D HostRigidbody;
     private float LastFireTime = 0;
 
-    public override void SetupParasite()
+    public override void SetupParasite(float hostDamageModifier)
     {
-        HostRigidbody = GetComponentInParent<Rigidbody2D>(); // this is sloppy I'll fix it later
+        HostRigidbody = GetComponentInParent<Rigidbody2D>();
+        Damage.Damage = Damage.BaseDamage + hostDamageModifier;
     }
 
     public override void ActivateParasite(Vector2 direction)

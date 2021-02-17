@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BaseParsite : MonoBehaviour
 {
-    public virtual void SetupParasite()
+    public virtual void SetupParasite(float hostDamageModifier)
     {
         
     }

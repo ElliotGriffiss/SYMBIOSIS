@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamageComponent : MonoBehaviour
 {
     public Rigidbody2D Rigidbody;
-    public int Damage = 0;
+    public float BaseDamage = 0;
+    public float Damage = 0;
     public float KnockBackForce = 0;
 }

@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 226534651392447119}
+  BaseDamage: 2
   Damage: 2
   KnockBackForce: 0
 --- !u!50 &226534651392447119

@@ -508,7 +508,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Host 1
+  m_Text: Tank Guy
 --- !u!222 &134089479
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1249,7 +1249,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Parasite 3
+  m_Text: SPREAD SHOT
 --- !u!222 &346001807
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1258,6 +1258,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346001804}
   m_CullTransparentMesh: 1
+--- !u!1 &349708671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 349708672}
+  m_Layer: 6
+  m_Name: Bullet Origin (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &349708672
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349708671}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.125, y: 0.162, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1271646525}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &454296356
 GameObject:
   m_ObjectHideFlags: 0
@@ -5588,6 +5618,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5701967d2b6044cb600df9e52091d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &649584280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 649584281}
+  m_Layer: 6
+  m_Name: Bullet Origin (0)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &649584281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649584280}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.162, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1271646525}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &670324504
 GameObject:
   m_ObjectHideFlags: 0
@@ -10739,6 +10799,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1195328142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1195328143}
+  m_Layer: 6
+  m_Name: Bullet Origin (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1195328143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195328142}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.125, y: 0.162, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1271646525}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1230822528
 GameObject:
   m_ObjectHideFlags: 0
@@ -10942,7 +11032,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Host 2
+  m_Text: Stealth Guy
 --- !u!222 &1263972451
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10951,6 +11041,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263972448}
   m_CullTransparentMesh: 1
+--- !u!1 &1271646523
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1271646525}
+  - component: {fileID: 1271646524}
+  m_Layer: 6
+  m_Name: Spread Shot Parasite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1271646524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271646523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d61a442003e144a98986d7f8f1152d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletOrigins:
+  - {fileID: 649584281}
+  - {fileID: 1195328143}
+  - {fileID: 349708672}
+  BulletPrefab: {fileID: 4217806881768664762, guid: c8706e9ea4ad8fa43b9067c46bb7cb9e, type: 3}
+  MaxNumberOfBullets: 10
+  FireRate: 1.5
+  BulletSpeed: 60
+--- !u!4 &1271646525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271646523}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.333, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 649584281}
+  - {fileID: 1195328143}
+  - {fileID: 349708672}
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1361078183
 GameObject:
   m_ObjectHideFlags: 0
@@ -11401,7 +11545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1710288121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11416,6 +11560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChargeSpeed: 30
   ChargeCoolDown: 2
+  Damage: {fileID: 1928299704}
 --- !u!4 &1710288122
 Transform:
   m_ObjectHideFlags: 0
@@ -11713,7 +11858,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pistol Parasite
+  m_Text: SNIPER
 --- !u!222 &1815889575
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11885,6 +12030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 0}
+  BaseDamage: 3
   Damage: 3
   KnockBackForce: 0
 --- !u!1 &1971078940
@@ -12170,6 +12316,10 @@ PrefabInstance:
       propertyPath: AbilityBar
       value: 
       objectReference: {fileID: 178852476}
+    - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
+      propertyPath: BaseDamage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: HostSprite
       value: 
@@ -47136,6 +47286,7 @@ MonoBehaviour:
   Parasites:
   - {fileID: 1710288121}
   - {fileID: 20787439}
+  - {fileID: 1271646524}
   CurrentlySelectedHost: 0
   CurrentlySelectedParaste: 0
 --- !u!1 &2122841492
@@ -47208,7 +47359,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Spear Parasite
+  m_Text: SPIKE RAM
 --- !u!222 &2122841495
 CanvasRenderer:
   m_ObjectHideFlags: 0

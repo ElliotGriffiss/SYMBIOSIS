@@ -18,16 +18,17 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected Image AbilityBar;
 
     [Header("Data")]
-    [SerializeField] protected int BaseHealth = 10;
+    [SerializeField] protected float BaseHealth = 10;
+    [SerializeField] protected float BaseDamage;
+    [SerializeField] protected float BaseDamageResistance = 1;
     [SerializeField] protected float BaseAbilityDuration = 10;
     [SerializeField] protected float BaseAbilityCooldown = 10;
 
     [SerializeField] protected float baseForwardSpeed;
     [SerializeField] protected float baseStrafeSpeed;
 
-    [SerializeField] protected float BounceBackForce;
 
-    protected int CurrentHealth;
+    protected float CurrentHealth;
     protected float CurrentDuration;
     protected float CurrentCooldown;
     protected bool AbilityIsActive;
@@ -50,7 +51,7 @@ public class BaseHost : MonoBehaviour
         Parasite.transform.parent = ParasiteOrigin;
         Parasite.transform.position = ParasiteOrigin.position;
         Parasite.transform.localRotation = Quaternion.identity;
-        Parasite.SetupParasite();
+        Parasite.SetupParasite(BaseDamage);
     }
 
     public virtual void HandleCollisonEnter(Collision2D collision)
@@ -63,9 +64,8 @@ public class BaseHost : MonoBehaviour
             Rigidbody.angularVelocity = 0f;
             Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
-            CurrentHealth -= damage.Damage;
+            CurrentHealth -= damage.Damage * BaseDamageResistance;
             UpdateHealthBar();
-            Debug.Log("You got hit");
 
             if (CurrentHealth < 1)
             {
@@ -81,9 +81,8 @@ public class BaseHost : MonoBehaviour
             Rigidbody.angularVelocity = 0f;
             Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
-            CurrentHealth -= damage.Damage;
+            CurrentHealth -= damage.Damage * BaseDamageResistance;
             UpdateHealthBar();
-            Debug.Log("You got hit");
 
             if (CurrentHealth < 1)
             {

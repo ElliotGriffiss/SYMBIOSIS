@@ -11,7 +11,7 @@ public class BaseEnemyController : MonoBehaviour
     [SerializeField] protected Rigidbody2D MyRigidBody;
     [Space]
     [SerializeField] protected EnemyState State = EnemyState.Idle;
-    [SerializeField] protected int Health = 5;
+    [SerializeField] protected float Health = 5;
     [SerializeField] protected float MovementSpeed = 3;
     [SerializeField] protected float StateDuration;
 
