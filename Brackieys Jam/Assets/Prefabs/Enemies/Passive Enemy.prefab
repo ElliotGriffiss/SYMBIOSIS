@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3463660868653455588}
   - component: {fileID: 5177657998072642476}
+  - component: {fileID: -7126742736869141506}
   - component: {fileID: 8401332777231086696}
   - component: {fileID: 6988660939265682}
   - component: {fileID: 2656989725989646803}
@@ -53,6 +54,21 @@ MonoBehaviour:
   Health: 5
   MovementSpeed: 3
   StateDuration: 2
+  BounceBackForce: 0
+--- !u!114 &-7126742736869141506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186617322936228186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8050ab40d66424e990c80425afe4e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 0
+  KnockBackForce: 0
 --- !u!50 &8401332777231086696
 Rigidbody2D:
   serializedVersion: 4

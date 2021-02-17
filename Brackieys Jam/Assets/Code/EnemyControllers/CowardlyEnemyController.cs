@@ -3,87 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameData;
 
-public class CowardlyEnemyController : MonoBehaviour
+public class CowardlyEnemyController : BaseEnemyController
 {
-    [Header("Enemy Data")]
-    [SerializeField] private SpriteRenderer Sprite;
-    [SerializeField] private Rigidbody2D MyRigidBody;
-    [Space]
-    [SerializeField] private EnemyState State = EnemyState.Idle;
-    [SerializeField] private int Health = 5;
-    [SerializeField] private float MovementSpeed = 3;
-    [SerializeField] private float StateDuration;
-    [SerializeField] protected float BounceBackForce;
-
-    private Vector2 movementDirection;
-    private float currentStateTime = float.PositiveInfinity; // ensures a new state is always chosen
-
-    private void FixedUpdate()
-    {
-        if (currentStateTime > StateDuration)
-        {
-            ChooseANewState();
-        }
-        else
-        {
-            MyRigidBody.AddForce(movementDirection * MovementSpeed);
-            currentStateTime += Time.fixedDeltaTime;
-        }
-    }
-
-    private void ChooseANewState()
-    {
-        if (Random.Range(100, 0) > 30)
-        {
-            State = EnemyState.Moving;
-            Sprite.color = Color.green;
-            movementDirection = GenerateRandomMovementVector();
-        }
-        else
-        {
-            Sprite.color = Color.blue;
-            State = EnemyState.Idle;
-        }
-
-        currentStateTime = 0;
-    }
-
-    /// <summary>
-    /// Used to detect an attack hitting
-    /// </summary>
-    /// <param name="collision"></param>
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.gameObject.tag == "Bullet")
-        {
-            collision.gameObject.SetActive(false);
-
-            MyRigidBody.velocity = Vector3.zero;
-            MyRigidBody.angularVelocity = 0f;
-            MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * BounceBackForce, ForceMode2D.Impulse);
-
-            Health--;
-
-            if (Health < 1)
-            {
-                gameObject.SetActive(false);
-            }
-        }
-        else if (collision.collider.gameObject.tag == "Spike")
-        {
-            MyRigidBody.velocity = Vector3.zero;
-            MyRigidBody.angularVelocity = 0f;
-            MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * BounceBackForce, ForceMode2D.Impulse);
-
-            Health -=3;
-
-            if (Health < 1)
-            {
-                gameObject.SetActive(false);
-            }
-        }
-    }
-
     /// <summary>
     /// Used to Detect if an attacker is in it's sight radius
     /// </summary>
@@ -97,10 +18,5 @@ public class CowardlyEnemyController : MonoBehaviour
              movementDirection = (collision.transform.position + transform.position).normalized;
              currentStateTime = 0;
         }
-    }
-
-    private Vector2 GenerateRandomMovementVector()
-    {
-        return new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;
     }
 }
