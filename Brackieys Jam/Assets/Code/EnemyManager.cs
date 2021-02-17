@@ -10,7 +10,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private InvertedCircleCollider MapBoundry;
     private List<BaseEnemyController> EnemyPool = new List<BaseEnemyController>();
 
-    public void SpawnEnemies()
+    public void SpawnEnemies(HealthDropObjectPool pool)
     {
         foreach (EnemySpawnData enemyData in EnemiePrefabs)
         {
@@ -18,6 +18,7 @@ public class EnemyManager : MonoBehaviour
             {
                 BaseEnemyController enemy = Instantiate(enemyData.EnemyPrefab);
                 enemy.transform.position = Random.insideUnitCircle * MapBoundry.GetBoundryRadius();
+                enemy.InitializeEnemy(pool);
                 EnemyPool.Add(enemy);
             }
         }
@@ -52,6 +53,6 @@ public class EnemyManager : MonoBehaviour
         pooledEnemy.gameObject.SetActive(false);
 
         EnemyPool.Add(pooledEnemy);
-        return null;
+        return pooledEnemy;
     }
 }

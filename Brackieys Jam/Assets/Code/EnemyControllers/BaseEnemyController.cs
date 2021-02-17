@@ -14,10 +14,17 @@ public class BaseEnemyController : MonoBehaviour
     [SerializeField] protected float Health = 5;
     [SerializeField] protected float MovementSpeed = 3;
     [SerializeField] protected float StateDuration;
+    [SerializeField] protected int NumberOfDrops = 3;
 
     protected Vector2 movementDirection;
     protected float currentStateTime = float.PositiveInfinity; // ensures a new state is always chosen
+    protected HealthDropObjectPool DropPool;
 
+
+    public void InitializeEnemy(HealthDropObjectPool dropPool)
+    {
+        DropPool = dropPool;
+    }
 
     protected virtual void FixedUpdate()
     {
@@ -64,7 +71,7 @@ public class BaseEnemyController : MonoBehaviour
 
             if (Health < 1)
             {
-                gameObject.SetActive(false);
+                KillEnemy();
             }
         }
         else if (collision.collider.gameObject.tag == "Spike")
@@ -79,9 +86,21 @@ public class BaseEnemyController : MonoBehaviour
 
             if (Health < 1)
             {
-                gameObject.SetActive(false);
+                KillEnemy();
             }
         }
+    }
+
+    protected virtual void KillEnemy()
+    {
+        for (int i = 0; i < NumberOfDrops; i++)
+        {
+            GameObject drop = DropPool.GetDropFromThepool();
+            drop.SetActive(true);
+            drop.transform.position = transform.position;
+        }
+
+        gameObject.SetActive(false);
     }
 
     public virtual void CleanUpEnemy()

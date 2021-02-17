@@ -72,7 +72,7 @@ public class GunParsite : BaseParsite
             bullet.gameObject.transform.position = BulletOrigin.position;
             bullet.gameObject.transform.rotation = Quaternion.Euler(direction);
             bullet.gameObject.SetActive(true);
-            bullet.Rigidbody.velocity = direction * BulletSpeed;
+            bullet.Rigidbody.velocity = direction.normalized * BulletSpeed;
 
             LastFireTime = Time.time;
         }

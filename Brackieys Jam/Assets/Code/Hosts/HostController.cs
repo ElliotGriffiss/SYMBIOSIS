@@ -58,16 +58,20 @@ public class HostController : BaseHost
             force += direction.normalized * inputValue.y * baseForwardSpeed;
         }
 
-        Vector2 rightDirection = Rigidbody.transform.right.normalized;
+        if (inputValue.y < 0f)
+        {
+            force += direction.normalized * inputValue.y * baseForwardSpeed;
+        }
+
 
         if (inputValue.x > 0)
         {
-            force += (rightDirection.normalized * inputValue.x * baseStrafeSpeed);
+            force += (Vector2.right * inputValue.x * baseStrafeSpeed);
         }
 
         if (inputValue.x < 0)
         {
-            force += (rightDirection.normalized * inputValue.x * baseStrafeSpeed);
+            force += (Vector2.right * inputValue.x * baseStrafeSpeed);
         }
 
         Rigidbody.AddForce(force);
@@ -109,6 +113,15 @@ public class HostController : BaseHost
             {
                 TriggerHostDeath();
             }
+        }
+        else if (collision.gameObject.tag == "PickUp")
+        {
+            HealingComponent healing = collision.collider.GetComponent<HealingComponent>();
+
+            CurrentHealth += healing.Health;
+            UpdateHealthBar();
+
+            healing.gameObject.SetActive(false);
         }
     }
 

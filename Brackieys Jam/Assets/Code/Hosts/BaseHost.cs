@@ -18,10 +18,12 @@ public class BaseHost : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] protected Image HealthBar;
+    [SerializeField] protected Text Healthtext;
     [SerializeField] protected Image AbilityBar;
 
     [Header("Data")]
     [SerializeField] protected float BaseHealth = 10;
+    [SerializeField] protected float MaxHealth = 10;
     [SerializeField] protected float BaseDamage;
     [SerializeField] protected float BaseDamageResistance = 1;
     [SerializeField] protected float BaseAbilityDuration = 10;
@@ -30,8 +32,8 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected float baseForwardSpeed;
     [SerializeField] protected float baseStrafeSpeed;
     [Space]
-    [SerializeField] protected Vector3 MaxSize;
-    [SerializeField] protected Vector3 MinSize;
+    [SerializeField] protected Vector3 MaxSize = Vector3.one;
+    [SerializeField] protected Vector3 MinSize = Vector3.zero;
 
 
     protected float CurrentHealth;
@@ -105,6 +107,15 @@ public class BaseHost : MonoBehaviour
                 TriggerHostDeath();
             }
         }
+        else if (collision.gameObject.tag == "PickUp")
+        {
+            HealingComponent healing = collision.collider.GetComponent<HealingComponent>();
+
+            CurrentHealth += healing.Health;
+            UpdateHealthBar();
+
+            healing.gameObject.SetActive(false);
+        }
     }
 
     protected void TriggerHostDeath()
@@ -128,7 +139,14 @@ public class BaseHost : MonoBehaviour
 
     protected virtual void UpdateHealthBar()
     {
-        HealthBar.fillAmount = (float)CurrentHealth / BaseHealth;
+        if (CurrentHealth > MaxHealth)
+        {
+            MaxHealth = CurrentHealth;
+        }
+
+        Healthtext.text = CurrentHealth + "/" + MaxHealth;
+        gameObject.transform.localScale = Vector3.Lerp(MinSize, MaxSize, (CurrentHealth / BaseHealth * 2));
+        HealthBar.fillAmount = CurrentHealth / MaxHealth;
     }
 
     protected virtual void UpdateAbilityBar()

@@ -75,7 +75,7 @@ public class SpreadShotParasite : BaseParsite
                 bullet.transform.position = trans.position;
                 bullet.transform.rotation = Quaternion.Euler(direction);
                 bullet.gameObject.SetActive(true);
-                bullet.Rigidbody.velocity = direction * BulletSpeed;
+                bullet.Rigidbody.velocity = direction.normalized * BulletSpeed;
                 LastFireTime = Time.time;
             }
         }

@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private GameObject LevelParentObject;
     [SerializeField] private EnemyManager EnemyManager;
+    [SerializeField] private HealthDropObjectPool HealthDropPool;
 
     [SerializeField] private Transform SymbioteSpawnPoint;
     private BaseHost Host;
@@ -17,7 +18,7 @@ public class LevelManager : MonoBehaviour
 
         host.transform.position = SymbioteSpawnPoint.position;
         LevelParentObject.SetActive(true);
-        EnemyManager.SpawnEnemies();
+        EnemyManager.SpawnEnemies(HealthDropPool);
     }
 
     private void HandleHostDeath()
@@ -30,6 +31,7 @@ public class LevelManager : MonoBehaviour
     {
         BaseHost.OnHostDeath -= HandleHostDeath;
         EnemyManager.DespawnAllEnemies();
+        HealthDropPool.ReturnAllDrops();
         // Start Next level here
     }
 }
