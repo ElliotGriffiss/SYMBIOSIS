@@ -15,7 +15,6 @@ public class BaseEnemyController : MonoBehaviour
     [SerializeField] protected float MovementSpeed = 3;
     [SerializeField] protected float StateDuration;
 
-    protected float BounceBackForce = 0;
     protected Vector2 movementDirection;
     protected float currentStateTime = float.PositiveInfinity; // ensures a new state is always chosen
 
@@ -54,13 +53,14 @@ public class BaseEnemyController : MonoBehaviour
     {
         if (collision.collider.gameObject.tag == "Bullet")
         {
-            collision.gameObject.SetActive(false);
+            DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
+            damage.gameObject.SetActive(false);
 
             MyRigidBody.velocity = Vector3.zero;
             MyRigidBody.angularVelocity = 0f;
-            MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * BounceBackForce, ForceMode2D.Impulse);
+            MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
-            Health--;
+            Health -= damage.Damage;
 
             if (Health < 1)
             {
@@ -69,11 +69,13 @@ public class BaseEnemyController : MonoBehaviour
         }
         else if (collision.collider.gameObject.tag == "Spike")
         {
+            DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
+
             MyRigidBody.velocity = Vector3.zero;
             MyRigidBody.angularVelocity = 0f;
-            MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * BounceBackForce, ForceMode2D.Impulse);
+            MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
-            Health -= 3;
+            Health -= damage.Damage;
 
             if (Health < 1)
             {

@@ -77,11 +77,13 @@ public class HostController : BaseHost
     {
         if (collision.gameObject.tag == "Enemy" && AbilityIsActive == false)
         {
+            DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
+
             Rigidbody.velocity = Vector3.zero;
             Rigidbody.angularVelocity = 0f;
-            Rigidbody.AddForce((collision.transform.position + transform.position).normalized * BounceBackForce, ForceMode2D.Impulse);
+            Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
-            CurrentHealth -= 2;
+            CurrentHealth -= damage.Damage;
             UpdateHealthBar();
             Debug.Log("You got hit");
 
@@ -92,9 +94,14 @@ public class HostController : BaseHost
         }
         else if (collision.gameObject.tag == "EnemyBullet" && AbilityIsActive == false)
         {
-            collision.gameObject.SetActive(false);
+            DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
+            damage.gameObject.SetActive(false);
 
-            CurrentHealth -= 2;
+            Rigidbody.velocity = Vector3.zero;
+            Rigidbody.angularVelocity = 0f;
+            Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+
+            CurrentHealth -= damage.Damage;
             UpdateHealthBar();
             Debug.Log("You got hit");
 

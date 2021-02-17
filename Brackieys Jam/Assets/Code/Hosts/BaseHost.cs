@@ -55,7 +55,41 @@ public class BaseHost : MonoBehaviour
 
     public virtual void HandleCollisonEnter(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
 
+            Rigidbody.velocity = Vector3.zero;
+            Rigidbody.angularVelocity = 0f;
+            Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+
+            CurrentHealth -= damage.Damage;
+            UpdateHealthBar();
+            Debug.Log("You got hit");
+
+            if (CurrentHealth < 1)
+            {
+                Debug.Log("You died!");
+            }
+        }
+        else if (collision.gameObject.tag == "EnemyBullet")
+        {
+            DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
+            damage.gameObject.SetActive(false);
+
+            Rigidbody.velocity = Vector3.zero;
+            Rigidbody.angularVelocity = 0f;
+            Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+
+            CurrentHealth -= damage.Damage;
+            UpdateHealthBar();
+            Debug.Log("You got hit");
+
+            if (CurrentHealth < 1)
+            {
+                Debug.Log("You died!");
+            }
+        }
     }
 
     public virtual void HandleTriggerEnter(Collider2D collider)

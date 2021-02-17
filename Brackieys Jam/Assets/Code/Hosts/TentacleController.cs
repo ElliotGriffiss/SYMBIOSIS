@@ -82,37 +82,6 @@ public class TentacleController : BaseHost
 
         LookAtMouse();
     }
-    public override void HandleCollisonEnter(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Rigidbody.velocity = Vector3.zero;
-            Rigidbody.angularVelocity = 0f;
-            Rigidbody.AddForce((collision.transform.position + transform.position).normalized * BounceBackForce, ForceMode2D.Impulse);
-
-            CurrentHealth -= 2;
-            UpdateHealthBar();
-            Debug.Log("You got hit");
-
-            if (CurrentHealth < 1)
-            {
-                Debug.Log("You died!");
-            }
-        }
-        else if (collision.gameObject.tag == "EnemyBullet")
-        {
-            collision.gameObject.SetActive(false);
-
-            CurrentHealth -= 2;
-            UpdateHealthBar();
-            Debug.Log("You got hit");
-
-            if (CurrentHealth < 1)
-            {
-                Debug.Log("You died!");
-            }
-        }
-    }
 
     private void ToggleActiveAbility(bool active)
     {

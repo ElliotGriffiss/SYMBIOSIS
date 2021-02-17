@@ -10497,7 +10497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6932885408933277846, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6932885408933277847, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: m_RootOrder
@@ -11268,7 +11268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4755842177631048739, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6287545379789920926, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: host
@@ -11768,10 +11768,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1928299701}
+  - component: {fileID: 1928299704}
   - component: {fileID: 1928299703}
   - component: {fileID: 1928299702}
   m_Layer: 6
-  m_Name: GameObject
+  m_Name: Spear
   m_TagString: Spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11871,6 +11872,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1928299704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928299700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8050ab40d66424e990c80425afe4e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 0
+  KnockBackForce: 0
 --- !u!1 &1971078940
 GameObject:
   m_ObjectHideFlags: 0
