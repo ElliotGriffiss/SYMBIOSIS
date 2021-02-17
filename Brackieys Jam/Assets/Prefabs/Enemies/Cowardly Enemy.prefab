@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4630618018012319975}
   - component: {fileID: 4630618018012319974}
   - component: {fileID: 4630618018012319979}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cowardly Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

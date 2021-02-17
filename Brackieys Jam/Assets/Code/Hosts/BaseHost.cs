@@ -31,9 +31,6 @@ public class BaseHost : MonoBehaviour
 
     [SerializeField] protected float baseForwardSpeed;
     [SerializeField] protected float baseStrafeSpeed;
-    [Space]
-    [SerializeField] protected Vector3 MaxSize = Vector3.one;
-    [SerializeField] protected Vector3 MinSize = Vector3.zero;
 
 
     protected float CurrentHealth;
@@ -145,7 +142,6 @@ public class BaseHost : MonoBehaviour
         }
 
         Healthtext.text = CurrentHealth + "/" + MaxHealth;
-        gameObject.transform.localScale = Vector3.Lerp(MinSize, MaxSize, (CurrentHealth / BaseHealth * 2));
         HealthBar.fillAmount = CurrentHealth / MaxHealth;
     }
 
