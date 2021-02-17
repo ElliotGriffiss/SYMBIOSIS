@@ -8,34 +8,48 @@ public class EnemyManager : MonoBehaviour
     [Header("Enemy References")]
     [SerializeField] private List<EnemySpawnData> EnemiePrefabs;
     [SerializeField] private InvertedCircleCollider MapBoundry;
-    private List<GameObject> EnemyPool = new List<GameObject>();
+    private List<BaseEnemyController> EnemyPool = new List<BaseEnemyController>();
 
-    public void OnEnable()
+    public void SpawnEnemies()
     {
         foreach (EnemySpawnData enemyData in EnemiePrefabs)
         {
             for (int i = 0; i < enemyData.MaxNumberToSpawn; i++)
             {
-                GameObject enemy = Instantiate(enemyData.EnemyPrefab);
+                BaseEnemyController enemy = Instantiate(enemyData.EnemyPrefab);
                 enemy.transform.position = Random.insideUnitCircle * MapBoundry.GetBoundryRadius();
                 EnemyPool.Add(enemy);
             }
         }
     }
 
-    private GameObject GetEnemyFromThePool(EnemySpawnData data)
+    public void DespawnAllEnemies()
     {
-        foreach (GameObject enemy in EnemyPool)
+        Debug.Log("CleanUP");
+
+        for (int i = 0; i < EnemyPool.Count; i++)
         {
-            if (!enemy.activeInHierarchy)
+            Debug.Log(i);
+            EnemyPool[i].CleanUpEnemy();
+            Destroy(EnemyPool[i].gameObject);
+        }
+
+        EnemyPool.Clear();
+    }
+
+    private BaseEnemyController GetEnemyFromThePool(EnemySpawnData data)
+    {
+        foreach (BaseEnemyController enemy in EnemyPool)
+        {
+            if (!enemy.gameObject.activeInHierarchy)
             {
                 return enemy;
             }
         }
 
         // Creates a new enemy if one cannot be found in the pool
-        GameObject pooledEnemy = Instantiate(data.EnemyPrefab);
-        pooledEnemy.SetActive(false);
+        BaseEnemyController pooledEnemy = Instantiate(data.EnemyPrefab);
+        pooledEnemy.gameObject.SetActive(false);
 
         EnemyPool.Add(pooledEnemy);
         return null;

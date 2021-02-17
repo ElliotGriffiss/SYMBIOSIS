@@ -84,6 +84,11 @@ public class BaseEnemyController : MonoBehaviour
         }
     }
 
+    public virtual void CleanUpEnemy()
+    {
+        // Clear all instantiated objects here and and ensure nothing gets left behind
+    }
+
     protected Vector2 GenerateRandomMovementVector()
     {
         return new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;

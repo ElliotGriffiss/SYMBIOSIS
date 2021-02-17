@@ -13,7 +13,7 @@ namespace GameData
     [System.Serializable]
     public struct EnemySpawnData
     {
-        public GameObject EnemyPrefab;
+        public BaseEnemyController EnemyPrefab;
         public int MaxNumberToSpawn;
     }
 }

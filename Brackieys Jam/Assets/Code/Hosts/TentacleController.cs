@@ -16,18 +16,28 @@ public class TentacleController : BaseHost
     protected SpriteRenderer[] Sprites;
     private IEnumerator MovementSequence;
 
-    public override void InitializeHost()
+    public override void InitializeHost(bool IsTestArea = false)
     {
         CurrentHealth = BaseHealth;
         AbilityIsActive = false;
-        CurrentCooldown = 0;
+
+        if (IsTestArea)
+        {
+            CurrentCooldown = BaseAbilityCooldown;
+        }
+        else
+        {
+            CurrentCooldown = 0;
+        }
 
         GameObjects = GetComponentsInChildren<Transform>();
         Sprites = GetComponentsInChildren<SpriteRenderer>();
 
         animator.SetBool("isMoving", true);
-        ToggleActiveAbility(AbilityIsActive);
+        ToggleActiveAbilityGraphics(AbilityIsActive);
+
         UpdateHealthBar();
+        UpdateAbilityBar();
     }
 
 
@@ -51,10 +61,10 @@ public class TentacleController : BaseHost
             MovementSequence = null;
         }
 
-        if (Input.GetAxis("Fire2") > 0 && CurrentCooldown > BaseAbilityCooldown)
+        if (Input.GetAxis("Fire2") > 0 && CurrentCooldown >= BaseAbilityCooldown)
         {
             AbilityIsActive = true;
-            ToggleActiveAbility(AbilityIsActive);
+            ToggleActiveAbilityGraphics(AbilityIsActive);
             CurrentDuration = BaseAbilityDuration;
             CurrentCooldown = 0;
         }
@@ -67,7 +77,7 @@ public class TentacleController : BaseHost
             if (CurrentDuration < 0)
             {
                 AbilityIsActive = false;
-                ToggleActiveAbility(AbilityIsActive);
+                ToggleActiveAbilityGraphics(AbilityIsActive);
                 CurrentCooldown = 0;
             }
         }
@@ -83,7 +93,7 @@ public class TentacleController : BaseHost
         LookAtMouse();
     }
 
-    private void ToggleActiveAbility(bool active)
+    protected override void ToggleActiveAbilityGraphics(bool active)
     {
         foreach (Transform obj in GameObjects)
         {

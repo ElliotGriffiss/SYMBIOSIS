@@ -12,12 +12,12 @@ public class HostController : BaseHost
             Parasite.ActivateParasite(direction);
         }
 
-        if (Input.GetAxis("Fire2") > 0 && CurrentCooldown > BaseAbilityCooldown)
+        if (Input.GetAxis("Fire2") > 0 && CurrentCooldown >= BaseAbilityCooldown)
         {
             AbilityIsActive = true;
             CurrentDuration = BaseAbilityDuration;
-            HostSprite.color = Color.green;
             CurrentCooldown = 0;
+            ToggleActiveAbilityGraphics(AbilityIsActive);
         }
 
         if (AbilityIsActive)
@@ -29,7 +29,7 @@ public class HostController : BaseHost
             {
                 AbilityIsActive = false;
                 CurrentCooldown = 0;
-                HostSprite.color = Color.white;
+                ToggleActiveAbilityGraphics(AbilityIsActive);
             }
         }
         else
@@ -49,7 +49,7 @@ public class HostController : BaseHost
         LookAtMouse();
     }
 
-    private void FixedUpdate()  
+    private void FixedUpdate()
     {
         Vector2 force = Vector2.zero;
 
@@ -64,10 +64,10 @@ public class HostController : BaseHost
         {
             force += (rightDirection.normalized * inputValue.x * baseStrafeSpeed);
         }
-        
+
         if (inputValue.x < 0)
         {
-             force += (rightDirection.normalized * inputValue.x * baseStrafeSpeed);
+            force += (rightDirection.normalized * inputValue.x * baseStrafeSpeed);
         }
 
         Rigidbody.AddForce(force);
@@ -89,7 +89,7 @@ public class HostController : BaseHost
 
             if (CurrentHealth < 1)
             {
-                Debug.Log("You died!");
+                TriggerHostDeath();
             }
         }
         else if (collision.gameObject.tag == "EnemyBullet" && AbilityIsActive == false)
@@ -107,8 +107,20 @@ public class HostController : BaseHost
 
             if (CurrentHealth < 1)
             {
-                Debug.Log("You died!");
+                TriggerHostDeath();
             }
+        }
+    }
+
+    protected override void ToggleActiveAbilityGraphics(bool active)
+    {
+        if (active)
+        {
+            HostSprite.color = Color.green;
+        }
+        else
+        {
+            HostSprite.color = Color.white;
         }
     }
 }

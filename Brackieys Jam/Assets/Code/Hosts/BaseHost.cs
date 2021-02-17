@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,9 @@ using UnityEngine.UI;
 
 public class BaseHost : MonoBehaviour
 {
-    [Header("Scene References")]   
+    public static event Action OnHostDeath = delegate { };
+
+    [Header("Scene References")]
     [SerializeField] protected SpriteRenderer HostSprite;
     [SerializeField] protected Rigidbody2D Rigidbody;
     [SerializeField] protected Animator animator;
@@ -26,6 +29,9 @@ public class BaseHost : MonoBehaviour
 
     [SerializeField] protected float baseForwardSpeed;
     [SerializeField] protected float baseStrafeSpeed;
+    [Space]
+    [SerializeField] protected Vector3 MaxSize;
+    [SerializeField] protected Vector3 MinSize;
 
 
     protected float CurrentHealth;
@@ -36,13 +42,23 @@ public class BaseHost : MonoBehaviour
     protected Vector2 inputValue;
     protected Vector2 direction;
 
-    public virtual void InitializeHost()
+    public virtual void InitializeHost(bool IsTestArea = false)
     {
         CurrentHealth = BaseHealth;
         AbilityIsActive = false;
-        CurrentCooldown = 0;
+        ToggleActiveAbilityGraphics(AbilityIsActive);
+
+        if (IsTestArea)
+        {
+            CurrentCooldown = BaseAbilityCooldown;
+        }
+        else
+        {
+            CurrentCooldown = 0;
+        }
 
         UpdateHealthBar();
+        UpdateAbilityBar();
     }
 
     public virtual void ChangeParasite(BaseParsite parasite)
@@ -69,7 +85,7 @@ public class BaseHost : MonoBehaviour
 
             if (CurrentHealth < 1)
             {
-                Debug.Log("You died!");
+                TriggerHostDeath();
             }
         }
         else if (collision.gameObject.tag == "EnemyBullet")
@@ -86,9 +102,15 @@ public class BaseHost : MonoBehaviour
 
             if (CurrentHealth < 1)
             {
-                Debug.Log("You died!");
+                TriggerHostDeath();
             }
         }
+    }
+
+    protected void TriggerHostDeath()
+    {
+        Debug.LogError("You Died");
+        BaseHost.OnHostDeath();
     }
 
     public virtual void HandleTriggerEnter(Collider2D collider)
@@ -119,5 +141,10 @@ public class BaseHost : MonoBehaviour
         {
             AbilityBar.fillAmount = CurrentCooldown / BaseAbilityCooldown;
         }
+    }
+
+    protected virtual void ToggleActiveAbilityGraphics(bool active)
+    {
+
     }
 }

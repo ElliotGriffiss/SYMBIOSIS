@@ -102,4 +102,14 @@ public class RangedEnemeyController : BaseEnemyController
             }
         }
     }
+
+    public override void CleanUpEnemy()
+    {
+        for (int i = 0; i < BulletPool.Count; i++)
+        {
+            Destroy(BulletPool[i].gameObject);
+        }
+
+        BulletPool.Clear();
+    }
 }
