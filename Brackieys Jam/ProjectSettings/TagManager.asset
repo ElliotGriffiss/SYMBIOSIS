@@ -21,8 +21,8 @@ TagManager:
   - Don'tCollideWithHost
   - OnlyColliderWithWalls
   - Walls
-  - 
-  - 
+  - OnlyCollideWithEnemies
+  - Enemies
   - 
   - 
   - 

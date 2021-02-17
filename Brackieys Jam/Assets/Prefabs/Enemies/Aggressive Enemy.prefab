@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1192511869927828890}
   - component: {fileID: 1764811225965454303}
   - component: {fileID: 6776286844167836253}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Aggressive Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -54,6 +54,7 @@ MonoBehaviour:
   Health: 5
   MovementSpeed: 3
   StateDuration: 2
+  NumberOfDrops: 3
 --- !u!114 &3499267146047571601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +70,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 226534651392447119}
   BaseDamage: 2
   Damage: 2
-  KnockBackForce: 0
+  KnockBackForce: 1
 --- !u!50 &226534651392447119
 Rigidbody2D:
   serializedVersion: 4
