@@ -42,7 +42,7 @@ public class TentacleController : BaseHost
 
 
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
         if (Input.GetMouseButton(0))
         {

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6332344595661312056}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bullet Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4251108923847889718}
   - component: {fileID: 3607242862221368691}
   - component: {fileID: 8392575326869826801}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Ranged Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
