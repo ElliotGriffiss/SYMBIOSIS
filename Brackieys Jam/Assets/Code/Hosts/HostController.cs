@@ -33,7 +33,7 @@ public class HostController : BaseHost
             }
         }
         else
-        {
+        {            
             if (CurrentCooldown < BaseAbilityCooldown)
             {
                 CurrentCooldown += Time.deltaTime;
@@ -129,11 +129,13 @@ public class HostController : BaseHost
     {
         if (active)
         {
-            HostSprite.color = Color.green;
+            animator.SetBool("IsArmored", true);
+            //HostSprite.color = Color.green;
         }
         else
         {
-            HostSprite.color = Color.white;
+            animator.SetBool("IsArmored", false);
+            //HostSprite.color = Color.white;
         }
     }
 }

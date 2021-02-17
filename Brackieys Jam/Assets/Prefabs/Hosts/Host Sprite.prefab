@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 6932885408933277847}
   - component: {fileID: 6932885408933277843}
   - component: {fileID: 7630703106993362202}
+  - component: {fileID: 6198074541576791464}
   m_Layer: 6
   m_Name: Host Sprite
   m_TagString: Host
@@ -250,19 +251,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca258028bea279249922e93f27140f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HostSprite: {fileID: 1592048019651714150}
   Rigidbody: {fileID: 7630703106993362202}
   animator: {fileID: 2647658290547433001}
   Parasite: {fileID: 0}
   ParasiteOrigin: {fileID: 8269579951344957471}
   HealthBar: {fileID: 0}
+  Healthtext: {fileID: 0}
   AbilityBar: {fileID: 0}
   BaseHealth: 10
+  MaxHealth: 10
+  BaseDamage: 0
+  BaseDamageResistance: 1
   BaseAbilityDuration: 10
   BaseAbilityCooldown: 10
   baseForwardSpeed: 5
   baseStrafeSpeed: 4
-  BounceBackForce: 5
-  HostSprite: {fileID: 1592048019651714150}
 --- !u!50 &7630703106993362202
 Rigidbody2D:
   serializedVersion: 4
@@ -284,3 +288,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!95 &6198074541576791464
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6932885408933277846}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 920e1631beab2cd4e92b6ce09a2546bb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
