@@ -82,9 +82,10 @@ MonoBehaviour:
   Sprite: {fileID: 4251108923847889718}
   MyRigidBody: {fileID: 2978724473649114147}
   State: 0
-  Health: 5
+  Health: 4
   MovementSpeed: 3
   StateDuration: 2
+  NumberOfDrops: 3
   BulletPrefab: {fileID: 9071394233107713488, guid: 4aff7a6e9a822d240a1ee26de0912a44, type: 3}
   BulletOrigin: {fileID: 6332344595661312056}
   MaxNumberOfBullets: 10
@@ -103,8 +104,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 2978724473649114147}
-  BaseDamage: 1
-  Damage: 1
+  BaseDamage: 0
+  Damage: 0
   KnockBackForce: 0
 --- !u!50 &2978724473649114147
 Rigidbody2D:

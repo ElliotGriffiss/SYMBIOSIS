@@ -52,8 +52,9 @@ MonoBehaviour:
   MyRigidBody: {fileID: 4630618018012319976}
   State: 0
   Health: 5
-  MovementSpeed: 3
+  MovementSpeed: 4
   StateDuration: 2
+  NumberOfDrops: 3
 --- !u!114 &-172234478584516684
 MonoBehaviour:
   m_ObjectHideFlags: 0
