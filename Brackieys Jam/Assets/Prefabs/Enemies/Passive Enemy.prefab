@@ -54,7 +54,6 @@ MonoBehaviour:
   Health: 5
   MovementSpeed: 3
   StateDuration: 2
-  BounceBackForce: 0
 --- !u!114 &-7126742736869141506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +66,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8050ab40d66424e990c80425afe4e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
+  Rigidbody: {fileID: 8401332777231086696}
+  Damage: 2
   KnockBackForce: 0
 --- !u!50 &8401332777231086696
 Rigidbody2D:

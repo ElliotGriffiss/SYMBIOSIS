@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletOrigin: {fileID: 271855878}
-  BulletPrefab: {fileID: 1953587914637413327, guid: c8706e9ea4ad8fa43b9067c46bb7cb9e, type: 3}
+  BulletPrefab: {fileID: 4217806881768664762, guid: c8706e9ea4ad8fa43b9067c46bb7cb9e, type: 3}
   MaxNumberOfBullets: 10
   FireRate: 0.6
   BulletSpeed: 10
@@ -11884,7 +11884,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8050ab40d66424e990c80425afe4e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
+  Rigidbody: {fileID: 0}
+  Damage: 3
   KnockBackForce: 0
 --- !u!1 &1971078940
 GameObject:

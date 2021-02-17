@@ -5,13 +5,13 @@ using UnityEngine;
 public class GunParsite : BaseParsite
 {
     [SerializeField] private Transform BulletOrigin;
-    [SerializeField] private Rigidbody2D BulletPrefab;
+    [SerializeField] private DamageComponent BulletPrefab;
 
     [SerializeField] private int MaxNumberOfBullets = 10;
     [SerializeField] private float FireRate;
     [SerializeField] private float BulletSpeed;
 
-    private List<Rigidbody2D> BulletPool = new List<Rigidbody2D>();
+    private List<DamageComponent> BulletPool = new List<DamageComponent>();
     private float LastFireTime = 0;
 
     /// <summary>
@@ -21,16 +21,16 @@ public class GunParsite : BaseParsite
     {
         for (int i = 0; i < MaxNumberOfBullets; i++)
         {
-            Rigidbody2D bullet = Instantiate(BulletPrefab);
+            DamageComponent bullet = Instantiate(BulletPrefab);
             bullet.gameObject.SetActive(false);
 
             BulletPool.Add(bullet);
         }
     }
 
-    private Rigidbody2D GetBulletFromThePool()
+    private DamageComponent GetBulletFromThePool()
     {
-        foreach (Rigidbody2D pooledBullet in BulletPool)
+        foreach (DamageComponent pooledBullet in BulletPool)
         {
             if (!pooledBullet.gameObject.activeInHierarchy)
             {
@@ -39,7 +39,7 @@ public class GunParsite : BaseParsite
         }
 
         // Creates a new bullet if one cannot be found in the pool
-        Rigidbody2D bullet = Instantiate(BulletPrefab);
+        DamageComponent bullet = Instantiate(BulletPrefab);
         bullet.gameObject.SetActive(false);
 
         BulletPool.Add(bullet);
@@ -51,12 +51,12 @@ public class GunParsite : BaseParsite
         // Used to enforce the fie rate without putting an update loop in this class.
         if (Time.time - LastFireTime > FireRate)
         {
-            Rigidbody2D bullet = GetBulletFromThePool();
+            DamageComponent bullet = GetBulletFromThePool();
 
             bullet.gameObject.transform.position = BulletOrigin.position;
             bullet.gameObject.transform.rotation = Quaternion.Euler(direction);
             bullet.gameObject.SetActive(true);
-            bullet.velocity = direction * BulletSpeed;
+            bullet.Rigidbody.velocity = direction * BulletSpeed;
 
             LastFireTime = Time.time;
         }

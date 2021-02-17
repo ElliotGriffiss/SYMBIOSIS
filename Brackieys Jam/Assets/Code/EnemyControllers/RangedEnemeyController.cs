@@ -6,7 +6,7 @@ using GameData;
 public class RangedEnemeyController : BaseEnemyController
 {
     [Header("Gun Data")]
-    [SerializeField] private Rigidbody2D BulletPrefab;
+    [SerializeField] private DamageComponent BulletPrefab;
     [SerializeField] private Transform BulletOrigin;
     [SerializeField] private int MaxNumberOfBullets = 10;
     [SerializeField] private float FireRate;
@@ -14,7 +14,7 @@ public class RangedEnemeyController : BaseEnemyController
 
     private float LastFireTime = 0;
 
-    private List<Rigidbody2D> BulletPool = new List<Rigidbody2D>();
+    private List<DamageComponent> BulletPool = new List<DamageComponent>();
     private Transform attacker;
 
     /// <summary>
@@ -24,16 +24,16 @@ public class RangedEnemeyController : BaseEnemyController
     {
         for (int i = 0; i < MaxNumberOfBullets; i++)
         {
-            Rigidbody2D bullet = Instantiate(BulletPrefab);
+            DamageComponent bullet = Instantiate(BulletPrefab);
             bullet.gameObject.SetActive(false);
 
             BulletPool.Add(bullet);
         }
     }
 
-    private Rigidbody2D GetBulletFromThePool()
+    private DamageComponent GetBulletFromThePool()
     {
-        foreach (Rigidbody2D pooledBullet in BulletPool)
+        foreach (DamageComponent pooledBullet in BulletPool)
         {
             if (!pooledBullet.gameObject.activeInHierarchy)
             {
@@ -41,7 +41,7 @@ public class RangedEnemeyController : BaseEnemyController
             }
         }
 
-        Rigidbody2D bullet = Instantiate(BulletPrefab);
+        DamageComponent bullet = Instantiate(BulletPrefab);
         bullet.gameObject.SetActive(false);
 
         BulletPool.Add(bullet);
@@ -56,12 +56,12 @@ public class RangedEnemeyController : BaseEnemyController
             {
                 Vector2 direction = attacker.position - transform.position;
 
-                Rigidbody2D bullet = GetBulletFromThePool();
+                DamageComponent bullet = GetBulletFromThePool();
 
                 bullet.gameObject.transform.position = BulletOrigin.position;
                 bullet.gameObject.transform.rotation = Quaternion.Euler(direction);
                 bullet.gameObject.SetActive(true);
-                bullet.velocity = direction * BulletSpeed;
+                bullet.Rigidbody.velocity = direction * BulletSpeed;
                 LastFireTime = Time.time;
             }
         }
@@ -82,7 +82,7 @@ public class RangedEnemeyController : BaseEnemyController
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Bullet" && collision.gameObject.tag != "EnemyBullet" && collision.gameObject.tag != "Enemy")
+        if (collision.gameObject.tag == "Host")
         {
             attacker = collision.transform;
             State = EnemyState.Attacking;
@@ -93,7 +93,7 @@ public class RangedEnemeyController : BaseEnemyController
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Bullet" && collision.gameObject.tag != "EnemyBullet" && collision.gameObject.tag != "Enemy")
+        if (collision.gameObject.tag == "Host")
         {
             if (State == EnemyState.Attacking)
             {

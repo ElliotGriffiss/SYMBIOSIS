@@ -81,12 +81,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sprite: {fileID: 4251108923847889718}
   MyRigidBody: {fileID: 2978724473649114147}
-  BulletPrefab: {fileID: 744266240283572542, guid: 4aff7a6e9a822d240a1ee26de0912a44, type: 3}
   State: 0
   Health: 5
   MovementSpeed: 3
   StateDuration: 2
-  BounceBackForce: 3
+  BulletPrefab: {fileID: 9071394233107713488, guid: 4aff7a6e9a822d240a1ee26de0912a44, type: 3}
   BulletOrigin: {fileID: 6332344595661312056}
   MaxNumberOfBullets: 10
   FireRate: 1
@@ -103,7 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8050ab40d66424e990c80425afe4e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
+  Rigidbody: {fileID: 2978724473649114147}
+  Damage: 1
   KnockBackForce: 0
 --- !u!50 &2978724473649114147
 Rigidbody2D:
