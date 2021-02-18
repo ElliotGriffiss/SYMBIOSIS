@@ -15,10 +15,14 @@ public class SymbioteCreationGUI : MonoBehaviour
     [SerializeField] private int CurrentlySelectedHost = 0;
     [SerializeField] private int CurrentlySelectedParaste = 0;
 
-    [ContextMenu("Open GUI")]
+    private void Start()
+    {
+        OpenGUI();
+    }
+
     public void OpenGUI()
     {
-        gameObject.SetActive(false);
+        gameObject.SetActive(true);
         TestArea.SetActive(true);
         UpdateCurrentHost(CurrentlySelectedHost);
     }

@@ -103,6 +103,7 @@ public class BaseEnemyController : MonoBehaviour
             drop.transform.position = transform.position;
         }
 
+        OnDeath.Invoke(Type);
         gameObject.SetActive(false);
     }
 

@@ -33,6 +33,7 @@ public class EnemyManager : MonoBehaviour
 
     private void HandleEnemyDeath(EnemyTypes enemyType)
     {
+        Debug.LogError("Enemy Killed: " + enemyType);
         EnemiesKilled[(int)enemyType]++;
     }
 

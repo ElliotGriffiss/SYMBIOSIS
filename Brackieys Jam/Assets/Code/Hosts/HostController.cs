@@ -120,10 +120,16 @@ public class HostController : BaseHost
         {
             HealingComponent healing = collision.collider.GetComponent<HealingComponent>();
 
+            MassGainedThisLevel++;
             CurrentHealth += healing.Health;
             UpdateHealthBar();
 
             healing.gameObject.SetActive(false);
+
+            if (MassGainedThisLevel > 10)
+            {
+                TriggerLevelUp();
+            }
         }
     }
 

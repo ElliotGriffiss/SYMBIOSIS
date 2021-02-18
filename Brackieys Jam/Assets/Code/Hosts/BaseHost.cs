@@ -88,6 +88,7 @@ public class BaseHost : MonoBehaviour
 
     public void LevelUpHost(float bonusDamageResistance, float bonusSpeed, float bonusAbilityDuration, float bonusDamage)
     {
+        MassGainedThisLevel = 0;
         CurrentDamage = bonusDamage + BaseDamage;
         CurrentDamageResistance = bonusDamageResistance + BaseDamageResistance;
         CurrentAbilityDuration = bonusAbilityDuration + BaseAbilityDuration;
@@ -145,9 +146,14 @@ public class BaseHost : MonoBehaviour
 
             if (MassGainedThisLevel > 10)
             {
-                BaseHost.OnHostLevelUp();
+                TriggerLevelUp();
             }
         }
+    }
+
+    protected void TriggerLevelUp()
+    {
+        BaseHost.OnHostLevelUp();
     }
 
     protected void TriggerHostDeath()

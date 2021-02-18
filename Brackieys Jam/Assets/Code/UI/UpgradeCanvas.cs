@@ -33,7 +33,7 @@ public class UpgradeCanvas : MonoBehaviour
         for (int i = 0; i < enemiesKilled.Length; i++)
         {
             UpgradeButtons[i].button.interactable = false;
-            UpgradeButtons[i].EnemyKillCount.text = "x" + enemiesKilled[i].ToString("D1");
+            UpgradeButtons[i].EnemyKillCount.text = "x" + enemiesKilled[i].ToString();
         }
 
         int largestIndex = GetLargestElementIndex(enemiesKilled);
@@ -52,7 +52,7 @@ public class UpgradeCanvas : MonoBehaviour
     public void SelectUpgrade(int buttonIndex)
     {
         // prevents accidental clicks
-        if (Sequence != null)
+        if (Sequence == null)
         {
             ParentObject.transform.position = OnSceenPosition.position;
             Sequence = CloseAnimationSequence(buttonIndex);

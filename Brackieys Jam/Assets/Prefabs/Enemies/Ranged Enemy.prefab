@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f275a626bab8c458ff62b164dc29aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 3
   Sprite: {fileID: 4251108923847889718}
   MyRigidBody: {fileID: 2978724473649114147}
   State: 0

@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f41e492289b924fa713d4e40d70fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 2
   Sprite: {fileID: 1192511869927828890}
   MyRigidBody: {fileID: 226534651392447119}
   State: 0
@@ -120,6 +121,7 @@ MonoBehaviour:
   StateDuration: 2
   NumberOfDrops: 3
   Animator: {fileID: 9076829155965986585}
+  ForwardLocation: {x: 0, y: 0, z: 0}
 --- !u!95 &9076829155965986585
 Animator:
   serializedVersion: 3
