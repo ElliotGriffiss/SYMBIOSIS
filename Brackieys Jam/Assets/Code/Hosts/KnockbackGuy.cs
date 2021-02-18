@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KnockbackGuy : BaseHost
 {
-    [Header("ShockWave")]
+    [Header("Knockback Guy Settings")]
     [SerializeField] private GameObject ShockWave;
     [SerializeField] private Vector3 StartShockWaveSize;
     [SerializeField] private Vector3 EndShockWaveSize;

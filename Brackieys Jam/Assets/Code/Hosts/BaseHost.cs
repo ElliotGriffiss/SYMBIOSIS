@@ -194,7 +194,7 @@ public class BaseHost : MonoBehaviour
         }
         else
         {
-            AbilityBar.fillAmount = CurrentCooldown / CurrentAbilityDuration;
+            AbilityBar.fillAmount = CurrentCooldown / BaseAbilityCooldown;
         }
     }
 
