@@ -15,6 +15,7 @@ public class CowardlyEnemyController : BaseEnemyController
             Animator.SetBool("IsMoving", true);
             //Sprite.color = Color.green;
             movementDirection = GenerateRandomMovementVector();
+            MyRigidBody.rotation = (Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg);
         }
         else
         {
@@ -35,10 +36,11 @@ public class CowardlyEnemyController : BaseEnemyController
         if (collision.gameObject.tag == "Host")
         {
             Animator.SetBool("IsMoving", true);
-             //Sprite.color = Color.yellow;
-             State = EnemyState.Fleeing;
-             movementDirection = (collision.transform.position + transform.position).normalized;
-             currentStateTime = 0;
+            //Sprite.color = Color.yellow;
+            State = EnemyState.Fleeing;
+            movementDirection = (collision.transform.position + transform.position).normalized;
+            MyRigidBody.rotation = (Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg);
+            currentStateTime = 0;
         }
     }
 }
