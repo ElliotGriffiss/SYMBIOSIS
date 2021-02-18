@@ -8832,7 +8832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6932885408933277846, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6932885408933277847, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: m_RootOrder
@@ -9469,9 +9469,9 @@ MonoBehaviour:
   - 2
   AbilityDurationUpgrades:
   - 0
-  - -1.5
-  - -2
-  - -2.5
+  - 1.5
+  - 2
+  - 2.5
   DamageUpgrades:
   - 0
   - 1
