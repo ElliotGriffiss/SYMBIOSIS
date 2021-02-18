@@ -43,8 +43,9 @@ GameObject:
   - component: {fileID: -8597794339218939309}
   - component: {fileID: 2978724473649114147}
   - component: {fileID: 4251108923847889718}
-  - component: {fileID: 3607242862221368691}
   - component: {fileID: 8392575326869826801}
+  - component: {fileID: 7107229020015001760}
+  - component: {fileID: 2186398018031100015}
   m_Layer: 11
   m_Name: Ranged Enemy
   m_TagString: Enemy
@@ -87,6 +88,7 @@ MonoBehaviour:
   MovementSpeed: 3
   StateDuration: 2
   NumberOfDrops: 3
+  Animator: {fileID: 7107229020015001760}
   BulletPrefab: {fileID: 9071394233107713488, guid: 4aff7a6e9a822d240a1ee26de0912a44, type: 3}
   BulletOrigin: {fileID: 6332344595661312056}
   MaxNumberOfBullets: 10
@@ -169,7 +171,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2413806693520163455, guid: 0ebeb4a38fd052f488daf6dd96e60452, type: 3}
+  m_Sprite: {fileID: 128751308666959105, guid: e23af8726ca40fe43a524846fbfee5b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -180,22 +182,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &3607242862221368691
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5162222252586330230}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!58 &8392575326869826801
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -212,3 +198,38 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4
+--- !u!95 &7107229020015001760
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5162222252586330230}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a11a1434cb6581e439512c8948b058f7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &2186398018031100015
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5162222252586330230}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.59, y: 0.89}
+  m_Direction: 0

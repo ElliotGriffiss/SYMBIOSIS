@@ -5,6 +5,7 @@ using GameData;
 
 public class RangedEnemeyController : BaseEnemyController
 {
+    [SerializeField] private Animator Animator;
     [Header("Gun Data")]
     [SerializeField] private DamageComponent BulletPrefab;
     [SerializeField] private Transform BulletOrigin;
@@ -76,6 +77,26 @@ public class RangedEnemeyController : BaseEnemyController
         }
     }
 
+    protected override void ChooseANewState()
+    {
+        if (Random.Range(100, 0) > 30)
+        {
+            State = EnemyState.Moving;
+            //Sprite.color = Color.green;
+            movementDirection = GenerateRandomMovementVector();
+            MyRigidBody.rotation = (Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg) - 45;
+            Animator.SetBool("IsMoving", true);
+        }
+        else
+        {
+            //Sprite.color = Color.blue;
+            State = EnemyState.Idle;
+            Animator.SetBool("IsMoving", false);
+        }
+
+        currentStateTime = 0;
+    }
+
     /// <summary>
     /// Used to Detect if an attacker is in it's sight radius
     /// </summary>
@@ -84,9 +105,10 @@ public class RangedEnemeyController : BaseEnemyController
     {
         if (collision.gameObject.tag == "Host")
         {
+            Animator.SetBool("IsMoving", true);
             attacker = collision.transform;
             State = EnemyState.Attacking;
-            Sprite.color = Color.red;
+            //Sprite.color = Color.red;
             currentStateTime = 0;
         }
     }
@@ -97,6 +119,7 @@ public class RangedEnemeyController : BaseEnemyController
         {
             if (State == EnemyState.Attacking)
             {
+                Animator.SetBool("IsMoving", true);
                 ChooseANewState();
                 attacker = null;
             }

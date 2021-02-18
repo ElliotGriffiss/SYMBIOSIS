@@ -36,14 +36,14 @@ public class AggresiveEnemyController : BaseEnemyController
         if (Random.Range(100, 0) > 30)
         {
             State = EnemyState.Moving;
-            Sprite.color = Color.green;
+            //Sprite.color = Color.green;
             movementDirection = GenerateRandomMovementVector();
             MyRigidBody.rotation = (Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg) - 45;
             Animator.SetBool("IsMoving", true);
         }
         else
         {
-            Sprite.color = Color.blue;
+            //Sprite.color = Color.blue;
             State = EnemyState.Idle;
             Animator.SetBool("IsMoving", false);
         }
@@ -61,7 +61,7 @@ public class AggresiveEnemyController : BaseEnemyController
         {
             attacker = collision.transform;
             State = EnemyState.Attacking;
-            Sprite.color = Color.red;
+            //Sprite.color = Color.red;
             currentStateTime = 0;
         }
     }
