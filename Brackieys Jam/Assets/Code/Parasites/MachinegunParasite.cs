@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpreadShotParasite : BaseParsite
+public class MachinegunParasite : BaseParsite
 {
-    [SerializeField] private Transform[] BulletOrigins;
+    [SerializeField] private Transform BulletOrigin;
     [SerializeField] private DamageComponent BulletPrefab;
 
     [SerializeField] private int MaxNumberOfBullets = 10;
@@ -106,22 +106,19 @@ public class SpreadShotParasite : BaseParsite
             {
                 BulletsInClip--;
 
-                foreach (Transform trans in BulletOrigins)
+                DamageComponent bullet = GetBulletFromThePool();
+                direction = BulletOrigin.position - transform.position;
+
+                bullet.transform.position = BulletOrigin.position;
+                bullet.transform.rotation = Quaternion.Euler(direction);
+                bullet.gameObject.SetActive(true);
+                bullet.Rigidbody.velocity = direction.normalized * BulletSpeed;
+                LastFireTime = Time.time;
+
+                if (BulletsInClip <= 0)
                 {
-                    DamageComponent bullet = GetBulletFromThePool();
-                    direction = trans.position - transform.position;
-
-                    bullet.transform.position = trans.position;
-                    bullet.transform.rotation = Quaternion.Euler(direction);
-                    bullet.gameObject.SetActive(true);
-                    bullet.Rigidbody.velocity = direction.normalized * BulletSpeed;
-                    LastFireTime = Time.time;
+                    IsReloading = true;
                 }
-            }
-
-            if (BulletsInClip <= 0)
-            {
-                IsReloading = true;
             }
         }
     }

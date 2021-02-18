@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 20787440}
   - component: {fileID: 20787439}
   m_Layer: 6
-  m_Name: Gun Parasite
+  m_Name: Sniper Parasite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -385,7 +385,7 @@ Transform:
   m_Children:
   - {fileID: 271855878}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &24456626
 GameObject:
@@ -1788,7 +1788,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &313217500
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1804,9 +1804,9 @@ RectTransform:
   m_Father: {fileID: 1774832076}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 130, y: -256.99002}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 58.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &313217501
@@ -8777,7 +8777,7 @@ Transform:
   - {fileID: 536581539}
   - {fileID: 628069029}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &878084844
 PrefabInstance:
@@ -8836,7 +8836,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6932885408933277847, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6932885408933277847, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8950,6 +8950,58 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &950025006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 950025008}
+  - component: {fileID: 950025007}
+  m_Layer: 0
+  m_Name: Machinegun Parasite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &950025007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950025006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0f64cbb20886c42994b3226b11ab7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletOrigin: {fileID: 1838805509}
+  BulletPrefab: {fileID: 2352539362037606456, guid: c2df68bf0f4ac9e4cb6a449279a1c09e, type: 3}
+  MaxNumberOfBullets: 10
+  FireRate: 0.1
+  BulletSpeed: 14
+  ReloadTime: 1
+  Range: 6
+  ClipSize: 20
+--- !u!4 &950025008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950025006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1838805509}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &973767877
 GameObject:
   m_ObjectHideFlags: 0
@@ -9845,8 +9897,11 @@ MonoBehaviour:
   - {fileID: 2045410819}
   BulletPrefab: {fileID: 9060907790668305176, guid: 0416fe0dd56e9764d8b3af47845be190, type: 3}
   MaxNumberOfBullets: 10
-  FireRate: 1.5
+  FireRate: 0.3
   BulletSpeed: 10
+  ReloadTime: 1
+  Range: 3
+  ClipSize: 6
 --- !u!4 &1271646525
 Transform:
   m_ObjectHideFlags: 0
@@ -9864,7 +9919,7 @@ Transform:
   - {fileID: 1391742372}
   - {fileID: 2045410819}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1295489460
 GameObject:
@@ -10742,7 +10797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7964023999479532013, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7964023999479532013, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10828,7 +10883,7 @@ PrefabInstance:
       objectReference: {fileID: 2041131760}
     - target: {fileID: 7836198624685353731, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7836198624685353731, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11329,7 +11384,7 @@ Transform:
   m_LocalScale: {x: 9, y: 9, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1815889572
 GameObject:
@@ -11445,6 +11500,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 447}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1838805508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1838805509}
+  m_Layer: 6
+  m_Name: Bullet Origin (0)
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1838805509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838805508}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.495, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 950025008}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1878156949
 GameObject:
   m_ObjectHideFlags: 0
@@ -12282,7 +12367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9033345996561241451, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 9033345996561241451, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12516,7 +12601,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Parasite 4
+  m_Text: MACHINEGUN
 --- !u!222 &2089544243
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12589,6 +12674,7 @@ MonoBehaviour:
   - {fileID: 1710288121}
   - {fileID: 20787439}
   - {fileID: 1271646524}
+  - {fileID: 950025007}
   CurrentlySelectedHost: 0
   CurrentlySelectedParaste: 0
 --- !u!1 &2122841492
@@ -12670,3 +12756,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2122841492}
   m_CullTransparentMesh: 1
+--- !u!1001 &5049188841628926944
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2352539362037606403, guid: c2df68bf0f4ac9e4cb6a449279a1c09e, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352539362037606403, guid: c2df68bf0f4ac9e4cb6a449279a1c09e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352539362037606403, guid: c2df68bf0f4ac9e4cb6a449279a1c09e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.589
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352539362037606403, guid: c2df68bf0f4ac9e4cb6a449279a1c09e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352539362037606403, guid: c2df68bf0f4ac9e4cb6a449279a1c09e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352539362037606403, guid: c2df68bf0f4ac9e4cb6a449279a1c09e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352539362037606403, guid: c2df68bf0f4ac9e4cb6a449279a1c09e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352539362037606403, guid: c2df68bf0f4ac9e4cb6a449279a1c09e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352539362037606403, guid: c2df68bf0f4ac9e4cb6a449279a1c09e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352539362037606403, guid: c2df68bf0f4ac9e4cb6a449279a1c09e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352539362037606403, guid: c2df68bf0f4ac9e4cb6a449279a1c09e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352539362037606404, guid: c2df68bf0f4ac9e4cb6a449279a1c09e, type: 3}
+      propertyPath: m_Name
+      value: Machinegun Bullet
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c2df68bf0f4ac9e4cb6a449279a1c09e, type: 3}
