@@ -21,7 +21,11 @@ public class TentacleController : BaseHost
         CurrentHealth = BaseHealth;
         AbilityIsActive = false;
 
-
+        CurrentDamage = BaseDamage;
+        CurrentDamageResistance = BaseDamageResistance;
+        CurrentAbilityDuration = BaseAbilityDuration;
+        CurrentForwardSpeed = baseForwardSpeed;
+        CurrentStrafeSpeed = baseStrafeSpeed;
 
         if (IsTestArea)
         {

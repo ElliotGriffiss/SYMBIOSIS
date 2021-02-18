@@ -51,6 +51,7 @@ public class SpreadShotParasite : BaseParsite
         }
 
         BulletsInClip = ClipSize;
+        Reloadingbar.fillAmount = (float)BulletsInClip / ClipSize;
         IsReloading = false;
     }
 
@@ -77,12 +78,14 @@ public class SpreadShotParasite : BaseParsite
         if (IsReloading)
         {
             CurrentReloadTime += Time.deltaTime;
+            Reloadingbar.fillAmount = CurrentReloadTime / ReloadTime;
 
             if (CurrentReloadTime >= ReloadTime)
             {
                 IsReloading = false;
                 BulletsInClip = ClipSize;
                 CurrentReloadTime = 0;
+                Reloadingbar.fillAmount = (float)BulletsInClip / ClipSize;
             }
         }
 
@@ -105,6 +108,7 @@ public class SpreadShotParasite : BaseParsite
             if (Time.time - LastFireTime > FireRate)
             {
                 BulletsInClip--;
+                Reloadingbar.fillAmount = (float)BulletsInClip / ClipSize;
 
                 foreach (Transform trans in BulletOrigins)
                 {
@@ -117,11 +121,11 @@ public class SpreadShotParasite : BaseParsite
                     bullet.Rigidbody.velocity = direction.normalized * BulletSpeed;
                     LastFireTime = Time.time;
                 }
-            }
 
-            if (BulletsInClip <= 0)
-            {
-                IsReloading = true;
+                if (BulletsInClip <= 0)
+                {
+                    IsReloading = true;
+                }
             }
         }
     }

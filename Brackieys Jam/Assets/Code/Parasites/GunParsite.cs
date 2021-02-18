@@ -12,8 +12,16 @@ public class GunParsite : BaseParsite
     [SerializeField] private float BulletSpeed;
 
     private List<DamageComponent> BulletPool = new List<DamageComponent>();
-    private float LastFireTime = 0;
     private bool HasPool = false;
+
+    [SerializeField] private float ReloadTime = 1;
+    [SerializeField] private float Range = 60;
+    [SerializeField] private int ClipSize;
+
+    private bool IsReloading;
+    private int BulletsInClip;
+    private float CurrentReloadTime;
+    private float LastFireTime = 0;
 
 
     /// <summary>
@@ -42,6 +50,10 @@ public class GunParsite : BaseParsite
                 pooledBullet.Damage = pooledBullet.BaseDamage + hostDamageModifier;
             }
         }
+
+        BulletsInClip = ClipSize;
+        Reloadingbar.fillAmount = (float)BulletsInClip / ClipSize;
+        IsReloading = false;
     }
 
     private DamageComponent GetBulletFromThePool()
@@ -62,19 +74,56 @@ public class GunParsite : BaseParsite
         return bullet;
     }
 
+    public void Update()
+    {
+        if (IsReloading)
+        {
+            CurrentReloadTime += Time.deltaTime;
+            Reloadingbar.fillAmount = CurrentReloadTime / ReloadTime;
+
+            if (CurrentReloadTime >= ReloadTime)
+            {
+                IsReloading = false;
+                BulletsInClip = ClipSize;
+                CurrentReloadTime = 0;
+                Reloadingbar.fillAmount = (float)BulletsInClip / ClipSize;
+            }
+        }
+
+        foreach (DamageComponent pooledBullet in BulletPool)
+        {
+            if (Vector3.Distance(pooledBullet.transform.position, transform.position) > Range)
+            {
+                pooledBullet.gameObject.SetActive(false);
+                pooledBullet.transform.position = transform.position;
+            }
+        }
+    }
+
     public override void ActivateParasite(Vector2 direction)
     {
-        // Used to enforce the fie rate without putting an update loop in this class.
-        if (Time.time - LastFireTime > FireRate)
+        if (BulletsInClip > 0)
         {
-            DamageComponent bullet = GetBulletFromThePool();
+            // Used to enforce the fie rate without putting an update loop in this class.
+            if (Time.time - LastFireTime  > FireRate)
+            {
+                BulletsInClip--;
+                Reloadingbar.fillAmount = (float)BulletsInClip / ClipSize;
 
-            bullet.gameObject.transform.position = BulletOrigin.position;
-            bullet.gameObject.transform.rotation = Quaternion.Euler(direction);
-            bullet.gameObject.SetActive(true);
-            bullet.Rigidbody.velocity = direction.normalized * BulletSpeed;
+                DamageComponent bullet = GetBulletFromThePool();
 
-            LastFireTime = Time.time;
+                bullet.gameObject.transform.position = BulletOrigin.position;
+                bullet.gameObject.transform.rotation = Quaternion.Euler(direction);
+                bullet.gameObject.SetActive(true);
+                bullet.Rigidbody.velocity = direction.normalized * BulletSpeed;
+
+                LastFireTime = Time.time;
+
+                if (BulletsInClip <= 0)
+                {
+                    IsReloading = true;
+                }
+            }
         }
     }
 }

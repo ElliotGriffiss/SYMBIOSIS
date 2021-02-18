@@ -51,6 +51,7 @@ public class MachinegunParasite : BaseParsite
         }
 
         BulletsInClip = ClipSize;
+        Reloadingbar.fillAmount = (float)BulletsInClip / ClipSize;
         IsReloading = false;
     }
 
@@ -77,12 +78,14 @@ public class MachinegunParasite : BaseParsite
         if (IsReloading)
         {
             CurrentReloadTime += Time.deltaTime;
+            Reloadingbar.fillAmount = CurrentReloadTime / ReloadTime;
 
             if (CurrentReloadTime >= ReloadTime)
             {
                 IsReloading = false;
                 BulletsInClip = ClipSize;
                 CurrentReloadTime = 0;
+                Reloadingbar.fillAmount = (float)BulletsInClip / ClipSize;
             }
         }
 
@@ -105,6 +108,7 @@ public class MachinegunParasite : BaseParsite
             if (Time.time - LastFireTime > FireRate)
             {
                 BulletsInClip--;
+                Reloadingbar.fillAmount = (float)BulletsInClip / ClipSize;
 
                 DamageComponent bullet = GetBulletFromThePool();
                 direction = BulletOrigin.position - transform.position;

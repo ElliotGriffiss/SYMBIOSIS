@@ -4,25 +4,55 @@ using UnityEngine;
 
 public class SpikeParsite : BaseParsite
 {
+    [SerializeField] private Animator DrillAnim;
+    [SerializeField] private float AnimationTime = 1f; // How long the drill stays out and spins for...
     [SerializeField] private float ChargeSpeed;
     [SerializeField] private float ChargeCoolDown;
     [SerializeField] private DamageComponent Damage;
 
+    private WaitForSeconds WaitSeconds = new WaitForSeconds(1f);
     private Rigidbody2D HostRigidbody;
-    private float LastFireTime = 0;
+    private float CurrentChargeCooldown = 0;
+    private float CurrentAnimationTime;
+    private bool IsActive;
 
     public override void SetupParasite(float hostDamageModifier)
     {
         HostRigidbody = GetComponentInParent<Rigidbody2D>();
         Damage.Damage = Damage.BaseDamage + hostDamageModifier;
+        CurrentChargeCooldown = ChargeCoolDown;
+        Reloadingbar.fillAmount = CurrentChargeCooldown / ChargeCoolDown;
     }
 
     public override void ActivateParasite(Vector2 direction)
     {
-        if (Time.time - LastFireTime > ChargeCoolDown)
+        if (CurrentChargeCooldown >= ChargeCoolDown)
         {
+            DrillAnim.SetBool("IsDrilling", true);
             HostRigidbody.AddForce(direction.normalized * ChargeSpeed, ForceMode2D.Impulse);
-            LastFireTime = Time.time;
+            CurrentChargeCooldown = 0;
+            CurrentAnimationTime = 1;
+            IsActive = true;
+        }
+    }
+
+    private void Update()
+    {
+        if (IsActive)
+        {
+            CurrentAnimationTime -= Time.deltaTime;
+            Reloadingbar.fillAmount = CurrentAnimationTime / AnimationTime;
+
+            if (CurrentAnimationTime <= 0)
+            {
+                IsActive = false;
+                DrillAnim.SetBool("IsDrilling", false);
+            }
+        }
+        else
+        {
+            CurrentChargeCooldown += Time.deltaTime;
+            Reloadingbar.fillAmount = CurrentChargeCooldown / ChargeCoolDown;
         }
     }
 }
