@@ -15,6 +15,12 @@ public class KnockbackGuy : BaseHost
     private IEnumerator MovementSequence;
 
 
+    public override void InitializeHost(bool IsTestArea = false)
+    {
+        base.InitializeHost(IsTestArea);
+        animator.SetBool("IsMoving", false);
+    }
+
     private void Update()
     {
         if (Input.GetMouseButton(0))
@@ -29,6 +35,7 @@ public class KnockbackGuy : BaseHost
         }
         else if (MovementSequence != null && Input.GetAxisRaw("Vertical") == 0f)
         {
+            animator.SetBool("IsMoving", false);
             StopCoroutine(MovementSequence);
             MovementSequence = null;
         }
@@ -73,8 +80,10 @@ public class KnockbackGuy : BaseHost
 
     private IEnumerator MoveCo(float waitTime, float moveTime)
     {
+        animator.SetBool("IsMoving", true);
         yield return new WaitForSeconds(waitTime);
         Rigidbody.AddForce(direction.normalized * CurrentForwardSpeed, ForceMode2D.Impulse);
+        animator.SetBool("isMoving", false);
         yield return new WaitForSeconds(moveTime);
         //Rigidbody.velocity = Vector2.zero;
         MovementSequence = null;

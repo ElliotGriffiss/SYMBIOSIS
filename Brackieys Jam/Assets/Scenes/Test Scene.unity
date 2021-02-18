@@ -10918,6 +10918,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 95085720569720195, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b7decdf4058fa83468fb01ba9014339c, type: 3}
     - target: {fileID: 135717769720608285, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: m_TagString
       value: Host
@@ -11032,13 +11036,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 272449633290907689, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 91409b71336a0c64aadbef679dfd6072, type: 3}
+    - target: {fileID: 4176039137542680063, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 95fd5a8a6f24acc459784c8594adb836, type: 2}
     - target: {fileID: 4456593019632496123, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: m_Name
       value: Fast Guy
       objectReference: {fileID: 0}
     - target: {fileID: 4456593019632496123, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7836198624685353731, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: m_RootOrder
@@ -12667,7 +12679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9033345996561241367, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9033345996561241451, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: m_RootOrder
