@@ -66,7 +66,7 @@ public class KnockbackGuy : BaseHost
         LookAtMouse();
     }
 
-    protected override void ToggleActiveAbilityGraphics(bool active)
+    public override void ToggleActiveAbilityGraphics(bool active)
     {
         ShockWave.SetActive(active);
     }

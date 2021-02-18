@@ -93,7 +93,7 @@ public class TentacleController : BaseHost
         LookAtMouse();
     }
 
-    protected override void ToggleActiveAbilityGraphics(bool active)
+    public override void ToggleActiveAbilityGraphics(bool active)
     {
         foreach (Transform obj in GameObjects)
         {
