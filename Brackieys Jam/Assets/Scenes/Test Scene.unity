@@ -385,7 +385,7 @@ Transform:
   m_Children:
   - {fileID: 271855878}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &24456626
 GameObject:
@@ -609,7 +609,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Passive Upgrade
+  m_Text: Damage Resistance
 --- !u!222 &39767066
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1023,7 +1023,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ranged Upgrade
+  m_Text: Damage Upgrade
 --- !u!222 &161144864
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1367,7 +1367,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &233442754
 GameObject:
@@ -1464,7 +1464,7 @@ RectTransform:
   - {fileID: 1878156950}
   - {fileID: 375646364}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2051,19 +2051,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0991cf0526c8f3d439219183ea972cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
+  GameManager: {fileID: 1086531142}
   ParentObject: {fileID: 1479577403}
   UpgradeButtons:
-  - UpgradeText: {fileID: 39767065}
+  - button: {fileID: 987941901}
+    UpgradeText: {fileID: 39767065}
     EnemyKillCount: {fileID: 463634759}
     EnemyIcon: {fileID: 1098065663}
-  - UpgradeText: {fileID: 713403442}
+  - button: {fileID: 1553989120}
+    UpgradeText: {fileID: 713403442}
     EnemyKillCount: {fileID: 705454818}
     EnemyIcon: {fileID: 714641695}
-  - UpgradeText: {fileID: 1512055818}
+  - button: {fileID: 101112284}
+    UpgradeText: {fileID: 1512055818}
     EnemyKillCount: {fileID: 550039158}
     EnemyIcon: {fileID: 413547520}
-  - UpgradeText: {fileID: 161144863}
+  - button: {fileID: 1308482601}
+    UpgradeText: {fileID: 161144863}
     EnemyKillCount: {fileID: 424784417}
     EnemyIcon: {fileID: 622262683}
   AnimationTime: 0.4
@@ -8480,7 +8484,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cowardly Upgrade
+  m_Text: Speed Upgrade
 --- !u!222 &713403443
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8718,7 +8722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &825749592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8731,8 +8735,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f82daa24164f247ba4617e49eea210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelParentObject: {fileID: 825749591}
   EnemyManager: {fileID: 1971078941}
+  LevelParentObject: {fileID: 825749591}
   HealthDropPool: {fileID: 277238901}
   SymbioteSpawnPoint: {fileID: 228239030}
 --- !u!4 &825749593
@@ -8761,7 +8765,7 @@ Transform:
   - {fileID: 536581539}
   - {fileID: 628069029}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &878084844
 PrefabInstance:
@@ -8820,7 +8824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6932885408933277847, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6932885408933277847, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9394,7 +9398,74 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1086531141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1086531143}
+  - component: {fileID: 1086531142}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1086531142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086531141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf17b7bd33cf7f42950682075173e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CreationGUI: {fileID: 2107336998}
+  UpgradeCanvas: {fileID: 375646365}
+  Levels:
+  - {fileID: 825749592}
+  DamageResistenceUpgrades:
+  - 0
+  - 0.1
+  - 0.15
+  - 0.2
+  SpeedUpgrades:
+  - 0
+  - 1
+  - 1.5
+  - 2
+  AbilityDurationUpgrades:
+  - 0
+  - -1.5
+  - -2
+  - -2.5
+  DamageUpgrades:
+  - 0
+  - 1
+  - 2
+  - 3
+--- !u!4 &1086531143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086531141}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1098065661
 GameObject:
@@ -9769,7 +9840,7 @@ Transform:
   - {fileID: 1391742372}
   - {fileID: 2045410819}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1295489460
 GameObject:
@@ -10221,7 +10292,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Agressive Upgrade
+  m_Text: Ability Duration
 --- !u!222 &1512055819
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10623,7 +10694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7964023999479532013, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7964023999479532013, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10709,7 +10780,7 @@ PrefabInstance:
       objectReference: {fileID: 2041131760}
     - target: {fileID: 7836198624685353731, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7836198624685353731, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10810,7 +10881,7 @@ Transform:
   m_Children:
   - {fileID: 1928299701}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1720235702
 GameObject:
@@ -11039,7 +11110,7 @@ GameObject:
   - component: {fileID: 1810457884}
   - component: {fileID: 1810457883}
   m_Layer: 9
-  m_Name: Test Area
+  m_Name: Symbiote Creation Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11210,7 +11281,7 @@ Transform:
   m_LocalScale: {x: 9, y: 9, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1815889572
 GameObject:
@@ -12007,7 +12078,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2022764839
 MonoBehaviour:
@@ -12163,7 +12234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9033345996561241451, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9033345996561241451, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12457,8 +12528,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbb9be5841fcdfe4eb8dc41b0f5da650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameManager: {fileID: 1086531142}
   Camera: {fileID: 2022764839}
-  FirstLevelManager: {fileID: 825749592}
   SymbioteSpawnPoint: {fileID: 228239030}
   TestArea: {fileID: 1810457882}
   Hosts:

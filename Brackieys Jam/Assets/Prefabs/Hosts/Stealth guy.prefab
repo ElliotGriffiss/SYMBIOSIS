@@ -277,14 +277,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66a79cd0d565dcf4baa7c749f652a619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HostSprite: {fileID: 0}
   Rigidbody: {fileID: 3236247021301108534}
   animator: {fileID: 6128668725137644477}
   Parasite: {fileID: 0}
   ParasiteOrigin: {fileID: 4510841378188339614}
-  Health: 10
+  HealthBar: {fileID: 0}
+  Healthtext: {fileID: 0}
+  AbilityBar: {fileID: 0}
+  BaseHealth: 10
+  MaxHealth: 10
+  BaseDamage: 0
+  BaseDamageResistance: 1
+  BaseAbilityDuration: 10
+  BaseAbilityCooldown: 10
   baseForwardSpeed: 4
   baseStrafeSpeed: 0
-  BounceBackForce: 0
+  CurrentDamage: 1
+  CurrentDamageResistance: 1
+  CurrentAbilityDuration: 10
+  CurrentForwardSpeed: 0
+  CurrentStrafeSpeed: 0
+  VisibleColor: {r: 1, g: 1, b: 1, a: 1}
+  InvisibleColor: {r: 1, g: 1, b: 1, a: 0.3529412}
   waitTime: 1
   moveTime: 0.5
 --- !u!50 &3236247021301108534

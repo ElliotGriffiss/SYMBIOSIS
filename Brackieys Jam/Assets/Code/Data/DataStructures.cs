@@ -29,6 +29,7 @@ namespace GameData
     [System.Serializable]
     public struct UpgradeUIButton
     {
+        public Button button;
         public Text UpgradeText;
         public Text EnemyKillCount;
         public Image EnemyIcon;

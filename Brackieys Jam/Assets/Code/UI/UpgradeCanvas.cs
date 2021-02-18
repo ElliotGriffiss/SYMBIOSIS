@@ -6,6 +6,7 @@ using GameData;
 
 public class UpgradeCanvas : MonoBehaviour
 {
+    [SerializeField] private GameManager GameManager;
     [Header("GUI Data")]
     [SerializeField] private RectTransform ParentObject;
     [SerializeField] private UpgradeUIButton[] UpgradeButtons;
@@ -22,13 +23,25 @@ public class UpgradeCanvas : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
-    [ContextMenu("Open")]
-    public void OpenUpgradeGUI()
+    public void OpenUpgradeGUI(int[] enemiesKilled)
     {
-        //Time.timeScale = 0f;
+        Time.timeScale = 0f;
+
+        for (int i = 0; i < enemiesKilled.Length; i++)
+        {
+            UpgradeButtons[i].button.interactable = false;
+            UpgradeButtons[i].EnemyKillCount.text = "x" + enemiesKilled[i].ToString("D1");
+        }
+
+        int largestIndex = GetLargestElementIndex(enemiesKilled);
+        int secondLargestIndex = GetSecondLargestElementIndex(largestIndex, enemiesKilled);
+
+        UpgradeButtons[largestIndex].button.interactable = true;
+        UpgradeButtons[secondLargestIndex].button.interactable = true;
+
         ParentObject.transform.position = OffSceenPosition.position;
         ParentObject.gameObject.SetActive(true);
 
@@ -41,16 +54,10 @@ public class UpgradeCanvas : MonoBehaviour
         // prevents accidental clicks
         if (Sequence != null)
         {
-            CloseUpgradeGUI();
+            ParentObject.transform.position = OnSceenPosition.position;
+            Sequence = CloseAnimationSequence(buttonIndex);
+            StartCoroutine(Sequence);
         }
-    }
-
-    [ContextMenu("Close")]
-    public void CloseUpgradeGUI()
-    {
-        ParentObject.transform.position = OnSceenPosition.position;
-        Sequence = CloseAnimationSequence();
-        StartCoroutine(Sequence);
     }
 
     private IEnumerator OpenAnimationSequence()
@@ -62,7 +69,7 @@ public class UpgradeCanvas : MonoBehaviour
         {
             ParentObject.transform.position = Vector2.LerpUnclamped(OffSceenPosition.position, OnSceenPosition.position, PanelAnimationCurve.Evaluate(Timer / AnimationTime));
             yield return waitForFrameEnd;
-            Timer += Time.deltaTime;
+            Timer += Time.fixedUnscaledDeltaTime;
         }
 
         ParentObject.transform.position = OnSceenPosition.position;
@@ -71,7 +78,7 @@ public class UpgradeCanvas : MonoBehaviour
         Sequence = null;
     }
 
-    private IEnumerator CloseAnimationSequence()
+    private IEnumerator CloseAnimationSequence(int selectionIndex)
     {
         yield return waitForFrameEnd;
         Timer = AnimationTime;
@@ -80,7 +87,7 @@ public class UpgradeCanvas : MonoBehaviour
         {
             ParentObject.transform.position = Vector2.LerpUnclamped(OffSceenPosition.position, OnSceenPosition.position, PanelAnimationCurve.Evaluate(Timer / AnimationTime));
             yield return waitForFrameEnd;
-            Timer -= Time.deltaTime;
+            Timer -= Time.fixedUnscaledDeltaTime;
         }
 
         ParentObject.transform.position = OffSceenPosition.position;
@@ -89,6 +96,41 @@ public class UpgradeCanvas : MonoBehaviour
         ParentObject.gameObject.SetActive(false);
         Time.timeScale = 1f;
 
+        GameManager.UpgradeHost(selectionIndex);
         Sequence = null;
     }
+
+    private int GetLargestElementIndex(int[] Element)
+    {
+        int largestIndex = 0;
+
+        for (int i = 0; i < Element.Length; i++)
+        {
+            if (Element[i] > Element[largestIndex])
+            {
+                largestIndex = i;
+            }
+        }
+
+        return largestIndex;
+    }
+
+    private int GetSecondLargestElementIndex(int largestIndex, int[] Element)
+    {
+        int secondLargestIndex = 0;
+
+        for (int i = 0; i < Element.Length; i++)
+        {
+            if (i != largestIndex)
+            {
+                if (Element[i] > Element[secondLargestIndex])
+                {
+                    secondLargestIndex = i;
+                }
+            }
+        }
+
+        return secondLargestIndex;
+    }
+
 }

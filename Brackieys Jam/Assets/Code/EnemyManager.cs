@@ -26,6 +26,11 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public int[] GetEnemiesKilled()
+    {
+        return EnemiesKilled;
+    }
+
     private void HandleEnemyDeath(EnemyTypes enemyType)
     {
         EnemiesKilled[(int)enemyType]++;

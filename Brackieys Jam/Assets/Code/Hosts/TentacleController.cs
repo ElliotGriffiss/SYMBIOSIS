@@ -21,6 +21,8 @@ public class TentacleController : BaseHost
         CurrentHealth = BaseHealth;
         AbilityIsActive = false;
 
+
+
         if (IsTestArea)
         {
             CurrentCooldown = BaseAbilityCooldown;
@@ -65,7 +67,7 @@ public class TentacleController : BaseHost
         {
             AbilityIsActive = true;
             ToggleActiveAbilityGraphics(AbilityIsActive);
-            CurrentDuration = BaseAbilityDuration;
+            CurrentDuration = CurrentAbilityDuration;
             CurrentCooldown = 0;
         }
 
@@ -112,7 +114,7 @@ public class TentacleController : BaseHost
     {
         animator.SetBool("isMoving", false);
         yield return new WaitForSeconds(waitTime);
-        Rigidbody.AddForce(direction.normalized * baseForwardSpeed, ForceMode2D.Impulse);
+        Rigidbody.AddForce(direction.normalized * CurrentForwardSpeed, ForceMode2D.Impulse);
         animator.SetBool("isMoving", true);
         yield return new WaitForSeconds(moveTime);
         //Rigidbody.velocity = Vector2.zero;

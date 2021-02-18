@@ -17,7 +17,7 @@ public class HostController : BaseHost
         if (Input.GetAxis("Fire2") > 0 && CurrentCooldown >= BaseAbilityCooldown)
         {
             AbilityIsActive = true;
-            CurrentDuration = BaseAbilityDuration;
+            CurrentDuration = CurrentAbilityDuration;
             CurrentCooldown = 0;
             ToggleActiveAbilityGraphics(AbilityIsActive);
         }
@@ -57,23 +57,23 @@ public class HostController : BaseHost
 
         if (inputValue.y > 0f)
         {
-            force += direction.normalized * inputValue.y * baseForwardSpeed;
+            force += direction.normalized * inputValue.y * CurrentForwardSpeed;
         }
 
         if (inputValue.y < 0f)
         {
-            force += direction.normalized * inputValue.y * baseForwardSpeed;
+            force += direction.normalized * inputValue.y * CurrentForwardSpeed;
         }
 
 
         if (inputValue.x > 0)
         {
-            force += (Vector2.right * inputValue.x * baseStrafeSpeed);
+            force += (Vector2.right * inputValue.x * CurrentStrafeSpeed);
         }
 
         if (inputValue.x < 0)
         {
-            force += (Vector2.right * inputValue.x * baseStrafeSpeed);
+            force += (Vector2.right * inputValue.x * CurrentStrafeSpeed);
         }
 
         Rigidbody.AddForce(force);

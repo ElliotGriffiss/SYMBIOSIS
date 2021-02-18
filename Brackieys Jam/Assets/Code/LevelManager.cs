@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    public EnemyManager EnemyManager;
     [SerializeField] private GameObject LevelParentObject;
-    [SerializeField] private EnemyManager EnemyManager;
     [SerializeField] private HealthDropObjectPool HealthDropPool;
 
     [SerializeField] private Transform SymbioteSpawnPoint;

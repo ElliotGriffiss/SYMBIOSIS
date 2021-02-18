@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class BaseHost : MonoBehaviour
 {
+    public static event Action OnHostLevelUp = delegate { };
     public static event Action OnHostDeath = delegate { };
 
     [Header("Scene References")]
@@ -22,23 +23,31 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected Image AbilityBar;
 
     [Header("Data")]
-    [SerializeField] protected float BaseHealth = 10;
+    [SerializeField] protected float BaseHealth = 10; // CurrentHealth
     [SerializeField] protected float MaxHealth = 10;
+
+    // Starting Stats for this host
     [SerializeField] protected float BaseDamage;
     [SerializeField] protected float BaseDamageResistance = 1;
     [SerializeField] protected float BaseAbilityDuration = 10;
     [SerializeField] protected float BaseAbilityCooldown = 10;
-
     [SerializeField] protected float baseForwardSpeed;
     [SerializeField] protected float baseStrafeSpeed;
+
+    // Current Stats
+    [SerializeField] protected float CurrentDamage = 1;
+    [SerializeField] protected float CurrentDamageResistance = 1;
+    [SerializeField] protected float CurrentAbilityDuration = 10;
+    [SerializeField] protected float CurrentForwardSpeed;
+    [SerializeField] protected float CurrentStrafeSpeed;
 
     protected int MassGainedThisLevel = 0;
 
     protected float CurrentHealth;
     protected float CurrentDuration;
     protected float CurrentCooldown;
-    protected bool AbilityIsActive;
 
+    protected bool AbilityIsActive;
     protected Vector2 inputValue;
     protected Vector2 direction;
 
@@ -47,6 +56,13 @@ public class BaseHost : MonoBehaviour
         CurrentHealth = BaseHealth;
         AbilityIsActive = false;
         ToggleActiveAbilityGraphics(AbilityIsActive);
+
+        // Resets the hosts stats
+        CurrentDamage = BaseDamage;
+        CurrentDamageResistance = BaseDamageResistance;
+        CurrentAbilityDuration = BaseAbilityDuration;
+        CurrentForwardSpeed = baseForwardSpeed;
+        CurrentStrafeSpeed = baseStrafeSpeed;
 
         if (IsTestArea)
         {
@@ -67,7 +83,19 @@ public class BaseHost : MonoBehaviour
         Parasite.transform.parent = ParasiteOrigin;
         Parasite.transform.position = ParasiteOrigin.position;
         Parasite.transform.localRotation = Quaternion.identity;
-        Parasite.SetupParasite(BaseDamage);
+        Parasite.SetupParasite(CurrentDamage);
+    }
+
+    public void LevelUpHost(float bonusDamageResistance, float bonusSpeed, float bonusAbilityDuration, float bonusDamage)
+    {
+        CurrentDamage = bonusDamage + BaseDamage;
+        CurrentDamageResistance = bonusDamageResistance + BaseDamageResistance;
+        CurrentAbilityDuration = bonusAbilityDuration + BaseAbilityDuration;
+
+        CurrentForwardSpeed = bonusSpeed + baseForwardSpeed;
+        CurrentStrafeSpeed = bonusSpeed + baseStrafeSpeed;
+
+        Parasite.SetupParasite(CurrentDamage);
     }
 
     public virtual void HandleCollisonEnter(Collision2D collision)
@@ -80,7 +108,7 @@ public class BaseHost : MonoBehaviour
             Rigidbody.angularVelocity = 0f;
             Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
-            CurrentHealth -= damage.Damage * BaseDamageResistance;
+            CurrentHealth -= damage.Damage * CurrentDamageResistance;
             UpdateHealthBar();
 
             if (CurrentHealth < 1)
@@ -97,7 +125,7 @@ public class BaseHost : MonoBehaviour
             Rigidbody.angularVelocity = 0f;
             Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
-            CurrentHealth -= damage.Damage * BaseDamageResistance;
+            CurrentHealth -= damage.Damage * CurrentDamageResistance;
             UpdateHealthBar();
 
             if (CurrentHealth < 1)
@@ -114,6 +142,11 @@ public class BaseHost : MonoBehaviour
             UpdateHealthBar();
 
             healing.gameObject.SetActive(false);
+
+            if (MassGainedThisLevel > 10)
+            {
+                BaseHost.OnHostLevelUp();
+            }
         }
     }
 
@@ -151,11 +184,11 @@ public class BaseHost : MonoBehaviour
     {
         if (AbilityIsActive)
         {
-            AbilityBar.fillAmount = CurrentDuration / BaseAbilityDuration;
+            AbilityBar.fillAmount = CurrentDuration / CurrentAbilityDuration;
         }
         else
         {
-            AbilityBar.fillAmount = CurrentCooldown / BaseAbilityCooldown;
+            AbilityBar.fillAmount = CurrentCooldown / CurrentAbilityDuration;
         }
     }
 

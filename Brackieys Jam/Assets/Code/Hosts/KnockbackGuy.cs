@@ -37,7 +37,7 @@ public class KnockbackGuy : BaseHost
         {
             AbilityIsActive = true;
             ToggleActiveAbilityGraphics(AbilityIsActive);
-            CurrentDuration = BaseAbilityDuration;
+            CurrentDuration = CurrentAbilityDuration;
             CurrentCooldown = 0;
         }
 
@@ -74,7 +74,7 @@ public class KnockbackGuy : BaseHost
     private IEnumerator MoveCo(float waitTime, float moveTime)
     {
         yield return new WaitForSeconds(waitTime);
-        Rigidbody.AddForce(direction.normalized * baseForwardSpeed, ForceMode2D.Impulse);
+        Rigidbody.AddForce(direction.normalized * CurrentForwardSpeed, ForceMode2D.Impulse);
         yield return new WaitForSeconds(moveTime);
         //Rigidbody.velocity = Vector2.zero;
         MovementSequence = null;
