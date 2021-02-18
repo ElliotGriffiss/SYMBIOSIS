@@ -24,6 +24,7 @@ public class SymbioteCreationGUI : MonoBehaviour
     public void UpdateCurrentHost(int index)
     {
         DeactivateAllHosts();
+        Hosts[CurrentlySelectedHost].ToggleActiveAbilityGraphics(false);
         CurrentlySelectedHost = index;
         Hosts[CurrentlySelectedHost].gameObject.SetActive(true);
         Hosts[CurrentlySelectedHost].transform.position = SymbioteSpawnPoint.position;

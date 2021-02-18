@@ -157,7 +157,7 @@ public class BaseHost : MonoBehaviour
         }
     }
 
-    protected virtual void ToggleActiveAbilityGraphics(bool active)
+    public virtual void ToggleActiveAbilityGraphics(bool active)
     {
 
     }

@@ -5,6 +5,8 @@ using GameData;
 
 public class HostController : BaseHost
 {
+    [SerializeField] private Vector3 AbilityActiveScale;
+
     private void Update()
     {
         if (Input.GetMouseButton(0))
@@ -125,17 +127,17 @@ public class HostController : BaseHost
         }
     }
 
-    protected override void ToggleActiveAbilityGraphics(bool active)
+    public override void ToggleActiveAbilityGraphics(bool active)
     {
         if (active)
         {
             animator.SetBool("IsArmored", true);
-            //HostSprite.color = Color.green;
+            transform.localScale = AbilityActiveScale;
         }
         else
         {
             animator.SetBool("IsArmored", false);
-            //HostSprite.color = Color.white;
+            transform.localScale = Vector3.one;
         }
     }
 }

@@ -6,6 +6,7 @@ namespace GameData
     {
         Idle,
         Moving,
+        Rotating,
         Attacking,
         Fleeing,
     }
