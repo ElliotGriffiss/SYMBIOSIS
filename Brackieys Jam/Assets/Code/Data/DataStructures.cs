@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GameData
 {
@@ -16,5 +17,13 @@ namespace GameData
     {
         public BaseEnemyController EnemyPrefab;
         public int MaxNumberToSpawn;
+    }
+
+    [System.Serializable]
+    public struct UpgradeUIButton
+    {
+        public Text UpgradeText;
+        public Text EnemyKillCount;
+        public Image EnemyIcon;
     }
 }
