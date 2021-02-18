@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private List<EnemySpawnData> EnemiePrefabs;
     [SerializeField] private InvertedCircleCollider MapBoundry;
     private List<BaseEnemyController> EnemyPool = new List<BaseEnemyController>();
+    protected int[] EnemiesKilled = new int[4] {0,0,0,0};
 
     public void SpawnEnemies(HealthDropObjectPool pool)
     {
@@ -19,9 +20,15 @@ public class EnemyManager : MonoBehaviour
                 BaseEnemyController enemy = Instantiate(enemyData.EnemyPrefab);
                 enemy.transform.position = Random.insideUnitCircle * MapBoundry.GetBoundryRadius();
                 enemy.InitializeEnemy(pool);
+                enemy.OnDeath += HandleEnemyDeath;
                 EnemyPool.Add(enemy);
             }
         }
+    }
+
+    private void HandleEnemyDeath(EnemyTypes enemyType)
+    {
+        EnemiesKilled[(int)enemyType]++;
     }
 
     public void DespawnAllEnemies()
@@ -31,11 +38,13 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < EnemyPool.Count; i++)
         {
             Debug.Log(i);
+            EnemyPool[i].OnDeath -= HandleEnemyDeath;
             EnemyPool[i].CleanUpEnemy();
             Destroy(EnemyPool[i].gameObject);
         }
 
         EnemyPool.Clear();
+        EnemiesKilled = new int[4] { 0, 0, 0, 0 };
     }
 
     private BaseEnemyController GetEnemyFromThePool(EnemySpawnData data)

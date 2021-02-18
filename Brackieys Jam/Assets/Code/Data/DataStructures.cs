@@ -7,9 +7,16 @@ namespace GameData
     {
         Idle,
         Moving,
-        Rotating,
         Attacking,
         Fleeing,
+    }
+
+    public enum EnemyTypes : byte
+    {
+        Passive,
+        Cowardly,
+        Aggressive,
+        Ranged,
     }
 
     [System.Serializable]

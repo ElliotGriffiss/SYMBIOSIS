@@ -9,8 +9,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private HealthDropObjectPool HealthDropPool;
 
     [SerializeField] private Transform SymbioteSpawnPoint;
-    private BaseHost Host;
-    private BaseParsite Parasite;
 
     public void StartLevel(BaseHost host, BaseParsite paraite)
     {

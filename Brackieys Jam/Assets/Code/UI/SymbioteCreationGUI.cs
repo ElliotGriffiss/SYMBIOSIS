@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SymbioteCreationGUI : MonoBehaviour
 {
+    [SerializeField] private GameManager GameManager;
     [SerializeField] private CameraFollow Camera;
-    [SerializeField] private LevelManager FirstLevelManager;
     [SerializeField] private Transform SymbioteSpawnPoint;
     [Space]
     [SerializeField] private GameObject TestArea;
@@ -15,8 +15,10 @@ public class SymbioteCreationGUI : MonoBehaviour
     [SerializeField] private int CurrentlySelectedHost = 0;
     [SerializeField] private int CurrentlySelectedParaste = 0;
 
-    public void Start()
+    [ContextMenu("Open GUI")]
+    public void OpenGUI()
     {
+        gameObject.SetActive(false);
         TestArea.SetActive(true);
         UpdateCurrentHost(CurrentlySelectedHost);
     }
@@ -60,21 +62,9 @@ public class SymbioteCreationGUI : MonoBehaviour
 
     public void OnCreatesymbiotePressed()
     {
-        TestArea.SetActive(false);
-
-        BaseHost.OnHostDeath += HandleHostDeath;
-
         Camera.UpdateFollowTarget(Hosts[CurrentlySelectedHost].transform);
-        FirstLevelManager.StartLevel(Hosts[CurrentlySelectedHost], Parasites[CurrentlySelectedParaste]);
+        GameManager.StartGame(Hosts[CurrentlySelectedHost], Parasites[CurrentlySelectedParaste]);
+        TestArea.SetActive(false);
         gameObject.SetActive(false);
-    }
-
-    private void HandleHostDeath()
-    {
-        BaseHost.OnHostDeath -= HandleHostDeath;
-
-        UpdateCurrentHost(CurrentlySelectedHost);
-        TestArea.SetActive(true);
-        gameObject.SetActive(true);
     }
 }

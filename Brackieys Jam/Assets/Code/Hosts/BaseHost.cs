@@ -32,6 +32,7 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected float baseForwardSpeed;
     [SerializeField] protected float baseStrafeSpeed;
 
+    protected int MassGainedThisLevel = 0;
 
     protected float CurrentHealth;
     protected float CurrentDuration;
@@ -108,6 +109,7 @@ public class BaseHost : MonoBehaviour
         {
             HealingComponent healing = collision.collider.GetComponent<HealingComponent>();
 
+            MassGainedThisLevel++;
             CurrentHealth += healing.Health;
             UpdateHealthBar();
 

@@ -1,12 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using GameData;
+using System.Collections;
+using System.Collections.Generic;
+using System;
 
 
 public class BaseEnemyController : MonoBehaviour
 {
     [Header("Enemy Data")]
+    [SerializeField] protected EnemyTypes Type;
     [SerializeField] protected SpriteRenderer Sprite;
     [SerializeField] protected Rigidbody2D MyRigidBody;
     [Space]
@@ -16,6 +18,7 @@ public class BaseEnemyController : MonoBehaviour
     [SerializeField] protected float StateDuration;
     [SerializeField] protected int NumberOfDrops = 3;
 
+    public event Action<EnemyTypes> OnDeath = delegate { };
     protected Vector2 movementDirection;
     protected float currentStateTime = float.PositiveInfinity; // ensures a new state is always chosen
     protected HealthDropObjectPool DropPool;
@@ -41,7 +44,7 @@ public class BaseEnemyController : MonoBehaviour
 
     protected virtual void ChooseANewState()
     {
-        if (Random.Range(100, 0) > 30)
+        if (UnityEngine.Random.Range(100, 0) > 30)
         {
             State = EnemyState.Moving;
             Sprite.color = Color.green;
@@ -110,6 +113,6 @@ public class BaseEnemyController : MonoBehaviour
 
     protected Vector2 GenerateRandomMovementVector()
     {
-        return new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;
+        return new Vector2(UnityEngine.Random.Range(-1.0f, 1.0f), UnityEngine.Random.Range(-1.0f, 1.0f)).normalized;
     }
 }
