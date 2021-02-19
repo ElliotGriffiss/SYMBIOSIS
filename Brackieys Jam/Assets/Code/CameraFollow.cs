@@ -14,12 +14,21 @@ public class CameraFollow : MonoBehaviour
 	[SerializeField] private float ScaleTime = 1f;
 	[SerializeField] private Vector3 StartingScale;
 	[SerializeField] private Vector3 EndingScale;
+	[Space]
+	[SerializeField] private float RotationPause = 0.5f;
+	[SerializeField] private Vector3 StartRotation;
+	[SerializeField] private Vector3 EndRotation;
+	[Space]
+	[SerializeField] private Vector3 OutStartRotation;
+	[SerializeField] private Vector3 OutEndRotation;
+	[SerializeField] private float RotationTime = 0.5f;
 
 	private Transform FollowTransform;
 
     private void Start()
     {
-		DeactiveAllDisplays();
+		CameraCover.SetActive(false);
+		DisplayOverlay.SetActive(false);
 	}
 
     public void UpdateFollowTarget(Transform target)
@@ -64,17 +73,38 @@ public class CameraFollow : MonoBehaviour
 
 			yield return null;
 		}
-	}
 
-	public void BlackOutCamera(bool active)
-	{
-		DisplayOverlay.SetActive(!active);
-		CameraCover.SetActive(active);
-	}
-
-	public void DeactiveAllDisplays()
-    {
-		CameraCover.SetActive(false);
 		DisplayOverlay.SetActive(false);
+	}
+
+	public IEnumerator RotateCoverIn()
+	{
+		CameraCover.SetActive(true);
+
+		float time = 0;
+
+		while (time <= RotationTime)
+		{
+			CameraCover.transform.rotation = Quaternion.Slerp(Quaternion.Euler(StartRotation), Quaternion.Euler(EndRotation), time / RotationTime);
+			time += Time.deltaTime;
+
+			yield return null;
+		}
+	}
+	public IEnumerator RotateCoverOut()
+	{
+		yield return new WaitForSeconds(RotationPause);
+
+		float time = 0;
+
+		while (time <= RotationTime)
+		{
+			CameraCover.transform.rotation = Quaternion.Slerp(Quaternion.Euler(OutStartRotation), Quaternion.Euler(OutEndRotation), time / RotationTime);
+			time += Time.deltaTime;
+
+			yield return null;
+		}
+
+		CameraCover.SetActive(false);
 	}
 }

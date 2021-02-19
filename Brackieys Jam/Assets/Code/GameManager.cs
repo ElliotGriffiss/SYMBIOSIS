@@ -56,6 +56,9 @@ public class GameManager : MonoBehaviour
         yield return Camera.ShowDisplayOverlay();
         yield return TransitionManager.PickUpHostSequence(Host.transform);
 
+
+        yield return Camera.RotateCoverIn();
+
         if (!firstLevel)
         {
             // if it's the first level we don't need to turn off the old one
@@ -67,14 +70,12 @@ public class GameManager : MonoBehaviour
             TestArea.SetActive(false);
         }
 
-        Camera.BlackOutCamera(true);
         Levels[CurrentLevelIndex].StartLevel(Host, Parasite);
-        Camera.BlackOutCamera(false);
+        yield return Camera.RotateCoverOut();
 
         yield return TransitionManager.DropOffHostSequence(Host.transform);
         Camera.UpdateFollowTarget(Host.transform);
         yield return Camera.CloseDisplayOverlay();
-        Camera.DeactiveAllDisplays();
     }
 
     private void HandleHostLevelledUp()
