@@ -118,7 +118,7 @@ public class UpgradeCanvas : MonoBehaviour
 
     private int GetSecondLargestElementIndex(int largestIndex, int[] Element)
     {
-        int secondLargestIndex = 0;
+        int secondLargestIndex = (largestIndex == 0) ? 1 : 0; 
 
         for (int i = 0; i < Element.Length; i++)
         {
