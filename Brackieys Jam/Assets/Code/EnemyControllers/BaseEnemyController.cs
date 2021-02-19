@@ -16,7 +16,9 @@ public class BaseEnemyController : MonoBehaviour
     [SerializeField] protected float Health = 5;
     [SerializeField] protected float MovementSpeed = 3;
     [SerializeField] protected float StateDuration;
+    [Header("HealthDrops")]
     [SerializeField] protected int NumberOfDrops = 3;
+    [SerializeField] protected Color HealthDropColor;
 
     public event Action<EnemyTypes> OnDeath = delegate { };
     protected Vector2 movementDirection;
@@ -98,9 +100,12 @@ public class BaseEnemyController : MonoBehaviour
     {
         for (int i = 0; i < NumberOfDrops; i++)
         {
-            GameObject drop = DropPool.GetDropFromThepool();
-            drop.SetActive(true);
-            drop.transform.position = transform.position;
+            HealingComponent drop = DropPool.GetDropFromThepool();
+            drop.SpriteRenderer.color = HealthDropColor;
+
+            Vector2 dropPosition = transform.position;
+            drop.transform.position = dropPosition + UnityEngine.Random.insideUnitCircle;
+            drop.gameObject.SetActive(true);
         }
 
         OnDeath.Invoke(Type);

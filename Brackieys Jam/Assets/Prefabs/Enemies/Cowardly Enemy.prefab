@@ -57,6 +57,7 @@ MonoBehaviour:
   MovementSpeed: 4
   StateDuration: 2
   NumberOfDrops: 3
+  HealthDropColor: {r: 1, g: 0.8039216, b: 0.45882353, a: 1}
   Animator: {fileID: 62937895634994082}
 --- !u!114 &-172234478584516684
 MonoBehaviour:

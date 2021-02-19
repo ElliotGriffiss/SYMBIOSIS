@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
         BaseHost.OnHostDeath += HandleHostDeath;
         BaseHost.OnHostLevelUp += HandleHostLevelledUp;
 
+        Time.timeScale = 0f;
         StartCoroutine(HandleLevelTransition(true));
     }
 

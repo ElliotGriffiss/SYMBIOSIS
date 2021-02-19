@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class HealthDropObjectPool : MonoBehaviour
 {
-    [SerializeField] private GameObject HealthDropPrefab;
+    [SerializeField] private HealingComponent HealthDropPrefab;
     [Space]
     [SerializeField] private int MaxNumberOfDrops;
-    private List<GameObject> DropPool = new List<GameObject>();
+    private List<HealingComponent> DropPool = new List<HealingComponent>();
 
     private void Start()
     {
         for (int i = 0; i < MaxNumberOfDrops; i++)
         {
-            GameObject drop = Instantiate(HealthDropPrefab);
-            drop.SetActive(false);
+            HealingComponent drop = Instantiate(HealthDropPrefab);
+            drop.gameObject.SetActive(false);
             DropPool.Add(drop);
         }
     }
 
-    public GameObject GetDropFromThepool()
+    public HealingComponent GetDropFromThepool()
     {
-        foreach (GameObject drop in DropPool)
+        foreach (HealingComponent drop in DropPool)
         {
             if (!drop.gameObject.activeInHierarchy)
             {
@@ -30,7 +30,7 @@ public class HealthDropObjectPool : MonoBehaviour
         }
 
         // Creates a new enemy if one cannot be found in the pool
-        GameObject newDrop = Instantiate(HealthDropPrefab);
+        HealingComponent newDrop = Instantiate(HealthDropPrefab);
 
         DropPool.Add(newDrop);
         return newDrop;
@@ -38,9 +38,9 @@ public class HealthDropObjectPool : MonoBehaviour
 
     public void ReturnAllDrops()
     {
-        foreach (GameObject drop in DropPool)
+        foreach (HealingComponent drop in DropPool)
         {
-            drop.SetActive(false);
+            drop.gameObject.SetActive(false);
         }
     }
 }
