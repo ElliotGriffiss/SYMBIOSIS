@@ -293,11 +293,13 @@ MonoBehaviour:
   BaseAbilityCooldown: 10
   baseForwardSpeed: 4
   baseStrafeSpeed: 0
+  startingInvTime: 1
   CurrentDamage: 1
   CurrentDamageResistance: 1
   CurrentAbilityDuration: 10
   CurrentForwardSpeed: 0
   CurrentStrafeSpeed: 0
+  currentInvTime: 0
   VisibleColor: {r: 1, g: 1, b: 1, a: 1}
   InvisibleColor: {r: 1, g: 1, b: 1, a: 0.3529412}
   waitTime: 1

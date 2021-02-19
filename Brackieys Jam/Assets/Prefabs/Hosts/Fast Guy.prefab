@@ -111,13 +111,16 @@ MonoBehaviour:
   BaseAbilityCooldown: 4
   baseForwardSpeed: 10
   baseStrafeSpeed: 10
+  startingInvTime: 1
   CurrentDamage: 1
   CurrentDamageResistance: 1
   CurrentAbilityDuration: 0
   CurrentForwardSpeed: 0
   CurrentStrafeSpeed: 0
+  currentInvTime: 0
   HealingMultiplier: 2
   HealthCollecter: {fileID: 718497159}
+  CollectionForce: 0
   RotationAcceleration:
     serializedVersion: 2
     m_Curve:
@@ -143,6 +146,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   RotationSpeed: 12
+  RotationAxis: {x: 0, y: 0, z: 1}
 --- !u!50 &5723550306773943856
 Rigidbody2D:
   serializedVersion: 4
@@ -337,7 +341,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 91409b71336a0c64aadbef679dfd6072, type: 3}
+  m_Sprite: {fileID: 5711835368525819739, guid: 406d58d0f2b71b1478a5ced3399389c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -358,7 +362,7 @@ Animator:
   m_GameObject: {fileID: 8726368451031582067}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8554e53b8c7a33d409c46632507012b0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 95fd5a8a6f24acc459784c8594adb836, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -33,6 +33,7 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected float BaseAbilityCooldown = 10;
     [SerializeField] protected float baseForwardSpeed;
     [SerializeField] protected float baseStrafeSpeed;
+    [SerializeField] protected float startingInvTime;
 
     // Current Stats
     [SerializeField] protected float CurrentDamage = 1;
@@ -40,6 +41,7 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected float CurrentAbilityDuration = 10;
     [SerializeField] protected float CurrentForwardSpeed;
     [SerializeField] protected float CurrentStrafeSpeed;
+    [SerializeField] protected float currentInvTime;
 
     protected int MassGainedThisLevel = 0;
 
@@ -47,6 +49,7 @@ public class BaseHost : MonoBehaviour
     protected float CurrentDuration;
     protected float CurrentCooldown;
 
+    protected bool isInvincible;
     protected bool AbilityIsActive;
     protected Vector2 inputValue;
     protected Vector2 direction;
@@ -101,7 +104,7 @@ public class BaseHost : MonoBehaviour
 
     public virtual void HandleCollisonEnter(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && !isInvincible)
         {
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
 
@@ -117,7 +120,7 @@ public class BaseHost : MonoBehaviour
                 TriggerHostDeath();
             }
         }
-        else if (collision.gameObject.tag == "EnemyBullet")
+        else if (collision.gameObject.tag == "EnemyBullet" && !isInvincible)
         {
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
             damage.gameObject.SetActive(false);
@@ -195,6 +198,18 @@ public class BaseHost : MonoBehaviour
         else
         {
             AbilityBar.fillAmount = CurrentCooldown / BaseAbilityCooldown;
+        }
+    }
+
+    protected virtual void Invincible()
+    {
+        if (isInvincible == true)
+        {
+            currentInvTime -= Time.deltaTime;
+        }
+        if (currentInvTime <= 0)
+        {
+            isInvincible = false;
         }
     }
 
