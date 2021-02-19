@@ -108,6 +108,9 @@ public class BaseHost : MonoBehaviour
         {
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
 
+            isInvincible = true;
+            currentInvTime = startingInvTime;
+
             Rigidbody.velocity = Vector3.zero;
             Rigidbody.angularVelocity = 0f;
             Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
@@ -124,6 +127,9 @@ public class BaseHost : MonoBehaviour
         {
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
             damage.gameObject.SetActive(false);
+
+            isInvincible = true;
+            currentInvTime = startingInvTime;
 
             Rigidbody.velocity = Vector3.zero;
             Rigidbody.angularVelocity = 0f;
