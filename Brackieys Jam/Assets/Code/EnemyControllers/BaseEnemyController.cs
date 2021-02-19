@@ -24,11 +24,13 @@ public class BaseEnemyController : MonoBehaviour
     protected Vector2 movementDirection;
     protected float currentStateTime = float.PositiveInfinity; // ensures a new state is always chosen
     protected HealthDropObjectPool DropPool;
+    protected bool HasDroppedLoad;
 
 
     public void InitializeEnemy(HealthDropObjectPool dropPool)
     {
         DropPool = dropPool;
+        HasDroppedLoad = false;
     }
 
     protected virtual void FixedUpdate()
@@ -98,16 +100,20 @@ public class BaseEnemyController : MonoBehaviour
 
     protected virtual void KillEnemy()
     {
-        for (int i = 0; i < NumberOfDrops; i++)
+        if (!HasDroppedLoad)
         {
-            HealingComponent drop = DropPool.GetDropFromThepool();
-            drop.SpriteRenderer.color = HealthDropColor;
+            for (int i = 0; i < NumberOfDrops; i++)
+            {
+                HealingComponent drop = DropPool.GetDropFromThepool();
+                drop.SpriteRenderer.color = HealthDropColor;
 
-            Vector2 dropPosition = transform.position;
-            drop.transform.position = dropPosition + UnityEngine.Random.insideUnitCircle;
-            drop.gameObject.SetActive(true);
+                Vector2 dropPosition = transform.position;
+                drop.transform.position = dropPosition + UnityEngine.Random.insideUnitCircle;
+                drop.gameObject.SetActive(true);
+            }
         }
 
+        HasDroppedLoad = true;
         OnDeath.Invoke(Type);
         gameObject.SetActive(false);
     }

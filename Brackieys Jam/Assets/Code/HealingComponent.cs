@@ -6,4 +6,6 @@ public class HealingComponent : MonoBehaviour
 {
     public SpriteRenderer SpriteRenderer;
     public float Health;
+
+
 }

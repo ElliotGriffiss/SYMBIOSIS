@@ -126,4 +126,12 @@ public class MachinegunParasite : BaseParsite
             }
         }
     }
+
+    public override void ResetParasite()
+    {
+        foreach (DamageComponent pooledBullet in BulletPool)
+        {
+            pooledBullet.gameObject.SetActive(false);
+        }
+    }
 }

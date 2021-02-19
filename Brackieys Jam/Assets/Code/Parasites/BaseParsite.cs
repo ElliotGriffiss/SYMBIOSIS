@@ -15,4 +15,9 @@ public class BaseParsite : MonoBehaviour
     {
 
     }
+
+    public virtual void ResetParasite()
+    {
+        
+    }
 }

@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
 
         Camera.SetCameraPositionImmediate(new Vector3(0, 0, -10));
         Levels[CurrentLevelIndex].StartLevel(Host, Parasite);
+        Parasite.ResetParasite();
         yield return Camera.RotateCoverOut();
 
         yield return TransitionManager.DropOffHostSequence(Host.transform);

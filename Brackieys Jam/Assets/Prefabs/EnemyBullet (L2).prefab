@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 102891390568972936}
   - component: {fileID: 102891390568972932}
   - component: {fileID: 102891390568972939}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: EnemyBullet (L2)
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102891390568973040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.589, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -111,7 +111,7 @@ SpriteRenderer:
   m_SortingLayerID: 1055905625
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 0ebeb4a38fd052f488daf6dd96e60452, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 721aa44f7c38a144ca035e4c9711f70a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
