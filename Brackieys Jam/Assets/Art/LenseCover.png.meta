@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: 491b371a448860d41bf1f41c8c1b7ac1
+guid: 9e6f3d9699f0124488e786c2626b463d
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 7051390925917500454
-    second: LenseCover-export_0
-  - first:
-      213: -2715773887374783248
-    second: LenseCover-export_1
-  - first:
-      213: -3759134495471290907
-    second: LenseCover-export_2
-  - first:
-      213: -7581854535153878786
-    second: LenseCover-export_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -53,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -125,91 +113,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: LenseCover-export_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 51
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 624b9bfefa29bd160800000000000000
-      internalID: 7051390925917500454
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LenseCover-export_1
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 51
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0fc8eb8c902af4ad0800000000000000
-      internalID: -2715773887374783248
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LenseCover-export_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 50
-        height: 51
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5e53486d71fd4dbc0800000000000000
-      internalID: -3759134495471290907
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LenseCover-export_3
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 0
-        width: 50
-        height: 51
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ef8f77d7877d7c690800000000000000
-      internalID: -7581854535153878786
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
