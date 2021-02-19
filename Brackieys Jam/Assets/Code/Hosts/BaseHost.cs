@@ -33,6 +33,7 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected float BaseAbilityCooldown = 10;
     [SerializeField] protected float baseForwardSpeed;
     [SerializeField] protected float baseStrafeSpeed;
+    [SerializeField] protected float MaxInvincibleTime;
 
     // Current Stats
     [SerializeField] protected float CurrentDamage = 1;
@@ -46,8 +47,10 @@ public class BaseHost : MonoBehaviour
     protected float CurrentHealth;
     protected float CurrentDuration;
     protected float CurrentCooldown;
+    protected float currentInvincibleTime = 0f;
 
     protected bool AbilityIsActive;
+    protected bool isInvincible;
     protected Vector2 inputValue;
     protected Vector2 direction;
 
@@ -55,6 +58,7 @@ public class BaseHost : MonoBehaviour
     {
         CurrentHealth = BaseHealth;
         AbilityIsActive = false;
+        isInvincible = false;
         ToggleActiveAbilityGraphics(AbilityIsActive);
 
         // Resets the hosts stats
@@ -101,9 +105,12 @@ public class BaseHost : MonoBehaviour
 
     public virtual void HandleCollisonEnter(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && !isInvincible)
         {
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
+
+            isInvincible = true;
+            currentInvincibleTime = MaxInvincibleTime;
 
             Rigidbody.velocity = Vector3.zero;
             Rigidbody.angularVelocity = 0f;
@@ -117,10 +124,13 @@ public class BaseHost : MonoBehaviour
                 TriggerHostDeath();
             }
         }
-        else if (collision.gameObject.tag == "EnemyBullet")
+        else if (collision.gameObject.tag == "EnemyBullet" && !isInvincible)
         {
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
             damage.gameObject.SetActive(false);
+
+            isInvincible = true;
+            currentInvincibleTime = MaxInvincibleTime;
 
             Rigidbody.velocity = Vector3.zero;
             Rigidbody.angularVelocity = 0f;
@@ -201,5 +211,18 @@ public class BaseHost : MonoBehaviour
     public virtual void ToggleActiveAbilityGraphics(bool active)
     {
 
+    }
+
+    protected virtual void Invincible()
+    {
+        if (isInvincible)
+        {
+            Debug.Log("Invincible");
+            currentInvincibleTime -= Time.deltaTime;
+            if (currentInvincibleTime <= 0)
+            {
+                isInvincible = false;
+            }
+        }        
     }
 }

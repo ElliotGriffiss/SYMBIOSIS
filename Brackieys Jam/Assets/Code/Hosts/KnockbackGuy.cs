@@ -16,19 +16,20 @@ public class KnockbackGuy : BaseHost
 
 
     private void Update()
-    {
+    {        
         if (Input.GetMouseButton(0))
         {
             Parasite.ActivateParasite(direction);
         }
-
         if (MovementSequence == null && Input.GetAxisRaw("Vertical") > 0f)
         {
+            animator.SetFloat("Speed", 1);
             MovementSequence = MoveCo(waitTime, moveTime);
             StartCoroutine(MovementSequence);
         }
         else if (MovementSequence != null && Input.GetAxisRaw("Vertical") == 0f)
         {
+            animator.SetFloat("Speed", 0);
             StopCoroutine(MovementSequence);
             MovementSequence = null;
         }
