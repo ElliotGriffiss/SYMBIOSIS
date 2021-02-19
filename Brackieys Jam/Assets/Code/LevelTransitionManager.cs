@@ -38,10 +38,10 @@ public class LevelTransitionManager : MonoBehaviour
 
         time = 0;
         HostParent.SetParent(gameObject.transform, true);
+        Vector3 hostStartingPosition = HostParent.transform.position;
 
         while (time <= DrawHostToNeedleBase)
         {
-            Vector3 hostStartingPosition = HostParent.transform.position;
             HostParent.transform.position = Vector3.Lerp(hostStartingPosition, NeedleBasePoint.position, time / DrawHostToNeedleBase);
 
             time += Time.deltaTime;
@@ -49,10 +49,10 @@ public class LevelTransitionManager : MonoBehaviour
         }
 
         time = 0;
+        hostStartingPosition = HostParent.transform.position;
 
         while (time <= DrawHostUpThebase)
         {
-            Vector3 hostStartingPosition = HostParent.transform.position;
             HostParent.transform.position = Vector3.Lerp(hostStartingPosition, NeedleUpPoint.position, time / DrawHostUpThebase);
 
             time += Time.deltaTime;
