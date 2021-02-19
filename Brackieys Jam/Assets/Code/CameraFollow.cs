@@ -36,6 +36,11 @@ public class CameraFollow : MonoBehaviour
         FollowTransform = target;
     }
 
+	public void SetCameraPositionImmediate(Vector3 position)
+	{
+		transform.position = position;
+	}
+
     private void FixedUpdate()
 	{
 		if (FollowTransform != null)
@@ -54,7 +59,7 @@ public class CameraFollow : MonoBehaviour
 		while (time < ScaleTime)
 		{
 			DisplayOverlay.transform.localScale = Vector3.Lerp(StartingScale, EndingScale, time / ScaleTime);
-			time += Time.deltaTime;
+			time += Time.unscaledDeltaTime;
 
 			yield return null;
 		}
@@ -69,7 +74,7 @@ public class CameraFollow : MonoBehaviour
 		while (time < ScaleTime)
 		{
 			DisplayOverlay.transform.localScale = Vector3.Lerp(EndingScale, StartingScale, time / ScaleTime);
-			time += Time.deltaTime;
+			time += Time.unscaledDeltaTime;
 
 			yield return null;
 		}
@@ -86,21 +91,21 @@ public class CameraFollow : MonoBehaviour
 		while (time <= RotationTime)
 		{
 			CameraCover.transform.rotation = Quaternion.Slerp(Quaternion.Euler(StartRotation), Quaternion.Euler(EndRotation), time / RotationTime);
-			time += Time.deltaTime;
+			time += Time.unscaledDeltaTime;
 
 			yield return null;
 		}
 	}
 	public IEnumerator RotateCoverOut()
 	{
-		yield return new WaitForSeconds(RotationPause);
+		yield return new WaitForSecondsRealtime(RotationPause);
 
 		float time = 0;
 
 		while (time <= RotationTime)
 		{
 			CameraCover.transform.rotation = Quaternion.Slerp(Quaternion.Euler(OutStartRotation), Quaternion.Euler(OutEndRotation), time / RotationTime);
-			time += Time.deltaTime;
+			time += Time.unscaledDeltaTime;
 
 			yield return null;
 		}

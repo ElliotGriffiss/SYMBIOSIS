@@ -153,7 +153,7 @@ public class BaseHost : MonoBehaviour
 
             healing.gameObject.SetActive(false);
 
-            if (MassGainedThisLevel > 10)
+            if (MassGainedThisLevel > 2)
             {
                 TriggerLevelUp();
             }

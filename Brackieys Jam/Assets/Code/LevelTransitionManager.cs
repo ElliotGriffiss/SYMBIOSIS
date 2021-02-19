@@ -17,6 +17,7 @@ public class LevelTransitionManager : MonoBehaviour
     [SerializeField] private Transform NeedleUpPoint;
     [SerializeField] private float Offset;
 
+    private WaitForEndOfFrame waitForFrameEnd = new WaitForEndOfFrame();
     private Transform HostParent;
 
 
@@ -24,7 +25,7 @@ public class LevelTransitionManager : MonoBehaviour
     {
         gameObject.SetActive(true);
         HostParent = host;
-
+        
         float time = 0;
         Vector3 NeedleTragetPosition = HostParent.transform.position + GetOnscreenOffset();
 
@@ -32,8 +33,8 @@ public class LevelTransitionManager : MonoBehaviour
         {
             transform.position = Vector3.Lerp(OffscreemRightPoint.position, NeedleTragetPosition, time / TransitionInDuration);
 
-            time += Time.deltaTime;
-            yield return null;
+            time += Time.unscaledDeltaTime;
+            yield return waitForFrameEnd;
         }
 
         time = 0;
@@ -44,8 +45,8 @@ public class LevelTransitionManager : MonoBehaviour
         {
             HostParent.transform.position = Vector3.Lerp(hostStartingPosition, NeedleBasePoint.position, time / DrawHostToNeedleBase);
 
-            time += Time.deltaTime;
-            yield return null;
+            time += Time.unscaledDeltaTime;
+            yield return waitForFrameEnd;
         }
 
         time = 0;
@@ -55,8 +56,8 @@ public class LevelTransitionManager : MonoBehaviour
         {
             HostParent.transform.position = Vector3.Lerp(hostStartingPosition, NeedleUpPoint.position, time / DrawHostUpThebase);
 
-            time += Time.deltaTime;
-            yield return null;
+            time += Time.unscaledDeltaTime;
+            yield return waitForFrameEnd;
         }
 
         HostParent.gameObject.SetActive(false);
@@ -68,11 +69,11 @@ public class LevelTransitionManager : MonoBehaviour
             Vector3 needleStartingPosition = transform.position;
             transform.position = Vector3.Lerp(needleStartingPosition, OffscreemUpPoint.position, time / TransitionInDuration);
 
-            time += Time.deltaTime;
-            yield return null;
+            time += Time.unscaledDeltaTime;
+            yield return waitForFrameEnd;
         }
 
-        yield return null;
+        yield return waitForFrameEnd;
     }
 
     public IEnumerator DropOffHostSequence(Transform host)
@@ -86,8 +87,8 @@ public class LevelTransitionManager : MonoBehaviour
             Vector3 NeedleTragetPosition = Vector3.zero;
             transform.position = Vector3.Lerp(OffscreemUpPoint.position, NeedleTragetPosition, time / TransitionInDuration);
 
-            time += Time.deltaTime;
-            yield return null;
+            time += Time.unscaledDeltaTime;
+            yield return waitForFrameEnd;
         }
 
         time = 0;
@@ -99,12 +100,13 @@ public class LevelTransitionManager : MonoBehaviour
             Vector3 hostStartingPosition = NeedleUpPoint.position;
             HostParent.transform.position = Vector3.Lerp(hostStartingPosition, NeedleBasePoint.position, time / DrawHostDownThebase);
 
-            time += Time.deltaTime;
-            yield return null;
+            time += Time.unscaledDeltaTime;
+            yield return waitForFrameEnd;
         }
 
         HostParent.SetParent(null);
 
+        yield return waitForFrameEnd;
         StartCoroutine(NeedleOffScreenTransition());
     }
 
@@ -117,8 +119,8 @@ public class LevelTransitionManager : MonoBehaviour
             Vector3 NeedleTragetPosition = Vector3.zero;
             transform.position = Vector3.Lerp(NeedleTragetPosition, OffscreemRightPoint.position, time / TransitionInDuration);
 
-            time += Time.deltaTime;
-            yield return null;
+            time += Time.unscaledDeltaTime;
+            yield return waitForFrameEnd;
         }
 
         gameObject.SetActive(false);

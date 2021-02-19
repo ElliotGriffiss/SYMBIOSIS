@@ -69,7 +69,7 @@ public class UpgradeCanvas : MonoBehaviour
         {
             ParentObject.transform.position = Vector2.LerpUnclamped(OffSceenPosition.position, OnSceenPosition.position, PanelAnimationCurve.Evaluate(Timer / AnimationTime));
             yield return waitForFrameEnd;
-            Timer += Time.fixedUnscaledDeltaTime;
+            Timer += Time.unscaledDeltaTime;
         }
 
         ParentObject.transform.position = OnSceenPosition.position;
@@ -87,16 +87,16 @@ public class UpgradeCanvas : MonoBehaviour
         {
             ParentObject.transform.position = Vector2.LerpUnclamped(OffSceenPosition.position, OnSceenPosition.position, PanelAnimationCurve.Evaluate(Timer / AnimationTime));
             yield return waitForFrameEnd;
-            Timer -= Time.fixedUnscaledDeltaTime;
+            Timer -= Time.unscaledDeltaTime;
         }
 
         ParentObject.transform.position = OffSceenPosition.position;
         yield return waitForFrameEnd;
 
         ParentObject.gameObject.SetActive(false);
-        Time.timeScale = 1f;
 
         GameManager.UpgradeHost(selectionIndex);
+        GameManager.StartNextLevel();
         Sequence = null;
     }
 

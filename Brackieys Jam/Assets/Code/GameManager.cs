@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UpgradeCanvas UpgradeCanvas;
     [Space]
     [SerializeField] private CameraFollow Camera;
+    [SerializeField] private Transform TransitionFollowPoint;
     [Space]
     [SerializeField] private LevelTransitionManager TransitionManager;
     [SerializeField] private LevelManager[] Levels;
@@ -53,9 +54,11 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator HandleLevelTransition(bool firstLevel)
     {
+        TransitionFollowPoint.position = (firstLevel) ? TestArea.transform.position : Host.transform.position;
         yield return Camera.ShowDisplayOverlay();
         yield return TransitionManager.PickUpHostSequence(Host.transform);
 
+        Camera.UpdateFollowTarget(TransitionFollowPoint.transform);
 
         yield return Camera.RotateCoverIn();
 
@@ -70,12 +73,14 @@ public class GameManager : MonoBehaviour
             TestArea.SetActive(false);
         }
 
+        Camera.SetCameraPositionImmediate(new Vector3(0, 0, -10));
         Levels[CurrentLevelIndex].StartLevel(Host, Parasite);
         yield return Camera.RotateCoverOut();
 
         yield return TransitionManager.DropOffHostSequence(Host.transform);
         Camera.UpdateFollowTarget(Host.transform);
         yield return Camera.CloseDisplayOverlay();
+        Time.timeScale = 1f;
     }
 
     private void HandleHostLevelledUp()

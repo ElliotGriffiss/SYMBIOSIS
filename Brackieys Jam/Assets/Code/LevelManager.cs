@@ -30,6 +30,6 @@ public class LevelManager : MonoBehaviour
         BaseHost.OnHostDeath -= HandleHostDeath;
         EnemyManager.DespawnAllEnemies();
         HealthDropPool.ReturnAllDrops();
-        // Start Next level here
+        LevelParentObject.SetActive(false);
     }
 }
