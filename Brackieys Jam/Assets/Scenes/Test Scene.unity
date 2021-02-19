@@ -638,7 +638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &42894416
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1672,7 +1672,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 250395236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 7.34, z: -13.305288}
+  m_LocalPosition: {x: -0.05, y: 5.26, z: -13.305288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8821,7 +8821,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772547224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.02, y: 3.53, z: -13.305288}
+  m_LocalPosition: {x: 8.07, y: 0.58, z: -13.305288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10442,12 +10442,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransitionInDuration: 1
   DrawHostToNeedleBase: 0.5
-  DrawHostUpThebase: 1
+  DrawHostUpThebase: 0.5
+  DrawHostDownThebase: 0.5
   OffscreemRightPoint: {fileID: 772547225}
   OffscreemUpPoint: {fileID: 250395237}
   NeedleBasePoint: {fileID: 1471446889}
   NeedleUpPoint: {fileID: 1550273219}
-  Offset: 2
+  Offset: 3
 --- !u!4 &1360294339
 Transform:
   m_ObjectHideFlags: 0
@@ -10758,7 +10759,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550273218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.253, y: 1.995, z: 0}
+  m_LocalPosition: {x: 0.206, y: 0.331, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1360294339}
@@ -12731,7 +12732,7 @@ MonoBehaviour:
   CameraOffset: {x: 0, y: 0, z: -10}
   CameraCover: {fileID: 421766567}
   DisplayOverlay: {fileID: 42894415}
-  ScaleTime: 1
+  ScaleTime: 0.5
   StartingScale: {x: 67, y: 67, z: 1}
   EndingScale: {x: 33, y: 33, z: 1}
 --- !u!114 &2022764840

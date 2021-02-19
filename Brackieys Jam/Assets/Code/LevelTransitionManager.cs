@@ -8,6 +8,7 @@ public class LevelTransitionManager : MonoBehaviour
     [SerializeField] private float TransitionInDuration;
     [SerializeField] private float DrawHostToNeedleBase;
     [SerializeField] private float DrawHostUpThebase;
+    [SerializeField] private float DrawHostDownThebase;
 
     [Header("Needle Transition Variable")]
     [SerializeField] private Transform OffscreemRightPoint;
@@ -58,6 +59,7 @@ public class LevelTransitionManager : MonoBehaviour
             yield return null;
         }
 
+        HostParent.gameObject.SetActive(false);
         HostParent.SetParent(transform, true);
         time = 0;
 
@@ -90,10 +92,12 @@ public class LevelTransitionManager : MonoBehaviour
 
         time = 0;
 
-        while (time <= DrawHostUpThebase)
+        HostParent.gameObject.SetActive(true);
+
+        while (time <= DrawHostDownThebase)
         {
             Vector3 hostStartingPosition = NeedleUpPoint.position;
-            HostParent.transform.position = Vector3.Lerp(hostStartingPosition, NeedleBasePoint.position, time / DrawHostUpThebase);
+            HostParent.transform.position = Vector3.Lerp(hostStartingPosition, NeedleBasePoint.position, time / DrawHostDownThebase);
 
             time += Time.deltaTime;
             yield return null;
