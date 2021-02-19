@@ -103,9 +103,14 @@ public class LevelTransitionManager : MonoBehaviour
             yield return null;
         }
 
-        time = 0;
-
         HostParent.SetParent(null);
+
+        StartCoroutine(NeedleOffScreenTransition());
+    }
+
+    private IEnumerator NeedleOffScreenTransition()
+    {
+        float time = 0;
 
         while (time <= TransitionInDuration)
         {
