@@ -15,6 +15,12 @@ public class FastGuy : BaseHost
 
     private List<Rigidbody2D> HealthOrbs = new List<Rigidbody2D>();
 
+    public override void InitializeHost(bool IsTestArea = false)
+    {
+        base.InitializeHost(IsTestArea);
+        animator.SetBool("IsMoving", false);
+    }
+
     private void Update()
     {
         if (Input.GetMouseButton(0))
@@ -62,25 +68,30 @@ public class FastGuy : BaseHost
     private void FixedUpdate()
     {
         Vector2 force = Vector2.zero;
+        animator.SetBool("IsMoving", false);
 
         if (inputValue.y > 0f)
         {
+            animator.SetBool("IsMoving", true);
             force += Vector2.up * inputValue.y * CurrentForwardSpeed;
         }
 
         if (inputValue.y < 0f)
         {
+            animator.SetBool("IsMoving", true);
             force += Vector2.up * inputValue.y * CurrentForwardSpeed;
         }
 
 
         if (inputValue.x > 0)
         {
+            animator.SetBool("IsMoving", true);
             force += (Vector2.right * inputValue.x * CurrentStrafeSpeed);
         }
 
         if (inputValue.x < 0)
         {
+            animator.SetBool("IsMoving", true);
             force += (Vector2.right * inputValue.x * CurrentStrafeSpeed);
         }
 

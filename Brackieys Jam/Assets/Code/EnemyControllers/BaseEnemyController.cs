@@ -47,12 +47,12 @@ public class BaseEnemyController : MonoBehaviour
         if (UnityEngine.Random.Range(100, 0) > 30)
         {
             State = EnemyState.Moving;
-            Sprite.color = Color.green;
+            //Sprite.color = Color.green;
             movementDirection = GenerateRandomMovementVector();
         }
         else
         {
-            Sprite.color = Color.blue;
+           // Sprite.color = Color.blue;
             State = EnemyState.Idle;
         }
 
