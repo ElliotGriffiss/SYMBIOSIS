@@ -112,6 +112,7 @@ public class UpgradeCanvas : MonoBehaviour
             }
         }
 
+        Debug.Log(largestIndex);
         return largestIndex;
     }
 
@@ -123,13 +124,14 @@ public class UpgradeCanvas : MonoBehaviour
         {
             if (i != largestIndex)
             {
-                if (Element[i] > Element[secondLargestIndex])
+                if (Element[i] >= Element[secondLargestIndex])
                 {
                     secondLargestIndex = i;
                 }
             }
         }
 
+        Debug.Log(secondLargestIndex);
         return secondLargestIndex;
     }
 
