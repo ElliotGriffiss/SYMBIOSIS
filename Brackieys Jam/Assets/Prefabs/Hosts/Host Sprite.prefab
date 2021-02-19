@@ -267,13 +267,6 @@ MonoBehaviour:
   BaseAbilityCooldown: 10
   baseForwardSpeed: 5
   baseStrafeSpeed: 4
-  MaxInvincibleTime: 1
-  CurrentDamage: 1
-  CurrentDamageResistance: 1
-  CurrentAbilityDuration: 10
-  CurrentForwardSpeed: 0
-  CurrentStrafeSpeed: 0
-  AbilityActiveScale: {x: 0, y: 0, z: 0}
 --- !u!50 &7630703106993362202
 Rigidbody2D:
   serializedVersion: 4

@@ -50,7 +50,6 @@ public class HostController : BaseHost
         animator.SetFloat("Speed", inputValue.sqrMagnitude);
 
         LookAtMouse();
-        Invincible();
     }
 
     private void FixedUpdate()
@@ -83,12 +82,9 @@ public class HostController : BaseHost
 
     public override void HandleCollisonEnter(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && AbilityIsActive == false && !isInvincible)
+        if (collision.gameObject.tag == "Enemy" && AbilityIsActive == false)
         {
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
-
-            isInvincible = true;
-            currentInvincibleTime = MaxInvincibleTime;
 
             Rigidbody.velocity = Vector3.zero;
             Rigidbody.angularVelocity = 0f;
@@ -103,13 +99,10 @@ public class HostController : BaseHost
                 TriggerHostDeath();
             }
         }
-        else if (collision.gameObject.tag == "EnemyBullet" && AbilityIsActive == false && !isInvincible)
+        else if (collision.gameObject.tag == "EnemyBullet" && AbilityIsActive == false)
         {
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
             damage.gameObject.SetActive(false);
-
-            isInvincible = true;
-            currentInvincibleTime = MaxInvincibleTime;
 
             Rigidbody.velocity = Vector3.zero;
             Rigidbody.angularVelocity = 0f;

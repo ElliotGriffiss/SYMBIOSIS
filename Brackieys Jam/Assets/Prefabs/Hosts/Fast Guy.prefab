@@ -111,7 +111,6 @@ MonoBehaviour:
   BaseAbilityCooldown: 4
   baseForwardSpeed: 10
   baseStrafeSpeed: 10
-  MaxInvincibleTime: 1
   CurrentDamage: 1
   CurrentDamageResistance: 1
   CurrentAbilityDuration: 0
@@ -119,7 +118,6 @@ MonoBehaviour:
   CurrentStrafeSpeed: 0
   HealingMultiplier: 2
   HealthCollecter: {fileID: 718497159}
-  CollectionForce: 0
   RotationAcceleration:
     serializedVersion: 2
     m_Curve:
@@ -145,7 +143,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   RotationSpeed: 12
-  RotationAxis: {x: 0, y: 0, z: 1}
 --- !u!50 &5723550306773943856
 Rigidbody2D:
   serializedVersion: 4
@@ -361,7 +358,7 @@ Animator:
   m_GameObject: {fileID: 8726368451031582067}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d92d17152c26afc43becf014b0decbb5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8554e53b8c7a33d409c46632507012b0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

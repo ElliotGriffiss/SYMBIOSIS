@@ -8891,10 +8891,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 241397236}
     - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
-      propertyPath: MaxInvincibleTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: AbilityActiveScale.x
       value: 1.1
       objectReference: {fileID: 0}
@@ -10931,10 +10927,6 @@ PrefabInstance:
       value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 1957673690}
-    - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 1609272106}
@@ -12223,11 +12215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5701967d2b6044cb600df9e52091d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &1957673690 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4064340608757748155, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
-  m_PrefabInstance: {fileID: 1624181559}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1971078940
 GameObject:
   m_ObjectHideFlags: 0
@@ -12661,10 +12648,6 @@ PrefabInstance:
     - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: baseForwardSpeed
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
-      propertyPath: MaxInvincibleTime
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: Colliders.Array.size

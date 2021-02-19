@@ -293,7 +293,6 @@ MonoBehaviour:
   BaseAbilityCooldown: 10
   baseForwardSpeed: 4
   baseStrafeSpeed: 0
-  MaxInvincibleTime: 1
   CurrentDamage: 1
   CurrentDamageResistance: 1
   CurrentAbilityDuration: 10
