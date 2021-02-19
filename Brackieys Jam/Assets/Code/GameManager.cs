@@ -7,7 +7,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SymbioteCreationGUI CreationGUI;
     [SerializeField] private UpgradeCanvas UpgradeCanvas;
     [Space]
+    [SerializeField] private CameraFollow Camera;
+    [Space]
+    [SerializeField] private LevelTransitionManager TransitionManager;
     [SerializeField] private LevelManager[] Levels;
+    [SerializeField] private GameObject TestArea;
 
     private int[] CurrentStatLevels = new int[4] { 0, 0, 0, 0 };
 
@@ -21,6 +25,11 @@ public class GameManager : MonoBehaviour
     private BaseHost Host;
     private BaseParsite Parasite;
 
+    private void Start()
+    {
+        Camera.UpdateFollowTarget(TestArea.transform);
+        TestArea.SetActive(true);
+    }
 
     /// <summary>
     /// Call this after the host selection process has taken place, from the symbiote GUI
@@ -30,17 +39,42 @@ public class GameManager : MonoBehaviour
         Host = host;
         Parasite = paraite;
 
+        //Camera.UpdateFollowTarget(host.transform);
         BaseHost.OnHostDeath += HandleHostDeath;
         BaseHost.OnHostLevelUp += HandleHostLevelledUp;
-        Levels[CurrentLevelIndex].StartLevel(host, paraite);
+
+        StartCoroutine(HandleLevelTransition(true));
     }
 
     public void StartNextLevel()
-    { 
-        Levels[CurrentLevelIndex].LevelCleanUp();
+    {
+        StartCoroutine(HandleLevelTransition(false));
+    }
 
-        CurrentLevelIndex++;
+    private IEnumerator HandleLevelTransition(bool firstLevel)
+    {
+        yield return Camera.ShowDisplayOverlay();
+        yield return TransitionManager.PickUpHostSequence(Host.transform);
+
+        if (!firstLevel)
+        {
+            // if it's the first level we don't need to turn off the old one
+            Levels[CurrentLevelIndex].LevelCleanUp();
+            CurrentLevelIndex++;
+        }
+        else
+        {
+            TestArea.SetActive(false);
+        }
+
+        Camera.BlackOutCamera(true);
         Levels[CurrentLevelIndex].StartLevel(Host, Parasite);
+        Camera.BlackOutCamera(false);
+
+        yield return TransitionManager.DropOffHostSequence(Host.transform);
+        Camera.UpdateFollowTarget(Host.transform);
+        yield return Camera.CloseDisplayOverlay();
+        Camera.DeactiveAllDisplays();
     }
 
     private void HandleHostLevelledUp()
@@ -69,6 +103,8 @@ public class GameManager : MonoBehaviour
         CurrentStatLevels = new int[4] { 0, 0, 0, 0 };
         CurrentLevelIndex = 0;
 
+
+        // TestArea>seTacgive(True);
         CreationGUI.OpenGUI();
     }
 }

@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     {
         BaseHost.OnHostDeath += HandleHostDeath;
 
-        host.transform.position = SymbioteSpawnPoint.position;
+        //host.transform.position = SymbioteSpawnPoint.position;
         LevelParentObject.SetActive(true);
         EnemyManager.SpawnEnemies(HealthDropPool);
     }

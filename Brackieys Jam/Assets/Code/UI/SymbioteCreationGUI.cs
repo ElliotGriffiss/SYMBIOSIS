@@ -5,10 +5,8 @@ using UnityEngine;
 public class SymbioteCreationGUI : MonoBehaviour
 {
     [SerializeField] private GameManager GameManager;
-    [SerializeField] private CameraFollow Camera;
     [SerializeField] private Transform SymbioteSpawnPoint;
     [Space]
-    [SerializeField] private GameObject TestArea;
     [SerializeField] private BaseHost[] Hosts;
     [SerializeField] private BaseParsite[] Parasites;
 
@@ -23,7 +21,6 @@ public class SymbioteCreationGUI : MonoBehaviour
     public void OpenGUI()
     {
         gameObject.SetActive(true);
-        TestArea.SetActive(true);
         UpdateCurrentHost(CurrentlySelectedHost);
     }
 
@@ -34,7 +31,6 @@ public class SymbioteCreationGUI : MonoBehaviour
         CurrentlySelectedHost = index;
         Hosts[CurrentlySelectedHost].gameObject.SetActive(true);
         Hosts[CurrentlySelectedHost].transform.position = SymbioteSpawnPoint.position;
-        Camera.UpdateFollowTarget(TestArea.transform);
 
         UpdateCurrentParasite(CurrentlySelectedParaste);
         Hosts[CurrentlySelectedHost].InitializeHost(true);
@@ -66,9 +62,7 @@ public class SymbioteCreationGUI : MonoBehaviour
 
     public void OnCreatesymbiotePressed()
     {
-        Camera.UpdateFollowTarget(Hosts[CurrentlySelectedHost].transform);
         GameManager.StartGame(Hosts[CurrentlySelectedHost], Parasites[CurrentlySelectedParaste]);
-        TestArea.SetActive(false);
         gameObject.SetActive(false);
     }
 }
