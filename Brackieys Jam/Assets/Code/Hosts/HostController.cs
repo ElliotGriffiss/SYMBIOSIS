@@ -13,8 +13,6 @@ public class HostController : BaseHost
         if (Input.GetMouseButton(0))
         {
             Parasite.ActivateParasite(direction);
-            animator.SetBool("IsReloading", false);
-            animator.SetBool("IsShooting", true);
         }
 
         if (Input.GetAxis("Fire2") > 0 && CurrentCooldown >= BaseAbilityCooldown)
@@ -105,30 +103,26 @@ public class HostController : BaseHost
                 TriggerHostDeath();
             }
         }
-        else if (collision.gameObject.tag == "EnemyBullet")
+        else if (collision.gameObject.tag == "EnemyBullet" && AbilityIsActive == false && !isInvincible)
         {
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
             damage.gameObject.SetActive(false);
 
-            if (AbilityIsActive == false && !isInvincible)
+            isInvincible = true;
+            currentInvTime = startingInvTime;
+
+            Rigidbody.velocity = Vector3.zero;
+            Rigidbody.angularVelocity = 0f;
+            Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+
+            CurrentHealth -= damage.Damage;
+            UpdateHealthBar();
+            Debug.Log("You got hit");
+
+            if (CurrentHealth < 1)
             {
-                isInvincible = true;
-                currentInvTime = startingInvTime;
-
-                Rigidbody.velocity = Vector3.zero;
-                Rigidbody.angularVelocity = 0f;
-                Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
-
-                CurrentHealth -= damage.Damage;
-                UpdateHealthBar();
-                Debug.Log("You got hit");
-
-                if (CurrentHealth < 1)
-                {
-                    TriggerHostDeath();
-                }
+                TriggerHostDeath();
             }
-
         }
         else if (collision.gameObject.tag == "PickUp")
         {

@@ -123,27 +123,24 @@ public class BaseHost : MonoBehaviour
                 TriggerHostDeath();
             }
         }
-        else if (collision.gameObject.tag == "EnemyBullet")
+        else if (collision.gameObject.tag == "EnemyBullet" && !isInvincible)
         {
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
             damage.gameObject.SetActive(false);
 
-            if (!isInvincible)
+            isInvincible = true;
+            currentInvTime = startingInvTime;
+
+            Rigidbody.velocity = Vector3.zero;
+            Rigidbody.angularVelocity = 0f;
+            Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+
+            CurrentHealth -= damage.Damage * CurrentDamageResistance;
+            UpdateHealthBar();
+
+            if (CurrentHealth < 1)
             {
-                isInvincible = true;
-                currentInvTime = startingInvTime;
-
-                Rigidbody.velocity = Vector3.zero;
-                Rigidbody.angularVelocity = 0f;
-                Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
-
-                CurrentHealth -= damage.Damage * CurrentDamageResistance;
-                UpdateHealthBar();
-
-                if (CurrentHealth < 1)
-                {
-                    TriggerHostDeath();
-                }
+                TriggerHostDeath();
             }
         }
         else if (collision.gameObject.tag == "PickUp")
