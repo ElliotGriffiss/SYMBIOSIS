@@ -171,8 +171,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 333, y: 0}
-  m_SizeDelta: {x: 325, y: 80}
+  m_AnchoredPosition: {x: 390, y: 0}
+  m_SizeDelta: {x: 380, y: 80}
   m_Pivot: {x: 1, y: 1}
 --- !u!1 &3235038
 GameObject:
@@ -491,7 +491,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Reloadingbar: {fileID: 827145391}
-  Host: {fileID: 0}
+  AbilityBarText: {fileID: 839708125}
+  AbilityText: PRECISION SNIPER
   BulletOrigin: {fileID: 271855878}
   BulletPrefab: {fileID: 2505523460636609060, guid: 3f82f67d7430b2b41bbd50086e89b301, type: 3}
   animator: {fileID: 20787442}
@@ -656,7 +657,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: HOST UNLOCKED
+  m_Text: NEW HOST UNLOCKED
 --- !u!222 &22890467
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1487,7 +1488,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tank Guy
+  m_Text: ACARIFORM
 --- !u!222 &134089479
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1566,7 +1567,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Machinegun
+  m_Text: ANTAGONISTIC
 --- !u!222 &148157487
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1765,7 +1766,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1.3}
+  m_AnchoredPosition: {x: 0, y: 3.1}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &205042422
@@ -1790,7 +1791,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: c698cfa6d3cf35a4e9688ae61c516f0e, type: 3}
-    m_FontSize: 10
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -8627,7 +8628,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 266.88, y: 80}
+  m_SizeDelta: {x: 340, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &523090803
 MonoBehaviour:
@@ -9197,8 +9198,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -278, y: 0}
-  m_SizeDelta: {x: 266.88, y: 80}
+  m_AnchoredPosition: {x: -345, y: 0}
+  m_SizeDelta: {x: 340, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &581252360
 GameObject:
@@ -9233,7 +9234,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 325, y: 80}
+  m_SizeDelta: {x: 380, y: 80}
   m_Pivot: {x: 1, y: 1}
 --- !u!1 &582484025
 GameObject:
@@ -19353,7 +19354,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fast Guy
+  m_Text: MEDUSOFORM
 --- !u!222 &670324507
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20535,7 +20536,7 @@ GameObject:
   - component: {fileID: 821156355}
   - component: {fileID: 821156354}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20554,7 +20555,7 @@ RectTransform:
   m_Children:
   - {fileID: 1343972122}
   m_Father: {fileID: 1111778429}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -21028,7 +21029,7 @@ GameObject:
   - component: {fileID: 862458338}
   - component: {fileID: 862458337}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Button (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21047,7 +21048,7 @@ RectTransform:
   m_Children:
   - {fileID: 1236659253}
   m_Father: {fileID: 1111778429}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -21340,6 +21341,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 241397236}
     - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
+      propertyPath: AbilityText
+      value: Exoskeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
+      propertyPath: AbilityBarText
+      value: 
+      objectReference: {fileID: 205042422}
+    - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: AbilityActiveScale.x
       value: 1.1
       objectReference: {fileID: 0}
@@ -21511,7 +21520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Reloadingbar: {fileID: 827145391}
-  Host: {fileID: 0}
+  AbilityBarText: {fileID: 839708125}
+  AbilityText: RAPID SPINES
   BulletOrigin: {fileID: 1838805509}
   BulletPrefab: {fileID: 2352539362037606456, guid: c2df68bf0f4ac9e4cb6a449279a1c09e, type: 3}
   animator: {fileID: 950025010}
@@ -22261,7 +22271,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shockwave Guy
+  m_Text: CEPHALOFORM
 --- !u!222 &1008876860
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23129,8 +23139,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 821156353}
   - {fileID: 862458336}
+  - {fileID: 821156353}
   - {fileID: 561523458}
   - {fileID: 482646682}
   m_Father: {fileID: 2107336997}
@@ -23275,7 +23285,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PARASITE UNOCKED
+  m_Text: NEW PARASITE UNOCKED
 --- !u!222 &1145944155
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23474,7 +23484,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sniper
+  m_Text: GLOTIC
 --- !u!222 &1236659255
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23553,7 +23563,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stealth Guy
+  m_Text: DIPTERAFORM
 --- !u!222 &1263972451
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23594,7 +23604,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Reloadingbar: {fileID: 827145391}
-  Host: {fileID: 0}
+  AbilityBarText: {fileID: 839708125}
+  AbilityText: SPREAD SHOT
   BulletOrigins:
   - {fileID: 649584281}
   - {fileID: 1195328143}
@@ -23903,7 +23914,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Drill
+  m_Text: BARBARIC
 --- !u!222 &1343972124
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24491,7 +24502,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 266.88, y: 80}
+  m_SizeDelta: {x: 340, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1471446888
 GameObject:
@@ -25076,7 +25087,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BOSS
+  m_Text: SYMBIOTE ALPHA
 --- !u!222 &1527693017
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25593,7 +25604,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shotgun
+  m_Text: HERMITIC
 --- !u!222 &1606615053
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25889,6 +25900,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 241397236}
     - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
+      propertyPath: AbilityText
+      value: Sonic Wave
+      objectReference: {fileID: 0}
+    - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
+      propertyPath: AbilityBarText
+      value: 
+      objectReference: {fileID: 205042422}
+    - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: EndShockWaveSize.x
       value: 4
       objectReference: {fileID: 0}
@@ -26074,7 +26093,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 325, y: 80}
+  m_SizeDelta: {x: 380, y: 80}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1652309040
 MonoBehaviour:
@@ -26257,6 +26276,14 @@ PrefabInstance:
       propertyPath: Healthtext
       value: 
       objectReference: {fileID: 241397236}
+    - target: {fileID: 8041541149747995372, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
+      propertyPath: AbilityText
+      value: Magnetic Field
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041541149747995372, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
+      propertyPath: AbilityBarText
+      value: 
+      objectReference: {fileID: 205042422}
     - target: {fileID: 8041541149747995372, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: CollectionForce
       value: 6
@@ -26445,7 +26472,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Reloadingbar: {fileID: 827145391}
-  Host: {fileID: 0}
+  AbilityBarText: {fileID: 839708125}
+  AbilityText: SPIKE RAM
   DrillAnim: {fileID: 1710288123}
   AnimationTime: 1
   ChargeSpeed: 30
@@ -27140,7 +27168,7 @@ SpriteRenderer:
   m_SortingLayerID: 1275087379
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ee650ba439851d1439f61acd176b81b4, type: 3}
   m_Color: {r: 0.74587584, g: 0.972549, b: 0.6627451, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -34079,6 +34107,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1591679144}
     - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
+      propertyPath: AbilityText
+      value: Semi-Permeable
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
+      propertyPath: AbilityBarText
+      value: 
+      objectReference: {fileID: 205042422}
+    - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: VisibleColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -34437,8 +34473,8 @@ MonoBehaviour:
   - {fileID: 3235040}
   - {fileID: 289372763}
   ParasiteButtons:
-  - {fileID: 821156354}
   - {fileID: 862458337}
+  - {fileID: 821156354}
   - {fileID: 561523459}
   - {fileID: 482646683}
   Hosts:

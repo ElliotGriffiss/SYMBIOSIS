@@ -23,12 +23,14 @@ public class SpikeParsite : BaseParsite
         Damage.Damage = Damage.BaseDamage + hostDamageModifier;
         CurrentChargeCooldown = ChargeCoolDown;
         Reloadingbar.fillAmount = CurrentChargeCooldown / ChargeCoolDown;
+        AbilityBarText.text = AbilityText;
     }
 
     public override void ActivateParasite(Vector2 direction)
     {
         if (CurrentChargeCooldown >= ChargeCoolDown)
         {
+            Host.ActivateIframes(AnimationTime);
             DrillAnim.SetBool("IsDrilling", true);
             HostRigidbody.AddForce(direction.normalized * ChargeSpeed, ForceMode2D.Impulse);
             CurrentChargeCooldown = 0;

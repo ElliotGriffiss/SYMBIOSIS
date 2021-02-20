@@ -54,6 +54,7 @@ public class MachinegunParasite : BaseParsite
             }
         }
 
+        AbilityBarText.text = AbilityText;
         BulletsInClip = ClipSize;
         Reloadingbar.fillAmount = (float)BulletsInClip / ClipSize;
         IsReloading = false;
@@ -127,8 +128,8 @@ public class MachinegunParasite : BaseParsite
                 direction = BulletOrigin.position - transform.position;
 
                 bullet.transform.position = BulletOrigin.position;
-                bullet.transform.rotation = Quaternion.Euler(direction);
                 bullet.gameObject.SetActive(true);
+                bullet.Rigidbody.rotation = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90;
                 bullet.Rigidbody.velocity = direction.normalized * BulletSpeed;
                 LastFireTime = Time.time;
 

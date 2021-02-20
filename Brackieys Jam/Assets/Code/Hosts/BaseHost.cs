@@ -21,6 +21,8 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected Image HealthBar;
     [SerializeField] protected Text Healthtext;
     [SerializeField] protected Image AbilityBar;
+    [SerializeField] protected Text AbilityBarText;
+    [SerializeField] protected String AbilityText;
 
     [Header("Data")]
     [SerializeField] protected float BaseHealth = 10; // CurrentHealth
@@ -50,7 +52,7 @@ public class BaseHost : MonoBehaviour
     protected float CurrentDuration;
     protected float CurrentCooldown;
 
-    protected bool isInvincible;
+    [SerializeField] protected bool isInvincible;
     protected bool AbilityIsActive;
     protected Vector2 inputValue;
     protected Vector2 direction;
@@ -61,6 +63,8 @@ public class BaseHost : MonoBehaviour
         MassRequiredThisLevel = massRequiredThisLevel;
         AbilityIsActive = false;
         ToggleActiveAbilityGraphics(AbilityIsActive);
+
+        AbilityBarText.text = AbilityText;
 
         // Resets the hosts stats
         CurrentDamage = BaseDamage;
@@ -212,6 +216,12 @@ public class BaseHost : MonoBehaviour
         {
             AbilityBar.fillAmount = CurrentCooldown / BaseAbilityCooldown;
         }
+    }
+
+    public void ActivateIframes(float Duration)
+    {
+        isInvincible = true;
+        currentInvTime = Duration;
     }
 
     protected virtual void Invincible()

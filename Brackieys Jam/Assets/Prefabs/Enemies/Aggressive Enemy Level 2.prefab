@@ -230,4 +230,4 @@ MonoBehaviour:
   Rigidbody: {fileID: 6670271607238775923}
   BaseDamage: 4
   Damage: 4
-  KnockBackForce: 1
+  KnockBackForce: 4

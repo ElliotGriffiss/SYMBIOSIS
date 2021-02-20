@@ -63,7 +63,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 226534651392447119}
   BaseDamage: 2
   Damage: 2
-  KnockBackForce: 1
+  KnockBackForce: 5
 --- !u!1 &7913312698505893594
 GameObject:
   m_ObjectHideFlags: 0

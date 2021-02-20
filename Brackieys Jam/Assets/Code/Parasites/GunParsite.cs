@@ -54,6 +54,7 @@ public class GunParsite : BaseParsite
             }
         }
 
+        AbilityBarText.text = AbilityText;
         BulletsInClip = ClipSize;
         Reloadingbar.fillAmount = (float)BulletsInClip / ClipSize;
         IsReloading = false;
