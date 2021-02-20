@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("UI")]
     [SerializeField] private SymbioteCreationGUI CreationGUI;
     [SerializeField] private UpgradeCanvas UpgradeCanvas;
+    [SerializeField] private UnlockCanvas HostUnlockCanvas;
+    [SerializeField] private UnlockCanvas ParasiteUnlockCanvas;
     [Space]
     [SerializeField] private CameraFollow Camera;
     [SerializeField] private Transform TransitionFollowPoint;
@@ -16,18 +19,27 @@ public class GameManager : MonoBehaviour
 
     private int[] CurrentStatLevels = new int[4] { 0, 0, 0, 0 };
 
+    [Header("Drop Settings")]
+    [SerializeField] private int[] DropsRequiredPerLevel;
+
+    [Header("Unlock Settings")]
+    [SerializeField] private bool[] HostsUnlocked;
+    [SerializeField] private bool[] ParasitesUnlocked;
+
+    [Header("Upgrades")]
     [SerializeField] private float[] DamageResistenceUpgrades;
     [SerializeField] private float[] SpeedUpgrades;
     [SerializeField] private float[] AbilityDurationUpgrades;
     [SerializeField] private float[] DamageUpgrades;
 
-
+    private int TotalKills;
     private int CurrentLevelIndex = 0;
     private BaseHost Host;
     private BaseParsite Parasite;
 
     private void Start()
     {
+        CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
         Camera.UpdateFollowTarget(TestArea.transform);
         TestArea.SetActive(true);
     }
@@ -81,13 +93,51 @@ public class GameManager : MonoBehaviour
 
         yield return TransitionManager.DropOffHostSequence(Host.transform);
         Camera.UpdateFollowTarget(Host.transform);
+        Host.SetMassRequired(DropsRequiredPerLevel[CurrentLevelIndex]);
         yield return Camera.CloseDisplayOverlay();
         Time.timeScale = 1f;
+
+        if (CurrentLevelIndex == 1 && HostsUnlocked[1] == false)
+        {
+            HostUnlockCanvas.ShowUnlockGUI();
+            HostsUnlocked[1] = true;
+        }
+        else if (CurrentLevelIndex == 2 && HostsUnlocked[2] == false)
+        {
+            HostUnlockCanvas.ShowUnlockGUI();
+            HostsUnlocked[2] = true;
+        }
+        else if (CurrentLevelIndex == 3 && HostsUnlocked[3] == false)
+        {
+            HostUnlockCanvas.ShowUnlockGUI();
+            HostsUnlocked[3] = true;
+        }
     }
 
     private void HandleHostLevelledUp()
     {
         UpgradeCanvas.OpenUpgradeGUI(Levels[CurrentLevelIndex].EnemyManager.GetEnemiesKilled());
+    }
+
+    public void CheckforParasiteUnlocked()
+    {
+        TotalKills++;
+
+        if (TotalKills > 29 && ParasitesUnlocked[1] == false)
+        {
+            ParasiteUnlockCanvas.ShowUnlockGUI();
+            ParasitesUnlocked[1] = true;
+        }
+        else if (TotalKills > 59 && ParasitesUnlocked[2] == false)
+        {
+            ParasiteUnlockCanvas.ShowUnlockGUI();
+            ParasitesUnlocked[2] = true;
+        }
+        else if (TotalKills > 69 && ParasitesUnlocked[3] == false)
+        {
+            ParasiteUnlockCanvas.ShowUnlockGUI();
+            ParasitesUnlocked[3] = true;
+        }
     }
 
     public void UpgradeHost(int selection)
@@ -112,6 +162,6 @@ public class GameManager : MonoBehaviour
         CurrentLevelIndex = 0;
         TestArea.SetActive(true);
 
-        CreationGUI.OpenGUI();
+        CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
     }
 }

@@ -15,9 +15,9 @@ public class FastGuy : BaseHost
 
     private List<Rigidbody2D> HealthOrbs = new List<Rigidbody2D>();
 
-    public override void InitializeHost(bool IsTestArea = false)
+    public override void InitializeHost(int massRequiredThisLevel, bool IsTestArea = false)
     {
-        base.InitializeHost(IsTestArea);
+        base.InitializeHost(massRequiredThisLevel, IsTestArea);
         animator.SetBool("IsMoving", false);
     }
 
@@ -161,7 +161,7 @@ public class FastGuy : BaseHost
             UpdateHealthBar();
             healing.gameObject.SetActive(false);
 
-            if (MassGainedThisLevel > 10)
+            if (MassGainedThisLevel > MassRequiredThisLevel)
             {
                 TriggerLevelUp();
             }

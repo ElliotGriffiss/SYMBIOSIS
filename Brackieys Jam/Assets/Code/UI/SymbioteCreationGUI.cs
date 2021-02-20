@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SymbioteCreationGUI : MonoBehaviour
 {
     [SerializeField] private GameManager GameManager;
     [SerializeField] private Transform SymbioteSpawnPoint;
+    [Space]
+    [SerializeField] private Button[] HostButtons;
+    [SerializeField] private Button[] ParasiteButtons;
     [Space]
     [SerializeField] private BaseHost[] Hosts;
     [SerializeField] private BaseParsite[] Parasites;
@@ -13,13 +17,14 @@ public class SymbioteCreationGUI : MonoBehaviour
     [SerializeField] private int CurrentlySelectedHost = 0;
     [SerializeField] private int CurrentlySelectedParaste = 0;
 
-    private void Start()
+    public void OpenGUI(bool[] hostsUnlocked, bool[] parasitesUnlocked)
     {
-        OpenGUI();
-    }
+        for (int i = 0; i < HostButtons.Length; i++) // this will only work if they're all the same lenght
+        {
+            HostButtons[i].interactable = hostsUnlocked[i];
+            ParasiteButtons[i].interactable = parasitesUnlocked[i];
+        }
 
-    public void OpenGUI()
-    {
         gameObject.SetActive(true);
         UpdateCurrentHost(CurrentlySelectedHost);
     }
@@ -33,7 +38,7 @@ public class SymbioteCreationGUI : MonoBehaviour
         Hosts[CurrentlySelectedHost].transform.position = SymbioteSpawnPoint.position;
 
         UpdateCurrentParasite(CurrentlySelectedParaste);
-        Hosts[CurrentlySelectedHost].InitializeHost(true);
+        Hosts[CurrentlySelectedHost].InitializeHost(10, true);
     }
 
     public void UpdateCurrentParasite(int index)

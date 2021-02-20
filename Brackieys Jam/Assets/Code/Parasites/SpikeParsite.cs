@@ -16,8 +16,9 @@ public class SpikeParsite : BaseParsite
     private float CurrentAnimationTime;
     private bool IsActive;
 
-    public override void SetupParasite(float hostDamageModifier)
+    public override void SetupParasite(BaseHost host, float hostDamageModifier)
     {
+        Host = host;
         HostRigidbody = GetComponentInParent<Rigidbody2D>();
         Damage.Damage = Damage.BaseDamage + hostDamageModifier;
         CurrentChargeCooldown = ChargeCoolDown;
@@ -53,6 +54,14 @@ public class SpikeParsite : BaseParsite
         {
             CurrentChargeCooldown += Time.deltaTime;
             Reloadingbar.fillAmount = CurrentChargeCooldown / ChargeCoolDown;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "PickUp" || collision.gameObject.tag == "EnemyBullet")
+        {
+            Host.HandleCollisonEnter(collision);
         }
     }
 }

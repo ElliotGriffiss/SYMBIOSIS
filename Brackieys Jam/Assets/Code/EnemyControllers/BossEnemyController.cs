@@ -280,6 +280,11 @@ public class BossEnemyController : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        HealthBarParent.SetActive(false);
+    }
+
     protected Vector2 GenerateRandomMovementVector()
     {
         return new Vector2(UnityEngine.Random.Range(-1.0f, 1.0f), UnityEngine.Random.Range(-1.0f, 1.0f)).normalized;

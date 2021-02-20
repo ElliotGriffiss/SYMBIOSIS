@@ -84,7 +84,7 @@ MonoBehaviour:
   Sprite: {fileID: 4251108923847889718}
   MyRigidBody: {fileID: 2978724473649114147}
   State: 0
-  Health: 4
+  Health: 5
   MovementSpeed: 3
   StateDuration: 2
   NumberOfDrops: 3
@@ -109,9 +109,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 2978724473649114147}
-  BaseDamage: 0
-  Damage: 0
-  KnockBackForce: 0
+  BaseDamage: 2
+  Damage: 2
+  KnockBackForce: 1
 --- !u!50 &2978724473649114147
 Rigidbody2D:
   serializedVersion: 4
@@ -199,7 +199,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4
+  m_Radius: 6
 --- !u!95 &7107229020015001760
 Animator:
   serializedVersion: 3

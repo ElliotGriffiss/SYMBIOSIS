@@ -16,10 +16,11 @@ public class TentacleController : BaseHost
     protected SpriteRenderer[] Sprites;
     private IEnumerator MovementSequence;
 
-    public override void InitializeHost(bool IsTestArea = false)
+    public override void InitializeHost(int massRequiredThisLevel, bool IsTestArea = false)
     {
         CurrentHealth = BaseHealth;
         AbilityIsActive = false;
+        MassRequiredThisLevel = massRequiredThisLevel;
 
         CurrentDamage = BaseDamage;
         CurrentDamageResistance = BaseDamageResistance;

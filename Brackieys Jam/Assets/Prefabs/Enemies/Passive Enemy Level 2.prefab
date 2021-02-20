@@ -53,7 +53,7 @@ MonoBehaviour:
   Sprite: {fileID: 8395033232014697559}
   MyRigidBody: {fileID: 4070111159518893}
   State: 0
-  Health: 12
+  Health: 16
   MovementSpeed: 4
   StateDuration: 2
   NumberOfDrops: 3
@@ -72,8 +72,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 4070111159518893}
-  BaseDamage: 2
-  Damage: 2
+  BaseDamage: 4
+  Damage: 4
   KnockBackForce: 0
 --- !u!50 &4070111159518893
 Rigidbody2D:

@@ -5,6 +5,9 @@ using GameData;
 
 public class EnemyManager : MonoBehaviour
 {
+    [Header("Game Manager")]
+    [SerializeField] private GameManager GameManager;
+
     [Header("Enemy References")]
     [SerializeField] private List<EnemySpawnData> EnemiePrefabs;
     [SerializeField] private InvertedCircleCollider MapBoundry;
@@ -33,6 +36,7 @@ public class EnemyManager : MonoBehaviour
 
     private void HandleEnemyDeath(EnemyTypes enemyType)
     {
+        GameManager.CheckforParasiteUnlocked();
         Debug.LogError("Enemy Killed: " + enemyType);
         EnemiesKilled[(int)enemyType]++;
     }

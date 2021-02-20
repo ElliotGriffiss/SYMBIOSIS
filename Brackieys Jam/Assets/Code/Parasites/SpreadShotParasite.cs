@@ -27,8 +27,10 @@ public class SpreadShotParasite : BaseParsite
     /// <summary>
     /// sets up the object pool of bullets
     /// </summary>
-    public override void SetupParasite(float hostDamageModifier)
+    public override void SetupParasite(BaseHost host, float hostDamageModifier)
     {
+        Host = host;
+
         if (HasPool == false)
         {
             for (int i = 0; i < MaxNumberOfBullets; i++)

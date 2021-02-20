@@ -43,6 +43,7 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected float CurrentStrafeSpeed;
     [SerializeField] protected float currentInvTime;
 
+    protected int MassRequiredThisLevel = 0;
     protected int MassGainedThisLevel = 0;
 
     protected float CurrentHealth;
@@ -54,9 +55,10 @@ public class BaseHost : MonoBehaviour
     protected Vector2 inputValue;
     protected Vector2 direction;
 
-    public virtual void InitializeHost(bool IsTestArea = false)
+    public virtual void InitializeHost(int massRequiredThisLevel, bool IsTestArea = false)
     {
         CurrentHealth = BaseHealth;
+        MassRequiredThisLevel = massRequiredThisLevel;
         AbilityIsActive = false;
         ToggleActiveAbilityGraphics(AbilityIsActive);
 
@@ -80,13 +82,18 @@ public class BaseHost : MonoBehaviour
         UpdateAbilityBar();
     }
 
+    public void SetMassRequired(int massRequiredThisLevel)
+    {
+        MassRequiredThisLevel = massRequiredThisLevel;
+    }
+
     public virtual void ChangeParasite(BaseParsite parasite)
     {
         Parasite = parasite;
         Parasite.transform.parent = ParasiteOrigin;
         Parasite.transform.position = ParasiteOrigin.position;
         Parasite.transform.localRotation = Quaternion.identity;
-        Parasite.SetupParasite(CurrentDamage);
+        Parasite.SetupParasite(this, CurrentDamage);
     }
 
     public void LevelUpHost(float bonusDamageResistance, float bonusSpeed, float bonusAbilityDuration, float bonusDamage)
@@ -99,7 +106,7 @@ public class BaseHost : MonoBehaviour
         CurrentForwardSpeed = bonusSpeed + baseForwardSpeed;
         CurrentStrafeSpeed = bonusSpeed + baseStrafeSpeed;
 
-        Parasite.SetupParasite(CurrentDamage);
+        Parasite.SetupParasite(this, CurrentDamage);
     }
 
     public virtual void HandleCollisonEnter(Collision2D collision)
@@ -153,7 +160,7 @@ public class BaseHost : MonoBehaviour
 
             healing.gameObject.SetActive(false);
 
-            if (MassGainedThisLevel > 15)
+            if (MassGainedThisLevel > MassRequiredThisLevel)
             {
                 TriggerLevelUp();
             }

@@ -16,9 +16,9 @@ public class KnockbackGuy : BaseHost
     private IEnumerator MovementSequence;
 
 
-    public override void InitializeHost(bool IsTestArea = false)
+    public override void InitializeHost(int massRequiredThisLevel, bool IsTestArea = false)
     {
-        base.InitializeHost(IsTestArea);
+        base.InitializeHost(massRequiredThisLevel, IsTestArea);
         animator.SetBool("IsMoving", false);
     }
 
@@ -53,7 +53,7 @@ public class KnockbackGuy : BaseHost
         if (AbilityIsActive)
         {
             CurrentDuration -= Time.deltaTime;
-            ShockWave.transform.localScale = Vector3.Lerp(EndShockWaveSize, StartShockWaveSize, CurrentDuration / BaseAbilityDuration);
+            ShockWave.transform.localScale = Vector3.Lerp(EndShockWaveSize, StartShockWaveSize, CurrentDuration / CurrentAbilityDuration);
             UpdateAbilityBar();
 
             if (CurrentDuration < 0)

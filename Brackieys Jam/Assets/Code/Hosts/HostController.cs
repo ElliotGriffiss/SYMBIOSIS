@@ -134,7 +134,7 @@ public class HostController : BaseHost
 
             healing.gameObject.SetActive(false);
 
-            if (MassGainedThisLevel > 10)
+            if (MassGainedThisLevel > MassRequiredThisLevel)
             {
                 TriggerLevelUp();
             }
