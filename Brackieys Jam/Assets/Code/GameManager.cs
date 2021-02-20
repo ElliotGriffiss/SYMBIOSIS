@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BossEnemyController Boss;
 
     [Header("SFX")]
+    [SerializeField] private AudioSource MusicSource;
+    [SerializeField] private AudioClip MenuMusic;
+    [SerializeField] private AudioClip LevelMusic;
+    [SerializeField] private AudioClip BossMusic;
+    [Space]
     [SerializeField] private AudioSource PlayerDeathSFX;
     [SerializeField] private AudioSource BossDeathSFX;
 
@@ -48,6 +53,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        MusicSource.clip = MenuMusic;
+        MusicSource.Play();
+
         CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
         Camera.UpdateFollowTarget(TestArea.transform);
         TestArea.SetActive(true);
@@ -95,6 +103,21 @@ public class GameManager : MonoBehaviour
             TestArea.SetActive(false);
         }
 
+        if (CurrentLevelIndex == 3)
+        {
+            Boss.SpawnBoss();
+            MusicSource.clip = BossMusic;
+            MusicSource.Play();
+        }
+        else
+        {
+            if (MusicSource.clip != LevelMusic)
+            {
+                MusicSource.clip = LevelMusic;
+                MusicSource.Play();
+            }
+        }
+
         Camera.SetCameraPositionImmediate(new Vector3(0, 0, -10));
         Levels[CurrentLevelIndex].StartLevel(Host, Parasite);
         Parasite.ResetParasite();
@@ -120,11 +143,6 @@ public class GameManager : MonoBehaviour
         {
             HostUnlockCanvas.ShowUnlockGUI();
             HostsUnlocked[3] = true;
-        }
-
-        if (CurrentLevelIndex == 3)
-        {
-            Boss.SpawnBoss();
         }
     }
 
@@ -188,6 +206,9 @@ public class GameManager : MonoBehaviour
         Camera.UpdateFollowTarget(TestArea.transform);
 
         CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
+
+        MusicSource.clip = MenuMusic;
+        MusicSource.Play();
     }
 
     public void TriggerGameWonSequence()
@@ -207,5 +228,8 @@ public class GameManager : MonoBehaviour
         Camera.SetCameraPositionImmediate(TestArea.transform.position);
         Camera.UpdateFollowTarget(TestArea.transform);
         TestArea.SetActive(true);
+
+        MusicSource.clip = MenuMusic;
+        MusicSource.Play();
     }
 }

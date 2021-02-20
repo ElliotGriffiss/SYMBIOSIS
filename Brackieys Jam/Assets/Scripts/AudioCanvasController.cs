@@ -88,7 +88,7 @@ public class AudioCanvasController : MonoBehaviour
     public void OnMusicSliderUpdated(float Value)
     {
         Debug.Log(Value);
-        AudioMixer.SetFloat("MUSIC", Value);
+        AudioMixer.SetFloat("Music", Value);
     }
 
     public void OnSFXSliderUpdated(float Value)
