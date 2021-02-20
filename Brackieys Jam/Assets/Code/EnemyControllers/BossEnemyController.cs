@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossEnemyController : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class BossEnemyController : MonoBehaviour
     }
 
     private BossStates CurrentState = BossStates.Idle;
+
+    [Header("UI")]
+    [SerializeField] private GameObject HealthBarParent;
+    [SerializeField] private Image HealthBar;
 
     [Header("Enemy Data")]
     [SerializeField] protected SpriteRenderer Sprite;
@@ -40,14 +45,23 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] private int NumberOfBullets = 12;
     [SerializeField] private float BulletSpeed3;
 
-    protected Vector2 movementDirection;
-    protected float currentStateTime = float.PositiveInfinity;
+    private Vector2 movementDirection;
+    private float currentStateTime = float.PositiveInfinity;
     private List<DamageComponent> BulletPool = new List<DamageComponent>();
-    public Transform attacker;
+    private Transform attacker;
+    private float CurrentHealth;
 
     protected void Start()
     {
         UpdateSubBosses(false);
+        CurrentHealth = Health;
+        HealthBarParent.SetActive(true);
+        HealthBar.fillAmount = CurrentHealth / Health;
+
+        foreach (SubBoss sub in SubBosses)
+        {
+            sub.gameObject.SetActive(true);
+        }
     }
 
     protected void UpdateSubBosses(bool active)
@@ -84,29 +98,41 @@ public class BossEnemyController : MonoBehaviour
     {
         int range = UnityEngine.Random.Range(100, 0);
 
-        if (range > 75)
+        if (attacker != null)
+        {
+            if (range > 75)
+            {
+                CurrentState = BossStates.Moving;
+
+                if (attacker.position != null)
+                {
+                    movementDirection = attacker.position - transform.position;
+                }
+            }
+            else if (range > 60)
+            {
+                CurrentState = BossStates.Special_Attack_1;
+                StartCoroutine(SpecialAttackOne());
+            }
+            else if (range > 45)
+            {
+                CurrentState = BossStates.Special_Attack_2;
+                StartCoroutine(SpecialAttackTwo());
+            }
+            else if (range > 20)
+            {
+                CurrentState = BossStates.Special_Attack_3;
+                StartCoroutine(SpecialAttackThree());
+            }
+            else if (range > 0)
+            {
+                CurrentState = BossStates.Idle;
+            }
+        }
+        else
         {
             CurrentState = BossStates.Moving;
-            movementDirection = attacker.position - transform.position;
-        }
-        else if (range > 60)
-        {
-            CurrentState = BossStates.Special_Attack_1;
-            StartCoroutine(SpecialAttackOne());
-        }
-        else if (range > 45)
-        {
-            CurrentState = BossStates.Special_Attack_2;
-            StartCoroutine(SpecialAttackTwo());
-        }
-        else if (range > 20)
-        {
-            CurrentState = BossStates.Special_Attack_3;
-            StartCoroutine(SpecialAttackThree());
-        }
-        else if (range > 0)
-        {
-            CurrentState = BossStates.Idle;
+            movementDirection = GenerateRandomMovementVector();
         }
 
         currentStateTime = 0;
@@ -212,5 +238,49 @@ public class BossEnemyController : MonoBehaviour
 
             yield return new WaitForSeconds(FireTick3);
         }
+    }
+
+    public void HandleTriggerEnter(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Host")
+        {
+            attacker = collision.transform;
+            currentStateTime = 0;
+        }
+    }
+
+    public void HandleCollisonEnter(Collision2D collision)
+    {
+        if (collision.collider.gameObject.tag == "Bullet")
+        {
+            DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
+            damage.gameObject.SetActive(false);
+
+            CurrentHealth -= damage.Damage;
+            HealthBar.fillAmount = CurrentHealth / Health;
+
+
+            if (CurrentHealth < 1)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+        else if (collision.collider.gameObject.tag == "Spike")
+        {
+            DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
+
+            CurrentHealth -= damage.Damage;
+            HealthBar.fillAmount = CurrentHealth / Health;
+
+            if (CurrentHealth < 1)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+    }
+
+    protected Vector2 GenerateRandomMovementVector()
+    {
+        return new Vector2(UnityEngine.Random.Range(-1.0f, 1.0f), UnityEngine.Random.Range(-1.0f, 1.0f)).normalized;
     }
 }

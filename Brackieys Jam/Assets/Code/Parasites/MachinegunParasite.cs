@@ -110,11 +110,11 @@ public class MachinegunParasite : BaseParsite
 
     public override void ActivateParasite(Vector2 direction)
     {
-        animator.SetBool("IsReloading", false);
-        animator.SetBool("IsShooting", true);
-
         if (BulletsInClip > 0)
         {
+            animator.SetBool("IsReloading", false);
+            animator.SetBool("IsShooting", true);
+
             // Used to enforce the fie rate without putting an update loop in this class.
             if (Time.time - LastFireTime > FireRate)
             {

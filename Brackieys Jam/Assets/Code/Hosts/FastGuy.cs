@@ -62,6 +62,7 @@ public class FastGuy : BaseHost
         inputValue.x = Input.GetAxisRaw("Horizontal"); //Setting the x and y values of the "movement" var based on what keys are down
         inputValue.y = Input.GetAxisRaw("Vertical"); //^^
 
+        Invincible();
         LookAtMouse();
     }
 

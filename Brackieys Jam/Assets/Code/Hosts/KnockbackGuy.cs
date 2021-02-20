@@ -6,6 +6,7 @@ public class KnockbackGuy : BaseHost
 {
     [Header("Knockback Guy Settings")]
     [SerializeField] private GameObject ShockWave;
+    [SerializeField] private Vector3 ShockWaveLocalPosition;
     [SerializeField] private Vector3 StartShockWaveSize;
     [SerializeField] private Vector3 EndShockWaveSize;
 
@@ -43,6 +44,7 @@ public class KnockbackGuy : BaseHost
         if (Input.GetAxis("Fire2") > 0 && CurrentCooldown >= BaseAbilityCooldown)
         {
             AbilityIsActive = true;
+            ShockWave.transform.localPosition = ShockWaveLocalPosition;
             ToggleActiveAbilityGraphics(AbilityIsActive);
             CurrentDuration = CurrentAbilityDuration;
             CurrentCooldown = 0;
@@ -70,12 +72,14 @@ public class KnockbackGuy : BaseHost
             }
         }
 
+        Invincible();
         LookAtMouse();
     }
 
     public override void ToggleActiveAbilityGraphics(bool active)
     {
         ShockWave.SetActive(active);
+        ShockWave.transform.SetParent((active) ? null: transform, true);
     }
 
     private IEnumerator MoveCo(float waitTime, float moveTime)

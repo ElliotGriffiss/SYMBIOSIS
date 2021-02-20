@@ -96,6 +96,7 @@ public class TentacleController : BaseHost
             }
         }
 
+        Invincible();
         LookAtMouse();
     }
 

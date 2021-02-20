@@ -42,6 +42,6 @@ public class SubBoss : MonoBehaviour
 
     protected void KillSelf()
     {
-        gameObject.SetActive(true);
+        gameObject.SetActive(false);
     }
 }
