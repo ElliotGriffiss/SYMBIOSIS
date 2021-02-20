@@ -120,6 +120,9 @@ public class GunParsite : BaseParsite
             // Used to enforce the fie rate without putting an update loop in this class.
             if (Time.time - LastFireTime  > FireRate)
             {
+                SFX.pitch = Random.Range(MinPitch, MaxPitch);
+                SFX.Play();
+
                 BulletsInClip--;
                 Reloadingbar.fillAmount = (float)BulletsInClip / ClipSize;
 

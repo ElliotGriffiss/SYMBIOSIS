@@ -17,14 +17,12 @@ public class UpgradeCanvas : MonoBehaviour
     [SerializeField] private RectTransform OffSceenPosition;
     [SerializeField] private RectTransform OnSceenPosition;
 
+    [Header("Audio")]
+    [SerializeField] protected AudioSource ButtonSFX;
+
     private IEnumerator Sequence;
     private WaitForEndOfFrame waitForFrameEnd = new WaitForEndOfFrame();
     private float Timer;
-
-    private void Start()
-    {
-
-    }
 
     public void OpenUpgradeGUI(int[] enemiesKilled)
     {
@@ -54,6 +52,7 @@ public class UpgradeCanvas : MonoBehaviour
         // prevents accidental clicks
         if (Sequence == null)
         {
+            ButtonSFX.Play();
             ParentObject.transform.position = OnSceenPosition.position;
             Sequence = CloseAnimationSequence(buttonIndex);
             StartCoroutine(Sequence);

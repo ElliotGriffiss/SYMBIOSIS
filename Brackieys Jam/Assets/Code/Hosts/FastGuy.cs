@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class FastGuy : BaseHost
 {
@@ -23,7 +24,7 @@ public class FastGuy : BaseHost
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Parasite.ActivateParasite(direction);
         }
@@ -121,6 +122,12 @@ public class FastGuy : BaseHost
             CurrentHealth -= damage.Damage * CurrentDamageResistance;
             UpdateHealthBar();
 
+            if (damage.Damage > 0)
+            {
+                HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+                HurtSFX.Play();
+            }
+
             if (CurrentHealth < 1)
             {
                 TriggerHostDeath();
@@ -143,6 +150,12 @@ public class FastGuy : BaseHost
                 CurrentHealth -= damage.Damage * CurrentDamageResistance;
                 UpdateHealthBar();
 
+                if (damage.Damage > 0)
+                {
+                    HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+                    HurtSFX.Play();
+                }
+
                 if (CurrentHealth < 1)
                 {
                     TriggerHostDeath();
@@ -163,6 +176,9 @@ public class FastGuy : BaseHost
             {
                 CurrentHealth += healing.Health;
             }
+
+            PickupSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+            PickupSFX.Play();
 
             UpdateHealthBar();
             healing.gameObject.SetActive(false);

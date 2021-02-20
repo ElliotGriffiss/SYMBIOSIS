@@ -22,6 +22,10 @@ public class BaseEnemyController : MonoBehaviour
     [Header("Flash Effects")]
     [SerializeField] protected float FlashTime;
     protected Color FlashWhiteColor = new Color( 255, 255, 255, 512);
+    [Header("Sound Effects")]
+    [SerializeField] protected AudioSource TakeDamageSFX;
+    [SerializeField] protected float MinPitch = 0.9f;
+    [SerializeField] protected float MaxPitch = 1.1f;
 
     public event Action<EnemyTypes> OnDeath = delegate { };
     protected Vector2 movementDirection;
@@ -95,6 +99,9 @@ public class BaseEnemyController : MonoBehaviour
             Health -= damage.Damage;
             CurrentFlashTime = 0;
 
+            TakeDamageSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+            TakeDamageSFX.Play();
+
             if (Health < 1)
             {
                 KillEnemy();
@@ -110,6 +117,9 @@ public class BaseEnemyController : MonoBehaviour
 
             Health -= damage.Damage;
             CurrentFlashTime = 0;
+
+            TakeDamageSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+            TakeDamageSFX.Play();
 
             if (Health < 1)
             {

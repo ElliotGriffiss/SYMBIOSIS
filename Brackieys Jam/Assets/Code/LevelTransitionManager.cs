@@ -10,6 +10,9 @@ public class LevelTransitionManager : MonoBehaviour
     [SerializeField] private float DrawHostUpThebase;
     [SerializeField] private float DrawHostDownThebase;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource TubeSFX;
+
     [Header("Needle Transition Variable")]
     [SerializeField] private Transform OffscreemRightPoint;
     [SerializeField] private Transform OffscreemUpPoint;
@@ -25,7 +28,8 @@ public class LevelTransitionManager : MonoBehaviour
     {
         gameObject.SetActive(true);
         HostParent = host;
-        
+        TubeSFX.Play();
+
         float time = 0;
         Vector3 NeedleTragetPosition = HostParent.transform.position + GetOnscreenOffset();
 
