@@ -36,6 +36,10 @@ public class GameManager : MonoBehaviour
     [Header("Boss")]
     [SerializeField] private BossEnemyController Boss;
 
+    [Header("SFX")]
+    [SerializeField] private AudioSource PlayerDeathSFX;
+    [SerializeField] private AudioSource BossDeathSFX;
+
     [Header("Debug")]
     [SerializeField]private int TotalKills;
     [SerializeField] private int CurrentLevelIndex = 0;
@@ -165,6 +169,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleHostDeath()
     {
+        PlayerDeathSFX.Play();
         StartCoroutine(HostDeathSequence());
     }
 
@@ -172,7 +177,6 @@ public class GameManager : MonoBehaviour
     {
         yield return DeathCanvas.DeathAnimationSequence();
 
-        Debug.Log("Reset");
         BaseHost.OnHostDeath -= HandleHostDeath;
         BaseHost.OnHostLevelUp -= HandleHostLevelledUp;
         Levels[CurrentLevelIndex].LevelCleanUp();
@@ -180,17 +184,21 @@ public class GameManager : MonoBehaviour
         CurrentLevelIndex = 0;
         TestArea.SetActive(true);
 
+        Camera.SetCameraPositionImmediate(TestArea.transform.position);
+        Camera.UpdateFollowTarget(TestArea.transform);
+
         CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
     }
 
     public void TriggerGameWonSequence()
     {
+        BossDeathSFX.Play();
         StartCoroutine(GameWon());
     }
 
     private IEnumerator GameWon()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
 
         Levels[CurrentLevelIndex].LevelCleanUp();
         CurrentLevelIndex = 0;

@@ -48,6 +48,7 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] private int NumberOfBullets = 12;
     [SerializeField] private float BulletSpeed3;
 
+    [Header("Audio")]
     [SerializeField] protected AudioSource HurtSFX;
     [SerializeField] protected float MinPitch = 1;
     [SerializeField] protected float MaxPitch = 1;
