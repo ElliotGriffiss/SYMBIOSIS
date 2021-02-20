@@ -79,6 +79,16 @@ public class RangedEnemeyController : BaseEnemyController
 
             currentStateTime += Time.fixedDeltaTime;
         }
+
+        if (CurrentFlashTime < FlashTime)
+        {
+            Sprite.color = FlashWhiteColor;
+            CurrentFlashTime += Time.deltaTime;
+        }
+        else
+        {
+            Sprite.color = Color.white;
+        }
     }
 
     protected override void ChooseANewState()

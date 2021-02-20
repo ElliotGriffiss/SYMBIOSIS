@@ -19,12 +19,16 @@ public class BaseEnemyController : MonoBehaviour
     [Header("HealthDrops")]
     [SerializeField] protected int NumberOfDrops = 3;
     [SerializeField] protected Color HealthDropColor;
+    [Header("Flash Effects")]
+    [SerializeField] protected float FlashTime;
+    protected Color FlashWhiteColor = new Color( 255, 255, 255, 512);
 
     public event Action<EnemyTypes> OnDeath = delegate { };
     protected Vector2 movementDirection;
     protected float currentStateTime = float.PositiveInfinity; // ensures a new state is always chosen
     protected HealthDropObjectPool DropPool;
     protected bool HasDroppedLoad;
+    protected float CurrentFlashTime;
 
 
     public void InitializeEnemy(HealthDropObjectPool dropPool)
@@ -47,6 +51,16 @@ public class BaseEnemyController : MonoBehaviour
             }
 
             currentStateTime += Time.fixedDeltaTime;
+        }
+
+        if (CurrentFlashTime < FlashTime)
+        {
+            Sprite.color = FlashWhiteColor;
+            CurrentFlashTime += Time.deltaTime;
+        }
+        else
+        {
+            Sprite.color = Color.white;
         }
     }
 
@@ -79,6 +93,7 @@ public class BaseEnemyController : MonoBehaviour
             MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
             Health -= damage.Damage;
+            CurrentFlashTime = 0;
 
             if (Health < 1)
             {
@@ -94,6 +109,7 @@ public class BaseEnemyController : MonoBehaviour
             MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
             Health -= damage.Damage;
+            CurrentFlashTime = 0;
 
             if (Health < 1)
             {

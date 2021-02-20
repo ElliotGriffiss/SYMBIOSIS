@@ -29,6 +29,16 @@ public class AggresiveEnemyController : BaseEnemyController
             MyRigidBody.rotation = (Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg) - 45;
             currentStateTime += Time.fixedDeltaTime;
         }
+
+        if (CurrentFlashTime < FlashTime)
+        {
+            Sprite.color = FlashWhiteColor;
+            CurrentFlashTime += Time.deltaTime;
+        }
+        else
+        {
+            Sprite.color = Color.white;
+        }
     }
 
     protected override void ChooseANewState()

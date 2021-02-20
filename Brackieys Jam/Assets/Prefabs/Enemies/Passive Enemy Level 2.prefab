@@ -58,6 +58,7 @@ MonoBehaviour:
   StateDuration: 2
   NumberOfDrops: 3
   HealthDropColor: {r: 0.7058824, g: 0.23137255, b: 0.68235296, a: 1}
+  FlashTime: 0.1
 --- !u!114 &7602440272025854267
 MonoBehaviour:
   m_ObjectHideFlags: 0

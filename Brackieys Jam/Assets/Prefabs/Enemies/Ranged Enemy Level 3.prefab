@@ -59,6 +59,7 @@ MonoBehaviour:
   StateDuration: 2
   NumberOfDrops: 3
   HealthDropColor: {r: 0.7176471, g: 0.96862745, b: 0.42745098, a: 1}
+  FlashTime: 0.1
   Animator: {fileID: 2134343519332753670}
   BulletPrefab: {fileID: 1287548932906423171, guid: 7b677843d79cafc4fb5b92f04a5a3888, type: 3}
   BulletOrigin: {fileID: 2944866936198672798}
