@@ -81,6 +81,11 @@ public class KnockbackGuy : BaseHost
     {
         ShockWave.SetActive(active);
         ShockWave.transform.SetParent((active) ? null: transform, true);
+
+        if (active)
+        {
+            AbilitySFX.Play();
+        }
     }
 
     private IEnumerator MoveCo(float waitTime, float moveTime)

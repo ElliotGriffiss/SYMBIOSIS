@@ -204,7 +204,12 @@ public class FastGuy : BaseHost
 
         if (!active)
         {
+            AbilitySFX.Stop();
             HealthOrbs.Clear();
+        }
+        else
+        {
+            AbilitySFX.Play();
         }
     }
 }

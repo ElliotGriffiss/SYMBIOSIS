@@ -196,6 +196,7 @@ public class GameManager : MonoBehaviour
         CurrentLevelIndex = 0;
 
         CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
+        Camera.SetCameraPositionImmediate(TestArea.transform.position);
         Camera.UpdateFollowTarget(TestArea.transform);
         TestArea.SetActive(true);
     }

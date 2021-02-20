@@ -27,6 +27,7 @@ public class BaseHost : MonoBehaviour
     [Header("Sound Effects")]
     [SerializeField] protected AudioSource HurtSFX;
     [SerializeField] protected AudioSource PickupSFX;
+    [SerializeField] protected AudioSource AbilitySFX;
     [SerializeField] protected float MinPitch = 1;
     [SerializeField] protected float MaxPitch = 1;
 

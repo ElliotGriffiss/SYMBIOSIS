@@ -162,11 +162,13 @@ public class HostController : BaseHost
     {
         if (active)
         {
+            AbilitySFX.Play();
             animator.SetBool("IsArmored", true);
             transform.localScale = AbilityActiveScale;
         }
         else
         {
+            AbilitySFX.Stop();
             animator.SetBool("IsArmored", false);
             transform.localScale = Vector3.one;
         }

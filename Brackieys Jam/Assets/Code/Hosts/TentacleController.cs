@@ -116,6 +116,15 @@ public class TentacleController : BaseHost
         }
 
         HostSprite.color = (active) ? InvisibleColor : VisibleColor;
+
+        if (active)
+        {
+            AbilitySFX.Play();
+        }
+        else
+        {
+            AbilitySFX.Stop();
+        }
     }
     
     private IEnumerator MoveCo(float waitTime, float moveTime)
