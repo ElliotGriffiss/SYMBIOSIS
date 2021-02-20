@@ -48,6 +48,10 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] private int NumberOfBullets = 12;
     [SerializeField] private float BulletSpeed3;
 
+    [SerializeField] protected AudioSource HurtSFX;
+    [SerializeField] protected float MinPitch = 1;
+    [SerializeField] protected float MaxPitch = 1;
+
     [Header("HealthDrops")]
     [SerializeField] protected HealthDropObjectPool DropPool;
     [SerializeField] protected int NumberOfDrops = 30;
@@ -287,6 +291,8 @@ public class BossEnemyController : MonoBehaviour
             CurrentHealth -= damage.Damage;
             HealthBar.fillAmount = CurrentHealth / Health;
 
+            HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+            HurtSFX.Play();
 
             if (CurrentHealth < 1)
             {
@@ -299,6 +305,9 @@ public class BossEnemyController : MonoBehaviour
 
             CurrentHealth -= damage.Damage;
             HealthBar.fillAmount = CurrentHealth / Health;
+
+            HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+            HurtSFX.Play();
 
             if (CurrentHealth < 1)
             {
@@ -321,7 +330,6 @@ public class BossEnemyController : MonoBehaviour
 
                 Vector2 position = transform.position;
                 Vector2 dropPosition = position + (UnityEngine.Random.insideUnitCircle * DropRadius);
-                Debug.Log(dropPosition);
 
                 Vector2 dropDirection = dropPosition - position;
 

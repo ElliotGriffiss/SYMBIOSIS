@@ -6,6 +6,7 @@ public class BulletStopper : MonoBehaviour
 {
     [Header("Sound Effects")]
     [SerializeField] protected AudioSource CollideSFX;
+    [SerializeField] protected AudioSource PlayerCollideSFX;
     [SerializeField] protected float MinPitch = 0.9f;
     [SerializeField] protected float MaxPitch = 1.1f;
 
@@ -16,6 +17,11 @@ public class BulletStopper : MonoBehaviour
             CollideSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             CollideSFX.Play();
             collision.gameObject.SetActive(false);
+        }
+        else if (collision.gameObject.tag == "Host")
+        {
+            PlayerCollideSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+            PlayerCollideSFX.Play();
         }
     }
 }

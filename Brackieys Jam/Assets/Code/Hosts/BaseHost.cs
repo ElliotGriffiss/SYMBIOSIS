@@ -30,6 +30,13 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected float MinPitch = 1;
     [SerializeField] protected float MaxPitch = 1;
 
+    [Header("HealthDrops")]
+    [SerializeField] protected HealthDropObjectPool DropPool;
+    [SerializeField] protected int NumberOfDrops = 30;
+    [SerializeField] protected Color HealthDropColor;
+    [SerializeField] protected float DropRadius = 4;
+    [SerializeField] protected float DropForce;
+
     [Header("Data")]
     [SerializeField] protected float BaseHealth = 10; // CurrentHealth
     [SerializeField] protected float MaxHealth = 10;
@@ -202,7 +209,26 @@ public class BaseHost : MonoBehaviour
 
     protected void TriggerHostDeath()
     {
-        Debug.LogError("You Died");
+        for (int i = 0; i < NumberOfDrops; i++)
+        {
+            HealingComponent drop = DropPool.GetDropFromThepool();
+
+            drop.SpriteRenderer.color = HealthDropColor;
+
+            Vector2 position = transform.position;
+            Vector2 dropPosition = position + (UnityEngine.Random.insideUnitCircle * DropRadius);
+
+            Vector2 dropDirection = dropPosition - position;
+
+            drop.gameObject.SetActive(true);
+            drop.transform.position = dropPosition;
+            drop.Rigidbody2D.rotation = (Mathf.Atan2(dropDirection.y, dropDirection.x) * Mathf.Rad2Deg) - 90;
+            drop.Rigidbody2D.AddForce(dropDirection * DropForce, ForceMode2D.Impulse);
+
+            drop.transform.SetParent(null, true);
+        }
+
+        gameObject.SetActive(false);
         BaseHost.OnHostDeath();
     }
 
@@ -226,7 +252,7 @@ public class BaseHost : MonoBehaviour
             MaxHealth = CurrentHealth;
         }
 
-        Healthtext.text = CurrentHealth + "/" + MaxHealth;
+        Healthtext.text = "MASS: "+CurrentHealth;
         HealthBar.fillAmount = CurrentHealth / MaxHealth;
     }
 

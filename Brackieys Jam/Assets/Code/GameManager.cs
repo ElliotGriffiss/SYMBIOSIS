@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UpgradeCanvas UpgradeCanvas;
     [SerializeField] private UnlockCanvas HostUnlockCanvas;
     [SerializeField] private UnlockCanvas ParasiteUnlockCanvas;
+    [SerializeField] private DeathCanvas DeathCanvas;
     [Space]
     [SerializeField] private CameraFollow Camera;
     [SerializeField] private Transform TransitionFollowPoint;
@@ -164,6 +165,14 @@ public class GameManager : MonoBehaviour
 
     private void HandleHostDeath()
     {
+        StartCoroutine(HostDeathSequence());
+    }
+
+    private IEnumerator HostDeathSequence()
+    {
+        yield return DeathCanvas.DeathAnimationSequence();
+
+        Debug.Log("Reset");
         BaseHost.OnHostDeath -= HandleHostDeath;
         BaseHost.OnHostLevelUp -= HandleHostLevelledUp;
         Levels[CurrentLevelIndex].LevelCleanUp();

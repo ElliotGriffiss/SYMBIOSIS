@@ -11,7 +11,8 @@ public class LevelTransitionManager : MonoBehaviour
     [SerializeField] private float DrawHostDownThebase;
 
     [Header("Audio Settings")]
-    [SerializeField] private AudioSource TubeSFX;
+    [SerializeField] private AudioSource WooshSfx;
+    [SerializeField] private AudioSource PlopSfx;
 
     [Header("Needle Transition Variable")]
     [SerializeField] private Transform OffscreemRightPoint;
@@ -28,7 +29,6 @@ public class LevelTransitionManager : MonoBehaviour
     {
         gameObject.SetActive(true);
         HostParent = host;
-        TubeSFX.Play();
 
         float time = 0;
         Vector3 NeedleTragetPosition = HostParent.transform.position + GetOnscreenOffset();
@@ -44,6 +44,7 @@ public class LevelTransitionManager : MonoBehaviour
         time = 0;
         HostParent.SetParent(gameObject.transform, true);
         Vector3 hostStartingPosition = HostParent.transform.position;
+        WooshSfx.Play();
 
         while (time <= DrawHostToNeedleBase)
         {
@@ -98,6 +99,7 @@ public class LevelTransitionManager : MonoBehaviour
         time = 0;
 
         HostParent.gameObject.SetActive(true);
+        PlopSfx.Play();
 
         while (time <= DrawHostDownThebase)
         {
@@ -107,7 +109,6 @@ public class LevelTransitionManager : MonoBehaviour
             time += Time.unscaledDeltaTime;
             yield return waitForFrameEnd;
         }
-
         HostParent.SetParent(null);
 
         yield return waitForFrameEnd;
