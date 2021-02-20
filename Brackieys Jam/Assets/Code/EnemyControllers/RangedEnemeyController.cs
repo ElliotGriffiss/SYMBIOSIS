@@ -72,7 +72,11 @@ public class RangedEnemeyController : BaseEnemyController
         }
         else
         {
-            MyRigidBody.AddForce(movementDirection * MovementSpeed);
+            if (State != EnemyState.Idle)
+            {
+                MyRigidBody.AddForce(movementDirection * MovementSpeed);
+            }
+
             currentStateTime += Time.fixedDeltaTime;
         }
     }
