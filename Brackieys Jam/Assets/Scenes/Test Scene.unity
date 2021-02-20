@@ -33739,7 +33739,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   BaseDamage: 1
   Damage: 1
-  KnockBackForce: 3
+  KnockBackForce: 10
 --- !u!114 &1854446631323331292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33858,7 +33858,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   BaseDamage: 1
   Damage: 1
-  KnockBackForce: 3
+  KnockBackForce: 10
 --- !u!114 &5484313174322770256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34178,7 +34178,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   BaseDamage: 1
   Damage: 1
-  KnockBackForce: 3
+  KnockBackForce: 10
 --- !u!1 &7113642339113644508
 GameObject:
   m_ObjectHideFlags: 0
@@ -34275,7 +34275,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   BaseDamage: 1
   Damage: 1
-  KnockBackForce: 3
+  KnockBackForce: 10
 --- !u!212 &7113642339255751973
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35000,7 +35000,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   BaseDamage: 1
   Damage: 1
-  KnockBackForce: 3
+  KnockBackForce: 10
 --- !u!4 &7113642340374277034
 Transform:
   m_ObjectHideFlags: 0
@@ -35124,7 +35124,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   BaseDamage: 1
   Damage: 1
-  KnockBackForce: 3
+  KnockBackForce: 10
 --- !u!212 &7113642340385642387
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35364,7 +35364,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   BaseDamage: 1
   Damage: 1
-  KnockBackForce: 3
+  KnockBackForce: 10
 --- !u!50 &7113642340581566772
 Rigidbody2D:
   serializedVersion: 4
@@ -35575,7 +35575,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   BaseDamage: 1
   Damage: 1
-  KnockBackForce: 3
+  KnockBackForce: 10
 --- !u!212 &7113642340898958557
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35742,7 +35742,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   BaseDamage: 1
   Damage: 1
-  KnockBackForce: 3
+  KnockBackForce: 10
 --- !u!4 &7113642340982994130
 Transform:
   m_ObjectHideFlags: 0
@@ -35839,7 +35839,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   BaseDamage: 1
   Damage: 1
-  KnockBackForce: 3
+  KnockBackForce: 10
 --- !u!95 &7207968753889662468
 Animator:
   serializedVersion: 3
@@ -35911,7 +35911,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   BaseDamage: 1
   Damage: 1
-  KnockBackForce: 3
+  KnockBackForce: 10
 --- !u!60 &8367972451014911945
 PolygonCollider2D:
   m_ObjectHideFlags: 0
