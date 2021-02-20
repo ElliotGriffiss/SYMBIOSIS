@@ -6,10 +6,12 @@ public class MachinegunParasite : BaseParsite
 {
     [SerializeField] private Transform BulletOrigin;
     [SerializeField] private DamageComponent BulletPrefab;
+    [SerializeField] private Animator animator;
 
     [SerializeField] private int MaxNumberOfBullets = 10;
     [SerializeField] private float FireRate;
     [SerializeField] private float BulletSpeed;
+    
 
     [SerializeField] private float ReloadTime = 1;
     [SerializeField] private float Range = 10;
@@ -77,11 +79,17 @@ public class MachinegunParasite : BaseParsite
     {
         if (IsReloading)
         {
+            animator.SetBool("IsReloading", true);
+            animator.SetBool("IsShooting", false);
+
             CurrentReloadTime += Time.deltaTime;
             Reloadingbar.fillAmount = CurrentReloadTime / ReloadTime;
 
             if (CurrentReloadTime >= ReloadTime)
             {
+                animator.SetBool("IsReloading", false);
+                animator.SetBool("IsShooting", false);
+
                 IsReloading = false;
                 BulletsInClip = ClipSize;
                 CurrentReloadTime = 0;
@@ -102,6 +110,9 @@ public class MachinegunParasite : BaseParsite
 
     public override void ActivateParasite(Vector2 direction)
     {
+        animator.SetBool("IsReloading", false);
+        animator.SetBool("IsShooting", true);
+
         if (BulletsInClip > 0)
         {
             // Used to enforce the fie rate without putting an update loop in this class.

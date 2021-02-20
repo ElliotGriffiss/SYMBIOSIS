@@ -13,6 +13,8 @@ public class HostController : BaseHost
         if (Input.GetMouseButton(0))
         {
             Parasite.ActivateParasite(direction);
+            animator.SetBool("IsReloading", false);
+            animator.SetBool("IsShooting", true);
         }
 
         if (Input.GetAxis("Fire2") > 0 && CurrentCooldown >= BaseAbilityCooldown)

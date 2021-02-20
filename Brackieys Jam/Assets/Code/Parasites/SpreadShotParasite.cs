@@ -6,6 +6,7 @@ public class SpreadShotParasite : BaseParsite
 {
     [SerializeField] private Transform[] BulletOrigins;
     [SerializeField] private DamageComponent BulletPrefab;
+    [SerializeField] private Animator animator;
 
     [SerializeField] private int MaxNumberOfBullets = 10;
     [SerializeField] private float FireRate;
@@ -77,11 +78,17 @@ public class SpreadShotParasite : BaseParsite
     {
         if (IsReloading)
         {
+            animator.SetBool("IsReloading", true);
+            animator.SetBool("IsShooting", false);
+
             CurrentReloadTime += Time.deltaTime;
             Reloadingbar.fillAmount = CurrentReloadTime / ReloadTime;
 
             if (CurrentReloadTime >= ReloadTime)
             {
+                animator.SetBool("IsReloading", false);
+                animator.SetBool("IsShooting", false);
+
                 IsReloading = false;
                 BulletsInClip = ClipSize;
                 CurrentReloadTime = 0;
@@ -101,7 +108,7 @@ public class SpreadShotParasite : BaseParsite
 
 
     public override void ActivateParasite(Vector2 direction)
-    {
+    {       
         if (BulletsInClip > 0)
         {
             // Used to enforce the fie rate without putting an update loop in this class.
@@ -112,6 +119,8 @@ public class SpreadShotParasite : BaseParsite
 
                 foreach (Transform trans in BulletOrigins)
                 {
+                    animator.SetBool("IsReloading", false);
+                    animator.SetBool("IsShooting", true);
                     DamageComponent bullet = GetBulletFromThePool();
                     direction = trans.position - transform.position;
 
@@ -120,6 +129,7 @@ public class SpreadShotParasite : BaseParsite
                     bullet.gameObject.SetActive(true);
                     bullet.Rigidbody.velocity = direction.normalized * BulletSpeed;
                     LastFireTime = Time.time;
+                    animator.SetBool("IsShooting", false);
                 }
 
                 if (BulletsInClip <= 0)
@@ -136,5 +146,13 @@ public class SpreadShotParasite : BaseParsite
         {
             pooledBullet.gameObject.SetActive(false);
         }
+    }
+
+    private IEnumerator ShootAnimCo()
+    {
+        animator.SetBool("IsReloading", false);
+        animator.SetBool("IsShooting", true);
+        yield return new WaitForSeconds(0.1f);
+        animator.SetBool("IsShooting", false);
     }
 }
