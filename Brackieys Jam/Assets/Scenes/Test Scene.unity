@@ -20613,7 +20613,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -21106,7 +21106,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -22695,7 +22695,7 @@ MonoBehaviour:
   - {fileID: 683898086}
   - {fileID: 381530003}
   TestArea: {fileID: 1810457882}
-  DropsRequiredPerLevel: 14000000190000001e00000000000000
+  DropsRequiredPerLevel: 1e0000002d0000003c00000000000000
   HostsUnlocked: 01000000
   ParasitesUnlocked: 01000000
   DamageResistenceUpgrades:
@@ -34483,8 +34483,8 @@ MonoBehaviour:
   - {fileID: 1989314208}
   - {fileID: 2041131760}
   Parasites:
-  - {fileID: 1710288121}
   - {fileID: 20787439}
+  - {fileID: 1710288121}
   - {fileID: 1271646524}
   - {fileID: 950025007}
   CurrentlySelectedHost: 0
