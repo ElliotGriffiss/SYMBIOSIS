@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float[] AbilityDurationUpgrades;
     [SerializeField] private float[] DamageUpgrades;
 
+    [Header("Boss")]
+    [SerializeField] private BossEnemyController Boss;
+
     [Header("Debug")]
     [SerializeField]private int TotalKills;
     [SerializeField] private int CurrentLevelIndex = 0;
@@ -112,6 +115,11 @@ public class GameManager : MonoBehaviour
         {
             HostUnlockCanvas.ShowUnlockGUI();
             HostsUnlocked[3] = true;
+        }
+
+        if (CurrentLevelIndex == 3)
+        {
+            Boss.SpawnBoss();
         }
     }
 

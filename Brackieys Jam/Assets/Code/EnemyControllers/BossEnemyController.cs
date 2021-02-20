@@ -30,6 +30,7 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] protected float RotationSpeed;
     [SerializeField] protected float StateDuration;
     [SerializeField] protected SubBoss[] SubBosses;
+    [SerializeField] protected Transform SpawnPoint;
 
     [Header("Gun Data")]
     [SerializeField] private DamageComponent BulletPrefab;
@@ -62,13 +63,14 @@ public class BossEnemyController : MonoBehaviour
     private float CurrentHealth;
     private bool HasDroppedLoad = true;
 
-    protected void Start()
+    public void SpawnBoss()
     {
         UpdateSubBosses(false);
         CurrentHealth = Health;
         HasDroppedLoad = false;
         HealthBarParent.SetActive(true);
         HealthBar.fillAmount = CurrentHealth / Health;
+        transform.position = SpawnPoint.position;
 
         foreach (SubBoss sub in SubBosses)
         {

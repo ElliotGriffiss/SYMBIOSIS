@@ -2088,9 +2088,9 @@ RectTransform:
   m_Father: {fileID: 1878156950}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 529}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 500}
   m_SizeDelta: {x: 540.2, y: 66.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &263960337
@@ -7278,6 +7278,7 @@ Transform:
   - {fileID: 1931871496}
   - {fileID: 1598373305}
   - {fileID: 7113642340581566778}
+  - {fileID: 1510213060}
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8349,7 +8350,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510096507}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -8360,7 +8361,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!68 &510096509
 EdgeCollider2D:
@@ -15292,7 +15293,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 28.11
+      value: 23.5
       mode: 0
       spread: 0
       speed:
@@ -22696,8 +22697,8 @@ MonoBehaviour:
   - {fileID: 381530003}
   TestArea: {fileID: 1810457882}
   DropsRequiredPerLevel: 1e0000002d0000003c00000010270000
-  HostsUnlocked: 01010101
-  ParasitesUnlocked: 01010101
+  HostsUnlocked: 01000000
+  ParasitesUnlocked: 01000000
   DamageResistenceUpgrades:
   - 0
   - 0.1
@@ -22718,6 +22719,7 @@ MonoBehaviour:
   - 0.5
   - 1
   - 1.5
+  Boss: {fileID: 7113642340581566773}
   TotalKills: 0
   CurrentLevelIndex: 3
 --- !u!4 &1086531143
@@ -23968,7 +23970,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344242444}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -23979,7 +23981,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!68 &1344242447
 EdgeCollider2D:
@@ -24743,9 +24745,39 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -115}
+  m_AnchoredPosition: {x: 0, y: -86}
   m_SizeDelta: {x: 325, y: 80}
   m_Pivot: {x: 1, y: 1}
+--- !u!1 &1510213059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1510213060}
+  m_Layer: 0
+  m_Name: Boss SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1510213060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510213059}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.11, y: 11.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 381530004}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1512055816
 GameObject:
   m_ObjectHideFlags: 0
@@ -24868,7 +24900,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517567840}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -24879,7 +24911,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!68 &1517567843
 EdgeCollider2D:
@@ -27030,7 +27062,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -115}
+  m_AnchoredPosition: {x: 0, y: -86}
   m_SizeDelta: {x: 266.88, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1810457882
@@ -27062,7 +27094,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810457882}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -27073,7 +27105,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!68 &1810457884
 EdgeCollider2D:
@@ -27631,7 +27663,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866411539}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -27642,7 +27674,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!68 &1866411542
 EdgeCollider2D:
@@ -36343,9 +36375,9 @@ MonoBehaviour:
   Sprite: {fileID: 7113642339625001699}
   MyRigidBody: {fileID: 7113642340581566772}
   Health: 120
-  MovementSpeed: 5
+  MovementSpeed: 6
   RotationSpeed: 20
-  StateDuration: 2
+  StateDuration: 1.5
   SubBosses:
   - {fileID: 1854446631323331292}
   - {fileID: 5484313174322770256}
@@ -36358,6 +36390,7 @@ MonoBehaviour:
   - {fileID: 7113642340385642093}
   - {fileID: 7113642340573816734}
   - {fileID: 7113642339113644506}
+  SpawnPoint: {fileID: 1510213060}
   BulletPrefab: {fileID: 6353532974288208186, guid: 5d93f0b9be4a9d445941fe6c13c625d3, type: 3}
   BulletOrigins:
   - {fileID: 7113642339063178511}
