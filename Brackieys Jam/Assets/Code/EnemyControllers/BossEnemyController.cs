@@ -226,15 +226,16 @@ public class BossEnemyController : MonoBehaviour
 
     private IEnumerator SpecialAttackThree()
     {
+        Vector2 direction = (attacker.position - transform.position);
+
         for (int i = 0; i < NumberOfBullets; i++)
         {
             DamageComponent bullet = GetBulletFromThePool();
-            Vector2 direction = (attacker.position - transform.position).normalized;
 
             bullet.transform.position = transform.position;
             bullet.transform.rotation = Quaternion.Euler(direction);
             bullet.gameObject.SetActive(true);
-            bullet.Rigidbody.velocity = direction.normalized * BulletSpeed3;
+            bullet.Rigidbody.velocity = direction * BulletSpeed3;
 
             yield return new WaitForSeconds(FireTick3);
         }

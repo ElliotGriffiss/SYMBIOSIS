@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2352539362037606423}
   - component: {fileID: 2352539362037606432}
   - component: {fileID: 2352539362037606419}
+  - component: {fileID: -346536506618965435}
   m_Layer: 7
   m_Name: Machinegun Bullet
   m_TagString: Bullet
@@ -138,3 +139,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.49999997
+--- !u!114 &-346536506618965435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2352539362037606404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb2fcfe1cda00e4d833abfc691aa3f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

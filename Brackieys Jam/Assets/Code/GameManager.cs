@@ -110,9 +110,8 @@ public class GameManager : MonoBehaviour
         Levels[CurrentLevelIndex].LevelCleanUp();
         CurrentStatLevels = new int[4] { 0, 0, 0, 0 };
         CurrentLevelIndex = 0;
+        TestArea.SetActive(true);
 
-
-        // TestArea>seTacgive(True);
         CreationGUI.OpenGUI();
     }
 }

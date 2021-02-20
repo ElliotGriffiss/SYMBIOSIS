@@ -885,7 +885,7 @@ MonoBehaviour:
   Sprite: {fileID: 7113642340365803129}
   MyRigidBody: {fileID: 7113642339442267566}
   Health: 60
-  MovementSpeed: 3
+  MovementSpeed: 5
   StateDuration: 2
   SubBosses:
   - {fileID: 1854446630986192454}
@@ -2254,7 +2254,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7113642341058663048}
-  - component: {fileID: 7113642341058663030}
   - component: {fileID: 7113642341058663031}
   m_Layer: 11
   m_Name: Collider
@@ -2277,22 +2276,6 @@ Transform:
   m_Father: {fileID: 7113642339629334067}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
---- !u!70 &7113642341058663030
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7113642341058663049}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.08, y: 0}
-  m_Size: {x: 0.35, y: 0.8}
-  m_Direction: 0
 --- !u!114 &7113642341058663031
 MonoBehaviour:
   m_ObjectHideFlags: 0
