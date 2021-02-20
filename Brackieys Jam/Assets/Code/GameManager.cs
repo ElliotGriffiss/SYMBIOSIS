@@ -32,8 +32,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float[] AbilityDurationUpgrades;
     [SerializeField] private float[] DamageUpgrades;
 
-    private int TotalKills;
-    private int CurrentLevelIndex = 0;
+    [Header("Debug")]
+    [SerializeField]private int TotalKills;
+    [SerializeField] private int CurrentLevelIndex = 0;
     private BaseHost Host;
     private BaseParsite Parasite;
 
@@ -163,5 +164,22 @@ public class GameManager : MonoBehaviour
         TestArea.SetActive(true);
 
         CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
+    }
+
+    public void TriggerGameWonSequence()
+    {
+        StartCoroutine(GameWon());
+    }
+
+    private IEnumerator GameWon()
+    {
+        yield return new WaitForSeconds(10f);
+
+        Levels[CurrentLevelIndex].LevelCleanUp();
+        CurrentLevelIndex = 0;
+
+        CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
+        Camera.UpdateFollowTarget(TestArea.transform);
+        TestArea.SetActive(true);
     }
 }

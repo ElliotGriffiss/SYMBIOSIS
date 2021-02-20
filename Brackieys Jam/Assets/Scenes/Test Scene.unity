@@ -8904,7 +8904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthDropPrefab: {fileID: 2814724273327522696, guid: 89aafed86fdc9604c859d8d1f484aa51, type: 3}
-  MaxNumberOfDrops: 10
+  MaxNumberOfDrops: 60
 --- !u!4 &543325480
 Transform:
   m_ObjectHideFlags: 0
@@ -22695,9 +22695,9 @@ MonoBehaviour:
   - {fileID: 683898086}
   - {fileID: 381530003}
   TestArea: {fileID: 1810457882}
-  DropsRequiredPerLevel: 1e0000002d0000003c00000000000000
-  HostsUnlocked: 01000000
-  ParasitesUnlocked: 01000000
+  DropsRequiredPerLevel: 1e0000002d0000003c00000010270000
+  HostsUnlocked: 01010101
+  ParasitesUnlocked: 01010101
   DamageResistenceUpgrades:
   - 0
   - 0.1
@@ -22718,6 +22718,8 @@ MonoBehaviour:
   - 0.5
   - 1
   - 1.5
+  TotalKills: 0
+  CurrentLevelIndex: 3
 --- !u!4 &1086531143
 Transform:
   m_ObjectHideFlags: 0
@@ -23484,7 +23486,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GLOTIC
+  m_Text: HERMITIC
 --- !u!222 &1236659255
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24741,7 +24743,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -21}
+  m_AnchoredPosition: {x: 0, y: -115}
   m_SizeDelta: {x: 325, y: 80}
   m_Pivot: {x: 1, y: 1}
 --- !u!1 &1512055816
@@ -25604,7 +25606,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: HERMITIC
+  m_Text: GLOTIC
 --- !u!222 &1606615053
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27028,7 +27030,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -21}
+  m_AnchoredPosition: {x: 0, y: -115}
   m_SizeDelta: {x: 266.88, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1810457882
@@ -36335,6 +36337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20c8db0e11ff0f4c8ffcb22910c9b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameManager: {fileID: 1086531142}
   HealthBarParent: {fileID: 263960335}
   HealthBar: {fileID: 626054695}
   Sprite: {fileID: 7113642339625001699}
@@ -36381,6 +36384,15 @@ MonoBehaviour:
   FireTick3: 0.2
   NumberOfBullets: 12
   BulletSpeed3: 9
+  DropPool: {fileID: 543325479}
+  NumberOfDrops: 60
+  HealthDropColors:
+  - {r: 1, g: 0.80392164, b: 0.45882356, a: 1}
+  - {r: 0.98823535, g: 0.54509807, b: 0.39607847, a: 1}
+  - {r: 0.69411767, g: 0.24313727, b: 0.3254902, a: 1}
+  - {r: 0.3647059, g: 0.15294118, b: 0.3647059, a: 1}
+  DropRadius: 0.5
+  DropForce: 20
 --- !u!4 &7113642340581566778
 Transform:
   m_ObjectHideFlags: 0

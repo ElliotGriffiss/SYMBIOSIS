@@ -16,6 +16,7 @@ public class BossEnemyController : MonoBehaviour
 
     private BossStates CurrentState = BossStates.Idle;
 
+    [SerializeField] private GameManager GameManager;
     [Header("UI")]
     [SerializeField] private GameObject HealthBarParent;
     [SerializeField] private Image HealthBar;
@@ -45,16 +46,25 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] private int NumberOfBullets = 12;
     [SerializeField] private float BulletSpeed3;
 
+    [Header("HealthDrops")]
+    [SerializeField] protected HealthDropObjectPool DropPool;
+    [SerializeField] protected int NumberOfDrops = 30;
+    [SerializeField] protected Color[] HealthDropColors;
+    [SerializeField] protected float DropRadius = 4;
+    [SerializeField] protected float DropForce;
+
     private Vector2 movementDirection;
     private float currentStateTime = float.PositiveInfinity;
     private List<DamageComponent> BulletPool = new List<DamageComponent>();
     private Transform attacker;
     private float CurrentHealth;
+    private bool HasDroppedLoad = true;
 
     protected void Start()
     {
         UpdateSubBosses(false);
         CurrentHealth = Health;
+        HasDroppedLoad = false;
         HealthBarParent.SetActive(true);
         HealthBar.fillAmount = CurrentHealth / Health;
 
@@ -263,7 +273,7 @@ public class BossEnemyController : MonoBehaviour
 
             if (CurrentHealth < 1)
             {
-                gameObject.SetActive(false);
+                TriggerDeath();
             }
         }
         else if (collision.collider.gameObject.tag == "Spike")
@@ -275,9 +285,41 @@ public class BossEnemyController : MonoBehaviour
 
             if (CurrentHealth < 1)
             {
-                gameObject.SetActive(false);
+                TriggerDeath();
             }
         }
+    }
+
+    [ContextMenu("Trigger Death")]
+    private void TriggerDeath()
+    {
+        if (!HasDroppedLoad)
+        {
+            for (int i = 0; i < NumberOfDrops; i++)
+            {
+                HealingComponent drop = DropPool.GetDropFromThepool();
+
+                int color = Random.Range(0, HealthDropColors.Length);
+                drop.SpriteRenderer.color = HealthDropColors[color];
+
+                Vector2 position = transform.position;
+                Vector2 dropPosition = position + (UnityEngine.Random.insideUnitCircle * DropRadius);
+                Debug.Log(dropPosition);
+
+                Vector2 dropDirection = dropPosition - position;
+
+                drop.gameObject.SetActive(true);
+                drop.transform.position = dropPosition;
+                drop.Rigidbody2D.rotation = (Mathf.Atan2(dropDirection.y, dropDirection.x) * Mathf.Rad2Deg) - 90;
+                drop.Rigidbody2D.AddForce(dropDirection * DropForce, ForceMode2D.Impulse);
+
+                drop.transform.SetParent(null, true);
+            }
+        }
+
+        gameObject.SetActive(false);
+        HasDroppedLoad = true;
+        GameManager.TriggerGameWonSequence();
     }
 
     private void OnDisable()
