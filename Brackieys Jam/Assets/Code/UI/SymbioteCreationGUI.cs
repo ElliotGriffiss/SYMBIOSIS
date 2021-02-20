@@ -17,6 +17,11 @@ public class SymbioteCreationGUI : MonoBehaviour
     [SerializeField] private int CurrentlySelectedHost = 0;
     [SerializeField] private int CurrentlySelectedParaste = 0;
 
+    [Header("Audio")]
+    [SerializeField] protected AudioSource Click1SFX;
+    [SerializeField] protected AudioSource Click2SFX;
+    private int IgnoreAudioCue = 0;
+
     public void OpenGUI(bool[] hostsUnlocked, bool[] parasitesUnlocked)
     {
         for (int i = 0; i < HostButtons.Length; i++) // this will only work if they're all the same lenght
@@ -25,6 +30,7 @@ public class SymbioteCreationGUI : MonoBehaviour
             ParasiteButtons[i].interactable = parasitesUnlocked[i];
         }
 
+        IgnoreAudioCue = 2;
         gameObject.SetActive(true);
         UpdateCurrentHost(CurrentlySelectedHost);
     }
@@ -39,6 +45,15 @@ public class SymbioteCreationGUI : MonoBehaviour
 
         UpdateCurrentParasite(CurrentlySelectedParaste);
         Hosts[CurrentlySelectedHost].InitializeHost(10, true);
+
+        if (IgnoreAudioCue > 0)
+        {
+            IgnoreAudioCue--;
+        }
+        else
+        {
+            Click1SFX.Play();
+        }
     }
 
     public void UpdateCurrentParasite(int index)
@@ -47,6 +62,15 @@ public class SymbioteCreationGUI : MonoBehaviour
         CurrentlySelectedParaste = index;
         Hosts[CurrentlySelectedHost].ChangeParasite(Parasites[CurrentlySelectedParaste]);
         Parasites[CurrentlySelectedParaste].gameObject.SetActive(true);
+
+        if (IgnoreAudioCue > 0)
+        {
+            IgnoreAudioCue--;
+        }
+        else
+        {
+            Click1SFX.Play();
+        }
     }
 
     private void DeactivateAllHosts()
@@ -67,6 +91,7 @@ public class SymbioteCreationGUI : MonoBehaviour
 
     public void OnCreatesymbiotePressed()
     {
+        Click2SFX.Play();
         GameManager.StartGame(Hosts[CurrentlySelectedHost], Parasites[CurrentlySelectedParaste]);
         gameObject.SetActive(false);
     }

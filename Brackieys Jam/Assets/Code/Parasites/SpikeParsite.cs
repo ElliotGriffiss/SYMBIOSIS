@@ -30,6 +30,7 @@ public class SpikeParsite : BaseParsite
     {
         if (CurrentChargeCooldown >= ChargeCoolDown)
         {
+            SFX.Play();
             Host.ActivateIframes(AnimationTime);
             DrillAnim.SetBool("IsDrilling", true);
             HostRigidbody.AddForce(direction.normalized * ChargeSpeed, ForceMode2D.Impulse);

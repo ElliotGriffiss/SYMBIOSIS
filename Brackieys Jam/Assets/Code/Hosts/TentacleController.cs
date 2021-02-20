@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TentacleController : BaseHost
 {
@@ -52,7 +53,7 @@ public class TentacleController : BaseHost
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Parasite.ActivateParasite(direction);
         }

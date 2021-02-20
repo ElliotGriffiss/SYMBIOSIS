@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GameData;
+using UnityEngine.EventSystems;
 
 public class HostController : BaseHost
 {
@@ -10,7 +11,7 @@ public class HostController : BaseHost
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Parasite.ActivateParasite(direction);
         }
@@ -96,7 +97,12 @@ public class HostController : BaseHost
 
             CurrentHealth -= damage.Damage;
             UpdateHealthBar();
-            Debug.Log("You got hit");
+
+            if (damage.Damage > 0)
+            {
+                HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+                HurtSFX.Play();
+            }
 
             if (CurrentHealth < 1)
             {
@@ -119,7 +125,12 @@ public class HostController : BaseHost
 
                 CurrentHealth -= damage.Damage;
                 UpdateHealthBar();
-                Debug.Log("You got hit");
+
+                if (damage.Damage > 0)
+                {
+                    HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+                    HurtSFX.Play();
+                }
 
                 if (CurrentHealth < 1)
                 {
@@ -134,6 +145,9 @@ public class HostController : BaseHost
             MassGainedThisLevel++;
             CurrentHealth += healing.Health;
             UpdateHealthBar();
+
+            PickupSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+            PickupSFX.Play();
 
             healing.gameObject.SetActive(false);
 

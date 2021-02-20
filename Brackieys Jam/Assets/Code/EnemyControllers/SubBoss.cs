@@ -7,6 +7,11 @@ public class SubBoss : MonoBehaviour
     [SerializeField] protected float Health = 5;
     [SerializeField] private Animator Animator;
     [SerializeField] private string AnimatorParameter = "IsMoving";
+    [Header("Sound Effects")]
+    [SerializeField] protected AudioSource TakeDamageSFX;
+    [SerializeField] protected float MinPitch = 0.9f;
+    [SerializeField] protected float MaxPitch = 1.1f;
+
 
     public void SetAnimatorState(bool State)
     {
@@ -22,6 +27,9 @@ public class SubBoss : MonoBehaviour
 
             Health -= damage.Damage;
 
+            TakeDamageSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+            TakeDamageSFX.Play();
+
             if (Health < 1)
             {
                 KillSelf();
@@ -32,6 +40,9 @@ public class SubBoss : MonoBehaviour
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
 
             Health -= damage.Damage;
+
+            TakeDamageSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+            TakeDamageSFX.Play();
 
             if (Health < 1)
             {

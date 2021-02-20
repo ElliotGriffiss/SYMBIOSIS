@@ -24,6 +24,12 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected Text AbilityBarText;
     [SerializeField] protected String AbilityText;
 
+    [Header("Sound Effects")]
+    [SerializeField] protected AudioSource HurtSFX;
+    [SerializeField] protected AudioSource PickupSFX;
+    [SerializeField] protected float MinPitch = 1;
+    [SerializeField] protected float MaxPitch = 1;
+
     [Header("Data")]
     [SerializeField] protected float BaseHealth = 10; // CurrentHealth
     [SerializeField] protected float MaxHealth = 10;
@@ -129,6 +135,12 @@ public class BaseHost : MonoBehaviour
             CurrentHealth -= damage.Damage * CurrentDamageResistance;
             UpdateHealthBar();
 
+            if (damage.Damage > 0)
+            {
+                HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+                HurtSFX.Play();
+            }
+
             if (CurrentHealth < 1)
             {
                 TriggerHostDeath();
@@ -151,6 +163,12 @@ public class BaseHost : MonoBehaviour
                 CurrentHealth -= damage.Damage * CurrentDamageResistance;
                 UpdateHealthBar();
 
+                if (damage.Damage > 0)
+                {
+                    HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+                    HurtSFX.Play();
+                }
+
                 if (CurrentHealth < 1)
                 {
                     TriggerHostDeath();
@@ -164,6 +182,9 @@ public class BaseHost : MonoBehaviour
             MassGainedThisLevel++;
             CurrentHealth += healing.Health;
             UpdateHealthBar();
+
+            PickupSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+            PickupSFX.Play();
 
             healing.gameObject.SetActive(false);
 
