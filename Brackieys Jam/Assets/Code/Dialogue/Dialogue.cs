@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dialogue : MonoBehaviour
+[System.Serializable]
+public class Dialogue 
 {
-    private Queue<string> sentences;
-
-    void Start()
-    {
-        sentences = new Queue<string>();
-    }
+    [TextArea(1, 3)]
+    public string[] sentances;
 }
