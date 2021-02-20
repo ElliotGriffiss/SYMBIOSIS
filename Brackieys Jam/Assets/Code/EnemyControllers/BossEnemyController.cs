@@ -27,6 +27,7 @@ public class BossEnemyController : MonoBehaviour
     [Space]
     [SerializeField] protected float Health = 40;
     [SerializeField] protected float MovementSpeed = 1;
+    [SerializeField] protected float RotationSpeed;
     [SerializeField] protected float StateDuration;
     [SerializeField] protected SubBoss[] SubBosses;
 
@@ -54,6 +55,7 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] protected float DropForce;
 
     private Vector2 movementDirection;
+    private bool RotionDirection = false;
     private float currentStateTime = float.PositiveInfinity;
     private List<DamageComponent> BulletPool = new List<DamageComponent>();
     private Transform attacker;
@@ -94,6 +96,18 @@ public class BossEnemyController : MonoBehaviour
             {
                 UpdateSubBosses(true);
                 MyRigidBody.AddForce(movementDirection * MovementSpeed);
+            }
+            else if (CurrentState == BossStates.Idle)
+            {
+                if (RotionDirection)
+                {
+                    MyRigidBody.MoveRotation(MyRigidBody.rotation + (RotationSpeed * Time.deltaTime));
+                }
+                else
+                {
+                    MyRigidBody.MoveRotation(MyRigidBody.rotation + (-RotationSpeed * Time.deltaTime));
+                }
+
             }
             else
             {
@@ -137,6 +151,7 @@ public class BossEnemyController : MonoBehaviour
             else if (range > 0)
             {
                 CurrentState = BossStates.Idle;
+                RotionDirection = Random.value > 0.5f;
             }
         }
         else

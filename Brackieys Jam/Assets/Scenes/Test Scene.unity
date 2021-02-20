@@ -34950,9 +34950,9 @@ GameObject:
   - component: {fileID: 8667857335610331634}
   - component: {fileID: 7113642339004422777}
   - component: {fileID: 7}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Boss Collider
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35566,9 +35566,9 @@ GameObject:
   - component: {fileID: 7113642339625001697}
   - component: {fileID: 7113642339625001699}
   - component: {fileID: 7113642339625001696}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Boss Sprite
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35704,7 +35704,7 @@ GameObject:
   - component: {fileID: 7113642340191470864}
   m_Layer: 0
   m_Name: Bullet Origins
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36344,6 +36344,7 @@ MonoBehaviour:
   MyRigidBody: {fileID: 7113642340581566772}
   Health: 120
   MovementSpeed: 5
+  RotationSpeed: 20
   StateDuration: 2
   SubBosses:
   - {fileID: 1854446631323331292}
@@ -36378,7 +36379,7 @@ MonoBehaviour:
   MaxNumberOfBullets: 40
   FireRate: 4
   FireDelay: 0.4
-  BulletSpeed1: 8
+  BulletSpeed1: 10
   FireTick: 0.1
   BulletSpeed2: 6
   FireTick3: 0.2
@@ -36432,13 +36433,30 @@ GameObject:
   - component: {fileID: 7113642340581566778}
   - component: {fileID: 7113642340581566773}
   - component: {fileID: 7113642340581566772}
+  - component: {fileID: 7113642340581566780}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7113642340581566780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7113642340581566779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8050ab40d66424e990c80425afe4e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 7113642340581566772}
+  BaseDamage: 1
+  Damage: 1
+  KnockBackForce: 20
 --- !u!4 &7113642340898958528
 Transform:
   m_ObjectHideFlags: 0
