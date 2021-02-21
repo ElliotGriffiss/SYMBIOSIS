@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Boss")]
     [SerializeField] private BossEnemyController Boss;
+    [SerializeField] private float SlowDownDuration;
+    [SerializeField] private AnimationCurve SlowDownCurve;
 
     [Header("SFX")]
     [SerializeField] private AudioSource MusicSource;
@@ -220,7 +222,19 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GameWon()
     {
-        yield return new WaitForSeconds(5f);
+        yield return null;
+        float timer = 0;
+
+        while (timer < SlowDownDuration)
+        {
+            Time.timeScale = Mathf.Lerp(0f, 1f, SlowDownCurve.Evaluate(timer / SlowDownDuration));
+            yield return null;
+            timer += Time.unscaledDeltaTime;
+            Debug.LogError(Time.timeScale);
+        }
+
+        Debug.LogError("Finished");
+        yield return new WaitForSeconds(6f);
 
         Levels[CurrentLevelIndex].LevelCleanUp();
         CurrentLevelIndex = 0;
