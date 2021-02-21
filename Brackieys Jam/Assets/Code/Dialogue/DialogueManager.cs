@@ -2,18 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
     public TMP_Text dialogueText;
-
+    [SerializeField] private Animator animator;
+    [SerializeField] private Image image;
+    private string sceneName;
     private Queue<string> sentences;
 
     void Start()
     {
         sentences = new Queue<string>();
-        
+        Scene currentScene = SceneManager.GetActiveScene();
+        sceneName = currentScene.name;
     }
 
     public void StartDialogue (Dialogue dialogue)
@@ -55,6 +59,18 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        StartCoroutine(FadeCo(sceneName));
         Debug.Log("end");
+    }
+    IEnumerator FadeCo(string sceneName)
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        sceneName = currentScene.name;
+        animator.SetBool("FadeIn", true);
+        yield return new WaitUntil(() => image.color.a == 1);
+        if(sceneName == "Cutscene 1")
+        {
+            SceneManager.LoadScene("Test Scene");
+        }
     }
 }
