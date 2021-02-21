@@ -643,6 +643,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 1559963608}
+  animator: {fileID: 17670853}
+  image: {fileID: 17670851}
 --- !u!4 &1058124421
 Transform:
   m_ObjectHideFlags: 0

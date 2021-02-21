@@ -10,12 +10,14 @@ public class DialogueManager : MonoBehaviour
     public TMP_Text dialogueText;
     [SerializeField] private Animator animator;
     [SerializeField] private Image image;
+    private string sceneName;
     private Queue<string> sentences;
 
     void Start()
     {
         sentences = new Queue<string>();
-        
+        Scene currentScene = SceneManager.GetActiveScene();
+        sceneName = currentScene.name;
     }
 
     public void StartDialogue (Dialogue dialogue)
@@ -57,13 +59,18 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        StartCoroutine(FadeCo());
+        StartCoroutine(FadeCo(sceneName));
         Debug.Log("end");
     }
-    IEnumerator FadeCo()
+    IEnumerator FadeCo(string sceneName)
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+        sceneName = currentScene.name;
         animator.SetBool("FadeIn", true);
         yield return new WaitUntil(() => image.color.a == 1);
-        SceneManager.LoadScene("Test Scene");
+        if(sceneName == "Cutscene 1")
+        {
+            SceneManager.LoadScene("Test Scene");
+        }
     }
 }
