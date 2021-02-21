@@ -70,6 +70,10 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitUntil(() => image.color.a == 1);
         if(sceneName == "Cutscene 1")
         {
+            SceneManager.LoadScene("Cutscene 2");
+        }
+        else if (sceneName == "Cutscene 1")
+        {
             SceneManager.LoadScene("Test Scene");
         }
     }
