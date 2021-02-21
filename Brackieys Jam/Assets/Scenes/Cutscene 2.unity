@@ -508,11 +508,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     sentances:
-    - The PS environment has been prepared, Professor.
-    - "Thanks, Jones. Perhaps this time we\u2019ll create a new viable life form"
-    - "Our experiment will begin once we have spliced together the two protozoa.
-      \n"
-    - " We\u2019ll need a host and a parasite, joined in perfect symbiosis.\r\n"
+    - "Through observation, we\u2019ll measure how successful our little host would
+      be once released into the world.\r"
+    - "Only utter domination would constitute success, Jones\r."
+    - 'Now choose a HOST and a PARASITE and let''s get on with the experiment.
+
+'
 --- !u!1 &8868216829941167828
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +567,7 @@ MonoBehaviour:
     sentances:
     - "Through observation, we\u2019ll measure how successful our little host would
       be once released into the world.\r\n"
-    - "Only utter domination would constitute success, Jones\r.\n"
+    - "Only utter domination would constitute success, Jones\r."
     - Now choose a HOST and a PARASITE and let's get on with the experiment.
 --- !u!224 &8868216830049396200
 RectTransform:
