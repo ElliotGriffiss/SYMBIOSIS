@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
     public TMP_Text dialogueText;
-
+    [SerializeField] private Animator animator;
+    [SerializeField] private Image image;
     private Queue<string> sentences;
 
     void Start()
@@ -55,6 +57,13 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        StartCoroutine(FadeCo());
         Debug.Log("end");
+    }
+    IEnumerator FadeCo()
+    {
+        animator.SetBool("FadeIn", true);
+        yield return new WaitUntil(() => image.color.a == 1);
+        SceneManager.LoadScene("Test Scene");
     }
 }
