@@ -26927,7 +26927,7 @@ PrefabInstance:
     - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: HealthBar
       value: 
-      objectReference: {fileID: 698765728}
+      objectReference: {fileID: 1609272109}
     - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: MaxHealth
       value: 25
@@ -35516,13 +35516,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 470cd62b02b5f8f4aa7330222d45d5bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthBar: {fileID: 0}
-  Healthtext: {fileID: 0}
-  MoveDownDuration: 0
-  IFramesDuration: 0
-  NormalColor: {r: 0, g: 0, b: 0, a: 0}
-  TakeDamageColor: {r: 0, g: 0, b: 0, a: 0}
-  LockedColor: {r: 0, g: 0, b: 0, a: 0}
+  HealthBar: {fileID: 698765728}
+  Healthtext: {fileID: 241397236}
+  MoveDownDuration: 0.1
+  NormalColor: {r: 0.21960786, g: 0.7176471, b: 0.3921569, a: 1}
+  TakeDamageColor: {r: 1, g: 1, b: 1, a: 1}
+  NormalTextColor: {r: 1, g: 1, b: 1, a: 1}
+  TakeDamageTextColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1621622762
 GameObject:
   m_ObjectHideFlags: 0
@@ -35935,7 +35935,7 @@ PrefabInstance:
     - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: HealthBar
       value: 
-      objectReference: {fileID: 698765728}
+      objectReference: {fileID: 1609272109}
     - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: PickupSFX
       value: 
@@ -36430,7 +36430,7 @@ PrefabInstance:
     - target: {fileID: 8041541149747995372, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: HealthBar
       value: 
-      objectReference: {fileID: 698765728}
+      objectReference: {fileID: 1609272109}
     - target: {fileID: 8041541149747995372, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: PickupSFX
       value: 
@@ -47741,7 +47741,7 @@ PrefabInstance:
     - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: HealthBar
       value: 
-      objectReference: {fileID: 698765728}
+      objectReference: {fileID: 1609272109}
     - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: MaxHealth
       value: 20

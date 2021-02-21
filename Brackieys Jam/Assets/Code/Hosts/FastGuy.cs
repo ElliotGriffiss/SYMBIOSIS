@@ -120,7 +120,7 @@ public class FastGuy : BaseHost
             Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
             CurrentHealth -= damage.Damage * CurrentDamageResistance;
-            UpdateHealthBar();
+            UpdateHealthBar(false);
 
             if (damage.Damage > 0)
             {
@@ -149,7 +149,7 @@ public class FastGuy : BaseHost
                 Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
                 CurrentHealth -= damage.Damage * CurrentDamageResistance;
-                UpdateHealthBar();
+                UpdateHealthBar(false);
 
                 if (damage.Damage > 0)
                 {
@@ -182,7 +182,7 @@ public class FastGuy : BaseHost
             PickupSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             PickupSFX.Play();
 
-            UpdateHealthBar();
+            UpdateHealthBar(true);
             healing.gameObject.SetActive(false);
 
             if (MassGainedThisLevel > MassRequiredThisLevel)

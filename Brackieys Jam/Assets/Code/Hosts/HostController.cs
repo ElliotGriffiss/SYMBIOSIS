@@ -96,7 +96,7 @@ public class HostController : BaseHost
             Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
             CurrentHealth -= damage.Damage;
-            UpdateHealthBar();
+            UpdateHealthBar(false);
 
             if (damage.Damage > 0)
             {
@@ -125,7 +125,7 @@ public class HostController : BaseHost
                 Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
                 CurrentHealth -= damage.Damage;
-                UpdateHealthBar();
+                UpdateHealthBar(false);
 
                 if (damage.Damage > 0)
                 {
@@ -146,7 +146,7 @@ public class HostController : BaseHost
 
             MassGainedThisLevel++;
             CurrentHealth += healing.Health;
-            UpdateHealthBar();
+            UpdateHealthBar(true);
 
             PickupSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             PickupSFX.Play();

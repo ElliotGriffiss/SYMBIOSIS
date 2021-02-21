@@ -9,14 +9,14 @@ public class AnimatedHealthBar : MonoBehaviour
     [SerializeField] protected Text Healthtext;
     [Space]
     [SerializeField] protected float MoveDownDuration;
-    [SerializeField] protected float IFramesDuration;
     [SerializeField] protected Color NormalColor;
     [SerializeField] protected Color TakeDamageColor;
-    [SerializeField] protected Color LockedColor;
+    [SerializeField] protected Color NormalTextColor;
+    [SerializeField] protected Color TakeDamageTextColor;
 
     private float CurrentHealth;
     private float CurrentMaxHealth;
-    private bool Animate = false;
+    private float StartHealth;
     private float StartTime = 0;
 
     public void SetHealth(bool Immediate, float health, float maxHealth)
@@ -25,30 +25,36 @@ public class AnimatedHealthBar : MonoBehaviour
         {
             Healthtext.text = "MASS: " + Mathf.RoundToInt(health);
             HealthBar.fillAmount = health / maxHealth;
-
-            CurrentHealth = health;
-            CurrentMaxHealth = maxHealth;
+            StartHealth = HealthBar.fillAmount;
         }
-
-        if (CurrentHealth != health)
+        else if (CurrentHealth != health)
         {
-            Animate = true;
+            StartHealth = HealthBar.fillAmount;
             StartTime = 0;
         }
 
+        CurrentHealth = health;
+        CurrentMaxHealth = maxHealth;
+
+        HealthBar.color = NormalColor;
+        Healthtext.color = NormalTextColor;
         Healthtext.text = "MASS: " + Mathf.RoundToInt(health);
-        HealthBar.fillAmount = health / maxHealth;
     }
 
     public void Update()
     {
-        if (Animate)
+        if (StartTime < MoveDownDuration)
         {
+            Healthtext.color = TakeDamageTextColor;
             HealthBar.color = TakeDamageColor;
-           // HealthBar.fillAmount = 
 
-
+            HealthBar.fillAmount = Mathf.Lerp(StartHealth, CurrentHealth / CurrentMaxHealth, StartTime / MoveDownDuration);
             StartTime += Time.deltaTime;
+        }
+        else
+        {
+            HealthBar.color = NormalColor;
+            Healthtext.color = NormalTextColor;
         }
     }
 }

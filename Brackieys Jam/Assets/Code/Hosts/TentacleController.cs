@@ -45,7 +45,7 @@ public class TentacleController : BaseHost
         animator.SetBool("isMoving", true);
         ToggleActiveAbilityGraphics(AbilityIsActive);
 
-        UpdateHealthBar();
+        UpdateHealthBar(true);
         UpdateAbilityBar();
     }
 

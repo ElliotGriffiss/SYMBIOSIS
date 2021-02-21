@@ -18,8 +18,7 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected Transform ParasiteOrigin;
 
     [Header("UI")]
-    [SerializeField] protected Image HealthBar;
-    [SerializeField] protected Text Healthtext;
+    [SerializeField] protected AnimatedHealthBar HealthBar;
     [SerializeField] protected Image AbilityBar;
     [SerializeField] protected Text AbilityBarText;
     [SerializeField] protected String AbilityText;
@@ -103,7 +102,7 @@ public class BaseHost : MonoBehaviour
             CurrentCooldown = 0;
         }
 
-        UpdateHealthBar();
+        UpdateHealthBar(true);
         UpdateAbilityBar();
     }
 
@@ -148,7 +147,7 @@ public class BaseHost : MonoBehaviour
             Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
             CurrentHealth -= damage.Damage * CurrentDamageResistance;
-            UpdateHealthBar();
+            UpdateHealthBar(false);
 
             if (damage.Damage > 0)
             {
@@ -177,7 +176,7 @@ public class BaseHost : MonoBehaviour
                 Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
                 CurrentHealth -= damage.Damage * CurrentDamageResistance;
-                UpdateHealthBar();
+                UpdateHealthBar(false);
 
                 if (damage.Damage > 0)
                 {
@@ -198,7 +197,7 @@ public class BaseHost : MonoBehaviour
 
             MassGainedThisLevel++;
             CurrentHealth += healing.Health;
-            UpdateHealthBar();
+            UpdateHealthBar(true);
 
             PickupSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             PickupSFX.Play();
@@ -256,15 +255,15 @@ public class BaseHost : MonoBehaviour
         Rigidbody.transform.up = direction.normalized;
     }
 
-    protected virtual void UpdateHealthBar()
+    protected virtual void UpdateHealthBar(bool immediate)
     {
         if (CurrentHealth > MaxHealth)
         {
             MaxHealth = CurrentHealth;
         }
 
-        Healthtext.text = "MASS: "+Mathf.RoundToInt(CurrentHealth);
-        HealthBar.fillAmount = CurrentHealth / MaxHealth;
+        HealthBar.SetHealth(immediate, CurrentHealth, MaxHealth);
+
     }
 
     protected virtual void UpdateAbilityBar()
