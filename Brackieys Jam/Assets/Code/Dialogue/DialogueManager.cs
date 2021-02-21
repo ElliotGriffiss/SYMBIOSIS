@@ -72,7 +72,7 @@ public class DialogueManager : MonoBehaviour
         {
             SceneManager.LoadScene("Cutscene 2");
         }
-        else if (sceneName == "Cutscene 1")
+        else if (sceneName == "Cutscene 2")
         {
             SceneManager.LoadScene("Test Scene");
         }
