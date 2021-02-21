@@ -574,7 +574,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    sentances: []
+    sentances:
+    - D
+    - QWDEqw
+    - qw
 --- !u!1 &1217582126
 GameObject:
   m_ObjectHideFlags: 0
