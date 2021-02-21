@@ -1814,6 +1814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 70519712}
   - component: {fileID: 70519711}
+  - component: {fileID: 70519713}
   m_Layer: 0
   m_Name: Enemy Manager
   m_TagString: Untagged
@@ -1844,6 +1845,7 @@ MonoBehaviour:
   - EnemyPrefab: {fileID: 919311936574978686, guid: 58e16ef069c1ada4eaf77388c617372b, type: 3}
     MaxNumberToSpawn: 10
   MapBoundry: {fileID: 1344242445}
+  DeathSFX: {fileID: 70519713}
 --- !u!4 &70519712
 Transform:
   m_ObjectHideFlags: 0
@@ -1858,6 +1860,102 @@ Transform:
   m_Father: {fileID: 683898087}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &70519713
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70519710}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -4692683449055926633, guid: 6bd275d224d55e34fa8e52a9466b9962, type: 2}
+  m_audioClip: {fileID: 8300000, guid: d123dd7ed8d9e694a8b998b91a3bd463, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &101112282
 GameObject:
   m_ObjectHideFlags: 0
@@ -29114,7 +29212,7 @@ MonoBehaviour:
   PlayerDeathSFX: {fileID: 809739278}
   BossDeathSFX: {fileID: 246154632}
   TotalKills: 0
-  CurrentLevelIndex: 0
+  CurrentLevelIndex: 3
 --- !u!4 &1086531143
 Transform:
   m_ObjectHideFlags: 0
@@ -33953,6 +34051,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1552474218}
   - component: {fileID: 1552474217}
+  - component: {fileID: 1552474219}
   m_Layer: 0
   m_Name: Enemy Manager
   m_TagString: Untagged
@@ -33983,6 +34082,7 @@ MonoBehaviour:
   - EnemyPrefab: {fileID: 2801811717117986098, guid: dfd55126af88f904f912f24657621cad, type: 3}
     MaxNumberToSpawn: 8
   MapBoundry: {fileID: 1517567841}
+  DeathSFX: {fileID: 1552474219}
 --- !u!4 &1552474218
 Transform:
   m_ObjectHideFlags: 0
@@ -33997,6 +34097,102 @@ Transform:
   m_Father: {fileID: 1541021414}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1552474219
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552474216}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -4692683449055926633, guid: 6bd275d224d55e34fa8e52a9466b9962, type: 2}
+  m_audioClip: {fileID: 8300000, guid: d123dd7ed8d9e694a8b998b91a3bd463, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1553989118
 GameObject:
   m_ObjectHideFlags: 0
@@ -40156,6 +40352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1971078942}
   - component: {fileID: 1971078941}
+  - component: {fileID: 1971078943}
   m_Layer: 0
   m_Name: Enemy Manager
   m_TagString: Untagged
@@ -40186,6 +40383,7 @@ MonoBehaviour:
   - EnemyPrefab: {fileID: 8357916102910024664, guid: 4b87b7b096c993240adaaeb3cb8771b9, type: 3}
     MaxNumberToSpawn: 2
   MapBoundry: {fileID: 510096510}
+  DeathSFX: {fileID: 1971078943}
 --- !u!4 &1971078942
 Transform:
   m_ObjectHideFlags: 0
@@ -40200,6 +40398,102 @@ Transform:
   m_Father: {fileID: 825749593}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1971078943
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971078940}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -4692683449055926633, guid: 6bd275d224d55e34fa8e52a9466b9962, type: 2}
+  m_audioClip: {fileID: 8300000, guid: d123dd7ed8d9e694a8b998b91a3bd463, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1972618165
 GameObject:
   m_ObjectHideFlags: 0
@@ -46830,6 +47124,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2076380112}
   - component: {fileID: 2076380111}
+  - component: {fileID: 2076380113}
+  - component: {fileID: 2076380114}
   m_Layer: 0
   m_Name: Enemy Manager
   m_TagString: Untagged
@@ -46852,6 +47148,7 @@ MonoBehaviour:
   GameManager: {fileID: 1086531142}
   EnemiePrefabs: []
   MapBoundry: {fileID: 1866411540}
+  DeathSFX: {fileID: 2076380113}
 --- !u!4 &2076380112
 Transform:
   m_ObjectHideFlags: 0
@@ -46866,6 +47163,115 @@ Transform:
   m_Father: {fileID: 381530004}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &2076380113
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076380110}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -4692683449055926633, guid: 6bd275d224d55e34fa8e52a9466b9962, type: 2}
+  m_audioClip: {fileID: 8300000, guid: d123dd7ed8d9e694a8b998b91a3bd463, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2076380114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076380110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dc0af4de52bff148836bdaf58079944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFX: {fileID: 2076380113}
 --- !u!1 &2096243182
 GameObject:
   m_ObjectHideFlags: 0
@@ -47342,7 +47748,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ea5b808507833a64388c9ecbb5e80497, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -47407,7 +47813,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ea5b808507833a64388c9ecbb5e80497, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -47469,7 +47875,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 16
   Animator: {fileID: 639768605711266212}
+  Sprite: {fileID: 5818615542410912306}
   AnimatorParameter: IsMoving
+  FlashTime: 0.1
+  SfxPlayer: {fileID: 2076380114}
   TakeDamageSFX: {fileID: 3306482990146394483}
   MinPitch: 0.9
   MaxPitch: 1.1
@@ -47657,7 +48066,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 16
   Animator: {fileID: 7207968753889662468}
+  Sprite: {fileID: 683454610560228487}
   AnimatorParameter: IsMoving
+  FlashTime: 0.1
+  SfxPlayer: {fileID: 2076380114}
   TakeDamageSFX: {fileID: 8367972451014911946}
   MinPitch: 0.9
   MaxPitch: 1.1
@@ -47691,7 +48103,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 16
   Animator: {fileID: 2343162953071530394}
+  Sprite: {fileID: 855219266413730926}
   AnimatorParameter: IsMoving
+  FlashTime: 0.1
+  SfxPlayer: {fileID: 2076380114}
   TakeDamageSFX: {fileID: 671161917604680616}
   MinPitch: 0.9
   MaxPitch: 1.1
@@ -47714,7 +48129,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ea5b808507833a64388c9ecbb5e80497, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -47918,7 +48333,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ea5b808507833a64388c9ecbb5e80497, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -47983,7 +48398,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 16
   Animator: {fileID: 7113642339113644505}
+  Sprite: {fileID: 7113642339113644504}
   AnimatorParameter: IsMoving
+  FlashTime: 0.1
+  SfxPlayer: {fileID: 2076380114}
   TakeDamageSFX: {fileID: 7113642339113644509}
   MinPitch: 0.9
   MaxPitch: 1.1
@@ -48216,7 +48634,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ea5b808507833a64388c9ecbb5e80497, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -48262,7 +48680,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 16
   Animator: {fileID: 7113642339255751978}
+  Sprite: {fileID: 7113642339255751973}
   AnimatorParameter: IsMoving
+  FlashTime: 0.1
+  SfxPlayer: {fileID: 2076380114}
   TakeDamageSFX: {fileID: 7113642339255751980}
   MinPitch: 0.9
   MaxPitch: 1.1
@@ -48605,7 +49026,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ea5b808507833a64388c9ecbb5e80497, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -48870,7 +49291,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ea5b808507833a64388c9ecbb5e80497, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -48930,7 +49351,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 16
   Animator: {fileID: 7113642340369072811}
+  Sprite: {fileID: 7113642340369072808}
   AnimatorParameter: IsMoving
+  FlashTime: 0.1
+  SfxPlayer: {fileID: 2076380114}
   TakeDamageSFX: {fileID: 7113642340369072817}
   MinPitch: 0.9
   MaxPitch: 1.1
@@ -49196,7 +49620,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 16
   Animator: {fileID: 7113642340385642384}
+  Sprite: {fileID: 7113642340385642387}
   AnimatorParameter: IsMoving
+  FlashTime: 0.1
+  SfxPlayer: {fileID: 2076380114}
   TakeDamageSFX: {fileID: 7113642340385642392}
   MinPitch: 0.9
   MaxPitch: 1.1
@@ -49268,7 +49695,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ea5b808507833a64388c9ecbb5e80497, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -49601,7 +50028,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ea5b808507833a64388c9ecbb5e80497, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -49666,7 +50093,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 16
   Animator: {fileID: 7113642340573816733}
+  Sprite: {fileID: 7113642340573816732}
   AnimatorParameter: IsMoving
+  FlashTime: 0.1
+  SfxPlayer: {fileID: 2076380114}
   TakeDamageSFX: {fileID: 7113642340573816705}
   MinPitch: 0.9
   MaxPitch: 1.1
@@ -49727,7 +50157,7 @@ MonoBehaviour:
   Health: 120
   MovementSpeed: 6
   RotationSpeed: 20
-  StateDuration: 1.5
+  StateDuration: 1.8
   SubBosses:
   - {fileID: 1854446631323331292}
   - {fileID: 5484313174322770256}
@@ -49765,9 +50195,10 @@ MonoBehaviour:
   BulletSpeed1: 7
   FireTick: 0.1
   BulletSpeed2: 6
-  FireTick3: 0.2
-  NumberOfBullets: 12
-  BulletSpeed3: 9
+  FireTick3: 0.1
+  NumberOfBullets: 16
+  BulletSpeed3: 11
+  FlashTime: 0.1
   HurtSFX: {fileID: 7113642340581566781}
   MinPitch: 0.6
   MaxPitch: 1
@@ -49827,7 +50258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &7113642340581566780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50142,7 +50573,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ea5b808507833a64388c9ecbb5e80497, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -50188,7 +50619,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 16
   Animator: {fileID: 7113642340898958530}
+  Sprite: {fileID: 7113642340898958557}
   AnimatorParameter: IsMoving
+  FlashTime: 0.1
+  SfxPlayer: {fileID: 2076380114}
   TakeDamageSFX: {fileID: 7113642340898958532}
   MinPitch: 0.9
   MaxPitch: 1.1
@@ -50211,7 +50645,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ea5b808507833a64388c9ecbb5e80497, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -50276,7 +50710,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 16
   Animator: {fileID: 7113642340982994093}
+  Sprite: {fileID: 7113642340982994092}
   AnimatorParameter: IsMoving
+  FlashTime: 0.1
+  SfxPlayer: {fileID: 2076380114}
   TakeDamageSFX: {fileID: 7113642340982994133}
   MinPitch: 0.9
   MaxPitch: 1.1
@@ -50720,7 +51157,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 16
   Animator: {fileID: 4481182160516653770}
+  Sprite: {fileID: 9127811615749599631}
   AnimatorParameter: IsMoving
+  FlashTime: 0.1
+  SfxPlayer: {fileID: 2076380114}
   TakeDamageSFX: {fileID: 9127811615749599632}
   MinPitch: 0.9
   MaxPitch: 1.1
@@ -50795,7 +51235,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ea5b808507833a64388c9ecbb5e80497, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

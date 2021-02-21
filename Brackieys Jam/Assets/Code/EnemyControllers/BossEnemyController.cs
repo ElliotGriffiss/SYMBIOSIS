@@ -48,6 +48,11 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] private int NumberOfBullets = 12;
     [SerializeField] private float BulletSpeed3;
 
+    [Header("Flash Effects")]
+    [SerializeField] protected float FlashTime = 0.1f;
+    protected float CurrentFlashTime = float.MaxValue;
+    protected bool KillAfterFlash = false;
+
     [Header("Audio")]
     [SerializeField] protected AudioSource HurtSFX;
     [SerializeField] protected float MinPitch = 1;
@@ -123,6 +128,22 @@ public class BossEnemyController : MonoBehaviour
             }
 
             currentStateTime += Time.fixedDeltaTime;
+        }
+
+        if (CurrentFlashTime < FlashTime)
+        {
+            Sprite.material.SetFloat("_FlashAmount", 1);
+            CurrentFlashTime += Time.deltaTime;
+        }
+        else
+        {
+            Sprite.material.SetFloat("_FlashAmount", 0);
+
+            if (KillAfterFlash)
+            {
+                KillAfterFlash = false;
+                TriggerDeath();
+            }
         }
     }
 
@@ -259,16 +280,15 @@ public class BossEnemyController : MonoBehaviour
 
     private IEnumerator SpecialAttackThree()
     {
-        Vector2 direction = (attacker.position - transform.position);
-
         for (int i = 0; i < NumberOfBullets; i++)
         {
+            Vector2 direction = (attacker.position - transform.position);
             DamageComponent bullet = GetBulletFromThePool();
 
             bullet.transform.position = transform.position;
             bullet.transform.rotation = Quaternion.Euler(direction);
             bullet.gameObject.SetActive(true);
-            bullet.Rigidbody.velocity = direction * BulletSpeed3;
+            bullet.Rigidbody.velocity = direction.normalized * BulletSpeed3;
 
             yield return new WaitForSeconds(FireTick3);
         }
@@ -291,14 +311,15 @@ public class BossEnemyController : MonoBehaviour
             damage.gameObject.SetActive(false);
 
             CurrentHealth -= damage.Damage;
+            CurrentFlashTime = 0;
             HealthBar.fillAmount = CurrentHealth / Health;
 
             HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             HurtSFX.Play();
 
-            if (CurrentHealth < 1)
+            if (CurrentHealth <= 0)
             {
-                TriggerDeath();
+                KillAfterFlash = true;
             }
         }
         else if (collision.collider.gameObject.tag == "Spike")
@@ -306,14 +327,15 @@ public class BossEnemyController : MonoBehaviour
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
 
             CurrentHealth -= damage.Damage;
+            CurrentFlashTime = 0;
             HealthBar.fillAmount = CurrentHealth / Health;
 
             HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             HurtSFX.Play();
 
-            if (CurrentHealth < 1)
+            if (CurrentHealth <= 0)
             {
-                TriggerDeath();
+                KillAfterFlash = true;
             }
         }
     }

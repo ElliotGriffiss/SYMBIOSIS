@@ -21,7 +21,6 @@ public class BaseEnemyController : MonoBehaviour
     [SerializeField] protected Color HealthDropColor;
     [Header("Flash Effects")]
     [SerializeField] protected float FlashTime;
-    protected Color FlashWhiteColor = new Color( 255, 255, 255, 512);
     [Header("Sound Effects")]
     [SerializeField] protected AudioSource TakeDamageSFX;
     [SerializeField] protected float MinPitch = 0.9f;
@@ -32,13 +31,15 @@ public class BaseEnemyController : MonoBehaviour
     protected float currentStateTime = float.PositiveInfinity; // ensures a new state is always chosen
     protected HealthDropObjectPool DropPool;
     protected bool HasDroppedLoad;
-    protected float CurrentFlashTime;
+    protected float CurrentFlashTime = float.MaxValue;
+    protected bool KillAfterFlash = false;
 
 
     public void InitializeEnemy(HealthDropObjectPool dropPool)
     {
         DropPool = dropPool;
         HasDroppedLoad = false;
+
     }
 
     protected virtual void FixedUpdate()
@@ -59,12 +60,18 @@ public class BaseEnemyController : MonoBehaviour
 
         if (CurrentFlashTime < FlashTime)
         {
-            Sprite.color = FlashWhiteColor;
+            Sprite.material.SetFloat("_FlashAmount", 1);
             CurrentFlashTime += Time.deltaTime;
         }
         else
         {
-            Sprite.color = Color.white;
+            Sprite.material.SetFloat("_FlashAmount", 0);
+
+            if (KillAfterFlash)
+            {
+                KillAfterFlash = false;
+                KillEnemy();
+            }
         }
     }
 
@@ -104,7 +111,7 @@ public class BaseEnemyController : MonoBehaviour
 
             if (Health < 1)
             {
-                KillEnemy();
+                KillAfterFlash = true;
             }
         }
         else if (collision.collider.gameObject.tag == "Spike")
@@ -123,7 +130,7 @@ public class BaseEnemyController : MonoBehaviour
 
             if (Health < 1)
             {
-                KillEnemy();
+                KillAfterFlash = true;
             }
         }
     }

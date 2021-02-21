@@ -11,6 +11,9 @@ public class EnemyManager : MonoBehaviour
     [Header("Enemy References")]
     [SerializeField] private List<EnemySpawnData> EnemiePrefabs;
     [SerializeField] private InvertedCircleCollider MapBoundry;
+    [Header("Enemy References")]
+    [SerializeField] private AudioSource DeathSFX;
+
     private List<BaseEnemyController> EnemyPool = new List<BaseEnemyController>();
     protected int[] EnemiesKilled = new int[4] {0,0,0,0};
 
@@ -36,6 +39,7 @@ public class EnemyManager : MonoBehaviour
 
     private void HandleEnemyDeath(EnemyTypes enemyType)
     {
+        DeathSFX.Play();
         GameManager.CheckforParasiteUnlocked();
         Debug.LogError("Enemy Killed: " + enemyType);
         EnemiesKilled[(int)enemyType]++;

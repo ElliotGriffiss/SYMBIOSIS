@@ -82,12 +82,18 @@ public class RangedEnemeyController : BaseEnemyController
 
         if (CurrentFlashTime < FlashTime)
         {
-            Sprite.color = FlashWhiteColor;
+            Sprite.material.SetFloat("_FlashAmount", 1);
             CurrentFlashTime += Time.deltaTime;
         }
         else
         {
-            Sprite.color = Color.white;
+            Sprite.material.SetFloat("_FlashAmount", 0);
+
+            if (KillAfterFlash)
+            {
+                KillAfterFlash = false;
+                KillEnemy();
+            }
         }
     }
 
