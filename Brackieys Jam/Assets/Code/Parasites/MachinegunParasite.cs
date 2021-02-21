@@ -11,11 +11,15 @@ public class MachinegunParasite : BaseParsite
     [SerializeField] private int MaxNumberOfBullets = 10;
     [SerializeField] private float FireRate;
     [SerializeField] private float BulletSpeed;
-    
 
     [SerializeField] private float ReloadTime = 1;
     [SerializeField] private float Range = 10;
     [SerializeField] private int ClipSize;
+
+    [Header("Camera Shake")]
+    [SerializeField] private CameraFollow Camera;
+    [SerializeField] private float ShakeDuration;
+    [SerializeField] private float ShakeAmount;
 
     private bool IsReloading;
     private int BulletsInClip;
@@ -121,6 +125,7 @@ public class MachinegunParasite : BaseParsite
             // Used to enforce the fie rate without putting an update loop in this class.
             if (Time.time - LastFireTime > FireRate)
             {
+                Camera.TriggerShakeCamera(ShakeDuration, ShakeAmount);
                 SFX.pitch = Random.Range(MinPitch, MaxPitch);
                 SFX.Play();
 

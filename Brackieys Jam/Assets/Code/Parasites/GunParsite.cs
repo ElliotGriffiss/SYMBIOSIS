@@ -19,6 +19,11 @@ public class GunParsite : BaseParsite
     [SerializeField] private float Range = 60;
     [SerializeField] private int ClipSize;
 
+    [Header("Camera Shake")]
+    [SerializeField] private CameraFollow Camera;
+    [SerializeField] private float ShakeDuration;
+    [SerializeField] private float ShakeAmount;
+
     private bool IsReloading;
     private int BulletsInClip;
     private float CurrentReloadTime;
@@ -120,6 +125,7 @@ public class GunParsite : BaseParsite
             // Used to enforce the fie rate without putting an update loop in this class.
             if (Time.time - LastFireTime  > FireRate)
             {
+                Camera.TriggerShakeCamera(ShakeDuration, ShakeAmount);
                 SFX.pitch = Random.Range(MinPitch, MaxPitch);
                 SFX.Play();
 

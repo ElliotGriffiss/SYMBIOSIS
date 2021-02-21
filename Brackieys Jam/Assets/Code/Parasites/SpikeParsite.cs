@@ -10,7 +10,11 @@ public class SpikeParsite : BaseParsite
     [SerializeField] private float ChargeCoolDown;
     [SerializeField] private DamageComponent Damage;
 
-    private WaitForSeconds WaitSeconds = new WaitForSeconds(1f);
+    [Header("Camera Shake")]
+    [SerializeField] private CameraFollow Camera;
+    [SerializeField] private float ShakeDuration;
+    [SerializeField] private float ShakeAmount;
+
     private Rigidbody2D HostRigidbody;
     private float CurrentChargeCooldown = 0;
     private float CurrentAnimationTime;
@@ -30,6 +34,7 @@ public class SpikeParsite : BaseParsite
     {
         if (CurrentChargeCooldown >= ChargeCoolDown)
         {
+            Camera.TriggerShakeCamera(ShakeDuration, ShakeAmount);
             SFX.Play();
             Host.ActivateIframes(AnimationTime);
             DrillAnim.SetBool("IsDrilling", true);

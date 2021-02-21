@@ -704,6 +704,9 @@ MonoBehaviour:
   ReloadTime: 0.5
   Range: 60
   ClipSize: 3
+  Camera: {fileID: 2022764839}
+  ShakeDuration: 0.1
+  ShakeAmount: 0.5
 --- !u!4 &20787440
 Transform:
   m_ObjectHideFlags: 0
@@ -26930,6 +26933,9 @@ MonoBehaviour:
   ReloadTime: 1
   Range: 4
   ClipSize: 6
+  Camera: {fileID: 2022764839}
+  ShakeDuration: 0.2
+  ShakeAmount: 0.5
 --- !u!4 &950025008
 Transform:
   m_ObjectHideFlags: 0
@@ -29212,7 +29218,7 @@ MonoBehaviour:
   PlayerDeathSFX: {fileID: 809739278}
   BossDeathSFX: {fileID: 246154632}
   TotalKills: 0
-  CurrentLevelIndex: 3
+  CurrentLevelIndex: 0
 --- !u!4 &1086531143
 Transform:
   m_ObjectHideFlags: 0
@@ -30845,8 +30851,11 @@ MonoBehaviour:
   FireRate: 0.3
   BulletSpeed: 10
   ReloadTime: 1
-  Range: 4
+  Range: 5
   ClipSize: 6
+  Camera: {fileID: 2022764839}
+  ShakeDuration: 0.1
+  ShakeAmount: 0.8
 --- !u!4 &1271646525
 Transform:
   m_ObjectHideFlags: 0
@@ -35988,6 +35997,9 @@ MonoBehaviour:
   ChargeSpeed: 30
   ChargeCoolDown: 2
   Damage: {fileID: 1186176177}
+  Camera: {fileID: 2022764839}
+  ShakeDuration: 1
+  ShakeAmount: 0.3
 --- !u!4 &1710288122
 Transform:
   m_ObjectHideFlags: 0
@@ -41485,6 +41497,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FollowSpeed: 0.5
   CameraOffset: {x: 0, y: 0, z: -10}
+  ShakeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   CameraCover: {fileID: 1874501722}
   DisplayOverlay: {fileID: 42894415}
   ScaleTime: 0.5

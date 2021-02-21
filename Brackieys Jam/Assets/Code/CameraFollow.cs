@@ -7,9 +7,11 @@ public class CameraFollow : MonoBehaviour
 	[SerializeField] private float FollowSpeed;
 	[SerializeField] private Vector3 CameraOffset;
 
-	[SerializeField] private GameObject CameraCover;
+	[Header("CameraShake Curve")]
+	[SerializeField] private AnimationCurve ShakeCurve;
 
 	[Header("Display Overlay Settings")]
+	[SerializeField] private GameObject CameraCover;
 	[SerializeField] private GameObject DisplayOverlay;
 	[SerializeField] private float ScaleTime = 1f;
 	[SerializeField] private Vector3 StartingScale;
@@ -24,8 +26,11 @@ public class CameraFollow : MonoBehaviour
 	[SerializeField] private float RotationTime = 0.5f;
 
 	private Transform FollowTransform;
+	private float ShakeDuration = 0.0f;
+	private float CurrentShakeDuration = 0.0f;
+	private float ShakeAmount = 0.0f;
 
-    private void Start()
+	private void Start()
     {
 		CameraCover.SetActive(false);
 		DisplayOverlay.SetActive(false);
@@ -41,12 +46,28 @@ public class CameraFollow : MonoBehaviour
 		transform.position = position;
 	}
 
+	public void TriggerShakeCamera(float shackDuration, float shakeAmount)
+	{
+		ShakeDuration = shackDuration;
+		CurrentShakeDuration = shackDuration;
+		ShakeAmount = shakeAmount;
+	}
+
     private void FixedUpdate()
 	{
 		if (FollowTransform != null)
 		{
 			Vector3 smoothedPosition = Vector3.Lerp(transform.position, FollowTransform.position + CameraOffset, FollowSpeed);
-			transform.position = smoothedPosition;
+
+			if (CurrentShakeDuration > 0)
+			{
+				CurrentShakeDuration -= Time.deltaTime;
+				transform.position = smoothedPosition + Random.insideUnitSphere * -ShakeCurve.Evaluate(CurrentShakeDuration / ShakeDuration) * ShakeAmount;
+			}
+			else
+			{
+				transform.position = smoothedPosition;
+			}
 		}
 	}
 
