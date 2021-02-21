@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueMangager2 : MonoBehaviour
 {
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Animator animator;
@@ -20,13 +20,13 @@ public class DialogueManager : MonoBehaviour
         sceneName = currentScene.name;
     }
 
-    public void StartDialogue (Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue)
     {
         Debug.Log("starting dialogue");
 
         sentences.Clear();
 
-        foreach(string sentence in dialogue.sentances)
+        foreach (string sentence in dialogue.sentances)
         {
             sentences.Enqueue(sentence);
         }
@@ -36,7 +36,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        if(sentences.Count == 0)
+        if (sentences.Count == 0)
         {
             EndDialogue();
             return;
@@ -50,7 +50,7 @@ public class DialogueManager : MonoBehaviour
     IEnumerator TypeSentenceCo(string sentence)
     {
         dialogueText.text = "";
-        foreach(char letter in sentence.ToCharArray())
+        foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.07f);
@@ -68,7 +68,7 @@ public class DialogueManager : MonoBehaviour
         sceneName = currentScene.name;
         animator.SetBool("FadeIn", true);
         yield return new WaitUntil(() => image.color.a == 1);
-        if(sceneName == "Cutscene 1")
+        if (sceneName == "Cutscene 1")
         {
             SceneManager.LoadScene("Cutscene 2");
         }
