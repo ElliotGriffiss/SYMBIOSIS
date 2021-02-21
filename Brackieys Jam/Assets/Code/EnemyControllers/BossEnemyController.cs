@@ -76,6 +76,7 @@ public class BossEnemyController : MonoBehaviour
         HealthBarParent.SetActive(true);
         HealthBar.fillAmount = CurrentHealth / Health;
         transform.position = SpawnPoint.position;
+        gameObject.SetActive(true);
 
         foreach (SubBoss sub in SubBosses)
         {
