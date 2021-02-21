@@ -35,6 +35,10 @@ public class DeathCanvas : MonoBehaviour
         ParentObject.gameObject.SetActive(true);
         Background.gameObject.SetActive(true);
 
+        ParentObject.transform.position = OffSceenPosition.position;
+        Background.color = BackGroundWhite;
+
+
         yield return waitForFrameEnd;
         float Timer = 0;
 

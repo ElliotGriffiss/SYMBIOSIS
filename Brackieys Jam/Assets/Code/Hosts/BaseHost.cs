@@ -253,7 +253,7 @@ public class BaseHost : MonoBehaviour
             MaxHealth = CurrentHealth;
         }
 
-        Healthtext.text = "MASS: "+CurrentHealth;
+        Healthtext.text = "MASS: "+Mathf.RoundToInt(CurrentHealth);
         HealthBar.fillAmount = CurrentHealth / MaxHealth;
     }
 
