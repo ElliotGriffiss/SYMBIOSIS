@@ -124,6 +124,7 @@ public class FastGuy : BaseHost
 
             if (damage.Damage > 0)
             {
+                CameraShake.TriggerShakeCamera(ShakeDuration, ShakeAmount);
                 HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
                 HurtSFX.Play();
             }
@@ -152,6 +153,7 @@ public class FastGuy : BaseHost
 
                 if (damage.Damage > 0)
                 {
+                    CameraShake.TriggerShakeCamera(ShakeDuration, ShakeAmount);
                     HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
                     HurtSFX.Play();
                 }
