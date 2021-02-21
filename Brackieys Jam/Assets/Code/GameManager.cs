@@ -193,6 +193,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator HostDeathSequence()
     {
+        yield return new WaitForSeconds(1f);
         yield return DeathCanvas.DeathAnimationSequence();
 
         BaseHost.OnHostDeath -= HandleHostDeath;

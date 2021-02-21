@@ -127,10 +127,11 @@ public class GunParsite : BaseParsite
                 Reloadingbar.fillAmount = (float)BulletsInClip / ClipSize;
 
                 DamageComponent bullet = GetBulletFromThePool();
+                direction = BulletOrigin.position - transform.position;
 
                 bullet.gameObject.transform.position = BulletOrigin.position;
-                bullet.gameObject.transform.rotation = Quaternion.Euler(direction);
                 bullet.gameObject.SetActive(true);
+                bullet.Rigidbody.rotation = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90;
                 bullet.Rigidbody.velocity = direction.normalized * BulletSpeed;
 
                 LastFireTime = Time.time;
