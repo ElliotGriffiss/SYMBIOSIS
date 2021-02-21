@@ -24,6 +24,13 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected Text AbilityBarText;
     [SerializeField] protected String AbilityText;
 
+    [Header("Camera Shake")]
+    [SerializeField] protected CameraFollow CameraShake;
+    [SerializeField] protected float ShakeDuration;
+    [SerializeField] protected float ShakeAmount;
+    [SerializeField] protected float ShakeOnDeathDuration;
+    [SerializeField] protected float ShakeOnDeathAmount;
+
     [Header("Sound Effects")]
     [SerializeField] protected AudioSource HurtSFX;
     [SerializeField] protected AudioSource PickupSFX;
@@ -145,6 +152,7 @@ public class BaseHost : MonoBehaviour
 
             if (damage.Damage > 0)
             {
+                CameraShake.TriggerShakeCamera(ShakeDuration, ShakeAmount);
                 HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
                 HurtSFX.Play();
             }
@@ -173,6 +181,7 @@ public class BaseHost : MonoBehaviour
 
                 if (damage.Damage > 0)
                 {
+                    CameraShake.TriggerShakeCamera(ShakeDuration, ShakeAmount);
                     HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
                     HurtSFX.Play();
                 }
@@ -229,6 +238,7 @@ public class BaseHost : MonoBehaviour
             drop.transform.SetParent(null, true);
         }
 
+        CameraShake.TriggerShakeCamera(ShakeOnDeathDuration, ShakeOnDeathAmount);
         gameObject.SetActive(false);
         BaseHost.OnHostDeath();
     }

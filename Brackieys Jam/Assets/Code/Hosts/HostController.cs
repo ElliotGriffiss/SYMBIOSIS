@@ -100,6 +100,7 @@ public class HostController : BaseHost
 
             if (damage.Damage > 0)
             {
+                CameraShake.TriggerShakeCamera(ShakeDuration, ShakeAmount);
                 HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
                 HurtSFX.Play();
             }
@@ -128,6 +129,7 @@ public class HostController : BaseHost
 
                 if (damage.Damage > 0)
                 {
+                    CameraShake.TriggerShakeCamera(ShakeDuration, ShakeAmount);
                     HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
                     HurtSFX.Play();
                 }

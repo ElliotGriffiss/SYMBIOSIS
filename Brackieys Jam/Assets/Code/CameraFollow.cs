@@ -48,9 +48,16 @@ public class CameraFollow : MonoBehaviour
 
 	public void TriggerShakeCamera(float shackDuration, float shakeAmount)
 	{
-		ShakeDuration = shackDuration;
-		CurrentShakeDuration = shackDuration;
-		ShakeAmount = shakeAmount;
+		if (CurrentShakeDuration < shackDuration)
+		{
+			ShakeDuration = shackDuration;
+			CurrentShakeDuration = shackDuration;
+		}
+
+		if (ShakeAmount < shakeAmount)
+		{
+			ShakeAmount = shakeAmount;
+		}
 	}
 
     private void FixedUpdate()
@@ -67,6 +74,7 @@ public class CameraFollow : MonoBehaviour
 			else
 			{
 				transform.position = smoothedPosition;
+				ShakeAmount = 0;
 			}
 		}
 	}
