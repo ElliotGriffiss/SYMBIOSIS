@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class TentacleController : BaseHost
 {
     [Header("Stealth Host Settings")]
-
+    [SerializeField] private ParticleSystem System;
     [SerializeField] protected Color VisibleColor;
     [SerializeField] protected Color InvisibleColor;
 
@@ -131,9 +131,11 @@ public class TentacleController : BaseHost
     {
         animator.SetBool("isMoving", false);
         yield return new WaitForSeconds(waitTime);
+        System.Play();
         Rigidbody.AddForce(direction.normalized * CurrentForwardSpeed, ForceMode2D.Impulse);
         animator.SetBool("isMoving", true);
         yield return new WaitForSeconds(moveTime);
+        System.Stop();
         //Rigidbody.velocity = Vector2.zero;
         MovementSequence = null;
     }

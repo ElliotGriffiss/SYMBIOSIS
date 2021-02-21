@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class HostController : BaseHost
 {
+    [SerializeField] private ParticleSystem System;
+
     [Header("Tank Guy Settings")]
     [SerializeField] private Vector3 AbilityActiveScale;
 
@@ -77,6 +79,18 @@ public class HostController : BaseHost
         if (inputValue.x < 0)
         {
             force += (Vector2.right * inputValue.x * CurrentStrafeSpeed);
+        }
+
+        if (Rigidbody.velocity == Vector2.zero)
+        {
+            System.Stop();
+        }
+        else
+        {
+            if (!System.isPlaying)
+            {
+                System.Play();
+            }
         }
 
         Rigidbody.AddForce(force);

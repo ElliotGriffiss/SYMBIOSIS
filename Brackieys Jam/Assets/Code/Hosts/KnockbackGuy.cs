@@ -11,6 +11,10 @@ public class KnockbackGuy : BaseHost
     [SerializeField] private Vector3 StartShockWaveSize;
     [SerializeField] private Vector3 EndShockWaveSize;
 
+    [SerializeField] private ParticleSystem System1;
+    [SerializeField] private ParticleSystem System2;
+    [SerializeField] private ParticleSystem System3;
+
     [SerializeField] protected float waitTime;
     [SerializeField] protected float moveTime;
 
@@ -92,9 +96,15 @@ public class KnockbackGuy : BaseHost
     {
         animator.SetBool("IsMoving", true);
         yield return new WaitForSeconds(waitTime);
+        System1.Play();
+        System2.Play();
+        System3.Play();
         Rigidbody.AddForce(direction.normalized * CurrentForwardSpeed, ForceMode2D.Impulse);
         animator.SetBool("isMoving", false);
         yield return new WaitForSeconds(moveTime);
+        System1.Stop();
+        System2.Stop();
+        System3.Stop();
         //Rigidbody.velocity = Vector2.zero;
         MovementSequence = null;
     }

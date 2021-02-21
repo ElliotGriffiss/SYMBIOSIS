@@ -24,9 +24,9 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("starting dialogue");
 
-        sentences.Clear();
+        sentences = new Queue<string>();
 
-        foreach(string sentence in dialogue.sentances)
+        foreach (string sentence in dialogue.sentances)
         {
             sentences.Enqueue(sentence);
         }

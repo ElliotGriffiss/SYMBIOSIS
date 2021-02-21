@@ -10,6 +10,7 @@ public class FastGuy : BaseHost
     [SerializeField] private GameObject HealthCollecter;
     [SerializeField] private float CollectionForce;
     [Space]
+    [SerializeField] private ParticleSystem System;
     [SerializeField] private AnimationCurve RotationAcceleration;
     [SerializeField] private float RotationSpeed;
     [SerializeField] private Vector3 RotationAxis = new Vector3(0,0,1);
@@ -95,6 +96,18 @@ public class FastGuy : BaseHost
         {
             animator.SetBool("IsMoving", true);
             force += (Vector2.right * inputValue.x * CurrentStrafeSpeed);
+        }
+
+        if (Rigidbody.velocity == Vector2.zero)
+        {
+            System.Stop();
+        }
+        else
+        {
+            if (!System.isPlaying)
+            {
+                System.Play();
+            }
         }
 
         if (HealthOrbs.Count > 0 && AbilityIsActive)
