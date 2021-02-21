@@ -10,7 +10,11 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Animator animator;
     [SerializeField] private Image image;
+
+    private AudioSource talking;
+
     private string sceneName;
+
     private Queue<string> sentences;
 
     void Start()
@@ -18,6 +22,7 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
         Scene currentScene = SceneManager.GetActiveScene();
         sceneName = currentScene.name;
+        talking = GetComponent<AudioSource>();
     }
 
     public void StartDialogue (Dialogue dialogue)
@@ -49,12 +54,15 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeSentenceCo(string sentence)
     {
-        dialogueText.text = "";
-        foreach(char letter in sentence.ToCharArray())
+        talking.Play();
+        dialogueText.text = "";        
+        foreach (char letter in sentence.ToCharArray())
         {
-            dialogueText.text += letter;
+            dialogueText.text += letter;          
             yield return new WaitForSeconds(0.07f);
+
         }
+        talking.Stop();
     }
 
     void EndDialogue()
