@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UnlockCanvas HostUnlockCanvas;
     [SerializeField] private UnlockCanvas ParasiteUnlockCanvas;
     [SerializeField] private DeathCanvas DeathCanvas;
+    [SerializeField] private DeathCanvas CompletedCanvas;
     [Space]
     [SerializeField] private CameraFollow Camera;
     [SerializeField] private Transform TransitionFollowPoint;
@@ -233,8 +234,9 @@ public class GameManager : MonoBehaviour
             Debug.LogError(Time.timeScale);
         }
 
-        Debug.LogError("Finished");
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(3f);
+        yield return CompletedCanvas.DeathAnimationSequence();
+        Time.timeScale = 1f;
 
         Levels[CurrentLevelIndex].LevelCleanUp();
         CurrentLevelIndex = 0;
