@@ -58,12 +58,12 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected float startingInvTime;
 
     // Current Stats
-    [SerializeField] protected float CurrentDamage = 1;
-    [SerializeField] protected float CurrentDamageResistance = 1;
-    [SerializeField] protected float CurrentAbilityDuration = 10;
-    [SerializeField] protected float CurrentForwardSpeed;
-    [SerializeField] protected float CurrentStrafeSpeed;
-    [SerializeField] protected float currentInvTime;
+    protected float CurrentDamage = 1;
+    protected float CurrentDamageResistance = 1;
+    protected float CurrentAbilityDuration = 10;
+    protected float CurrentForwardSpeed;
+    protected float CurrentStrafeSpeed;
+    protected float currentInvTime;
 
     protected int MassRequiredThisLevel = 0;
     protected int MassGainedThisLevel = 0;
@@ -120,7 +120,7 @@ public class BaseHost : MonoBehaviour
         Parasite.SetupParasite(this, CurrentDamage);
     }
 
-    public void LevelUpHost(float bonusDamageResistance, float bonusSpeed, float bonusAbilityDuration, float bonusDamage)
+    public virtual void LevelUpHost(float bonusDamageResistance, float bonusSpeed, float bonusAbilityDuration, float bonusDamage)
     {
         MassGainedThisLevel = 0;
         CurrentDamage = bonusDamage + BaseDamage;

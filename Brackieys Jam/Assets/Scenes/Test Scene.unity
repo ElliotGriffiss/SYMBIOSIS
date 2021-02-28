@@ -41404,6 +41404,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
+      propertyPath: BaseAbilityCooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
+      propertyPath: BaseAbilityDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: AbilityActiveScale.x
       value: 1.1
       objectReference: {fileID: 0}
@@ -53701,8 +53709,8 @@ MonoBehaviour:
   - {fileID: 381530003}
   TestArea: {fileID: 1810457882}
   DropsRequiredPerLevel: 1e000000290000003400000010270000
-  HostsUnlocked: 01000000
-  ParasitesUnlocked: 01000000
+  HostsUnlocked: 01010101
+  ParasitesUnlocked: 01010101
   DamageResistenceUpgrades:
   - 0
   - 0.1
@@ -60082,6 +60090,14 @@ PrefabInstance:
       value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
+      propertyPath: moveTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
+      propertyPath: waitTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: DropForce
       value: 5
       objectReference: {fileID: 0}
@@ -60134,6 +60150,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 205042422}
     - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
+      propertyPath: baseForwardSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: HealthDropColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -60167,14 +60187,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: BaseAbilityCooldown
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: BaseAbilityDuration
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: ShakeOnDeathDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
+      propertyPath: StartShockWaveSize.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
+      propertyPath: StartShockWaveSize.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
+      propertyPath: StartShockWaveSize.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
+      propertyPath: BaseShockWaveHangTime
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
@@ -60264,7 +60300,7 @@ MonoBehaviour:
   BaseDamage: 0
   Damage: 0
   KnockBackForce: 12
---- !u!114 &1624181565
+--- !u!114 &1624181562
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60273,13 +60309,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1624181560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb5701967d2b6044cb600df9e52091d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fb2fcfe1cda00e4d833abfc691aa3f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollideSFX: {fileID: 0}
-  PlayerCollideSFX: {fileID: 0}
-  MinPitch: 0.9
-  MaxPitch: 1.1
 --- !u!1 &1648646895
 GameObject:
   m_ObjectHideFlags: 0
@@ -76804,6 +76836,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: ShakeOnDeathAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
+      propertyPath: BaseAbilityCooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
+      propertyPath: BaseAbilityDuration
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}

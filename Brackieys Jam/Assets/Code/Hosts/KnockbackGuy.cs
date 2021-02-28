@@ -7,6 +7,7 @@ public class KnockbackGuy : BaseHost
 {
     [Header("Knockback Guy Settings")]
     [SerializeField] private GameObject ShockWave;
+    [SerializeField] private float BaseShockWaveHangTime = 1f;
     [SerializeField] private Vector3 ShockWaveLocalPosition;
     [SerializeField] private Vector3 StartShockWaveSize;
     [SerializeField] private Vector3 EndShockWaveSize;
@@ -19,12 +20,28 @@ public class KnockbackGuy : BaseHost
     [SerializeField] protected float moveTime;
 
     private IEnumerator MovementSequence;
+    private float CurrentHangTime = 0;
+    private float HangTimeDuration = 0;
 
 
     public override void InitializeHost(int massRequiredThisLevel, bool IsTestArea = false)
     {
         base.InitializeHost(massRequiredThisLevel, IsTestArea);
         animator.SetBool("IsMoving", false);
+        CurrentHangTime = BaseShockWaveHangTime;
+    }
+
+    public override void LevelUpHost(float bonusDamageResistance, float bonusSpeed, float bonusAbilityDuration, float bonusDamage)
+    {
+        MassGainedThisLevel = 0;
+        CurrentDamage = bonusDamage + BaseDamage;
+        CurrentDamageResistance = bonusDamageResistance + BaseDamageResistance;
+        CurrentHangTime = bonusAbilityDuration + BaseShockWaveHangTime;
+
+        CurrentForwardSpeed = bonusSpeed + baseForwardSpeed;
+        CurrentStrafeSpeed = bonusSpeed + baseStrafeSpeed;
+
+        Parasite.SetupParasite(this, CurrentDamage);
     }
 
     private void Update()
@@ -53,6 +70,7 @@ public class KnockbackGuy : BaseHost
             ToggleActiveAbilityGraphics(AbilityIsActive);
             CurrentDuration = CurrentAbilityDuration;
             CurrentCooldown = 0;
+            HangTimeDuration = CurrentHangTime;
         }
 
         if (AbilityIsActive)
@@ -63,9 +81,16 @@ public class KnockbackGuy : BaseHost
 
             if (CurrentDuration < 0)
             {
-                AbilityIsActive = false;
-                ToggleActiveAbilityGraphics(AbilityIsActive);
-                CurrentCooldown = 0;
+                if (HangTimeDuration <= 0)
+                {
+                    AbilityIsActive = false;
+                    ToggleActiveAbilityGraphics(AbilityIsActive);
+                    CurrentCooldown = 0;
+                }
+                else
+                {
+                    HangTimeDuration -= Time.deltaTime;
+                }
             }
         }
         else
@@ -107,5 +132,17 @@ public class KnockbackGuy : BaseHost
         System3.Stop();
         //Rigidbody.velocity = Vector2.zero;
         MovementSequence = null;
+    }
+
+    protected override void UpdateAbilityBar()
+    {
+        if (AbilityIsActive)
+        {
+            AbilityBar.fillAmount = (CurrentDuration + HangTimeDuration) / (CurrentAbilityDuration + CurrentHangTime);
+        }
+        else
+        {
+            AbilityBar.fillAmount = CurrentCooldown / BaseAbilityCooldown;
+        }
     }
 }
