@@ -29,6 +29,7 @@ public class TentacleController : BaseHost
         CurrentForwardSpeed = baseForwardSpeed;
         CurrentStrafeSpeed = baseStrafeSpeed;
         AbilityBarText.text = AbilityText;
+        MassGainedThisLevel = 0;
 
         if (IsTestArea)
         {

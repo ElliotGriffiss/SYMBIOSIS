@@ -93,6 +93,7 @@ public class BaseHost : MonoBehaviour
         CurrentAbilityDuration = BaseAbilityDuration;
         CurrentForwardSpeed = baseForwardSpeed;
         CurrentStrafeSpeed = baseStrafeSpeed;
+        MassGainedThisLevel = 0;
 
         if (IsTestArea)
         {
@@ -258,10 +259,13 @@ public class BaseHost : MonoBehaviour
 
     protected virtual void LookAtMouse()
     {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        direction = new Vector2(mousePos.x - Rigidbody.transform.position.x, mousePos.y - Rigidbody.transform.position.y);
-        Rigidbody.transform.up = direction.normalized;
+        if (Time.timeScale > 0)
+        {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+            direction = new Vector2(mousePos.x - Rigidbody.transform.position.x, mousePos.y - Rigidbody.transform.position.y);
+            Rigidbody.transform.up = direction.normalized;
+        }
     }
 
     protected virtual void UpdateHealthBar(bool immediate)

@@ -38,13 +38,13 @@ public class KnockbackGuy : BaseHost
         UpdateAbilityBar();
         ToggleActiveAbilityGraphics(AbilityIsActive);
 
-        MassGainedThisLevel = 0;
         CurrentDamage = bonusDamage + BaseDamage;
         CurrentDamageResistance = bonusDamageResistance + BaseDamageResistance;
         CurrentHangTime = bonusAbilityDuration + BaseShockWaveHangTime;
 
         CurrentForwardSpeed = bonusSpeed + baseForwardSpeed;
         CurrentStrafeSpeed = bonusSpeed + baseStrafeSpeed;
+        MassGainedThisLevel = 0;
 
         Parasite.SetupParasite(this, CurrentDamage);
     }
