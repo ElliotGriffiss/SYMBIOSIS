@@ -53,11 +53,11 @@ TagManager:
   - name: Debris
     uniqueID: 3711219545
     locked: 0
-  - name: Hosts
-    uniqueID: 1723583515
-    locked: 0
   - name: Enemys
     uniqueID: 2810142029
+    locked: 0
+  - name: Hosts
+    uniqueID: 1723583515
     locked: 0
   - name: Bullets
     uniqueID: 1055905625
