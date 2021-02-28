@@ -41373,6 +41373,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
+      propertyPath: LevelProgress
+      value: 
+      objectReference: {fileID: 1665279271}
+    - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: NumberOfDrops
       value: 10
       objectReference: {fileID: 0}
@@ -53698,6 +53702,7 @@ MonoBehaviour:
   UpgradeCanvas: {fileID: 375646365}
   HostUnlockCanvas: {fileID: 1783574040}
   ParasiteUnlockCanvas: {fileID: 1489230466}
+  LevelProgressionCanvas: {fileID: 1665279271}
   DeathCanvas: {fileID: 152144355}
   CompletedCanvas: {fileID: 1690304726}
   Camera: {fileID: 2022764839}
@@ -60281,6 +60286,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
+      propertyPath: LevelProgress
+      value: 
+      objectReference: {fileID: 1665279271}
+    - target: {fileID: 2071872874487365393, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: NumberOfDrops
       value: 10
       objectReference: {fileID: 0}
@@ -60788,6 +60797,10 @@ PrefabInstance:
       propertyPath: ShakeAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8041541149747995372, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
+      propertyPath: LevelProgress
+      value: 
+      objectReference: {fileID: 1665279271}
     - target: {fileID: 8041541149747995372, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: NumberOfDrops
       value: 10
@@ -77000,6 +77013,10 @@ PrefabInstance:
       propertyPath: ShakeAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
+      propertyPath: LevelProgress
+      value: 
+      objectReference: {fileID: 1665279271}
     - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: NumberOfDrops
       value: 10

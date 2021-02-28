@@ -61,7 +61,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7380960135726851861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb5701967d2b6044cb600df9e52091d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 01a306e6b9342f04d8a2932975b46671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CollideSFX: {fileID: 4779052331836060125}
