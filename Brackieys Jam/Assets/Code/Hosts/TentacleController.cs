@@ -47,6 +47,7 @@ public class TentacleController : BaseHost
 
         UpdateHealthBar(true);
         UpdateAbilityBar();
+        UpdateLevelProgressCanvas();
     }
 
 

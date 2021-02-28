@@ -18,6 +18,7 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected Transform ParasiteOrigin;
 
     [Header("UI")]
+    [SerializeField] protected LevelProgressCanvas LevelProgress;
     [SerializeField] protected AnimatedHealthBar HealthBar;
     [SerializeField] protected Image AbilityBar;
     [SerializeField] protected Text AbilityBarText;
@@ -104,11 +105,13 @@ public class BaseHost : MonoBehaviour
 
         UpdateHealthBar(true);
         UpdateAbilityBar();
+        UpdateLevelProgressCanvas();
     }
 
     public void SetMassRequired(int massRequiredThisLevel)
     {
         MassRequiredThisLevel = massRequiredThisLevel;
+        UpdateLevelProgressCanvas();
     }
 
     public virtual void ChangeParasite(BaseParsite parasite)
@@ -198,13 +201,14 @@ public class BaseHost : MonoBehaviour
             MassGainedThisLevel++;
             CurrentHealth += healing.Health;
             UpdateHealthBar(true);
+            UpdateLevelProgressCanvas();
 
             PickupSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             PickupSFX.Play();
 
             healing.gameObject.SetActive(false);
 
-            if (MassGainedThisLevel > MassRequiredThisLevel)
+            if (MassGainedThisLevel >= MassRequiredThisLevel)
             {
                 TriggerLevelUp();
             }
@@ -276,6 +280,11 @@ public class BaseHost : MonoBehaviour
         {
             AbilityBar.fillAmount = CurrentCooldown / BaseAbilityCooldown;
         }
+    }
+
+    protected void UpdateLevelProgressCanvas()
+    {
+        LevelProgress.SetText(MassGainedThisLevel, MassRequiredThisLevel);
     }
 
     public void ActivateIframes(float Duration)

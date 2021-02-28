@@ -196,9 +196,10 @@ public class FastGuy : BaseHost
             PickupSFX.Play();
 
             UpdateHealthBar(true);
+            UpdateLevelProgressCanvas();
             healing.gameObject.SetActive(false);
 
-            if (MassGainedThisLevel > MassRequiredThisLevel)
+            if (MassGainedThisLevel >= MassRequiredThisLevel)
             {
                 TriggerLevelUp();
             }

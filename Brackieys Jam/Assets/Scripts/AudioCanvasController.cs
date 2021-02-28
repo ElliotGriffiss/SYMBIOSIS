@@ -37,6 +37,8 @@ public class AudioCanvasController : MonoBehaviour
 
     private IEnumerator OpenCanvasSequence()
     {
+        ParentObject.transform.position = OffSceenPosition.position;
+        Background.color = BackGroundWhite;
         ParentObject.gameObject.SetActive(true);
         Background.gameObject.SetActive(true);
 
@@ -46,7 +48,7 @@ public class AudioCanvasController : MonoBehaviour
         while (Timer < AnimationTime)
         {
             ParentObject.transform.position = Vector2.LerpUnclamped(OffSceenPosition.position, OnSceenPosition.position, PanelAnimationCurve.Evaluate(Timer / AnimationTime));
-            Background.color = Color.Lerp(BackGroundWhite, BackGroundGreyedOut, PanelAnimationCurve.Evaluate(Timer / AnimationTime));
+            Background.color = Color.Lerp(BackGroundWhite, BackGroundGreyedOut, Timer / AnimationTime);
             yield return waitForFrameEnd;
             Timer += Time.unscaledDeltaTime;
         }
@@ -73,7 +75,7 @@ public class AudioCanvasController : MonoBehaviour
         while (Timer > 0)
         {
             ParentObject.transform.position = Vector2.LerpUnclamped(OffSceenPosition.position, OnSceenPosition.position, PanelAnimationCurve.Evaluate(Timer / AnimationTime));
-            Background.color = Color.Lerp(BackGroundWhite, BackGroundGreyedOut, PanelAnimationCurve.Evaluate(Timer / AnimationTime));
+            Background.color = Color.Lerp(BackGroundWhite, BackGroundGreyedOut, Timer / AnimationTime);
             yield return waitForFrameEnd;
             Timer -= Time.deltaTime;
         }

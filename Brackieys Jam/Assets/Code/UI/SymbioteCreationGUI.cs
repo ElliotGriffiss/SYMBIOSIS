@@ -44,7 +44,7 @@ public class SymbioteCreationGUI : MonoBehaviour
         Hosts[CurrentlySelectedHost].transform.position = SymbioteSpawnPoint.position;
 
         UpdateCurrentParasite(CurrentlySelectedParaste);
-        Hosts[CurrentlySelectedHost].InitializeHost(10, true);
+        Hosts[CurrentlySelectedHost].InitializeHost(30, true);
 
         if (IgnoreAudioCue > 0)
         {

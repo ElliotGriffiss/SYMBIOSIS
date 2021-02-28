@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UpgradeCanvas UpgradeCanvas;
     [SerializeField] private UnlockCanvas HostUnlockCanvas;
     [SerializeField] private UnlockCanvas ParasiteUnlockCanvas;
+    [SerializeField] private LevelProgressCanvas LevelProgressionCanvas;
     [SerializeField] private DeathCanvas DeathCanvas;
     [SerializeField] private DeathCanvas CompletedCanvas;
     [Space]
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
         Camera.UpdateFollowTarget(TestArea.transform);
         TestArea.SetActive(true);
+        LevelProgressionCanvas.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -108,12 +110,16 @@ public class GameManager : MonoBehaviour
 
         if (CurrentLevelIndex == 3)
         {
+            LevelProgressionCanvas.gameObject.SetActive(false);
             Boss.SpawnBoss();
             MusicSource.clip = BossMusic;
             MusicSource.Play();
         }
         else
         {
+            LevelProgressionCanvas.gameObject.SetActive(true);
+            LevelProgressionCanvas.SetText(0, DropsRequiredPerLevel[CurrentLevelIndex]);
+
             if (MusicSource.clip != LevelMusic)
             {
                 MusicSource.clip = LevelMusic;
@@ -205,6 +211,7 @@ public class GameManager : MonoBehaviour
         CurrentStatLevels = new int[4] { 0, 0, 0, 0 };
         CurrentLevelIndex = 0;
         TestArea.SetActive(true);
+        LevelProgressionCanvas.gameObject.SetActive(false);
 
         Camera.SetCameraPositionImmediate(TestArea.transform.position);
         Camera.UpdateFollowTarget(TestArea.transform);
@@ -231,7 +238,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = Mathf.Lerp(0f, 1f, SlowDownCurve.Evaluate(timer / SlowDownDuration));
             yield return null;
             timer += Time.unscaledDeltaTime;
-            Debug.LogError(Time.timeScale);
         }
 
         yield return new WaitForSeconds(3f);
@@ -245,6 +251,7 @@ public class GameManager : MonoBehaviour
         Camera.SetCameraPositionImmediate(TestArea.transform.position);
         Camera.UpdateFollowTarget(TestArea.transform);
         TestArea.SetActive(true);
+        LevelProgressionCanvas.gameObject.SetActive(false);
 
         MusicSource.clip = MenuMusic;
         MusicSource.Play();

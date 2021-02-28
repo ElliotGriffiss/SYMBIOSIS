@@ -161,13 +161,14 @@ public class HostController : BaseHost
             MassGainedThisLevel++;
             CurrentHealth += healing.Health;
             UpdateHealthBar(true);
+            UpdateLevelProgressCanvas();
 
             PickupSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             PickupSFX.Play();
 
             healing.gameObject.SetActive(false);
 
-            if (MassGainedThisLevel > MassRequiredThisLevel)
+            if (MassGainedThisLevel >= MassRequiredThisLevel)
             {
                 TriggerLevelUp();
             }
