@@ -11,11 +11,12 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Image image;
 
-    private AudioSource talking;
+    [SerializeField] private AudioSource talking;
 
     private string sceneName;
 
     private Queue<string> sentences;
+    private bool SkipPressed = false;
 
     void Start()
     {
@@ -41,7 +42,9 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        if(sentences.Count == 0)
+        SkipPressed = false;
+
+        if (sentences.Count == 0)
         {
             EndDialogue();
             return;
@@ -58,8 +61,8 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";        
         foreach (char letter in sentence.ToCharArray())
         {
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(0.05f);
+            dialogueText.text += letter;          
+            yield return new WaitForSeconds(0.03f);
 
         }
         talking.Stop();

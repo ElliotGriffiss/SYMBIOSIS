@@ -928,6 +928,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1559963608}
   animator: {fileID: 17670853}
   image: {fileID: 17670851}
+  talking: {fileID: 7427104762572765639}
 --- !u!114 &5360662377632742791
 MonoBehaviour:
   m_ObjectHideFlags: 0
