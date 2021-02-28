@@ -125,6 +125,11 @@ public class BaseHost : MonoBehaviour
 
     public virtual void LevelUpHost(float bonusDamageResistance, float bonusSpeed, float bonusAbilityDuration, float bonusDamage)
     {
+        AbilityIsActive = false;
+        CurrentCooldown = BaseAbilityCooldown;
+        UpdateAbilityBar();
+        ToggleActiveAbilityGraphics(AbilityIsActive);
+
         MassGainedThisLevel = 0;
         CurrentDamage = bonusDamage + BaseDamage;
         CurrentDamageResistance = bonusDamageResistance + BaseDamageResistance;

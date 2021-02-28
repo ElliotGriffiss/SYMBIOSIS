@@ -41389,6 +41389,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 205042422}
     - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
+      propertyPath: baseStrafeSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: HealthDropColor.a
       value: 1
       objectReference: {fileID: 0}
