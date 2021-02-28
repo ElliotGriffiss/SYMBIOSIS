@@ -65,7 +65,7 @@ public class SpikeParsite : BaseParsite
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void HandleCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "PickUp" || collision.gameObject.tag == "EnemyBullet")
         {

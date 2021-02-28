@@ -41,14 +41,11 @@ public class EnemyManager : MonoBehaviour
     {
         DeathSFX.Play();
         GameManager.CheckforParasiteUnlocked();
-        Debug.LogError("Enemy Killed: " + enemyType);
         EnemiesKilled[(int)enemyType]++;
     }
 
     public void DespawnAllEnemies()
     {
-        Debug.Log("CleanUP");
-
         for (int i = 0; i < EnemyPool.Count; i++)
         {
             Debug.Log(i);
