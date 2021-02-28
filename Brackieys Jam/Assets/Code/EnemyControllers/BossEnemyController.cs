@@ -156,6 +156,8 @@ public class BossEnemyController : MonoBehaviour
 
             yield return null;
         }
+
+        BossController = null;
     }
 
     private void HandleRotateBoss()
