@@ -6352,7 +6352,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1723583515
   m_SortingLayer: 3
-  m_SortingOrder: -9
+  m_SortingOrder: -29
   m_Sprite: {fileID: 7482667652216324306, guid: 3a549220f4dc3ed4da44879ffa952651, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -8324,7 +8324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -6}
+  m_AnchoredPosition: {x: 0, y: -4}
   m_SizeDelta: {x: 540.2, y: 66.6}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &263960337
@@ -8341,7 +8341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -13368,6 +13368,36 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &319754475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 319754476}
+  m_Layer: 0
+  m_Name: Boss Starting Direction
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &319754476
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319754475}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.11, y: 4.64, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 381530004}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &322467860
 GameObject:
   m_ObjectHideFlags: 0
@@ -13894,6 +13924,7 @@ Transform:
   - {fileID: 1598373305}
   - {fileID: 7113642340581566778}
   - {fileID: 1510213060}
+  - {fileID: 319754476}
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27899,7 +27930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.21960786, g: 0.7176471, b: 0.3921569, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -53774,7 +53805,7 @@ MonoBehaviour:
   PlayerDeathSFX: {fileID: 809739278}
   BossDeathSFX: {fileID: 246154632}
   TotalKills: 0
-  CurrentLevelIndex: 0
+  CurrentLevelIndex: 3
 --- !u!4 &1086531143
 Transform:
   m_ObjectHideFlags: 0
@@ -57894,7 +57925,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1723583515
   m_SortingLayer: 3
-  m_SortingOrder: -10
+  m_SortingOrder: -30
   m_Sprite: {fileID: -993183575786483884, guid: 08a390fcb318a5243b875f4f5cf679c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -58075,10 +58106,10 @@ GameObject:
   m_Layer: 0
   m_Name: Boss SpawnPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1510213060
 Transform:
   m_ObjectHideFlags: 0
@@ -58694,7 +58725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -80422,8 +80453,8 @@ MonoBehaviour:
   MyRigidBody: {fileID: 7113642340581566772}
   Health: 120
   MovementSpeed: 6
-  RotationSpeed: 20
-  StateDuration: 1.8
+  RotationSpeed: 25
+  StateDuration: 2
   SubBosses:
   - {fileID: 1854446631323331292}
   - {fileID: 5484313174322770256}
@@ -80437,6 +80468,8 @@ MonoBehaviour:
   - {fileID: 7113642340573816734}
   - {fileID: 7113642339113644506}
   SpawnPoint: {fileID: 1510213060}
+  BossStartingTravelPoint: {fileID: 319754476}
+  EntranceSpeed: 1.6
   BulletPrefab: {fileID: 6353532974288208186, guid: 5d93f0b9be4a9d445941fe6c13c625d3, type: 3}
   BulletOrigins:
   - {fileID: 7113642339063178511}
@@ -80459,11 +80492,14 @@ MonoBehaviour:
   FireRate: 4
   FireDelay: 0.4
   BulletSpeed1: 7
+  StopDelay1: 0.2
   FireTick: 0.1
   BulletSpeed2: 6
+  StopDelay2: 0.2
   FireTick3: 0.1
   NumberOfBullets: 16
   BulletSpeed3: 11
+  StopDelay3: 0.2
   FlashTime: 0.1
   HurtSFX: {fileID: 7113642340581566781}
   MinPitch: 0.6

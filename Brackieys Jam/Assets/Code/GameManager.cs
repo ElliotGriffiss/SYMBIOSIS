@@ -108,6 +108,10 @@ public class GameManager : MonoBehaviour
             TestArea.SetActive(false);
         }
 
+        Camera.SetCameraPositionImmediate(new Vector3(0, 0, -10));
+        Levels[CurrentLevelIndex].StartLevel(Host, Parasite);
+        Parasite.ResetParasite();
+
         if (CurrentLevelIndex == 3)
         {
             LevelProgressionCanvas.gameObject.SetActive(false);
@@ -127,9 +131,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        Camera.SetCameraPositionImmediate(new Vector3(0, 0, -10));
-        Levels[CurrentLevelIndex].StartLevel(Host, Parasite);
-        Parasite.ResetParasite();
         yield return Camera.RotateCoverOut();
 
         yield return TransitionManager.DropOffHostSequence(Host.transform);
@@ -205,6 +206,11 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         yield return DeathCanvas.DeathAnimationSequence();
 
+        if (CurrentLevelIndex == 3)
+        {
+            Boss.ReturnAllBulletsToThepool();
+        }
+
         BaseHost.OnHostDeath -= HandleHostDeath;
         BaseHost.OnHostLevelUp -= HandleHostLevelledUp;
         Levels[CurrentLevelIndex].LevelCleanUp();
@@ -244,6 +250,7 @@ public class GameManager : MonoBehaviour
         yield return CompletedCanvas.DeathAnimationSequence();
         Time.timeScale = 1f;
 
+        Boss.ReturnAllBulletsToThepool();
         Levels[CurrentLevelIndex].LevelCleanUp();
         CurrentLevelIndex = 0;
 
