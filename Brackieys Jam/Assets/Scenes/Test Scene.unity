@@ -1716,7 +1716,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.7
-  m_Text: "Prepare a new \npetri dish, Jones"
+  m_Text: "PREPARE A NEW \nPETRI DISH, JONES."
 --- !u!222 &45822824
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1840,7 +1840,8 @@ MonoBehaviour:
   GameManager: {fileID: 1086531142}
   CameraTransform: {fileID: 2022764838}
   RespawnChance: 0.5
-  MinDistanceFromCamera: 16
+  MinDistanceSpawnFromCamera: 7
+  MinDistanceRespawnFromCamera: 16
   EnemiePrefabs:
   - EnemyPrefab: {fileID: 5479221873741211015, guid: f74c9241ea0df1f4cac9b5c5fd2601eb, type: 3}
     MaxNumberToSpawn: 7
@@ -2681,18 +2682,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c698cfa6d3cf35a4e9688ae61c516f0e, type: 3}
-    m_FontSize: 28
-    m_FontStyle: 0
+    m_Font: {fileID: 12800000, guid: 14e703cd30af20449baa98bbf70f31e3, type: 3}
+    m_FontSize: 42
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 4
     m_MaxSize: 98
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 0.7
+    m_LineSpacing: 1.18
   m_Text: "Success, professor! \nOur species has proven itself \nviable."
 --- !u!222 &166680001
 CanvasRenderer:
@@ -11168,7 +11169,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Continue
+  m_Text: CONTINUE
 --- !u!222 &501241245
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11792,7 +11793,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Try Again
+  m_Text: TRY AGAIN
 --- !u!222 &532436798
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -44240,6 +44241,7 @@ MonoBehaviour:
   BossDeathSFX: {fileID: 246154632}
   TotalKills: 0
   CurrentLevelIndex: 0
+  MiamiCam: 1
 --- !u!4 &1086531143
 Transform:
   m_ObjectHideFlags: 0
@@ -47827,8 +47829,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c698cfa6d3cf35a4e9688ae61c516f0e, type: 3}
-    m_FontSize: 28
+    m_Font: {fileID: 12800000, guid: 14e703cd30af20449baa98bbf70f31e3, type: 3}
+    m_FontSize: 42
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
@@ -47838,7 +47840,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 0.7
+    m_LineSpacing: 1.18
   m_Text: "Quite right Jones. \nNow to release it into the world\u2026"
 --- !u!222 &1389288107
 CanvasRenderer:
@@ -49188,7 +49190,8 @@ MonoBehaviour:
   GameManager: {fileID: 1086531142}
   CameraTransform: {fileID: 2022764838}
   RespawnChance: 0.5
-  MinDistanceFromCamera: 16
+  MinDistanceSpawnFromCamera: 7
+  MinDistanceRespawnFromCamera: 16
   EnemiePrefabs:
   - EnemyPrefab: {fileID: 3693882554600655209, guid: ece05fe82a1eadc4294703dea2846454, type: 3}
     MaxNumberToSpawn: 9
@@ -55734,7 +55737,8 @@ MonoBehaviour:
   GameManager: {fileID: 1086531142}
   CameraTransform: {fileID: 2022764838}
   RespawnChance: 0.5
-  MinDistanceFromCamera: 16
+  MinDistanceSpawnFromCamera: 7
+  MinDistanceRespawnFromCamera: 16
   EnemiePrefabs:
   - EnemyPrefab: {fileID: 5177657998072642476, guid: 221b42e2c7187fa488f0f942631d207c, type: 3}
     MaxNumberToSpawn: 7
@@ -56851,7 +56855,6 @@ MonoBehaviour:
   CameraOffset: {x: 0, y: 0, z: -10}
   ScreenSpaceModifier: 4
   MaxDistanceFromPlayer: 9
-  MiamiCam: 1
   ShakeCurve:
     serializedVersion: 2
     m_Curve:
@@ -62575,7 +62578,8 @@ MonoBehaviour:
   GameManager: {fileID: 1086531142}
   CameraTransform: {fileID: 2022764838}
   RespawnChance: 0.5
-  MinDistanceFromCamera: 16
+  MinDistanceSpawnFromCamera: 7
+  MinDistanceRespawnFromCamera: 16
   EnemiePrefabs: []
   MapBoundry: {fileID: 1866411540}
   DeathSFX: {fileID: 2076380113}

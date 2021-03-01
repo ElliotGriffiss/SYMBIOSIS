@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour
 
 	[SerializeField] private float ScreenSpaceModifier = 4;
 	[SerializeField] private float MaxDistanceFromPlayer;
-	[SerializeField] private bool MiamiCam = false;
+	private bool MiamiCam = false;
 
 	[Header("CameraShake Curve")]
 	[SerializeField] private AnimationCurve ShakeCurve;
@@ -42,14 +42,16 @@ public class CameraFollow : MonoBehaviour
 		DisplayOverlay.SetActive(false);
 	}
 
-    public void UpdateFollowTarget(Transform target)
+    public void UpdateFollowTarget(Transform target, bool miamiCam)
     {
         FollowTransform = target;
+		MiamiCam = miamiCam;
 	}
 
-	public void SetCameraPositionImmediate(Vector3 position)
+	public void SetCameraPositionImmediate(Vector3 position, bool miamiCam)
 	{
 		transform.position = position;
+		MiamiCam = miamiCam;
 	}
 
 	public void TriggerShakeCamera(float shackDuration, float shakeAmount)
@@ -93,14 +95,6 @@ public class CameraFollow : MonoBehaviour
 				transform.position = smoothedPosition;
 				ShakeAmount = 0;
 			}
-		}
-	}
-
-    public void Update()
-    {
-		if (Input.GetKeyUp(KeyCode.Space))
-		{
-			MiamiCam = !MiamiCam;
 		}
 	}
 

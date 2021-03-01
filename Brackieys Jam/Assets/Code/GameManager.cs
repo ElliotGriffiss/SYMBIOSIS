@@ -50,8 +50,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource BossDeathSFX;
 
     [Header("Debug")]
-    [SerializeField]private int TotalKills;
+    [SerializeField] private int TotalKills;
     [SerializeField] private int CurrentLevelIndex = 0;
+    [SerializeField] private bool MiamiCam = true;
     private BaseHost Host;
     private BaseParsite Parasite;
 
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour
         MusicSource.Play();
 
         CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
-        Camera.UpdateFollowTarget(TestArea.transform);
+        Camera.UpdateFollowTarget(TestArea.transform, false);
         TestArea.SetActive(true);
         LevelProgressionCanvas.gameObject.SetActive(false);
     }
@@ -93,7 +94,7 @@ public class GameManager : MonoBehaviour
         yield return Camera.ShowDisplayOverlay();
         yield return TransitionManager.PickUpHostSequence(Host.transform);
 
-        Camera.UpdateFollowTarget(TransitionFollowPoint.transform);
+        Camera.UpdateFollowTarget(TransitionFollowPoint.transform, false);
 
         yield return Camera.RotateCoverIn();
 
@@ -108,7 +109,7 @@ public class GameManager : MonoBehaviour
             TestArea.SetActive(false);
         }
 
-        Camera.SetCameraPositionImmediate(new Vector3(0, 0, -10));
+        Camera.SetCameraPositionImmediate(new Vector3(0, 0, -10), false);
         Levels[CurrentLevelIndex].StartLevel(Host, Parasite);
         Parasite.ResetParasite();
 
@@ -134,7 +135,7 @@ public class GameManager : MonoBehaviour
         yield return Camera.RotateCoverOut();
 
         yield return TransitionManager.DropOffHostSequence(Host.transform);
-        Camera.UpdateFollowTarget(Host.transform);
+        Camera.UpdateFollowTarget(Host.transform, MiamiCam);
         Host.SetMassRequired(DropsRequiredPerLevel[CurrentLevelIndex]);
         yield return Camera.CloseDisplayOverlay();
         Time.timeScale = 1f;
@@ -219,8 +220,8 @@ public class GameManager : MonoBehaviour
         TestArea.SetActive(true);
         LevelProgressionCanvas.gameObject.SetActive(false);
 
-        Camera.SetCameraPositionImmediate(TestArea.transform.position);
-        Camera.UpdateFollowTarget(TestArea.transform);
+        Camera.SetCameraPositionImmediate(TestArea.transform.position, false);
+        Camera.UpdateFollowTarget(TestArea.transform, false);
 
         CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
 
@@ -255,8 +256,8 @@ public class GameManager : MonoBehaviour
         CurrentLevelIndex = 0;
 
         CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
-        Camera.SetCameraPositionImmediate(TestArea.transform.position);
-        Camera.UpdateFollowTarget(TestArea.transform);
+        Camera.SetCameraPositionImmediate(TestArea.transform.position, false);
+        Camera.UpdateFollowTarget(TestArea.transform, false);
         TestArea.SetActive(true);
         LevelProgressionCanvas.gameObject.SetActive(false);
 

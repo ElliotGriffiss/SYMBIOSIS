@@ -11,7 +11,8 @@ public class EnemyManager : MonoBehaviour
 
     [Header("Respawn Settings")]
     [SerializeField] private float RespawnChance; // use this to control the respawn rate
-    [SerializeField] private float MinDistanceFromCamera; // use this ensure the enemy doesn't spawn to close ot the player
+    [SerializeField] private float MinDistanceSpawnFromCamera;
+    [SerializeField] private float MinDistanceRespawnFromCamera; // use this ensure the enemy doesn't spawn to close ot the player
 
     [Header("Enemy References")]
     [SerializeField] private List<EnemySpawnData> EnemiePrefabs;
@@ -29,7 +30,16 @@ public class EnemyManager : MonoBehaviour
             for (int i = 0; i < enemyData.MaxNumberToSpawn; i++)
             {
                 BaseEnemyController enemy = Instantiate(enemyData.EnemyPrefab);
-                enemy.transform.position = Random.insideUnitCircle * MapBoundry.GetBoundryRadius();
+
+                Vector2 SpawnPoint = CameraTransform.position;
+
+                // Basically ensures an enemy won't spawn too close to the player
+                while (Vector2.Distance(SpawnPoint, CameraTransform.position) < MinDistanceSpawnFromCamera)
+                {
+                    SpawnPoint = Random.insideUnitCircle * MapBoundry.GetBoundryRadius();
+                }
+
+                enemy.transform.position = SpawnPoint;
                 enemy.InitializeEnemy(pool);
                 enemy.OnDeath += HandleEnemyDeath;
                 EnemyPool.Add(enemy);
@@ -54,7 +64,7 @@ public class EnemyManager : MonoBehaviour
             Vector2 SpawnPoint = CameraTransform.position;
 
             // Basically ensures an enemy won't spawn too close to the player
-            while (Vector2.Distance(SpawnPoint, CameraTransform.position) < MinDistanceFromCamera)
+            while (Vector2.Distance(SpawnPoint, CameraTransform.position) < MinDistanceRespawnFromCamera)
             {
                 SpawnPoint = Random.insideUnitCircle * MapBoundry.GetBoundryRadius();
             }
@@ -69,7 +79,6 @@ public class EnemyManager : MonoBehaviour
     {
         for (int i = 0; i < EnemyPool.Count; i++)
         {
-            Debug.Log(i);
             EnemyPool[i].OnDeath -= HandleEnemyDeath;
             EnemyPool[i].CleanUpEnemy();
             Destroy(EnemyPool[i].gameObject);
