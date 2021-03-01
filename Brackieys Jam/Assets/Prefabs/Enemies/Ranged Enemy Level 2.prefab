@@ -60,6 +60,8 @@ MonoBehaviour:
   StateDuration: 2
   NumberOfDrops: 3
   HealthDropColor: {r: 0.7176471, g: 0.96862745, b: 0.42745098, a: 1}
+  DropRadius: 0.2
+  DropForce: 0.8
   FlashTime: 0.1
   TakeDamageSFX: {fileID: 7896015784995532588}
   MinPitch: 0.9
@@ -145,7 +147,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1484825267
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 5
   m_Sprite: {fileID: 128751308666959105, guid: e23af8726ca40fe43a524846fbfee5b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

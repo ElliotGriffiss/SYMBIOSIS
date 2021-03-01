@@ -19,6 +19,8 @@ public class BaseEnemyController : MonoBehaviour
     [Header("HealthDrops")]
     [SerializeField] protected int NumberOfDrops = 3;
     [SerializeField] protected Color HealthDropColor;
+    [SerializeField] protected float DropRadius = 0.1f;
+    [SerializeField] protected float DropForce = 0.2f;
     [Header("Flash Effects")]
     [SerializeField] protected float FlashTime;
     [Header("Sound Effects")]
@@ -144,9 +146,15 @@ public class BaseEnemyController : MonoBehaviour
                 HealingComponent drop = DropPool.GetDropFromThepool();
                 drop.SpriteRenderer.color = HealthDropColor;
 
-                Vector2 dropPosition = transform.position;
-                drop.transform.position = dropPosition + UnityEngine.Random.insideUnitCircle;
+                Vector2 position = transform.position;
+                Vector2 dropPosition = position + UnityEngine.Random.insideUnitCircle * DropRadius;
+                Vector2 dropDirection = dropPosition - position;
+
                 drop.gameObject.SetActive(true);
+                drop.Rigidbody2D.position = dropPosition;
+                drop.Rigidbody2D.WakeUp();
+                drop.Rigidbody2D.rotation = (Mathf.Atan2(dropDirection.y, dropDirection.x) * Mathf.Rad2Deg) - 90;
+                drop.Rigidbody2D.AddForce(dropDirection * DropForce, ForceMode2D.Impulse);
             }
         }
 

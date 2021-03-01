@@ -421,11 +421,10 @@ public class BossEnemyController : MonoBehaviour
 
                 Vector2 position = transform.position;
                 Vector2 dropPosition = position + (UnityEngine.Random.insideUnitCircle * DropRadius);
-
                 Vector2 dropDirection = dropPosition - position;
 
                 drop.gameObject.SetActive(true);
-                drop.transform.position = dropPosition;
+                drop.Rigidbody2D.position = dropPosition;
                 drop.Rigidbody2D.rotation = (Mathf.Atan2(dropDirection.y, dropDirection.x) * Mathf.Rad2Deg) - 90;
                 drop.Rigidbody2D.AddForce(dropDirection * DropForce, ForceMode2D.Impulse);
 

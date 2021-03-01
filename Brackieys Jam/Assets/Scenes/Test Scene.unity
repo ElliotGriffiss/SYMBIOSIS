@@ -53805,7 +53805,7 @@ MonoBehaviour:
   PlayerDeathSFX: {fileID: 809739278}
   BossDeathSFX: {fileID: 246154632}
   TotalKills: 0
-  CurrentLevelIndex: 3
+  CurrentLevelIndex: 0
 --- !u!4 &1086531143
 Transform:
   m_ObjectHideFlags: 0
