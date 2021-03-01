@@ -50355,15 +50355,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2401153999425009115, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2401153999425009115, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 0.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2401153999425009115, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].inSlope
-      value: 2.4880004
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2401153999425009115, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inSlope
@@ -50375,7 +50375,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2401153999425009115, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outSlope
-      value: 2.4880004
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2401153999425009115, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inWeight
@@ -50387,7 +50387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2401153999425009115, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outWeight
-      value: 0.10289388
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2401153999425009115, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outWeight
@@ -50408,6 +50408,10 @@ PrefabInstance:
     - target: {fileID: 4755842177631048739, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: m_Name
       value: Fish Guy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755842177631048739, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7838787099350065906, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
       propertyPath: m_LocalScale.x
@@ -50465,8 +50469,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 263693916209705518, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5701c0eb38e870459f559628e6400cd, type: 3}
 --- !u!198 &1624181560 stripped
 ParticleSystem:

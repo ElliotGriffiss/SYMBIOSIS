@@ -60,7 +60,7 @@ public class EnemyManager : MonoBehaviour
             }
 
             enemyData.RespawnEnemy();
-            enemyData.transform.position = Random.insideUnitCircle * MapBoundry.GetBoundryRadius();
+            enemyData.transform.position = SpawnPoint;
             enemyData.gameObject.SetActive(true);
         }
     }

@@ -103,6 +103,10 @@ public class MachinegunParasite : BaseParsite
                 Reloadingbar.fillAmount = (float)BulletsInClip / ClipSize;
             }
         }
+        else if (!Input.GetMouseButton(0))
+        {
+            animator.SetBool("IsShooting", false);
+        }
 
         foreach (DamageComponent pooledBullet in BulletPool)
         {
