@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+	[Header("Camera Settings")]
+	[SerializeField] private Camera Camera;
 	[SerializeField] private float FollowSpeed;
 	[SerializeField] private Vector3 CameraOffset;
+
+	[SerializeField] private float ScreenSpaceModifier = 4;
+	[SerializeField] private float MaxDistanceFromPlayer;
+	[SerializeField] private bool MiamiCam = false;
 
 	[Header("CameraShake Curve")]
 	[SerializeField] private AnimationCurve ShakeCurve;
@@ -39,7 +45,7 @@ public class CameraFollow : MonoBehaviour
     public void UpdateFollowTarget(Transform target)
     {
         FollowTransform = target;
-    }
+	}
 
 	public void SetCameraPositionImmediate(Vector3 position)
 	{
@@ -64,7 +70,18 @@ public class CameraFollow : MonoBehaviour
 	{
 		if (FollowTransform != null)
 		{
-			Vector3 smoothedPosition = Vector3.Lerp(transform.position, FollowTransform.position + CameraOffset, FollowSpeed);
+			Vector3 Target = CameraOffset;
+
+			if (MiamiCam)
+			{
+				Target += Vector3.Lerp(transform.position, Vector3.ClampMagnitude((Camera.ScreenToWorldPoint(Input.mousePosition) - FollowTransform.position) * ScreenSpaceModifier, MaxDistanceFromPlayer) + FollowTransform.position, FollowSpeed);
+			}
+			else
+			{
+				Target += FollowTransform.position;
+			}
+
+			Vector3 smoothedPosition = Vector3.Lerp(transform.position, Target, FollowSpeed);
 
 			if (CurrentShakeDuration > 0)
 			{
@@ -79,7 +96,15 @@ public class CameraFollow : MonoBehaviour
 		}
 	}
 
-	public IEnumerator ShowDisplayOverlay()
+    public void Update()
+    {
+		if (Input.GetKeyUp(KeyCode.Space))
+		{
+			MiamiCam = !MiamiCam;
+		}
+	}
+
+    public IEnumerator ShowDisplayOverlay()
 	{
 		DisplayOverlay.SetActive(true);
 

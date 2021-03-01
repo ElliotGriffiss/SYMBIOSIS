@@ -2097,6 +2097,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101112282}
   m_CullTransparentMesh: 1
+--- !u!1 &131988777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 131988778}
+  m_Layer: 6
+  m_Name: Camera Follow Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &131988778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131988777}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1230121657}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &134089476
 GameObject:
   m_ObjectHideFlags: 0
@@ -36525,7 +36555,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1592048019651714150, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1592048019651714150, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: m_SortingLayerID
@@ -36627,6 +36657,10 @@ PrefabInstance:
       propertyPath: baseStrafeSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
+      propertyPath: CameraFollowPoint
+      value: 
+      objectReference: {fileID: 131988778}
     - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: HealthDropColor.a
       value: 1
@@ -56812,8 +56846,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5581cb3cef7834581940d42ade56e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Camera: {fileID: 2022764837}
   FollowSpeed: 0.5
   CameraOffset: {x: 0, y: 0, z: -10}
+  ScreenSpaceModifier: 4
+  MaxDistanceFromPlayer: 9
+  MiamiCam: 1
   ShakeCurve:
     serializedVersion: 2
     m_Curve:
@@ -62139,7 +62177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8509618235706545055, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8509618235706545055, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: m_SortingLayerID
@@ -62335,7 +62373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9033345996561241367, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9033345996561241451, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: m_RootOrder
