@@ -425,6 +425,7 @@ public class BossEnemyController : MonoBehaviour
 
                 drop.gameObject.SetActive(true);
                 drop.Rigidbody2D.position = dropPosition;
+                drop.Rigidbody2D.WakeUp();
                 drop.Rigidbody2D.rotation = (Mathf.Atan2(dropDirection.y, dropDirection.x) * Mathf.Rad2Deg) - 90;
                 drop.Rigidbody2D.AddForce(dropDirection * DropForce, ForceMode2D.Impulse);
 

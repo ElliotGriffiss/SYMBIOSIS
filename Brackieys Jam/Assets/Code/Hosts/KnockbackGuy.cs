@@ -6,7 +6,11 @@ using UnityEngine.EventSystems;
 public class KnockbackGuy : BaseHost
 {
     [Header("Knockback Guy Settings")]
-    [SerializeField] private GameObject ShockWave;
+    [SerializeField] private GameObject ShockWaveParent;
+    [SerializeField] private Transform ShockWaveCollider;
+    [SerializeField] private ParticleSystem ShockwaveParticleSystem;
+
+    [SerializeField] private float ShockWaveIframesDuration = 0.5f;
     [SerializeField] private float BaseShockWaveHangTime = 1f;
     [SerializeField] private Vector3 ShockWaveLocalPosition;
     [SerializeField] private Vector3 StartShockWaveSize;
@@ -71,17 +75,25 @@ public class KnockbackGuy : BaseHost
         if (Input.GetAxis("Fire2") > 0 && CurrentCooldown >= BaseAbilityCooldown)
         {
             AbilityIsActive = true;
-            ShockWave.transform.localPosition = ShockWaveLocalPosition;
+            Rigidbody.velocity = Vector2.zero;
+            ActivateIframes(ShockWaveIframesDuration);
+            ShockwaveParticleSystem.Play();
+            ShockWaveParent.transform.localPosition = ShockWaveLocalPosition;
             ToggleActiveAbilityGraphics(AbilityIsActive);
             CurrentDuration = CurrentAbilityDuration;
             CurrentCooldown = 0;
             HangTimeDuration = CurrentHangTime;
+
+            // Clean this up later
+            System1.Stop();
+            System2.Stop();
+            System3.Stop();
         }
 
         if (AbilityIsActive)
         {
             CurrentDuration -= Time.deltaTime;
-            ShockWave.transform.localScale = Vector3.Lerp(EndShockWaveSize, StartShockWaveSize, CurrentDuration / CurrentAbilityDuration);
+            ShockWaveCollider.localScale = Vector3.Lerp(EndShockWaveSize, StartShockWaveSize, CurrentDuration / CurrentAbilityDuration);
             UpdateAbilityBar();
 
             if (CurrentDuration < 0)
@@ -104,6 +116,7 @@ public class KnockbackGuy : BaseHost
             {
                 CurrentCooldown += Time.deltaTime;
                 UpdateAbilityBar();
+                ShockwaveParticleSystem.Stop();
             }
         }
 
@@ -113,12 +126,16 @@ public class KnockbackGuy : BaseHost
 
     public override void ToggleActiveAbilityGraphics(bool active)
     {
-        ShockWave.SetActive(active);
-        ShockWave.transform.SetParent((active) ? null: transform, true);
+        ShockWaveParent.SetActive(active);
+        ShockWaveParent.transform.SetParent((active) ? null: transform, true);
 
         if (active)
         {
             AbilitySFX.Play();
+        }
+        else
+        {
+            ShockwaveParticleSystem.Stop();
         }
     }
 
@@ -138,6 +155,7 @@ public class KnockbackGuy : BaseHost
         //Rigidbody.velocity = Vector2.zero;
         MovementSequence = null;
     }
+
 
     protected override void UpdateAbilityBar()
     {
