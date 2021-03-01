@@ -13,8 +13,8 @@ public class TentacleController : BaseHost
     [SerializeField] protected float waitTime;
     [SerializeField] protected float moveTime;
 
-    protected Transform[] GameObjects;
-    protected SpriteRenderer[] Sprites;
+    protected Transform[] ChildObjects = new Transform[0];
+    protected SpriteRenderer[] ChildSprites = new SpriteRenderer[0];
     private IEnumerator MovementSequence;
 
     public override void InitializeHost(int massRequiredThisLevel, bool IsTestArea = false)
@@ -40,9 +40,7 @@ public class TentacleController : BaseHost
             CurrentCooldown = 0;
         }
 
-        GameObjects = GetComponentsInChildren<Transform>();
-        Sprites = GetComponentsInChildren<SpriteRenderer>();
-
+        PopulateChildrenArrays();
         animator.SetBool("isMoving", true);
         ToggleActiveAbilityGraphics(AbilityIsActive);
 
@@ -51,6 +49,19 @@ public class TentacleController : BaseHost
         UpdateLevelProgressCanvas();
     }
 
+    public override void ChangeParasite(BaseParsite parasite)
+    {
+        ToggleActiveAbilityGraphics(false);
+        base.ChangeParasite(parasite);
+        PopulateChildrenArrays();
+        ToggleActiveAbilityGraphics(AbilityIsActive);
+    }
+
+    private void PopulateChildrenArrays()
+    {
+        ChildObjects = GetComponentsInChildren<Transform>();
+        ChildSprites = GetComponentsInChildren<SpriteRenderer>();
+    }
 
     // Update is called once per frame
     private void Update()
@@ -107,14 +118,14 @@ public class TentacleController : BaseHost
 
     public override void ToggleActiveAbilityGraphics(bool active)
     {
-        foreach (Transform obj in GameObjects)
+        foreach (Transform obj in ChildObjects)
         {
             obj.gameObject.layer = (active) ? 8 : 6;
         }
 
-        for (int i = 0; i < Sprites.Length; i++)
+        for (int i = 0; i < ChildSprites.Length; i++)
         {
-            Sprites[i].color = (active) ? InvisibleColor : VisibleColor;
+            ChildSprites[i].color = (active) ? InvisibleColor : VisibleColor;
         }
 
         HostSprite.color = (active) ? InvisibleColor : VisibleColor;

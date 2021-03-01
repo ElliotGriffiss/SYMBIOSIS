@@ -60,8 +60,8 @@ public class SymbioteCreationGUI : MonoBehaviour
     {
         DectivateAllParasites();
         CurrentlySelectedParaste = index;
-        Hosts[CurrentlySelectedHost].ChangeParasite(Parasites[CurrentlySelectedParaste]);
         Parasites[CurrentlySelectedParaste].gameObject.SetActive(true);
+        Hosts[CurrentlySelectedHost].ChangeParasite(Parasites[CurrentlySelectedParaste]);
 
         if (IgnoreAudioCue > 0)
         {
