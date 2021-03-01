@@ -8,7 +8,7 @@ using System;
 public class BaseEnemyController : MonoBehaviour
 {
     [Header("Enemy Data")]
-    [SerializeField] protected EnemyTypes Type;
+    [SerializeField] public EnemyTypes Type;
     [SerializeField] protected SpriteRenderer Sprite;
     [SerializeField] protected Rigidbody2D MyRigidBody;
     [Space]
@@ -28,12 +28,14 @@ public class BaseEnemyController : MonoBehaviour
     [SerializeField] protected float MinPitch = 0.9f;
     [SerializeField] protected float MaxPitch = 1.1f;
 
-    public event Action<EnemyTypes> OnDeath = delegate { };
+    public event Action<BaseEnemyController> OnDeath = delegate { };
+    protected HealthDropObjectPool DropPool;
+
     protected Vector2 movementDirection;
     protected float currentStateTime = float.PositiveInfinity; // ensures a new state is always chosen
-    protected HealthDropObjectPool DropPool;
-    protected bool HasDroppedLoad;
     protected float CurrentFlashTime = float.MaxValue;
+    protected float CurrentHealth;
+    protected bool HasDroppedLoad;
     protected bool KillAfterFlash = false;
 
 
@@ -41,7 +43,13 @@ public class BaseEnemyController : MonoBehaviour
     {
         DropPool = dropPool;
         HasDroppedLoad = false;
+        CurrentHealth = Health;
+    }
 
+    public void RespawnEnemy()
+    {
+        HasDroppedLoad = false;
+        CurrentHealth = Health;
     }
 
     protected virtual void FixedUpdate()
@@ -105,13 +113,13 @@ public class BaseEnemyController : MonoBehaviour
             MyRigidBody.angularVelocity = 0f;
             MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
-            Health -= damage.Damage;
+            CurrentHealth -= damage.Damage;
             CurrentFlashTime = 0;
 
             TakeDamageSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             TakeDamageSFX.Play();
 
-            if (Health < 1)
+            if (CurrentHealth < 1)
             {
                 KillAfterFlash = true;
             }
@@ -124,13 +132,13 @@ public class BaseEnemyController : MonoBehaviour
             MyRigidBody.angularVelocity = 0f;
             MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
-            Health -= damage.Damage;
+            CurrentHealth -= damage.Damage;
             CurrentFlashTime = 0;
 
             TakeDamageSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             TakeDamageSFX.Play();
 
-            if (Health < 1)
+            if (CurrentHealth < 1)
             {
                 KillAfterFlash = true;
             }
@@ -159,8 +167,8 @@ public class BaseEnemyController : MonoBehaviour
         }
 
         HasDroppedLoad = true;
-        OnDeath.Invoke(Type);
         gameObject.SetActive(false);
+        OnDeath.Invoke(this);
     }
 
     public virtual void CleanUpEnemy()

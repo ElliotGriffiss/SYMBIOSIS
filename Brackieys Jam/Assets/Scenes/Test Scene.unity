@@ -6642,6 +6642,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1086531142}
+  CameraTransform: {fileID: 2022764838}
+  RespawnChance: 0.5
+  MinDistanceFromCamera: 8
   EnemiePrefabs:
   - EnemyPrefab: {fileID: 5479221873741211015, guid: f74c9241ea0df1f4cac9b5c5fd2601eb, type: 3}
     MaxNumberToSpawn: 7
@@ -59050,6 +59053,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1086531142}
+  CameraTransform: {fileID: 2022764838}
+  RespawnChance: 0.5
+  MinDistanceFromCamera: 8
   EnemiePrefabs:
   - EnemyPrefab: {fileID: 3693882554600655209, guid: ece05fe82a1eadc4294703dea2846454, type: 3}
     MaxNumberToSpawn: 9
@@ -60700,13 +60706,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 718497160, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
+      propertyPath: m_Radius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 272449633290907689, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 91409b71336a0c64aadbef679dfd6072, type: 3}
     - target: {fileID: 272449633290907689, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 272449633290907689, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: m_SortingLayerID
@@ -60722,7 +60732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4456593019632496123, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7836198624685353731, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: m_RootOrder
@@ -60850,7 +60860,7 @@ PrefabInstance:
       objectReference: {fileID: 205042422}
     - target: {fileID: 8041541149747995372, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: CollectionForce
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8041541149747995372, guid: 47a44f5d08573f242aaf0930d90f7d07, type: 3}
       propertyPath: HealthDropColor.a
@@ -70516,6 +70526,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1086531142}
+  CameraTransform: {fileID: 2022764838}
+  RespawnChance: 0.5
+  MinDistanceFromCamera: 8
   EnemiePrefabs:
   - EnemyPrefab: {fileID: 5177657998072642476, guid: 221b42e2c7187fa488f0f942631d207c, type: 3}
     MaxNumberToSpawn: 7
@@ -77350,6 +77363,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1086531142}
+  CameraTransform: {fileID: 2022764838}
+  RespawnChance: 0.5
+  MinDistanceFromCamera: 8
   EnemiePrefabs: []
   MapBoundry: {fileID: 1866411540}
   DeathSFX: {fileID: 2076380113}

@@ -5,8 +5,13 @@ using GameData;
 
 public class EnemyManager : MonoBehaviour
 {
-    [Header("Game Manager")]
+    [Header("Scene References")]
     [SerializeField] private GameManager GameManager;
+    [SerializeField] private Transform CameraTransform;
+
+    [Header("Respawn Settings")]
+    [SerializeField] private float RespawnChance; // use this to control the respawn rate
+    [SerializeField] private float MinDistanceFromCamera; // use this ensure the enemy doesn't spawn to close ot the player
 
     [Header("Enemy References")]
     [SerializeField] private List<EnemySpawnData> EnemiePrefabs;
@@ -37,11 +42,27 @@ public class EnemyManager : MonoBehaviour
         return EnemiesKilled;
     }
 
-    private void HandleEnemyDeath(EnemyTypes enemyType)
+    private void HandleEnemyDeath(BaseEnemyController enemyData)
     {
         DeathSFX.Play();
         GameManager.CheckforParasiteUnlocked();
-        EnemiesKilled[(int)enemyType]++;
+        EnemiesKilled[(int)enemyData.Type]++;
+
+        if (Random.value > RespawnChance)
+        {
+            // please don't copy this, i'm not proud of it.
+            Vector2 SpawnPoint = CameraTransform.position;
+
+            // Basically ensures an enemy won't spawn too close to the player
+            while (Vector2.Distance(SpawnPoint, CameraTransform.position) < MinDistanceFromCamera)
+            {
+                SpawnPoint = Random.insideUnitCircle * MapBoundry.GetBoundryRadius();
+            }
+
+            enemyData.RespawnEnemy();
+            enemyData.transform.position = Random.insideUnitCircle * MapBoundry.GetBoundryRadius();
+            enemyData.gameObject.SetActive(true);
+        }
     }
 
     public void DespawnAllEnemies()
@@ -56,23 +77,5 @@ public class EnemyManager : MonoBehaviour
 
         EnemyPool.Clear();
         EnemiesKilled = new int[4] { 0, 0, 0, 0 };
-    }
-
-    private BaseEnemyController GetEnemyFromThePool(EnemySpawnData data)
-    {
-        foreach (BaseEnemyController enemy in EnemyPool)
-        {
-            if (!enemy.gameObject.activeInHierarchy)
-            {
-                return enemy;
-            }
-        }
-
-        // Creates a new enemy if one cannot be found in the pool
-        BaseEnemyController pooledEnemy = Instantiate(data.EnemyPrefab);
-        pooledEnemy.gameObject.SetActive(false);
-
-        EnemyPool.Add(pooledEnemy);
-        return pooledEnemy;
     }
 }
