@@ -2515,7 +2515,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentObject: {fileID: 1665846802}
   Background: {fileID: 193690392}
-  AnimationTime: 1
+  OpenTime: 1
+  CloseTime: 0.5
   PanelAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -2542,8 +2543,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   OffSceenPosition: {fileID: 1764212772}
   OnSceenPosition: {fileID: 322467861}
-  BackGroundWhite: {r: 1, g: 1, b: 1, a: 0}
-  BackGroundGreyedOut: {r: 0, g: 0, b: 0, a: 0.6392157}
+  BackGroundWhite: {r: 0, g: 0, b: 0, a: 0}
+  BackGroundGreyedOut: {r: 0, g: 0, b: 0, a: 1}
   ButtonSFX: {fileID: 152144354}
 --- !u!1 &161144861
 GameObject:
@@ -3511,12 +3512,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 250395236}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 5.26, z: -13.305288}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.05, y: 5.26, z: -3.3052883}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_Father: {fileID: 2022764838}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &263960335
 GameObject:
@@ -35016,12 +35017,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772547224}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.62, y: 0.58, z: -13.305288}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11.62, y: 0.58, z: -3.3052883}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_Father: {fileID: 2022764838}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &780292268
 GameObject:
@@ -44240,7 +44241,7 @@ MonoBehaviour:
   PlayerDeathSFX: {fileID: 809739278}
   BossDeathSFX: {fileID: 246154632}
   TotalKills: 0
-  CurrentLevelIndex: 0
+  CurrentLevelIndex: 3
   MiamiCam: 1
 --- !u!4 &1086531143
 Transform:
@@ -47073,15 +47074,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360294336}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.84, y: -0.27, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.84, y: -0.27, z: 10}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 1471446889}
   - {fileID: 1648646896}
   - {fileID: 1550273219}
-  m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_Father: {fileID: 2022764838}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1360294340
 AudioSource:
@@ -51128,7 +51129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentObject: {fileID: 137934608}
   Background: {fileID: 1006767302}
-  AnimationTime: 1
+  OpenTime: 1
+  CloseTime: 1
   PanelAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -56835,6 +56837,9 @@ Transform:
   m_Children:
   - {fileID: 42894417}
   - {fileID: 1874501723}
+  - {fileID: 1360294339}
+  - {fileID: 772547225}
+  - {fileID: 250395237}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -56990,7 +56995,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2028199713
 GameObject:
@@ -62734,7 +62739,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2107336996
 GameObject:
@@ -65682,8 +65687,8 @@ MonoBehaviour:
   Sprite: {fileID: 7113642339625001699}
   MyRigidBody: {fileID: 7113642340581566772}
   Health: 120
-  MovementSpeed: 6
-  RotationSpeed: 25
+  MovementSpeed: 70
+  RotationSpeed: 60
   StateDuration: 2
   SubBosses:
   - {fileID: 1854446631323331292}
@@ -65699,7 +65704,7 @@ MonoBehaviour:
   - {fileID: 7113642339113644506}
   SpawnPoint: {fileID: 1510213060}
   BossStartingTravelPoint: {fileID: 319754476}
-  EntranceSpeed: 1.3
+  EntranceSpeed: 2
   BulletPrefab: {fileID: 6353532974288208186, guid: 5d93f0b9be4a9d445941fe6c13c625d3, type: 3}
   BulletOrigins:
   - {fileID: 7113642339063178511}

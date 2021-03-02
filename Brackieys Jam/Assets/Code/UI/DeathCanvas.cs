@@ -10,7 +10,8 @@ public class DeathCanvas : MonoBehaviour
     [SerializeField] private Image Background;
 
     [Header("Animation Settings")]
-    [SerializeField] private float AnimationTime = 0.4f;
+    [SerializeField] private float OpenTime = 1f;
+    [SerializeField] private float CloseTime = 0.5f;
     [SerializeField] private AnimationCurve PanelAnimationCurve;
     [SerializeField] private RectTransform OffSceenPosition;
     [SerializeField] private RectTransform OnSceenPosition;
@@ -42,10 +43,10 @@ public class DeathCanvas : MonoBehaviour
         yield return waitForFrameEnd;
         float Timer = 0;
 
-        while (Timer < AnimationTime)
+        while (Timer < OpenTime)
         {
-            ParentObject.transform.position = Vector2.LerpUnclamped(OffSceenPosition.position, OnSceenPosition.position, PanelAnimationCurve.Evaluate(Timer / AnimationTime));
-            Background.color = Color.Lerp(BackGroundWhite, BackGroundGreyedOut, PanelAnimationCurve.Evaluate(Timer / AnimationTime));
+            ParentObject.transform.position = Vector2.LerpUnclamped(OffSceenPosition.position, OnSceenPosition.position, PanelAnimationCurve.Evaluate(Timer / OpenTime));
+            Background.color = Color.Lerp(BackGroundWhite, BackGroundGreyedOut, PanelAnimationCurve.Evaluate(Timer / OpenTime));
             yield return waitForFrameEnd;
             Timer += Time.unscaledDeltaTime;
         }
@@ -58,12 +59,17 @@ public class DeathCanvas : MonoBehaviour
             yield return waitForFrameEnd;
         }
 
-        Timer = AnimationTime;
+        StartCoroutine(CloseGUI());
+    }
+
+    private IEnumerator CloseGUI()
+    {
+        float Timer = CloseTime;
 
         while (Timer > 0)
         {
-            ParentObject.transform.position = Vector2.LerpUnclamped(OffSceenPosition.position, OnSceenPosition.position, PanelAnimationCurve.Evaluate(Timer / AnimationTime));
-            Background.color = Color.Lerp(BackGroundWhite, BackGroundGreyedOut, PanelAnimationCurve.Evaluate(Timer / AnimationTime));
+            ParentObject.transform.position = Vector2.LerpUnclamped(OffSceenPosition.position, OnSceenPosition.position, PanelAnimationCurve.Evaluate(Timer / CloseTime));
+            Background.color = Color.Lerp(BackGroundWhite, BackGroundGreyedOut, PanelAnimationCurve.Evaluate(Timer / CloseTime));
             yield return waitForFrameEnd;
             Timer -= Time.deltaTime;
         }

@@ -10,7 +10,8 @@ public class InvertedCircleCollider : MonoBehaviour
 
     public float GetBoundryRadius()
     {
-        return transform.lossyScale.x * Radius; // This will only work if the height and width of the object are the same
+        return (transform.lossyScale.x * Radius)  - 2; // This will only work if the height and width of the object are the same, 
+        //-2 to ensure nothing spawns ontop of a collider
     }
 
     private void Start()

@@ -204,6 +204,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator HostDeathSequence()
     {
+        Camera.UpdateFollowTarget(Host.transform, false);
         yield return new WaitForSeconds(1f);
         yield return DeathCanvas.DeathAnimationSequence();
 
@@ -248,6 +249,7 @@ public class GameManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(3f);
+        Camera.UpdateFollowTarget(Host.transform, false);
         yield return CompletedCanvas.DeathAnimationSequence();
         Time.timeScale = 1f;
 

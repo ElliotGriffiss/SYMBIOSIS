@@ -124,7 +124,7 @@ public class BossEnemyController : MonoBehaviour
         {
             if (currentStateTime >= StateDuration)
             {
-                ChooseNewState();
+                SetupNewState();
             }
             else
             {
@@ -175,7 +175,7 @@ public class BossEnemyController : MonoBehaviour
     private void HandleMoveBoss()
     {
         UpdateSubBosses(true);
-        MyRigidBody.AddForce(movementDirection * CurrentSpeed);
+        MyRigidBody.AddForce(movementDirection.normalized * CurrentSpeed);
     }
 
     public void Update()
@@ -202,47 +202,70 @@ public class BossEnemyController : MonoBehaviour
         }
     }
 
-    protected void ChooseNewState()
+    protected void SetupNewState()
     {
-        int range = UnityEngine.Random.Range(100, 0);
-
         if (attacker != null)
         {
-            if (range > 75)
-            {
-                CurrentState = BossStates.Moving;
-                UpdateSubBosses(true);
+            // Ensures the boss cannot pick the same state in a row
+            BossStates newState = CurrentState;
 
-                if (attacker.position != null)
-                {
+            while (newState == CurrentState)
+            {
+                newState = GetRandomState();
+            }
+
+            CurrentState = newState;
+
+            switch (CurrentState)
+            {
+                case BossStates.Rotating:
+                    UpdateSubBosses(true);
+                    CurrentState = BossStates.Rotating;
+                    RotionDirection = Random.value > 0.5f;
+                    break;
+                case BossStates.Moving:
+                    UpdateSubBosses(true);
                     CurrentSpeed = MovementSpeed;
                     movementDirection = attacker.position - transform.position;
-                }
-            }
-            else if (range > 60)
-            {
-                CurrentState = BossStates.Special_Attack_1;
-                UpdateSubBosses(false);
-            }
-            else if (range > 45)
-            {
-                CurrentState = BossStates.Special_Attack_2;
-                UpdateSubBosses(false);
-            }
-            else if (range > 20)
-            {
-                CurrentState = BossStates.Special_Attack_3;
-                UpdateSubBosses(false);
-            }
-            else if (range > 0)
-            {
-                UpdateSubBosses(true);
-                CurrentState = BossStates.Rotating;
-                RotionDirection = Random.value > 0.5f;
+                    break;
+                case BossStates.Special_Attack_1:
+                case BossStates.Special_Attack_2:
+                case BossStates.Special_Attack_3:
+                    UpdateSubBosses(false);
+                    break;
             }
         }
 
         currentStateTime = 0;
+    }
+
+    private BossStates GetRandomState()
+    {
+        int range = UnityEngine.Random.Range(100, 0);
+        BossStates state = CurrentState;
+
+        if (range > 75)
+        {
+            state = BossStates.Moving;
+        }
+        else if (range > 55)
+        {
+            state = BossStates.Special_Attack_1;
+        }
+        else if (range > 35)
+        {
+            state = BossStates.Special_Attack_2;
+        }
+        else if (range > 15)
+        {
+            state = BossStates.Special_Attack_3;
+        }
+        else if (range > 0)
+        {
+            state = BossStates.Rotating;
+        }
+
+        return state;
     }
 
     private DamageComponent GetBulletFromThePool()
