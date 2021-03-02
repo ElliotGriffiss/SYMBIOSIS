@@ -62746,7 +62746,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 1.2
-      minScalar: 0.8
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -62850,8 +62850,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 0
-      minColor: {r: 1, g: 1, b: 1, a: 1}
+      minMaxState: 2
+      minColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
@@ -90150,8 +90150,8 @@ MonoBehaviour:
   DropRadius: 0.5
   DropForce: 20
   ExplosionParticleManager: {fileID: 1459220677}
-  NumberOfExplosions: 5
-  ExplosionRadius: 2
+  NumberOfExplosions: 3
+  ExplosionRadius: 1.5
 --- !u!4 &7113642340581566778
 Transform:
   m_ObjectHideFlags: 0
