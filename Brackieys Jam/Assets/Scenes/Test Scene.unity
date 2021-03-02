@@ -36685,11 +36685,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: BaseAbilityCooldown
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: BaseAbilityDuration
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6932885408933277843, guid: 3e7193b1d1e515a43994a7a6d31a6c9f, type: 3}
       propertyPath: AbilityActiveScale.x
@@ -45953,7 +45953,7 @@ MonoBehaviour:
   BulletSpeed: 10
   ReloadTime: 1
   Range: 5
-  ClipSize: 6
+  ClipSize: 3
   Camera: {fileID: 2022764839}
   ShakeDuration: 0.1
   ShakeAmount: 0.8
@@ -62357,7 +62357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: BaseAbilityCooldown
-      value: 3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 9033345996561241366, guid: 977895b107f979349a2ef12d6a576f65, type: 3}
       propertyPath: BaseAbilityDuration
