@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class SubBoss : MonoBehaviour
 {
-    [SerializeField] protected float Health = 5;
+    [Header("Scene References")]
     [SerializeField] private Animator Animator;
     [SerializeField] private SpriteRenderer Sprite;
+    [SerializeField] private ExplosionParticleManager ExplosionManager;
+    [Header("Settings")]
+    [SerializeField] protected float Health = 5;
     [SerializeField] private string AnimatorParameter = "IsMoving";
     [Header("Flash Effects")]
     [SerializeField] protected float FlashTime = 0.1f;
@@ -81,6 +84,7 @@ public class SubBoss : MonoBehaviour
     protected void KillSelf()
     {
         SfxPlayer.PlaySFX();
+        ExplosionManager.PlayExplosionParticle(transform.position);
         gameObject.SetActive(false);
     }
 }

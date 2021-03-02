@@ -240,6 +240,7 @@ public class GameManager : MonoBehaviour
     {
         yield return null;
         float timer = 0;
+        MusicSource.Stop();
 
         while (timer < SlowDownDuration)
         {
@@ -249,6 +250,8 @@ public class GameManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(3f);
+        MusicSource.clip = MenuMusic;
+        MusicSource.Play();
         Camera.UpdateFollowTarget(Host.transform, false);
         yield return CompletedCanvas.DeathAnimationSequence();
         Time.timeScale = 1f;
@@ -262,8 +265,5 @@ public class GameManager : MonoBehaviour
         Camera.UpdateFollowTarget(TestArea.transform, false);
         TestArea.SetActive(true);
         LevelProgressionCanvas.gameObject.SetActive(false);
-
-        MusicSource.clip = MenuMusic;
-        MusicSource.Play();
     }
 }

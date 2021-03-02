@@ -23,7 +23,7 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] private GameObject HealthBarParent;
     [SerializeField] private Image HealthBar;
 
-    [Header("Enemy Data")]
+    [Header("Boss Data")]
     [SerializeField] protected SpriteRenderer Sprite;
     [SerializeField] protected Rigidbody2D MyRigidBody;
     [Space]
@@ -66,12 +66,16 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] protected float MinPitch = 1;
     [SerializeField] protected float MaxPitch = 1;
 
-    [Header("HealthDrops")]
+    [Header("HealthDrops & Death")]
     [SerializeField] protected HealthDropObjectPool DropPool;
     [SerializeField] protected int NumberOfDrops = 30;
     [SerializeField] protected Color[] HealthDropColors;
     [SerializeField] protected float DropRadius = 4;
     [SerializeField] protected float DropForce;
+    [Space]
+    [SerializeField] protected ExplosionParticleManager ExplosionParticleManager;
+    [SerializeField] protected int NumberOfExplosions = 5;
+    [SerializeField] protected float ExplosionRadius = 4;
 
     private IEnumerator BossController;
 
@@ -306,7 +310,7 @@ public class BossEnemyController : MonoBehaviour
                 bullet.transform.position = trans.position;
                 bullet.transform.rotation = Quaternion.Euler(direction);
                 bullet.gameObject.SetActive(true);
-                bullet.Rigidbody.velocity = direction.normalized * BulletSpeed1;
+                bullet.Rigidbody.velocity = MyRigidBody.velocity + (direction.normalized * BulletSpeed1);
             }
 
             yield return new WaitForSeconds(FireDelay);
@@ -332,7 +336,7 @@ public class BossEnemyController : MonoBehaviour
             bullet.transform.position = BulletOrigins[A].position;
             bullet.transform.rotation = Quaternion.Euler(direction);
             bullet.gameObject.SetActive(true);
-            bullet.Rigidbody.velocity = direction.normalized * BulletSpeed2;
+            bullet.Rigidbody.velocity = MyRigidBody.velocity + (direction.normalized * BulletSpeed2);
 
             A = Mathf.RoundToInt(Mathf.Repeat(C, BulletOrigins.Length - 1));
             Debug.Log("C: " + A);
@@ -343,7 +347,7 @@ public class BossEnemyController : MonoBehaviour
             bullet.transform.position = BulletOrigins[A].position;
             bullet.transform.rotation = Quaternion.Euler(direction);
             bullet.gameObject.SetActive(true);
-            bullet.Rigidbody.velocity = direction.normalized * BulletSpeed2;
+            bullet.Rigidbody.velocity = MyRigidBody.velocity + (direction.normalized * BulletSpeed2);
 
             A = Mathf.RoundToInt(Mathf.Repeat(D, BulletOrigins.Length - 1));
             Debug.Log("D: " + A);
@@ -354,7 +358,7 @@ public class BossEnemyController : MonoBehaviour
             bullet.transform.position = BulletOrigins[A].position;
             bullet.transform.rotation = Quaternion.Euler(direction);
             bullet.gameObject.SetActive(true);
-            bullet.Rigidbody.velocity = direction.normalized * BulletSpeed2;
+            bullet.Rigidbody.velocity = MyRigidBody.velocity + (direction.normalized * BulletSpeed2);
 
             B++;
             C++;
@@ -376,7 +380,7 @@ public class BossEnemyController : MonoBehaviour
             bullet.transform.position = transform.position;
             bullet.transform.rotation = Quaternion.Euler(direction);
             bullet.gameObject.SetActive(true);
-            bullet.Rigidbody.velocity = direction.normalized * BulletSpeed3;
+            bullet.Rigidbody.velocity = MyRigidBody.velocity + (direction.normalized * BulletSpeed3);
 
             yield return new WaitForSeconds(FireTick3);
         }
@@ -453,6 +457,13 @@ public class BossEnemyController : MonoBehaviour
                 drop.Rigidbody2D.AddForce(dropDirection * DropForce, ForceMode2D.Impulse);
 
                 drop.transform.SetParent(null, true);
+            }
+
+            for (int i = 0; i < NumberOfExplosions; i++)
+            {
+                Vector2 position = transform.position;
+                Vector2 dropPosition = position + (UnityEngine.Random.insideUnitCircle * ExplosionRadius);
+                ExplosionParticleManager.PlayExplosionParticle(dropPosition);
             }
         }
 

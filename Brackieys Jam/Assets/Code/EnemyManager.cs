@@ -8,6 +8,7 @@ public class EnemyManager : MonoBehaviour
     [Header("Scene References")]
     [SerializeField] private GameManager GameManager;
     [SerializeField] private Transform CameraTransform;
+    [SerializeField] private ExplosionParticleManager ParticleManager;
 
     [Header("Respawn Settings")]
     [SerializeField] private float RespawnChance; // use this to control the respawn rate
@@ -55,6 +56,8 @@ public class EnemyManager : MonoBehaviour
     private void HandleEnemyDeath(BaseEnemyController enemyData)
     {
         DeathSFX.Play();
+        ParticleManager.PlayExplosionParticle(enemyData.transform.position);
+
         GameManager.CheckforParasiteUnlocked();
         EnemiesKilled[(int)enemyData.Type]++;
 
