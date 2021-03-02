@@ -81,6 +81,7 @@ public class BaseHost : MonoBehaviour
     public virtual void InitializeHost(int massRequiredThisLevel, bool IsTestArea = false)
     {
         CurrentHealth = BaseHealth;
+        MaxHealth = CurrentHealth;
         MassRequiredThisLevel = massRequiredThisLevel;
         AbilityIsActive = false;
         ToggleActiveAbilityGraphics(AbilityIsActive);

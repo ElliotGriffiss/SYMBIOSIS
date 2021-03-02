@@ -20,6 +20,7 @@ public class TentacleController : BaseHost
     public override void InitializeHost(int massRequiredThisLevel, bool IsTestArea = false)
     {
         CurrentHealth = BaseHealth;
+        MaxHealth = CurrentHealth;
         AbilityIsActive = false;
         MassRequiredThisLevel = massRequiredThisLevel;
 
