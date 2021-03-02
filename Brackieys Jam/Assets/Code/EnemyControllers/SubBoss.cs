@@ -56,6 +56,7 @@ public class SubBoss : MonoBehaviour
             Health -= damage.Damage;
             CurrentFlashTime = 0;
 
+            BulletParticleManager.Instance.PlayExplosionParticle(collision.GetContact(0).point);
             TakeDamageSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             TakeDamageSFX.Play();
 

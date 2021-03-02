@@ -16,6 +16,8 @@ public class BulletStopper : MonoBehaviour
         {
             CollideSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             CollideSFX.Play();
+
+            BulletParticleManager.Instance.PlayExplosionParticle(collision.GetContact(0).point);
             collision.gameObject.SetActive(false);
         }
         else if (collision.gameObject.tag == "Host")

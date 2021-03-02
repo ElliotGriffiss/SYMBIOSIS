@@ -408,6 +408,7 @@ public class BossEnemyController : MonoBehaviour
             CurrentFlashTime = 0;
             HealthBar.fillAmount = CurrentHealth / Health;
 
+            BulletParticleManager.Instance.PlayExplosionParticle(collision.GetContact(0).point);
             HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             HurtSFX.Play();
 

@@ -8,6 +8,7 @@ public class EnemyBulletStopper : MonoBehaviour
     {
         if (collision.gameObject.tag == "EnemyBullet")
         {
+            BulletParticleManager.Instance.PlayExplosionParticle(collision.GetContact(0).point);
             collision.gameObject.SetActive(false);
         }
     }

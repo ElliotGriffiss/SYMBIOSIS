@@ -106,6 +106,7 @@ public class BaseEnemyController : MonoBehaviour
     {
         if (collision.collider.gameObject.tag == "Bullet")
         {
+            BulletParticleManager.Instance.PlayExplosionParticle(collision.GetContact(0).point);
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
             damage.gameObject.SetActive(false);
 
