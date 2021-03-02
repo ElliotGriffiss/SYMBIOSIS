@@ -111,6 +111,8 @@ public class CameraFollow : MonoBehaviour
 
 			yield return null;
 		}
+
+		DisplayOverlay.transform.localScale = EndingScale;
 	}
 
 	public IEnumerator CloseDisplayOverlay()
@@ -127,6 +129,7 @@ public class CameraFollow : MonoBehaviour
 			yield return null;
 		}
 
+		DisplayOverlay.transform.localScale = StartingScale;
 		DisplayOverlay.SetActive(false);
 	}
 
@@ -143,6 +146,8 @@ public class CameraFollow : MonoBehaviour
 
 			yield return null;
 		}
+
+		CameraCover.transform.rotation = Quaternion.Euler(EndRotation);
 	}
 	public IEnumerator RotateCoverOut()
 	{
@@ -158,6 +163,7 @@ public class CameraFollow : MonoBehaviour
 			yield return null;
 		}
 
+		CameraCover.transform.rotation = Quaternion.Euler(OutEndRotation);
 		CameraCover.SetActive(false);
 	}
 }

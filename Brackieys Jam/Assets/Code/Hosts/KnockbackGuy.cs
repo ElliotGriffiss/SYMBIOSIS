@@ -70,6 +70,9 @@ public class KnockbackGuy : BaseHost
             animator.SetBool("IsMoving", false);
             StopCoroutine(MovementSequence);
             MovementSequence = null;
+            System1.Stop();
+            System2.Stop();
+            System3.Stop();
         }
 
         if (Input.GetAxis("Fire2") > 0 && CurrentCooldown >= BaseAbilityCooldown)
