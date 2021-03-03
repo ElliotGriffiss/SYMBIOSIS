@@ -45596,6 +45596,8 @@ MonoBehaviour:
   AudioMixer: {fileID: 24100000, guid: 6bd275d224d55e34fa8e52a9466b9962, type: 2}
   ParentObject: {fileID: 1394006813}
   Background: {fileID: 1948295786}
+  SFXSlider: {fileID: 1844777711}
+  MusicSlider: {fileID: 1543201808}
   AnimationTime: 0.4
   PanelAnimationCurve:
     serializedVersion: 2

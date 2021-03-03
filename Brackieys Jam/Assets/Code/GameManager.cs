@@ -62,10 +62,26 @@ public class GameManager : MonoBehaviour
         MusicSource.clip = MenuMusic;
         MusicSource.Play();
 
+        LoadPlayerPrefData();
         CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
         Camera.UpdateFollowTarget(TestArea.transform, false);
         TestArea.SetActive(true);
         LevelProgressionCanvas.gameObject.SetActive(false);
+    }
+
+    private void LoadPlayerPrefData()
+    {
+        HostsUnlocked[0] = true;
+        HostsUnlocked[1] = PlayerPrefs.GetInt("Host1Unlocked") == 1 ? true : false;
+        HostsUnlocked[2] = PlayerPrefs.GetInt("Host2Unlocked") == 1 ? true : false;
+        HostsUnlocked[3] = PlayerPrefs.GetInt("Host3Unlocked") == 1 ? true : false;
+
+        ParasitesUnlocked[0] = true;
+        ParasitesUnlocked[1] = PlayerPrefs.GetInt("Parasite1Unlocked") == 1 ? true : false;
+        ParasitesUnlocked[2] = PlayerPrefs.GetInt("Parasite2Unlocked") == 1 ? true : false;
+        ParasitesUnlocked[3] = PlayerPrefs.GetInt("Parasite3Unlocked") == 1 ? true : false;
+
+        TotalKills = PlayerPrefs.GetInt("TotalKills");
     }
 
     /// <summary>
@@ -140,21 +156,31 @@ public class GameManager : MonoBehaviour
         Host.SetMassRequired(DropsRequiredPerLevel[CurrentLevelIndex]);
         yield return Camera.CloseDisplayOverlay();
         Time.timeScale = 1f;
+        CheckForHostUnlocks();
+    }
 
+    private void CheckForHostUnlocks()
+    {
         if (CurrentLevelIndex == 1 && HostsUnlocked[1] == false)
         {
             HostUnlockCanvas.ShowUnlockGUI();
             HostsUnlocked[1] = true;
+            PlayerPrefs.SetInt("Host1Unlocked", 1);
+            PlayerPrefs.Save();
         }
         else if (CurrentLevelIndex == 2 && HostsUnlocked[2] == false)
         {
             HostUnlockCanvas.ShowUnlockGUI();
             HostsUnlocked[2] = true;
+            PlayerPrefs.SetInt("Host2Unlocked", 1);
+            PlayerPrefs.Save();
         }
         else if (CurrentLevelIndex == 3 && HostsUnlocked[3] == false)
         {
             HostUnlockCanvas.ShowUnlockGUI();
             HostsUnlocked[3] = true;
+            PlayerPrefs.SetInt("Host3Unlocked", 1);
+            PlayerPrefs.Save();
         }
     }
 
@@ -179,17 +205,23 @@ public class GameManager : MonoBehaviour
         {
             ParasiteUnlockCanvas.ShowUnlockGUI();
             ParasitesUnlocked[1] = true;
+            PlayerPrefs.SetInt("Parasite1Unlocked", 1);
         }
         else if (TotalKills > 59 && ParasitesUnlocked[2] == false)
         {
             ParasiteUnlockCanvas.ShowUnlockGUI();
             ParasitesUnlocked[2] = true;
+            PlayerPrefs.SetInt("Parasite2Unlocked", 1);
         }
         else if (TotalKills > 69 && ParasitesUnlocked[3] == false)
         {
             ParasiteUnlockCanvas.ShowUnlockGUI();
             ParasitesUnlocked[3] = true;
+            PlayerPrefs.SetInt("Parasite3Unlocked", 1);
         }
+
+        PlayerPrefs.SetInt("TotalKills", TotalKills);
+        PlayerPrefs.Save();
     }
 
     public void UpgradeHost(int selection)
@@ -277,5 +309,11 @@ public class GameManager : MonoBehaviour
         Camera.UpdateFollowTarget(TestArea.transform, false);
         TestArea.SetActive(true);
         LevelProgressionCanvas.gameObject.SetActive(false);
+    }
+
+    [ContextMenu("Delete All Player Prefs")]
+    public void DeletePlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }
