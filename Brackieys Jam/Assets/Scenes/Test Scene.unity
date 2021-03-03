@@ -54912,7 +54912,7 @@ MonoBehaviour:
   - {fileID: 683898086}
   - {fileID: 381530003}
   TestArea: {fileID: 1810457882}
-  DropsRequiredPerLevel: 1e000000290000003400000010270000
+  DropsRequiredPerLevel: 1e0000002d0000003c00000010270000
   HostsUnlocked: 01010101
   ParasitesUnlocked: 01010101
   DamageResistenceUpgrades:

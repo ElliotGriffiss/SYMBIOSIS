@@ -144,6 +144,13 @@ public class BaseEnemyController : MonoBehaviour
                 KillAfterFlash = true;
             }
         }
+
+        if (State == EnemyState.Idle)
+        {
+            State = EnemyState.Moving;
+            movementDirection = GenerateRandomMovementVector();
+            currentStateTime = 0f;
+        }
     }
 
     protected virtual void KillEnemy()
@@ -179,6 +186,6 @@ public class BaseEnemyController : MonoBehaviour
 
     protected Vector2 GenerateRandomMovementVector()
     {
-        return new Vector2(UnityEngine.Random.Range(-1.0f, 1.0f), UnityEngine.Random.Range(-1.0f, 1.0f)).normalized;
+        return new Vector2(UnityEngine.Random.Range(-1.0f, 1.0f), UnityEngine.Random.Range(-1.0f, 1.0f));
     }
 }

@@ -13,6 +13,8 @@ public class HostController : BaseHost
 
     private void Update()
     {
+        LookAtMouse();
+
         if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Parasite.ActivateParasite(direction);
@@ -53,7 +55,6 @@ public class HostController : BaseHost
         animator.SetFloat("Speed", inputValue.sqrMagnitude);
 
         Invincible();
-        LookAtMouse();
     }
 
     private void FixedUpdate()

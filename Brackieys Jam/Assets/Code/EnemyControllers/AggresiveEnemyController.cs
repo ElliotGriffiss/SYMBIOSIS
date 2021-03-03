@@ -77,7 +77,6 @@ public class AggresiveEnemyController : BaseEnemyController
         {
             attacker = collision.transform;
             State = EnemyState.Attacking;
-            //Sprite.color = Color.red;
             currentStateTime = 0;
         }
     }

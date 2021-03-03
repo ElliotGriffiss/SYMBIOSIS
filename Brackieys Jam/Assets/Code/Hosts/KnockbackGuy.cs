@@ -55,6 +55,8 @@ public class KnockbackGuy : BaseHost
 
     private void Update()
     {
+        LookAtMouse();
+
         if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Parasite.ActivateParasite(direction);
@@ -124,7 +126,6 @@ public class KnockbackGuy : BaseHost
         }
 
         Invincible();
-        LookAtMouse();
     }
 
     public override void ToggleActiveAbilityGraphics(bool active)

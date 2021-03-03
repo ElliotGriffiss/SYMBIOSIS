@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3631303478142242854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.15, y: 2.73, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.15, y: 1.15, z: 1}
   m_Children:
   - {fileID: 5409005585262549644}
   m_Father: {fileID: 0}
@@ -56,7 +56,7 @@ MonoBehaviour:
   Health: 5
   MovementSpeed: 5
   StateDuration: 2
-  NumberOfDrops: 3
+  NumberOfDrops: 4
   HealthDropColor: {r: 0.8509804, g: 0.3647059, b: 0.4627451, a: 1}
   DropRadius: 0.2
   DropForce: 0.8
@@ -172,7 +172,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 4
 --- !u!82 &-7492109276691839254
 AudioSource:
   m_ObjectHideFlags: 0
@@ -330,6 +330,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 6670271607238775923}
-  BaseDamage: 4
-  Damage: 4
+  BaseDamage: 5
+  Damage: 5
   KnockBackForce: 4

@@ -6,6 +6,44 @@ using GameData;
 public class CowardlyEnemyController : BaseEnemyController
 {
     [SerializeField] private Animator Animator;
+    private Transform attacker;
+
+    protected override void FixedUpdate()
+    {
+        if (State == EnemyState.Fleeing)
+        {
+            Animator.SetBool("IsMoving", true);
+            Vector2 direction = transform.position - attacker.position;
+            MyRigidBody.AddForce(direction * MovementSpeed);
+            MyRigidBody.rotation = (Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg);
+        }
+        else if (currentStateTime > StateDuration)
+        {
+            ChooseANewState();
+        }
+        else
+        {
+            MyRigidBody.AddForce(movementDirection * MovementSpeed);
+            MyRigidBody.rotation = (Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg) - 45;
+            currentStateTime += Time.fixedDeltaTime;
+        }
+
+        if (CurrentFlashTime < FlashTime)
+        {
+            Sprite.material.SetFloat("_FlashAmount", 1);
+            CurrentFlashTime += Time.deltaTime;
+        }
+        else
+        {
+            Sprite.material.SetFloat("_FlashAmount", 0);
+
+            if (KillAfterFlash)
+            {
+                KillAfterFlash = false;
+                KillEnemy();
+            }
+        }
+    }
 
     protected override void ChooseANewState()
     {
@@ -35,12 +73,21 @@ public class CowardlyEnemyController : BaseEnemyController
     {
         if (collision.gameObject.tag == "Host")
         {
-            Animator.SetBool("IsMoving", true);
-            //Sprite.color = Color.yellow;
             State = EnemyState.Fleeing;
-            movementDirection = (collision.transform.position + transform.position).normalized;
-            MyRigidBody.rotation = (Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg);
+            attacker = collision.transform;
             currentStateTime = 0;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Host")
+        {
+            if (State == EnemyState.Fleeing)
+            {
+                ChooseANewState();
+                attacker = null;
+            }
         }
     }
 }

@@ -67,6 +67,8 @@ public class TentacleController : BaseHost
     // Update is called once per frame
     private void Update()
     {
+        LookAtMouse();
+
         if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Parasite.ActivateParasite(direction);
@@ -114,7 +116,6 @@ public class TentacleController : BaseHost
         }
 
         Invincible();
-        LookAtMouse();
     }
 
     public override void ToggleActiveAbilityGraphics(bool active)

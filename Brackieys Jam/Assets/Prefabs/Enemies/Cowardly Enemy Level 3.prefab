@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 2991216160984358553}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.15, y: 2.73, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
   Health: 15
   MovementSpeed: 6
   StateDuration: 1
-  NumberOfDrops: 3
+  NumberOfDrops: 5
   HealthDropColor: {r: 1, g: 0.8039216, b: 0.45882353, a: 1}
   DropRadius: 0.2
   DropForce: 0.8
@@ -79,8 +79,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 2991216160984358548}
-  BaseDamage: 3
-  Damage: 3
+  BaseDamage: 4
+  Damage: 4
   KnockBackForce: 1
 --- !u!50 &2991216160984358548
 Rigidbody2D:

@@ -12,8 +12,13 @@ public class RangedEnemeyController : BaseEnemyController
     [SerializeField] private int MaxNumberOfBullets = 10;
     [SerializeField] private float FireRate;
     [SerializeField] private float BulletSpeed;
+    [SerializeField] private float ReloadTime = 1;
+    [SerializeField] private int ClipSize = 1;
 
     private float LastFireTime = 0;
+    private int BulletsInClip;
+    private float CurrentReloadTime;
+    private bool IsReloading;
 
     private List<DamageComponent> BulletPool = new List<DamageComponent>();
     private Transform attacker;
@@ -30,6 +35,9 @@ public class RangedEnemeyController : BaseEnemyController
 
             BulletPool.Add(bullet);
         }
+
+        BulletsInClip = ClipSize;
+        IsReloading = false;
     }
 
     private DamageComponent GetBulletFromThePool()
@@ -53,10 +61,21 @@ public class RangedEnemeyController : BaseEnemyController
     {
         if (State == EnemyState.Attacking)
         {
-            if (Time.time - LastFireTime > FireRate)
+            if (IsReloading)
             {
-                Vector2 direction = attacker.position - transform.position;
+                CurrentReloadTime += Time.deltaTime;
 
+                if (CurrentReloadTime >= ReloadTime)
+                {
+                    IsReloading = false;
+                    BulletsInClip = ClipSize;
+                    CurrentReloadTime = 0;
+                }
+            }
+            else if (Time.time - LastFireTime > FireRate && BulletsInClip > 0)
+            {
+                BulletsInClip--;
+                Vector2 direction = attacker.position - transform.position;
                 DamageComponent bullet = GetBulletFromThePool();
 
                 bullet.gameObject.transform.position = BulletOrigin.position;
@@ -64,6 +83,11 @@ public class RangedEnemeyController : BaseEnemyController
                 bullet.gameObject.SetActive(true);
                 bullet.Rigidbody.velocity = direction * BulletSpeed;
                 LastFireTime = Time.time;
+
+                if (BulletsInClip <= 0)
+                {
+                    IsReloading = true;
+                }
             }
         }
         else if (currentStateTime > StateDuration)
