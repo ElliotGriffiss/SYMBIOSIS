@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UnlockCanvas ParasiteUnlockCanvas;
     [SerializeField] private LevelProgressCanvas LevelProgressionCanvas;
     [SerializeField] private DeathCanvas DeathCanvas;
-    [SerializeField] private DeathCanvas CompletedCanvas;
+    [SerializeField] private GameCompletedCanvas CompletedCanvas;
     [Space]
     [SerializeField] private CameraFollow Camera;
     [SerializeField] private Transform TransitionFollowPoint;
@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private int TotalKills;
     [SerializeField] private int CurrentLevelIndex = 0;
+    [SerializeField] private int[] TotalKillsByType = new int[4] {6, 7, 3, 5};
     [SerializeField] private bool MiamiCam = true;
     private BaseHost Host;
     private BaseParsite Parasite;
@@ -159,7 +160,15 @@ public class GameManager : MonoBehaviour
 
     private void HandleHostLevelledUp()
     {
-        UpgradeCanvas.OpenUpgradeGUI(Levels[CurrentLevelIndex].EnemyManager.GetEnemiesKilled());
+        int[] EnemiesKillThisLevel = Levels[CurrentLevelIndex].EnemyManager.GetEnemiesKilled();
+
+        // Add kills to total for final Victory GUI.
+        for (int i = 0; i < EnemiesKillThisLevel.Length; i++)
+        {
+            TotalKillsByType[i] += EnemiesKillThisLevel[i];
+        }
+
+        UpgradeCanvas.OpenUpgradeGUI(EnemiesKillThisLevel);
     }
 
     public void CheckforParasiteUnlocked()
@@ -217,6 +226,7 @@ public class GameManager : MonoBehaviour
         BaseHost.OnHostLevelUp -= HandleHostLevelledUp;
         Levels[CurrentLevelIndex].LevelCleanUp();
         CurrentStatLevels = new int[4] { 0, 0, 0, 0 };
+        TotalKillsByType = new int[4];
         CurrentLevelIndex = 0;
         TestArea.SetActive(true);
         LevelProgressionCanvas.gameObject.SetActive(false);
@@ -253,11 +263,12 @@ public class GameManager : MonoBehaviour
         MusicSource.clip = MenuMusic;
         MusicSource.Play();
         Camera.UpdateFollowTarget(Host.transform, false);
-        yield return CompletedCanvas.DeathAnimationSequence();
+        yield return CompletedCanvas.VictoryAnimationSequence(TotalKillsByType);
         Time.timeScale = 1f;
 
         Boss.ReturnAllBulletsToThepool();
         Levels[CurrentLevelIndex].LevelCleanUp();
+        TotalKillsByType = new int[4];
         CurrentLevelIndex = 0;
 
         CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);

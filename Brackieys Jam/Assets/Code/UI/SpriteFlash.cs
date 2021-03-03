@@ -12,9 +12,16 @@ public class SpriteFlash : MonoBehaviour
     [SerializeField] private Color FlashBright;
     [SerializeField] private Color FlashDark;
 
+    private float time;
+
+    private void OnEnable()
+    {
+        time = 0f;
+    }
 
     private void Update()
     {
-        TargetGraphic.color = Color.Lerp(FlashDark, FlashBright, FlashCurve.Evaluate(Mathf.Repeat(Time.timeSinceLevelLoad * TimeModifier, 1)));
+        TargetGraphic.color = Color.Lerp(FlashDark, FlashBright, FlashCurve.Evaluate(Mathf.Repeat(time, 1)));
+        time += Time.unscaledDeltaTime * TimeModifier;
     }
 }
