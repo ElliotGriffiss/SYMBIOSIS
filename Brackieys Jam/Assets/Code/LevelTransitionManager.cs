@@ -55,7 +55,7 @@ public class LevelTransitionManager : MonoBehaviour
         while (time <= DrawHostToNeedleBase)
         {
             HostParent.transform.position = Vector3.LerpUnclamped(hostStartingPosition, NeedleBasePoint.position, HostToNeedleBaseCurve.Evaluate(time / DrawHostToNeedleBase));
-            HostParent.transform.rotation = Quaternion.Slerp(startingRotation, targetRotation, (time / (DrawHostToNeedleBase / 3)));
+            HostParent.transform.rotation = Quaternion.Lerp(startingRotation, targetRotation, (time / (DrawHostToNeedleBase / 3)));
 
             time += Time.unscaledDeltaTime;
             yield return waitForFrameEnd;
@@ -71,7 +71,7 @@ public class LevelTransitionManager : MonoBehaviour
         while (time <= DrawHostUpThebase)
         {
             HostParent.transform.position = Vector3.Lerp(hostStartingPosition, NeedleUpPoint.position, time / DrawHostUpThebase);
-            HostParent.transform.rotation = Quaternion.Slerp(startingRotation, targetRotation, time / (DrawHostUpThebase / 3));
+            HostParent.transform.rotation = Quaternion.Lerp(startingRotation, targetRotation, time / (DrawHostUpThebase / 3));
 
             time += Time.unscaledDeltaTime;
             yield return waitForFrameEnd;
