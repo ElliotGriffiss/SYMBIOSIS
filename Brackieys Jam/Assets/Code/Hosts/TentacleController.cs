@@ -16,6 +16,7 @@ public class TentacleController : BaseHost
     protected Transform[] ChildObjects = new Transform[0];
     protected SpriteRenderer[] ChildSprites = new SpriteRenderer[0];
     private IEnumerator MovementSequence;
+    private WaitForFixedUpdate WaitForFixedUpdate;
 
     public override void InitializeHost(int massRequiredThisLevel, bool IsTestArea = false)
     {
@@ -146,6 +147,7 @@ public class TentacleController : BaseHost
     {
         animator.SetBool("isMoving", false);
         yield return new WaitForSeconds(waitTime);
+        yield return WaitForFixedUpdate;
         System.Play();
         Rigidbody.AddForce(direction.normalized * CurrentForwardSpeed, ForceMode2D.Impulse);
         animator.SetBool("isMoving", true);

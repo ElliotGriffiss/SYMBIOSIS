@@ -24,6 +24,7 @@ public class KnockbackGuy : BaseHost
     [SerializeField] protected float moveTime;
 
     private IEnumerator MovementSequence;
+    private WaitForFixedUpdate WaitForFixedUpdate;
     private float CurrentHangTime = 0;
     private float HangTimeDuration = 0;
 
@@ -147,6 +148,7 @@ public class KnockbackGuy : BaseHost
     {
         animator.SetBool("IsMoving", true);
         yield return new WaitForSeconds(waitTime);
+        yield return WaitForFixedUpdate;
         System1.Play();
         System2.Play();
         System3.Play();

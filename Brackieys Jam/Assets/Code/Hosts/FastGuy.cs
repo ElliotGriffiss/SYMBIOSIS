@@ -14,6 +14,7 @@ public class FastGuy : BaseHost
     [SerializeField] private AnimationCurve RotationAcceleration;
     [SerializeField] private float RotationSpeed;
     [SerializeField] private Vector3 RotationAxis = new Vector3(0,0,1);
+    [SerializeField] private bool DirectionalControls = false;
 
     private List<Rigidbody2D> HealthOrbs = new List<Rigidbody2D>();
 
@@ -74,26 +75,21 @@ public class FastGuy : BaseHost
         Vector2 force = Vector2.zero;
         animator.SetBool("IsMoving", false);
 
-        if (inputValue.y > 0f)
+        if (inputValue.y != 0f)
         {
             animator.SetBool("IsMoving", true);
-            force += Vector2.up * inputValue.y * CurrentForwardSpeed;
+
+            if (DirectionalControls)
+            {
+                force += direction.normalized * inputValue.y * CurrentForwardSpeed;
+            }
+            else
+            {
+                force += Vector2.up * inputValue.y * CurrentForwardSpeed;
+            }
         }
 
-        if (inputValue.y < 0f)
-        {
-            animator.SetBool("IsMoving", true);
-            force += Vector2.up * inputValue.y * CurrentForwardSpeed;
-        }
-
-
-        if (inputValue.x > 0)
-        {
-            animator.SetBool("IsMoving", true);
-            force += (Vector2.right * inputValue.x * CurrentStrafeSpeed);
-        }
-
-        if (inputValue.x < 0)
+        if (inputValue.x != 0)
         {
             animator.SetBool("IsMoving", true);
             force += (Vector2.right * inputValue.x * CurrentStrafeSpeed);

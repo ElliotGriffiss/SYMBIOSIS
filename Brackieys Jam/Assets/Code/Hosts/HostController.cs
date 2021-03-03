@@ -10,6 +10,7 @@ public class HostController : BaseHost
 
     [Header("Tank Guy Settings")]
     [SerializeField] private Vector3 AbilityActiveScale;
+    [SerializeField] private bool DirectionalControls = false;
 
     private void Update()
     {
@@ -61,26 +62,23 @@ public class HostController : BaseHost
     {
         Vector2 force = Vector2.zero;
 
-        if (inputValue.y > 0f)
+        if (inputValue.y != 0f)
         {
-            force += direction.normalized * inputValue.y * CurrentForwardSpeed;
+            if (DirectionalControls)
+            {
+                force += direction.normalized * inputValue.y * CurrentForwardSpeed;
+            }
+            else
+            {
+                force += Vector2.up * inputValue.y * CurrentForwardSpeed;
+            }
         }
 
-        if (inputValue.y < 0f)
+        if (inputValue.x != 0)
         {
-            force += direction.normalized * inputValue.y * CurrentForwardSpeed;
+            force += (Vector2.right * inputValue.x * CurrentForwardSpeed);
         }
 
-
-        if (inputValue.x > 0)
-        {
-            force += (Vector2.right * inputValue.x * CurrentStrafeSpeed);
-        }
-
-        if (inputValue.x < 0)
-        {
-            force += (Vector2.right * inputValue.x * CurrentStrafeSpeed);
-        }
 
         if (Rigidbody.velocity == Vector2.zero)
         {
