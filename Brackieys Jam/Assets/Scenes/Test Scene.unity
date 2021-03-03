@@ -58140,14 +58140,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TransitionInDuration: 1
-  DrawHostToNeedleBase: 0.3
-  DrawHostUpThebase: 0.2
+  DrawHostToNeedleBase: 0.4
+  DrawHostUpThebase: 0.6
   DrawHostDownThebase: 0.2
+  HostToNeedleBaseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.12938799
+      outSlope: 0.12938799
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.45833334
+    - serializedVersion: 3
+      time: 1
+      value: 0.99752426
+      inSlope: -1.3492783
+      outSlope: -1.3492783
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.100000024
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   WooshSfx: {fileID: 1360294340}
   PlopSfx: {fileID: 1360294341}
   OffscreemRightPoint: {fileID: 772547225}
   OffscreemUpPoint: {fileID: 250395237}
-  NeedleBasePoint: {fileID: 1471446889}
+  NeedleBasePoint: {fileID: 1648646896}
   NeedleUpPoint: {fileID: 1550273219}
   Offset: 2
 --- !u!4 &1360294339
@@ -76546,7 +76570,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648646895}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.042, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1360294339}

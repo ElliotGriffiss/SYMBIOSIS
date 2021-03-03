@@ -15,7 +15,7 @@ public class CowardlyEnemyController : BaseEnemyController
             Animator.SetBool("IsMoving", true);
             Vector2 direction = transform.position - attacker.position;
             MyRigidBody.AddForce(direction * MovementSpeed);
-            MyRigidBody.rotation = (Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg);
+            MyRigidBody.rotation = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
         }
         else if (currentStateTime > StateDuration)
         {
@@ -23,8 +23,9 @@ public class CowardlyEnemyController : BaseEnemyController
         }
         else
         {
+            Animator.SetBool("IsMoving", true);
             MyRigidBody.AddForce(movementDirection * MovementSpeed);
-            MyRigidBody.rotation = (Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg) - 45;
+            MyRigidBody.rotation = (Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg);
             currentStateTime += Time.fixedDeltaTime;
         }
 

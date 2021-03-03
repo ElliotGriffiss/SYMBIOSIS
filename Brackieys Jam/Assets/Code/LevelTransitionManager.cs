@@ -9,6 +9,8 @@ public class LevelTransitionManager : MonoBehaviour
     [SerializeField] private float DrawHostToNeedleBase;
     [SerializeField] private float DrawHostUpThebase;
     [SerializeField] private float DrawHostDownThebase;
+    [Space]
+    [SerializeField] private AnimationCurve HostToNeedleBaseCurve;
 
     [Header("Audio Settings")]
     [SerializeField] private AudioSource WooshSfx;
@@ -46,9 +48,14 @@ public class LevelTransitionManager : MonoBehaviour
         Vector3 hostStartingPosition = HostParent.transform.position;
         WooshSfx.Play();
 
+        Quaternion startingRotation = HostParent.transform.rotation;
+        Vector3 movementDirection = HostParent.transform.position - NeedleBasePoint.position;
+        Quaternion targetRotation = Quaternion.Euler(0, 0, (Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg) -90);
+
         while (time <= DrawHostToNeedleBase)
         {
-            HostParent.transform.position = Vector3.Lerp(hostStartingPosition, NeedleBasePoint.position, time / DrawHostToNeedleBase);
+            HostParent.transform.position = Vector3.LerpUnclamped(hostStartingPosition, NeedleBasePoint.position, HostToNeedleBaseCurve.Evaluate(time / DrawHostToNeedleBase));
+            HostParent.transform.rotation = Quaternion.Slerp(startingRotation, targetRotation, (time / (DrawHostToNeedleBase / 3)));
 
             time += Time.unscaledDeltaTime;
             yield return waitForFrameEnd;
@@ -57,9 +64,14 @@ public class LevelTransitionManager : MonoBehaviour
         time = 0;
         hostStartingPosition = HostParent.transform.position;
 
+        startingRotation = HostParent.transform.rotation;
+        movementDirection = HostParent.transform.position - NeedleUpPoint.position;
+        targetRotation = Quaternion.Euler(0, 0, (Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg) - 90);
+
         while (time <= DrawHostUpThebase)
         {
             HostParent.transform.position = Vector3.Lerp(hostStartingPosition, NeedleUpPoint.position, time / DrawHostUpThebase);
+            HostParent.transform.rotation = Quaternion.Slerp(startingRotation, targetRotation, time / (DrawHostUpThebase / 3));
 
             time += Time.unscaledDeltaTime;
             yield return waitForFrameEnd;
