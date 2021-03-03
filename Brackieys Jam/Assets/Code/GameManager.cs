@@ -268,6 +268,7 @@ public class GameManager : MonoBehaviour
 
         Boss.ReturnAllBulletsToThepool();
         Levels[CurrentLevelIndex].LevelCleanUp();
+        CurrentStatLevels = new int[4] { 0, 0, 0, 0 };
         TotalKillsByType = new int[4];
         CurrentLevelIndex = 0;
 
