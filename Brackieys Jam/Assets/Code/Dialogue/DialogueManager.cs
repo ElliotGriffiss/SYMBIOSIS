@@ -10,13 +10,15 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Animator animator;
     [SerializeField] private Image image;
+    [SerializeField] private Button NextButton;
 
     [SerializeField] private AudioSource talking;
 
     private string sceneName;
 
     private Queue<string> sentences;
-    private bool SkipPressed = false;
+    private string Sentance;
+    private bool SkipPressed = true;
 
     void Start()
     {
@@ -24,6 +26,7 @@ public class DialogueManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         sceneName = currentScene.name;
         talking = GetComponent<AudioSource>();
+        NextButton.interactable = false;
     }
 
     public void StartDialogue (Dialogue dialogue)
@@ -31,6 +34,7 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("starting dialogue");
 
         sentences = new Queue<string>();
+        NextButton.interactable = true;
 
         foreach (string sentence in dialogue.sentances)
         {
@@ -42,17 +46,27 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        SkipPressed = false;
-
-        if (sentences.Count == 0)
+        if (SkipPressed == false)
         {
-            EndDialogue();
-            return;
+            SkipPressed = true;
+            StopAllCoroutines();
+            dialogueText.text = Sentance;
+            talking.Stop();
         }
+        else
+        {
+            SkipPressed = false;
 
-        string sentence = sentences.Dequeue();
-        StopAllCoroutines();
-        StartCoroutine(TypeSentenceCo(sentence));
+            if (sentences.Count == 0)
+            {
+                EndDialogue();
+                return;
+            }
+
+            Sentance = sentences.Dequeue();
+            StopAllCoroutines();
+            StartCoroutine(TypeSentenceCo(Sentance));
+        }
     }
 
     IEnumerator TypeSentenceCo(string sentence)
@@ -66,10 +80,12 @@ public class DialogueManager : MonoBehaviour
 
         }
         talking.Stop();
+        SkipPressed = true;
     }
 
     void EndDialogue()
     {
+        NextButton.interactable = false;
         StartCoroutine(FadeCo(sceneName));
         Debug.Log("end");
     }
@@ -84,6 +100,14 @@ public class DialogueManager : MonoBehaviour
             SceneManager.LoadScene("Cutscene 2");
         }
         else if (sceneName == "Cutscene 2")
+        {
+            SceneManager.LoadScene("Test Scene");
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.KeypadEnter))
         {
             SceneManager.LoadScene("Test Scene");
         }

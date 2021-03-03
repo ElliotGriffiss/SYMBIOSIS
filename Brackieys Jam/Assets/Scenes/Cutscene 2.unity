@@ -161,7 +161,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: dadaaaaaaaaaaaaaaaaaaaaaadadaaaaaaaaaaaaaaaaaaaaaadadaaaaaaaaaaaaaaaaaaaaaadadaaaaaaaaaaaaaaaaaaasfsfsfsfsf
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10162437e319acd44aa1406b7790ab3d, type: 2}
   m_sharedMaterial: {fileID: -4524647946242565200, guid: 10162437e319acd44aa1406b7790ab3d, type: 2}
@@ -541,10 +541,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -925,7 +925,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2568921116598822876}
   - component: {fileID: 2568921116598822877}
-  - component: {fileID: 2568921116598822879}
   - component: {fileID: 2568921116598822875}
   m_Layer: 0
   m_Name: Dialogue manager 2
@@ -1059,24 +1058,5 @@ MonoBehaviour:
   dialogueText: {fileID: 182736707}
   animator: {fileID: 1743416687}
   image: {fileID: 1743416688}
+  NextButton: {fileID: 544023979}
   talking: {fileID: 2568921116598822875}
---- !u!114 &2568921116598822879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2568921116598822874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68d71e3d51cb0dd4f9e18a87965b3013, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    sentances:
-    - "Through observation, we\u2019ll measure how successful our little host would
-      be once released into the world.\r"
-    - "Only utter domination would constitute success, Jones\r."
-    - 'Now choose a HOST and a PARASITE and let''s get on with the experiment.
-
-'

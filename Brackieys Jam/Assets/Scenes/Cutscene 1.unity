@@ -417,10 +417,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -930,25 +930,8 @@ MonoBehaviour:
   dialogueText: {fileID: 1559963608}
   animator: {fileID: 17670853}
   image: {fileID: 17670851}
+  NextButton: {fileID: 726532413}
   talking: {fileID: 7427104762572765639}
---- !u!114 &5360662377632742791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7427104762572765638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68d71e3d51cb0dd4f9e18a87965b3013, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    sentances:
-    - The PS environment has been prepared, Professor.
-    - "Thanks, Jones. Perhaps this time we\u2019ll create a new viable life form."
-    - 'Our experiment will begin once we have spliced together the two protozoa. '
-    - "We\u2019ll need a host and a parasite, joined in perfect symbiosis."
 --- !u!1 &7427104762572765638
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,7 +942,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8353390963384456906}
   - component: {fileID: 160902278542698957}
-  - component: {fileID: 5360662377632742791}
   - component: {fileID: 7427104762572765639}
   m_Layer: 0
   m_Name: Dialogue manager 1

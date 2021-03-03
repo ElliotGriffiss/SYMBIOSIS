@@ -94986,6 +94986,7 @@ GameObject:
   - component: {fileID: 6473482691584440412}
   - component: {fileID: 6473482691584440411}
   - component: {fileID: 6473482691584440413}
+  - component: {fileID: 6473482691584440414}
   m_Layer: 5
   m_Name: Overlay
   m_TagString: Untagged
@@ -95069,6 +95070,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6473482691584440414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6473482691584440409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c731c24fbb5c647a766caa6480c1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7113642338947014721
 Transform:
   m_ObjectHideFlags: 0
