@@ -503,10 +503,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     sentances:
-    - The PS environment has been prepared, Professor.
-    - "Thanks, Jones. Perhaps this time we\u2019ll create a new viable life form."
-    - 'Our experiment will begin once we have spliced together the two protozoa. '
-    - "We\u2019ll need a host and a parasite, joined in perfect symbiosis."
+    - The PS environment has been prepared, Professor. -Jones
+    - "Thanks, Jones. Perhaps this time we\u2019ll create a new viable life form.
+      -Prof"
+    - Our experiment will begin once we have spliced together the two protozoa. -Prof
+    - "We\u2019ll need a host and a parasite, joined in perfect symbiosis. -Prof"
 --- !u!1 &963715083
 GameObject:
   m_ObjectHideFlags: 0

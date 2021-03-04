@@ -113,6 +113,8 @@ public class BossEnemyController : MonoBehaviour
     private bool RotionDirection = false;
     private bool HasPool = false;
 
+    #region Initialization and Setup
+
     private void Start()
     {
         WaitForStopDelay1 = new WaitForSeconds(StopDelay1);
@@ -153,6 +155,8 @@ public class BossEnemyController : MonoBehaviour
         BossController = BossSequenceController();
         StartCoroutine(BossController);
     }
+
+    #endregion
 
     #region SubBoss Management
 
