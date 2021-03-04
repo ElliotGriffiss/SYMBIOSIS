@@ -273,8 +273,8 @@ public class BaseHost : MonoBehaviour
         if (Time.timeScale > 0)
         {
             Vector3 mousePos = Input.mousePosition;
-            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-            direction = new Vector2(mousePos.x - Rigidbody.transform.position.x, mousePos.y - Rigidbody.transform.position.y);
+            mousePos = CameraShake.Camera.ScreenToWorldPoint(mousePos);
+            direction = mousePos - transform.position;
             Rigidbody.transform.up = direction.normalized;
         }
     }

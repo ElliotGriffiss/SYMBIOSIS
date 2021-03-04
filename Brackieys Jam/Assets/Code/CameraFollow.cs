@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
 	[Header("Camera Settings")]
-	[SerializeField] private Camera Camera;
+	[SerializeField] public Camera Camera;
 	[SerializeField] private float FollowSpeed;
 	[SerializeField] private Vector3 CameraOffset;
 
