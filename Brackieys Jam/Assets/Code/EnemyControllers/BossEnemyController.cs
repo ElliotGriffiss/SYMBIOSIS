@@ -7,26 +7,28 @@ public class BossEnemyController : MonoBehaviour
 {
     public enum BossStates : byte
     {
-        FindingPlayer,
         Rotating,
         Moving,
         Special_Attack_1,
         Special_Attack_2,
         Special_Attack_3,
+        Rage_Mode,
         Dead,
     }
 
-    private BossStates CurrentState = BossStates.FindingPlayer;
+    private BossStates CurrentState = BossStates.Moving;
 
     [SerializeField] private GameManager GameManager;
     [Header("UI")]
     [SerializeField] private GameObject HealthBarParent;
     [SerializeField] private Image HealthBar;
 
-    [Header("Boss Data")]
+    [Header("Boss Scene References")]
     [SerializeField] protected SpriteRenderer Sprite;
+    [SerializeField] protected Animator BossAnimator;
     [SerializeField] protected Rigidbody2D MyRigidBody;
-    [Space]
+
+    [Header("Boss Data")]
     [SerializeField] protected float Health = 40;
     [SerializeField] protected float MovementSpeed = 1;
     [SerializeField] protected float RotationSpeed;
@@ -44,11 +46,11 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] private int MaxNumberOfBullets = 40;
     [Header("Special Attack 1")]
     [SerializeField] private int FireRate;
-    [SerializeField] private float FireDelay = 0.1f;
+    [SerializeField] private float FireTick1;
     [SerializeField] private float BulletSpeed1;
     [SerializeField] private float StopDelay1;
     [Header("Special Attack 2")]
-    [SerializeField] private float FireTick;
+    [SerializeField] private float FireTick2;
     [SerializeField] private float BulletSpeed2;
     [SerializeField] private float StopDelay2;
     [Header("Special Attack 3")]
@@ -56,9 +58,12 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] private int NumberOfBullets = 12;
     [SerializeField] private float BulletSpeed3;
     [SerializeField] private float StopDelay3;
+    [Header("Rage Mode Data")]
+    [SerializeField] private float RageModeStopDelay = 1f;
 
     [Header("Flash Effects")]
     [SerializeField] protected float FlashTime = 0.1f;
+    [SerializeField] protected float DeathFlashTime = 0.5f;
     protected float CurrentFlashTime = float.MaxValue;
 
     [Header("Audio")]
@@ -76,27 +81,56 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] protected ExplosionParticleManager ExplosionParticleManager;
     [SerializeField] protected int NumberOfExplosions = 5;
     [SerializeField] protected float ExplosionRadius = 4;
-
+     
     private IEnumerator BossController;
+    private WaitForFixedUpdate WaitForFixedUpdate;
+    private WaitForSeconds WaitForMoveAnim = new WaitForSeconds(1.4f);
+    private WaitForSeconds WaitForFireAnim = new WaitForSeconds(0.49f);
+
+    private WaitForSeconds WaitForFireTick1;
+    private WaitForSeconds WaitForFireTick2;
+    private WaitForSeconds WaitForFireTick3;
+
+    private WaitForSeconds WaitForStopDelay1;
+    private WaitForSeconds WaitForStopDelay2;
+    private WaitForSeconds WaitForStopDelay3;
+
+    private WaitForSeconds WaitForRageModeStopDelay;
 
     private Vector2 movementDirection;
     private List<DamageComponent> BulletPool = new List<DamageComponent>();
     private Transform attacker;
     private float CurrentHealth;
     private float CurrentSpeed;
-
     private float currentStateTime = 0;
+
+    private bool HasCompletedRageMode = false;
     private bool HasDroppedLoad = true;
     private bool RotionDirection = false;
+
+    private void Start()
+    {
+        WaitForStopDelay1 = new WaitForSeconds(StopDelay1);
+        WaitForStopDelay2 = new WaitForSeconds(StopDelay2);
+        WaitForStopDelay3 = new WaitForSeconds(StopDelay3);
+
+        WaitForFireTick1 = new WaitForSeconds(FireTick1);
+        WaitForFireTick2 = new WaitForSeconds(FireTick2);
+        WaitForFireTick3 = new WaitForSeconds(FireTick3);
+
+        WaitForRageModeStopDelay = new WaitForSeconds(RageModeStopDelay);
+    }
 
     public void SpawnBoss()
     {
         // Ensures the boss will always move on screen before attacking the player.
         currentStateTime = 0;
-        CurrentState = BossStates.FindingPlayer;
+        CurrentState = BossStates.Moving;
         movementDirection = BossStartingTravelPoint.position - transform.position;
         CurrentSpeed = EntranceSpeed;
+        HasCompletedRageMode = false;
 
+        BossAnimator.SetInteger("BossState", 0);
         UpdateSubBosses(false);
         CurrentHealth = Health;
         HasDroppedLoad = false;
@@ -107,7 +141,7 @@ public class BossEnemyController : MonoBehaviour
 
         foreach (SubBoss sub in SubBosses)
         {
-            sub.gameObject.SetActive(true);
+            sub.Spawn();
         }
 
         BossController = BossSequenceController();
@@ -126,60 +160,56 @@ public class BossEnemyController : MonoBehaviour
     {
         while (CurrentState != BossStates.Dead)
         {
-            if (currentStateTime >= StateDuration)
+            switch (CurrentState)
             {
-                SetupNewState();
+                case BossStates.Rotating:
+                    BossAnimator.SetInteger("BossState", 0);
+                    yield return HandleRotateBoss();
+                    break;
+                case BossStates.Moving:
+                    BossAnimator.SetInteger("BossState", 1);
+                    yield return WaitForMoveAnim;
+                    BossAnimator.SetInteger("BossState", 0);
+                    yield return HandleMoveBoss();
+                    break;
+                case BossStates.Special_Attack_1:
+                    BossAnimator.SetInteger("BossState", 2);
+                    yield return WaitForFireAnim;
+                    yield return SpecialAttackOne();
+                    BossAnimator.SetInteger("BossState", 0);
+                    yield return WaitForStopDelay1;
+                    break;
+                case BossStates.Special_Attack_2:
+                    BossAnimator.SetInteger("BossState", 2);
+                    yield return WaitForFireAnim;
+                    yield return SpecialAttackTwo();
+                    BossAnimator.SetInteger("BossState", 0);
+                    yield return WaitForStopDelay2;
+                    break;
+                case BossStates.Special_Attack_3:
+                    BossAnimator.SetInteger("BossState", 2);
+                    yield return WaitForFireAnim;
+                    yield return SpecialAttackThree();
+                    BossAnimator.SetInteger("BossState", 0);
+                    yield return WaitForStopDelay3;
+                    break;
+                case BossStates.Rage_Mode:
+                    BossAnimator.SetInteger("BossState", 3);
+                    yield return HandleRageModeCharge();
+                    yield return SpecialAttackOne();
+                    yield return SpecialAttackThree();
+                    yield return SpecialAttackThree();
+                    BossAnimator.SetInteger("BossState", 4);
+                    yield return WaitForRageModeStopDelay;
+                    BossAnimator.SetInteger("BossState", 0);
+                    HasCompletedRageMode = true;
+                    break;
             }
-            else
-            {
-                switch (CurrentState)
-                {
-                    case BossStates.Rotating:
-                        HandleRotateBoss();
-                        break;
-                    case BossStates.FindingPlayer:
-                    case BossStates.Moving:
-                        HandleMoveBoss();
-                        break;
-                    case BossStates.Special_Attack_1:
-                        yield return SpecialAttackOne();
-                        currentStateTime = StateDuration;
-                        break;
-                    case BossStates.Special_Attack_2:
-                        yield return SpecialAttackTwo();
-                        currentStateTime = StateDuration;
-                        break;
-                    case BossStates.Special_Attack_3:
-                        yield return SpecialAttackThree();
-                        currentStateTime = StateDuration;
-                        break;
-                }
 
-                currentStateTime += Time.fixedDeltaTime;
-            }
-
-            yield return null;
+            ChangeBossState();
         }
 
         BossController = null;
-    }
-
-    private void HandleRotateBoss()
-    {
-        if (RotionDirection)
-        {
-            MyRigidBody.MoveRotation(MyRigidBody.rotation + (RotationSpeed * Time.deltaTime));
-        }
-        else
-        {
-            MyRigidBody.MoveRotation(MyRigidBody.rotation + (-RotationSpeed * Time.deltaTime));
-        }
-    }
-
-    private void HandleMoveBoss()
-    {
-        UpdateSubBosses(true);
-        MyRigidBody.AddForce(movementDirection.normalized * CurrentSpeed);
     }
 
     public void Update()
@@ -206,41 +236,64 @@ public class BossEnemyController : MonoBehaviour
         }
     }
 
-    protected void SetupNewState()
+    #region State Selection
+
+    protected void ChangeBossState()
     {
         if (attacker != null)
         {
-            // Ensures the boss cannot pick the same state in a row
-            BossStates newState = CurrentState;
-
-            while (newState == CurrentState)
+            // Checks to see if the boss has any sub bosses left alive
+            if (HasCompletedRageMode == false && CheckRageModeTrigger())
             {
-                newState = GetRandomState();
+                CurrentState = BossStates.Rage_Mode;
             }
-
-            CurrentState = newState;
-
-            switch (CurrentState)
+            else
             {
-                case BossStates.Rotating:
-                    UpdateSubBosses(true);
-                    CurrentState = BossStates.Rotating;
-                    RotionDirection = Random.value > 0.5f;
-                    break;
-                case BossStates.Moving:
-                    UpdateSubBosses(true);
-                    CurrentSpeed = MovementSpeed;
-                    movementDirection = attacker.position - transform.position;
-                    break;
-                case BossStates.Special_Attack_1:
-                case BossStates.Special_Attack_2:
-                case BossStates.Special_Attack_3:
-                    UpdateSubBosses(false);
-                    break;
+                // Ensures the boss cannot pick the same state in a row
+                BossStates newState = CurrentState;
+
+                while (newState == CurrentState)
+                {
+                    newState = GetRandomState();
+                }
+
+                CurrentState = newState;
+
+                switch (CurrentState)
+                {
+                    case BossStates.Rotating:
+                        UpdateSubBosses(true);
+                        CurrentState = BossStates.Rotating;
+                        RotionDirection = Random.value >= 0.5f;
+                        break;
+                    case BossStates.Moving:
+                        UpdateSubBosses(true);
+                        CurrentSpeed = MovementSpeed;
+                        movementDirection = attacker.position - transform.position;
+                        break;
+                    case BossStates.Special_Attack_1:
+                    case BossStates.Special_Attack_2:
+                    case BossStates.Special_Attack_3:
+                        UpdateSubBosses(false);
+                        break;
+                }
             }
         }
 
         currentStateTime = 0;
+    }
+
+    private bool CheckRageModeTrigger()
+    {
+        for (int i = 0; i < SubBosses.Length; i++)
+        {
+            if (SubBosses[i].gameObject.activeInHierarchy)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private BossStates GetRandomState()
@@ -272,6 +325,10 @@ public class BossEnemyController : MonoBehaviour
         return state;
     }
 
+    #endregion
+
+    #region Bullet Pool
+
     private DamageComponent GetBulletFromThePool()
     {
         foreach (DamageComponent pooledBullet in BulletPool)
@@ -298,6 +355,56 @@ public class BossEnemyController : MonoBehaviour
         }
     }
 
+    public void DestroyAllBullets()
+    {
+        foreach (DamageComponent pooledBullet in BulletPool)
+        {
+            if (pooledBullet.gameObject.activeInHierarchy)
+            {
+                BulletParticleManager.Instance.PlayExplosionParticle(gameObject.transform.position);
+                pooledBullet.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    #endregion
+
+    #region Sequences
+
+    private IEnumerator HandleRotateBoss()
+    {
+        currentStateTime = 0f;
+
+        while (currentStateTime < StateDuration)
+        {
+            yield return WaitForFixedUpdate;
+
+            if (RotionDirection)
+            {
+                MyRigidBody.MoveRotation(MyRigidBody.rotation + (RotationSpeed * Time.deltaTime));
+            }
+            else
+            {
+                MyRigidBody.MoveRotation(MyRigidBody.rotation + (-RotationSpeed * Time.deltaTime));
+            }
+
+            currentStateTime += Time.fixedDeltaTime;
+        }
+    }
+
+    private IEnumerator HandleMoveBoss()
+    {
+        currentStateTime = 0f;
+
+        while (currentStateTime < StateDuration)
+        {
+            yield return WaitForFixedUpdate;
+
+            MyRigidBody.AddForce(movementDirection.normalized * CurrentSpeed);
+            currentStateTime += Time.fixedDeltaTime;
+        }
+    }
+
     private IEnumerator SpecialAttackOne()
     {
         for (int i = 0; i < FireRate; i++)
@@ -310,17 +417,17 @@ public class BossEnemyController : MonoBehaviour
                 bullet.transform.position = trans.position;
                 bullet.transform.rotation = Quaternion.Euler(direction);
                 bullet.gameObject.SetActive(true);
-                bullet.Rigidbody.velocity = MyRigidBody.velocity + (direction.normalized * BulletSpeed1);
+                bullet.Rigidbody.velocity = direction.normalized * BulletSpeed1;
             }
 
-            yield return new WaitForSeconds(FireDelay);
+            yield return WaitForFireTick1;
         }
-
-        yield return new WaitForSeconds(StopDelay1);
     }
 
     private IEnumerator SpecialAttackTwo()
     {
+        bool clockWise = (Random.value >= 0.5f) ? true : false;
+
         float B = BulletOrigins.Length * 0.33f;
         float C = BulletOrigins.Length * 0.66f;
         float D = BulletOrigins.Length * 0.99f;
@@ -328,7 +435,7 @@ public class BossEnemyController : MonoBehaviour
         for (int i = 0; i < BulletOrigins.Length; i++)
         {
             int A = Mathf.RoundToInt(Mathf.Repeat(B, BulletOrigins.Length - 1));
-            Debug.Log("B: " + A);
+            // Debug.Log("B: " + A);
 
             DamageComponent bullet = GetBulletFromThePool();
             Vector2 direction = BulletOrigins[A].position - transform.position;
@@ -336,10 +443,10 @@ public class BossEnemyController : MonoBehaviour
             bullet.transform.position = BulletOrigins[A].position;
             bullet.transform.rotation = Quaternion.Euler(direction);
             bullet.gameObject.SetActive(true);
-            bullet.Rigidbody.velocity = MyRigidBody.velocity + (direction.normalized * BulletSpeed2);
+            bullet.Rigidbody.velocity = direction.normalized * BulletSpeed2;
 
             A = Mathf.RoundToInt(Mathf.Repeat(C, BulletOrigins.Length - 1));
-            Debug.Log("C: " + A);
+            // Debug.Log("C: " + A);
 
             bullet = GetBulletFromThePool();
             direction = BulletOrigins[A].position - transform.position;
@@ -347,10 +454,10 @@ public class BossEnemyController : MonoBehaviour
             bullet.transform.position = BulletOrigins[A].position;
             bullet.transform.rotation = Quaternion.Euler(direction);
             bullet.gameObject.SetActive(true);
-            bullet.Rigidbody.velocity = MyRigidBody.velocity + (direction.normalized * BulletSpeed2);
+            bullet.Rigidbody.velocity = direction.normalized * BulletSpeed2;
 
             A = Mathf.RoundToInt(Mathf.Repeat(D, BulletOrigins.Length - 1));
-            Debug.Log("D: " + A);
+            // Debug.Log("D: " + A);
 
             bullet = GetBulletFromThePool();
             direction = BulletOrigins[A].position - transform.position;
@@ -358,16 +465,23 @@ public class BossEnemyController : MonoBehaviour
             bullet.transform.position = BulletOrigins[A].position;
             bullet.transform.rotation = Quaternion.Euler(direction);
             bullet.gameObject.SetActive(true);
-            bullet.Rigidbody.velocity = MyRigidBody.velocity + (direction.normalized * BulletSpeed2);
+            bullet.Rigidbody.velocity = direction.normalized * BulletSpeed2;
 
-            B++;
-            C++;
-            D++;
+            if (clockWise)
+            {
+                B++;
+                C++;
+                D++;
+            }
+            else
+            {
+                B--;
+                C--;
+                D--;
+            }
 
-            yield return new WaitForSeconds(FireTick);
+            yield return WaitForFireTick2;
         }
-
-        yield return new WaitForSeconds(StopDelay2);
     }
 
     private IEnumerator SpecialAttackThree()
@@ -380,13 +494,28 @@ public class BossEnemyController : MonoBehaviour
             bullet.transform.position = transform.position;
             bullet.transform.rotation = Quaternion.Euler(direction);
             bullet.gameObject.SetActive(true);
-            bullet.Rigidbody.velocity = MyRigidBody.velocity + (direction.normalized * BulletSpeed3);
+            bullet.Rigidbody.velocity = direction.normalized * BulletSpeed3;
 
-            yield return new WaitForSeconds(FireTick3);
+            yield return WaitForFireTick3;
         }
-
-        yield return new WaitForSeconds(StopDelay3);
     }
+    private IEnumerator HandleRageModeCharge()
+    {
+        currentStateTime = 0f;
+
+        while (currentStateTime < StateDuration)
+        {
+            yield return WaitForFixedUpdate;
+            movementDirection = attacker.position - transform.position;
+
+            MyRigidBody.AddForce(movementDirection.normalized * CurrentSpeed);
+            currentStateTime += Time.fixedDeltaTime;
+        }
+    }
+
+    #endregion
+
+    #region Collsions Detection
 
     public void HandleTriggerEnter(Collider2D collision)
     {
@@ -414,6 +543,8 @@ public class BossEnemyController : MonoBehaviour
 
             if (CurrentHealth <= 0)
             {
+                DestroyAllBullets();
+                CurrentFlashTime = -DeathFlashTime + FlashTime;
                 CurrentState = BossStates.Dead;
             }
         }
@@ -430,12 +561,17 @@ public class BossEnemyController : MonoBehaviour
 
             if (CurrentHealth <= 0)
             {
+                DestroyAllBullets();
+                CurrentFlashTime = -DeathFlashTime + FlashTime;
                 CurrentState = BossStates.Dead;
             }
         }
     }
 
-    [ContextMenu("Trigger Death")]
+    #endregion
+
+    #region Death
+
     private void TriggerDeath()
     {
         if (!HasDroppedLoad)
@@ -478,8 +614,24 @@ public class BossEnemyController : MonoBehaviour
         HealthBarParent.SetActive(false);
     }
 
-    protected Vector2 GenerateRandomMovementVector()
+    #endregion
+
+    #region Debug Tools
+
+    [ContextMenu("Trigger Boss Death")]
+    public void DebugTriggerDeath()
     {
-        return new Vector2(UnityEngine.Random.Range(-1.0f, 1.0f), UnityEngine.Random.Range(-1.0f, 1.0f)).normalized;
+        TriggerDeath();
     }
+
+    [ContextMenu("Trigger Rage Mode")]
+    public void DebugTriggerRageMode()
+    {
+        foreach (SubBoss sub in SubBosses)
+        {
+            sub.KillSelf();
+        }
+    }
+
+    #endregion
 }

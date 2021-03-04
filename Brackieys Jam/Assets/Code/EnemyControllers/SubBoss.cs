@@ -21,6 +21,13 @@ public class SubBoss : MonoBehaviour
     [SerializeField] protected float MinPitch = 0.9f;
     [SerializeField] protected float MaxPitch = 1.1f;
 
+    private float CurrentHealth;
+
+    public void Spawn()
+    {
+        CurrentHealth = Health;
+        gameObject.SetActive(true);
+    }
 
     public void FixedUpdate()
     {
@@ -53,14 +60,14 @@ public class SubBoss : MonoBehaviour
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
             damage.gameObject.SetActive(false);
 
-            Health -= damage.Damage;
+            CurrentHealth -= damage.Damage;
             CurrentFlashTime = 0;
 
             BulletParticleManager.Instance.PlayExplosionParticle(collision.GetContact(0).point);
             TakeDamageSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             TakeDamageSFX.Play();
 
-            if (Health <= 0)
+            if (CurrentHealth <= 0)
             {
                 KillAfterFlash = true;
             }
@@ -69,20 +76,20 @@ public class SubBoss : MonoBehaviour
         {
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
 
-            Health -= damage.Damage;
+            CurrentHealth -= damage.Damage;
             CurrentFlashTime = 0;
 
             TakeDamageSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             TakeDamageSFX.Play();
 
-            if (Health <= 0)
+            if (CurrentHealth <= 0)
             {
                 KillAfterFlash = true;
             }
         }
     }
 
-    protected void KillSelf()
+    public void KillSelf()
     {
         SfxPlayer.PlaySFX();
         ExplosionManager.PlayExplosionParticle(transform.position);
