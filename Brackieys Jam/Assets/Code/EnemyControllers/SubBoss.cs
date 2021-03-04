@@ -50,7 +50,10 @@ public class SubBoss : MonoBehaviour
 
     public void SetAnimatorState(bool State)
     {
-        Animator.SetBool(AnimatorParameter, State);
+        if (IsAlive())
+        {
+            Animator.SetBool(AnimatorParameter, State);
+        }
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -91,8 +94,15 @@ public class SubBoss : MonoBehaviour
 
     public void KillSelf()
     {
-        SfxPlayer.PlaySFX();
-        ExplosionManager.PlayExplosionParticle(transform.position);
-        gameObject.SetActive(false);
+        if (IsAlive())
+        {
+            SfxPlayer.PlaySFX();
+            ExplosionManager.PlayExplosionParticle(transform.position);
+            gameObject.SetActive(false);
+        }
+    }
+    public bool IsAlive()
+    {
+        return gameObject.activeInHierarchy;   
     }
 }

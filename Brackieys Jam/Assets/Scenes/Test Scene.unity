@@ -14693,7 +14693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &381530003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97422,7 +97422,7 @@ MonoBehaviour:
   - {fileID: 7113642340374277034}
   - {fileID: 7113642339308413757}
   - {fileID: 7113642340036680300}
-  MaxNumberOfBullets: 40
+  MaxNumberOfBullets: 50
   FireRate: 4
   FireTick1: 0.4
   BulletSpeed1: 7
@@ -97434,7 +97434,11 @@ MonoBehaviour:
   NumberOfBullets: 16
   BulletSpeed3: 11
   StopDelay3: 0.1
+  RageModeChargeDuration: 3
+  RageModeChargeSpeed: 140
+  RageModeStopDelay: 2
   FlashTime: 0.1
+  DeathFlashTime: 0.5
   HurtSFX: {fileID: 7113642340581566781}
   MinPitch: 0.6
   MaxPitch: 1

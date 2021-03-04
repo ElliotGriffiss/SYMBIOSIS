@@ -59,6 +59,8 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] private float BulletSpeed3;
     [SerializeField] private float StopDelay3;
     [Header("Rage Mode Data")]
+    [SerializeField] private float RageModeChargeDuration = 3f;
+    [SerializeField] private float RageModeChargeSpeed;
     [SerializeField] private float RageModeStopDelay = 1f;
 
     [Header("Flash Effects")]
@@ -107,6 +109,7 @@ public class BossEnemyController : MonoBehaviour
     private bool HasCompletedRageMode = false;
     private bool HasDroppedLoad = true;
     private bool RotionDirection = false;
+    private bool HasPool = false;
 
     private void Start()
     {
@@ -138,6 +141,7 @@ public class BossEnemyController : MonoBehaviour
         HealthBar.fillAmount = CurrentHealth / Health;
         transform.position = SpawnPoint.position;
         gameObject.SetActive(true);
+        SetUpBulletPool();
 
         foreach (SubBoss sub in SubBosses)
         {
@@ -148,6 +152,8 @@ public class BossEnemyController : MonoBehaviour
         StartCoroutine(BossController);
     }
 
+    #region SubBoss Management
+
     protected void UpdateSubBosses(bool active)
     {
         foreach (SubBoss sub in SubBosses)
@@ -155,6 +161,16 @@ public class BossEnemyController : MonoBehaviour
             sub.SetAnimatorState(active);
         }
     }
+
+    protected void KillAllSubBosses()
+    {
+        foreach (SubBoss sub in SubBosses)
+        {
+            sub.KillSelf();
+        }
+    }
+
+    #endregion
 
     protected IEnumerator BossSequenceController()
     {
@@ -196,12 +212,15 @@ public class BossEnemyController : MonoBehaviour
                 case BossStates.Rage_Mode:
                     BossAnimator.SetInteger("BossState", 3);
                     yield return HandleRageModeCharge();
+                    yield return WaitForFireAnim;
                     yield return SpecialAttackOne();
+                    yield return SpecialAttackThree();
                     yield return SpecialAttackThree();
                     yield return SpecialAttackThree();
                     BossAnimator.SetInteger("BossState", 4);
                     yield return WaitForRageModeStopDelay;
                     BossAnimator.SetInteger("BossState", 0);
+                    yield return WaitForFireAnim;
                     HasCompletedRageMode = true;
                     break;
             }
@@ -246,6 +265,7 @@ public class BossEnemyController : MonoBehaviour
             if (HasCompletedRageMode == false && CheckRageModeTrigger())
             {
                 CurrentState = BossStates.Rage_Mode;
+                CurrentSpeed = RageModeChargeSpeed;
             }
             else
             {
@@ -263,7 +283,6 @@ public class BossEnemyController : MonoBehaviour
                 {
                     case BossStates.Rotating:
                         UpdateSubBosses(true);
-                        CurrentState = BossStates.Rotating;
                         RotionDirection = Random.value >= 0.5f;
                         break;
                     case BossStates.Moving:
@@ -287,7 +306,7 @@ public class BossEnemyController : MonoBehaviour
     {
         for (int i = 0; i < SubBosses.Length; i++)
         {
-            if (SubBosses[i].gameObject.activeInHierarchy)
+            if (SubBosses[i].IsAlive())
             {
                 return false;
             }
@@ -319,7 +338,15 @@ public class BossEnemyController : MonoBehaviour
         }
         else if (range > 0)
         {
-            state = BossStates.Rotating;
+            // If the boss has no sub bosses left, rotating is kinda pointless...
+            if (HasCompletedRageMode)
+            {
+                state = BossStates.Special_Attack_3;
+            }
+            else
+            {
+                state = BossStates.Rotating;
+            }
         }
 
         return state;
@@ -328,6 +355,21 @@ public class BossEnemyController : MonoBehaviour
     #endregion
 
     #region Bullet Pool
+
+    private void SetUpBulletPool()
+    {
+        if (HasPool == false)
+        {
+            for (int i = 0; i < MaxNumberOfBullets; i++)
+            {
+                DamageComponent bullet = Instantiate(BulletPrefab);
+                bullet.gameObject.SetActive(false);
+                BulletPool.Add(bullet);
+            }
+
+            HasPool = true;
+        }
+    }
 
     private DamageComponent GetBulletFromThePool()
     {
@@ -361,7 +403,7 @@ public class BossEnemyController : MonoBehaviour
         {
             if (pooledBullet.gameObject.activeInHierarchy)
             {
-                BulletParticleManager.Instance.PlayExplosionParticle(gameObject.transform.position);
+                BulletParticleManager.Instance.PlayExplosionParticle(pooledBullet.transform.position);
                 pooledBullet.gameObject.SetActive(false);
             }
         }
@@ -503,7 +545,7 @@ public class BossEnemyController : MonoBehaviour
     {
         currentStateTime = 0f;
 
-        while (currentStateTime < StateDuration)
+        while (currentStateTime < RageModeChargeDuration)
         {
             yield return WaitForFixedUpdate;
             movementDirection = attacker.position - transform.position;
@@ -543,9 +585,7 @@ public class BossEnemyController : MonoBehaviour
 
             if (CurrentHealth <= 0)
             {
-                DestroyAllBullets();
-                CurrentFlashTime = -DeathFlashTime + FlashTime;
-                CurrentState = BossStates.Dead;
+                SetUpDeath();
             }
         }
         else if (collision.collider.gameObject.tag == "Spike")
@@ -561,9 +601,7 @@ public class BossEnemyController : MonoBehaviour
 
             if (CurrentHealth <= 0)
             {
-                DestroyAllBullets();
-                CurrentFlashTime = -DeathFlashTime + FlashTime;
-                CurrentState = BossStates.Dead;
+                SetUpDeath();
             }
         }
     }
@@ -571,6 +609,14 @@ public class BossEnemyController : MonoBehaviour
     #endregion
 
     #region Death
+
+    private void SetUpDeath()
+    {
+        KillAllSubBosses();
+        DestroyAllBullets();
+        CurrentFlashTime = -DeathFlashTime + FlashTime;
+        CurrentState = BossStates.Dead;
+    }
 
     private void TriggerDeath()
     {
@@ -621,16 +667,13 @@ public class BossEnemyController : MonoBehaviour
     [ContextMenu("Trigger Boss Death")]
     public void DebugTriggerDeath()
     {
-        TriggerDeath();
+        SetUpDeath();
     }
 
     [ContextMenu("Trigger Rage Mode")]
     public void DebugTriggerRageMode()
     {
-        foreach (SubBoss sub in SubBosses)
-        {
-            sub.KillSelf();
-        }
+        KillAllSubBosses();
     }
 
     #endregion
