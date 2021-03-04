@@ -515,10 +515,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     sentances:
-    - Through observation we'll measure how successful our little host would be once
-      released into the world. -Prof
-    - Only utter domination would constitute success Jones. -Prof
-    - Now choose a HOST and a PARASITE and let's get on with the experimen. -Prof
+    - 'Through observation we''ll measure how
+
+      successful our little host would
+      be
+
+      once released into the world. -Prof'
+    - 'Only utter domination would constitute
+
+      success Jones. -Prof'
+    - 'Now choose a HOST and a PARASITE and
+
+      let''s get on with the experimen.
+      -Prof'
     - Yes, Professor. -Jones
 --- !u!114 &544023979
 MonoBehaviour:

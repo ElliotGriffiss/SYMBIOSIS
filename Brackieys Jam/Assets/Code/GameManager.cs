@@ -298,8 +298,6 @@ public class GameManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(3f);
-        MusicSource.clip = MenuMusic;
-        MusicSource.Play();
         Camera.UpdateFollowTarget(Host.transform, false);
         yield return CompletedCanvas.VictoryAnimationSequence(TotalKillsByType);
     }

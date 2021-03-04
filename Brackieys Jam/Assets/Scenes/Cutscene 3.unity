@@ -515,8 +515,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     sentances:
-    - Success, professor! Our species has proven itself viable. -Jones
-    - "Quite right Jones. Now to release it into the world\u2026 -Prof"
+    - 'Success, professor! Our species has
+
+      proven itself viable. -Jones'
+    - "Quite right Jones. Now to release it\ninto the world\u2026 -Prof"
 --- !u!114 &544023979
 MonoBehaviour:
   m_ObjectHideFlags: 0
