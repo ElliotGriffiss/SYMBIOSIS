@@ -12,6 +12,12 @@ public class AggresiveEnemyController : BaseEnemyController
 
     protected override void FixedUpdate()
     {
+        if (HostKnockBackForce != Vector2.zero)
+        {
+            MyRigidBody.AddForce(HostKnockBackForce, ForceMode2D.Impulse);
+            HostKnockBackForce = Vector2.zero;
+        }
+
         if (State == EnemyState.Attacking)
         {
             Animator.SetBool("IsMoving", true);

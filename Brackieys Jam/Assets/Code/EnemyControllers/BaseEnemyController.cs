@@ -32,6 +32,7 @@ public class BaseEnemyController : MonoBehaviour
     protected HealthDropObjectPool DropPool;
 
     protected Vector2 movementDirection;
+    protected Vector2 HostKnockBackForce = Vector2.zero;
     protected float currentStateTime = float.PositiveInfinity; // ensures a new state is always chosen
     protected float CurrentFlashTime = float.MaxValue;
     protected float CurrentHealth;
@@ -54,6 +55,12 @@ public class BaseEnemyController : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        if (HostKnockBackForce != Vector2.zero)
+        {
+            MyRigidBody.AddForce(HostKnockBackForce, ForceMode2D.Impulse);
+            HostKnockBackForce = Vector2.zero;
+        }
+
         if (currentStateTime > StateDuration)
         {
             ChooseANewState();
@@ -110,9 +117,7 @@ public class BaseEnemyController : MonoBehaviour
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
             damage.gameObject.SetActive(false);
 
-            MyRigidBody.velocity = Vector3.zero;
-            MyRigidBody.angularVelocity = 0f;
-            MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+            HostKnockBackForce = (transform.position - collision.transform.position) * damage.KnockBackForce;
 
             CurrentHealth -= damage.Damage;
             CurrentFlashTime = 0;
@@ -128,10 +133,7 @@ public class BaseEnemyController : MonoBehaviour
         else if (collision.collider.gameObject.tag == "Spike")
         {
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
-
-            MyRigidBody.velocity = Vector3.zero;
-            MyRigidBody.angularVelocity = 0f;
-            MyRigidBody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+            HostKnockBackForce = (transform.position - collision.transform.position) * damage.KnockBackForce;
 
             CurrentHealth -= damage.Damage;
             CurrentFlashTime = 0;
