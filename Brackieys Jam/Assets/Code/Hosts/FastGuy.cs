@@ -46,7 +46,7 @@ public class FastGuy : BaseHost
             CurrentDuration -= Time.deltaTime;
             UpdateAbilityBar();
 
-            HostSprite.gameObject.transform.rotation *= Quaternion.EulerAngles(RotationAxis * RotationSpeed * RotationAcceleration.Evaluate(CurrentDuration / CurrentAbilityDuration));
+            HostSprite.gameObject.transform.rotation *= Quaternion.Euler(RotationAxis * RotationSpeed * RotationAcceleration.Evaluate(CurrentDuration / CurrentAbilityDuration) * Mathf.Rad2Deg);
 
             if (CurrentDuration < 0)
             {
