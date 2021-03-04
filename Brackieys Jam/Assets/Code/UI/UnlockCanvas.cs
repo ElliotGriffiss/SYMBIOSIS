@@ -22,6 +22,7 @@ public class UnlockCanvas : MonoBehaviour
 
     private IEnumerator OpenAnimationSequence()
     {
+        ParentObject.transform.position = OffSceenPosition.position;
         ParentObject.gameObject.SetActive(true);
         yield return waitForFrameEnd;
         Timer = 0;
