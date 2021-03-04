@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameCompletedCanvas : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class GameCompletedCanvas : MonoBehaviour
     [SerializeField] private RectTransform ParentObject;
     [SerializeField] private Image Background;
     [SerializeField] private GameObject VictorySlide;
-    [SerializeField] private GameObject ContinueSlide;
     [SerializeField] private GameObject VictoryContinuePrompt;
     [Space]
     [SerializeField] private Image[] EnemyImages;
@@ -17,7 +17,6 @@ public class GameCompletedCanvas : MonoBehaviour
 
     [Header("Animation Settings")]
     [SerializeField] private float OpenTime = 1f;
-    [SerializeField] private float CloseTime = 0.5f;
     [SerializeField] private AnimationCurve PanelAnimationCurve;
     [SerializeField] private RectTransform OffSceenPosition;
     [SerializeField] private RectTransform OnSceenPosition;
@@ -61,7 +60,6 @@ public class GameCompletedCanvas : MonoBehaviour
         ParentObject.gameObject.SetActive(true);
         Background.gameObject.SetActive(true);
         VictorySlide.SetActive(true);
-        ContinueSlide.SetActive(false);
         VictoryContinuePrompt.SetActive(false);
 
         KillCounters[0].text = "x0";
@@ -71,7 +69,6 @@ public class GameCompletedCanvas : MonoBehaviour
 
         ParentObject.transform.position = OffSceenPosition.position;
         Background.color = BackGroundWhite;
-
 
         yield return waitForFrameEnd;
         float Timer = 0;
@@ -114,18 +111,8 @@ public class GameCompletedCanvas : MonoBehaviour
             yield return waitForFrameEnd;
         }
 
-        VictorySlide.SetActive(false);
-        ContinueSlide.SetActive(true);
-
-        ButtonPressed = false;
-
-        while (ButtonPressed == false)
-        {
-            yield return waitForFrameEnd;
-        }
-
         Time.timeScale = 1f;
-        StartCoroutine(CloseGUI());
+        SceneManager.LoadScene("Cutscene 3");
     }
 
     private IEnumerator DisplayTickSequence(byte Index)
@@ -158,22 +145,5 @@ public class GameCompletedCanvas : MonoBehaviour
             yield return new WaitForSecondsRealtime(UITickPause);
             EnemyImages[Index].material = NormalMaterial;
         }
-    }
-
-    private IEnumerator CloseGUI()
-    {
-        float Timer = CloseTime;
-
-        while (Timer > 0)
-        {
-            ParentObject.transform.position = Vector2.LerpUnclamped(OffSceenPosition.position, OnSceenPosition.position, PanelAnimationCurve.Evaluate(Timer / CloseTime));
-            Background.color = Color.Lerp(BackGroundWhite, BackGroundGreyedOut, PanelAnimationCurve.Evaluate(Timer / CloseTime));
-            yield return waitForFrameEnd;
-            Timer -= Time.deltaTime;
-        }
-
-        yield return waitForFrameEnd;
-        Background.gameObject.SetActive(false);
-        ParentObject.gameObject.SetActive(false);
     }
 }

@@ -302,18 +302,6 @@ public class GameManager : MonoBehaviour
         MusicSource.Play();
         Camera.UpdateFollowTarget(Host.transform, false);
         yield return CompletedCanvas.VictoryAnimationSequence(TotalKillsByType);
-        Time.timeScale = 1f;
-
-        Levels[CurrentLevelIndex].LevelCleanUp();
-        CurrentStatLevels = new int[4] { 0, 0, 0, 0 };
-        TotalKillsByType = new int[4];
-        CurrentLevelIndex = 0;
-
-        CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
-        Camera.SetCameraPositionImmediate(TestArea.transform.position, false);
-        Camera.UpdateFollowTarget(TestArea.transform, false);
-        TestArea.SetActive(true);
-        LevelProgressionCanvas.gameObject.SetActive(false);
     }
 
     [ContextMenu("Delete All Player Prefs")]
