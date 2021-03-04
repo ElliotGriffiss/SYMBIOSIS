@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using GameData;
 
 public class BossEnemyController : MonoBehaviour
 {
@@ -105,6 +106,7 @@ public class BossEnemyController : MonoBehaviour
     private float CurrentHealth;
     private float CurrentSpeed;
     private float currentStateTime = 0;
+    private int[] SubBossesKilled;
 
     private bool HasCompletedRageMode = false;
     private bool HasDroppedLoad = true;
@@ -170,7 +172,22 @@ public class BossEnemyController : MonoBehaviour
         }
     }
 
+    protected void UpdateSubBossesKilled()
+    {
+        SubBossesKilled = new int[4] { 0, 0, 0, 0 };
+
+        foreach (SubBoss sub in SubBosses)
+        {
+            if (!sub.IsAlive())
+            {
+                SubBossesKilled[(int)sub.EnemyType]++;
+            }
+        }
+    }
+
     #endregion
+
+    #region Main Iterator Loops
 
     protected IEnumerator BossSequenceController()
     {
@@ -254,6 +271,8 @@ public class BossEnemyController : MonoBehaviour
             BossController = null;
         }
     }
+
+    #endregion
 
     #region State Selection
 
@@ -612,6 +631,7 @@ public class BossEnemyController : MonoBehaviour
 
     private void SetUpDeath()
     {
+        UpdateSubBossesKilled();
         KillAllSubBosses();
         DestroyAllBullets();
         CurrentFlashTime = -DeathFlashTime + FlashTime;
@@ -652,7 +672,7 @@ public class BossEnemyController : MonoBehaviour
 
         gameObject.SetActive(false);
         HasDroppedLoad = true;
-        GameManager.TriggerGameWonSequence();
+        GameManager.TriggerGameWonSequence(SubBossesKilled);
     }
 
     private void OnDisable()

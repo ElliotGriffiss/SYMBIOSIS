@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameData;
 
 public class SubBoss : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class SubBoss : MonoBehaviour
     [SerializeField] private SpriteRenderer Sprite;
     [SerializeField] private ExplosionParticleManager ExplosionManager;
     [Header("Settings")]
+    [SerializeField] public EnemyTypes EnemyType;
     [SerializeField] protected float Health = 5;
     [SerializeField] private string AnimatorParameter = "IsMoving";
     [Header("Flash Effects")]

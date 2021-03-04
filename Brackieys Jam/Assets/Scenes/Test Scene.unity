@@ -3201,6 +3201,7 @@ MonoBehaviour:
   Animator: {fileID: 160638737}
   Sprite: {fileID: 160638736}
   ExplosionManager: {fileID: 325576583}
+  EnemyType: 2
   Health: 16
   AnimatorParameter: IsMoving
   FlashTime: 0.1
@@ -94972,6 +94973,7 @@ MonoBehaviour:
   Animator: {fileID: 639768605711266212}
   Sprite: {fileID: 5818615542410912306}
   ExplosionManager: {fileID: 325576583}
+  EnemyType: 3
   Health: 16
   AnimatorParameter: IsMoving
   FlashTime: 0.1
@@ -95164,6 +95166,7 @@ MonoBehaviour:
   Animator: {fileID: 7207968753889662468}
   Sprite: {fileID: 683454610560228487}
   ExplosionManager: {fileID: 325576583}
+  EnemyType: 2
   Health: 16
   AnimatorParameter: IsMoving
   FlashTime: 0.1
@@ -95202,6 +95205,7 @@ MonoBehaviour:
   Animator: {fileID: 2343162953071530394}
   Sprite: {fileID: 855219266413730926}
   ExplosionManager: {fileID: 325576583}
+  EnemyType: 0
   Health: 16
   AnimatorParameter: IsMoving
   FlashTime: 0.1
@@ -95623,6 +95627,7 @@ MonoBehaviour:
   Animator: {fileID: 7113642339113644505}
   Sprite: {fileID: 7113642339113644504}
   ExplosionManager: {fileID: 325576583}
+  EnemyType: 1
   Health: 16
   AnimatorParameter: IsMoving
   FlashTime: 0.1
@@ -95906,6 +95911,7 @@ MonoBehaviour:
   Animator: {fileID: 7113642339255751978}
   Sprite: {fileID: 7113642339255751973}
   ExplosionManager: {fileID: 325576583}
+  EnemyType: 3
   Health: 16
   AnimatorParameter: IsMoving
   FlashTime: 0.1
@@ -96578,6 +96584,7 @@ MonoBehaviour:
   Animator: {fileID: 7113642340369072811}
   Sprite: {fileID: 7113642340369072808}
   ExplosionManager: {fileID: 325576583}
+  EnemyType: 2
   Health: 16
   AnimatorParameter: IsMoving
   FlashTime: 0.1
@@ -96848,6 +96855,7 @@ MonoBehaviour:
   Animator: {fileID: 7113642340385642384}
   Sprite: {fileID: 7113642340385642387}
   ExplosionManager: {fileID: 325576583}
+  EnemyType: 0
   Health: 16
   AnimatorParameter: IsMoving
   FlashTime: 0.1
@@ -97322,6 +97330,7 @@ MonoBehaviour:
   Animator: {fileID: 7113642340573816733}
   Sprite: {fileID: 7113642340573816732}
   ExplosionManager: {fileID: 325576583}
+  EnemyType: 3
   Health: 16
   AnimatorParameter: IsMoving
   FlashTime: 0.1
@@ -97847,6 +97856,7 @@ MonoBehaviour:
   Animator: {fileID: 7113642340898958530}
   Sprite: {fileID: 7113642340898958557}
   ExplosionManager: {fileID: 325576583}
+  EnemyType: 1
   Health: 16
   AnimatorParameter: IsMoving
   FlashTime: 0.1
@@ -97939,6 +97949,7 @@ MonoBehaviour:
   Animator: {fileID: 7113642340982994093}
   Sprite: {fileID: 7113642340982994092}
   ExplosionManager: {fileID: 325576583}
+  EnemyType: 0
   Health: 16
   AnimatorParameter: IsMoving
   FlashTime: 0.1
@@ -98387,6 +98398,7 @@ MonoBehaviour:
   Animator: {fileID: 4481182160516653770}
   Sprite: {fileID: 9127811615749599631}
   ExplosionManager: {fileID: 325576583}
+  EnemyType: 1
   Health: 16
   AnimatorParameter: IsMoving
   FlashTime: 0.1

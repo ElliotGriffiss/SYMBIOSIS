@@ -272,8 +272,13 @@ public class GameManager : MonoBehaviour
         MusicSource.Play();
     }
 
-    public void TriggerGameWonSequence()
+    public void TriggerGameWonSequence(int[] subBossesKilled)
     {
+        for (int i = 0; i < subBossesKilled.Length; i++)
+        {
+            TotalKillsByType[i] += subBossesKilled[i];
+        }
+
         BossDeathSFX.Play();
         StartCoroutine(GameWon());
     }
