@@ -11,6 +11,7 @@ public class GameCompletedCanvas : MonoBehaviour
     [SerializeField] private Image Background;
     [SerializeField] private GameObject VictorySlide;
     [SerializeField] private GameObject VictoryContinuePrompt;
+    [SerializeField] private Animator OverlayAnimator;
     [Space]
     [SerializeField] private Image[] EnemyImages;
     [SerializeField] private Text[] KillCounters;
@@ -112,6 +113,11 @@ public class GameCompletedCanvas : MonoBehaviour
         }
 
         Time.timeScale = 1f;
+
+        OverlayAnimator.gameObject.SetActive(true);
+        OverlayAnimator.SetBool("FadeIn", true);
+        yield return new WaitForSeconds(1f);
+
         SceneManager.LoadScene("Cutscene 3");
     }
 
