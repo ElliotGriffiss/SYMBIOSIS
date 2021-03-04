@@ -3,6 +3,14 @@ using UnityEngine.UI;
 
 namespace GameData
 {
+    public enum HostNames : byte
+    {
+        Tank_Guy,
+        Stealth_Guy,
+        Fast_Guy,
+        Fish_Guy
+    }
+
     public enum EnemyState
     {
         Idle,

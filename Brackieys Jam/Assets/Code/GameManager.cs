@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameData;
 
 public class GameManager : MonoBehaviour
 {
@@ -161,21 +162,21 @@ public class GameManager : MonoBehaviour
 
     private void CheckForHostUnlocks()
     {
-        if (CurrentLevelIndex == 1 && HostsUnlocked[1] == false)
+        if (CurrentLevelIndex == 2 && HostsUnlocked[1] == false && Host.HostName == HostNames.Tank_Guy)
         {
             HostUnlockCanvas.ShowUnlockGUI();
             HostsUnlocked[1] = true;
             PlayerPrefs.SetInt("Host1Unlocked", 1);
             PlayerPrefs.Save();
         }
-        else if (CurrentLevelIndex == 2 && HostsUnlocked[2] == false)
+        else if (CurrentLevelIndex == 2 && HostsUnlocked[2] == false && Host.HostName == HostNames.Stealth_Guy)
         {
             HostUnlockCanvas.ShowUnlockGUI();
             HostsUnlocked[2] = true;
             PlayerPrefs.SetInt("Host2Unlocked", 1);
             PlayerPrefs.Save();
         }
-        else if (CurrentLevelIndex == 3 && HostsUnlocked[3] == false)
+        else if (CurrentLevelIndex == 3 && HostsUnlocked[3] == false && Host.HostName == HostNames.Fast_Guy)
         {
             HostUnlockCanvas.ShowUnlockGUI();
             HostsUnlocked[3] = true;
@@ -201,19 +202,19 @@ public class GameManager : MonoBehaviour
     {
         TotalKills++;
 
-        if (TotalKills > 29 && ParasitesUnlocked[1] == false)
+        if (TotalKills >= 35 && ParasitesUnlocked[1] == false)
         {
             ParasiteUnlockCanvas.ShowUnlockGUI();
             ParasitesUnlocked[1] = true;
             PlayerPrefs.SetInt("Parasite1Unlocked", 1);
         }
-        else if (TotalKills > 59 && ParasitesUnlocked[2] == false)
+        else if (TotalKills >= 65 && ParasitesUnlocked[2] == false)
         {
             ParasiteUnlockCanvas.ShowUnlockGUI();
             ParasitesUnlocked[2] = true;
             PlayerPrefs.SetInt("Parasite2Unlocked", 1);
         }
-        else if (TotalKills > 69 && ParasitesUnlocked[3] == false)
+        else if (TotalKills >= 85 && ParasitesUnlocked[3] == false)
         {
             ParasiteUnlockCanvas.ShowUnlockGUI();
             ParasitesUnlocked[3] = true;

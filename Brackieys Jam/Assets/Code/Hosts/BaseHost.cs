@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using GameData;
 
 public class BaseHost : MonoBehaviour
 {
@@ -46,6 +47,7 @@ public class BaseHost : MonoBehaviour
     [SerializeField] protected float DropForce;
 
     [Header("Data")]
+    [SerializeField] public HostNames HostName;
     [SerializeField] protected float BaseHealth = 10; // CurrentHealth
     [SerializeField] protected float MaxHealth = 10;
 
@@ -128,6 +130,11 @@ public class BaseHost : MonoBehaviour
 
     public virtual void ChangeParasite(BaseParsite parasite)
     {
+        if (Parasite != null)
+        {
+            Parasite.transform.SetParent(null);
+        }
+
         Parasite = parasite;
         Parasite.transform.parent = ParasiteOrigin;
         Parasite.transform.position = ParasiteOrigin.position;
