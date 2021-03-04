@@ -55245,7 +55245,7 @@ MonoBehaviour:
   PlayerDeathSFX: {fileID: 809739278}
   BossDeathSFX: {fileID: 246154632}
   TotalKills: 0
-  CurrentLevelIndex: 3
+  CurrentLevelIndex: 0
   TotalKillsByType: 00000000000000000000000000000000
   MiamiCam: 1
 --- !u!4 &1086531143

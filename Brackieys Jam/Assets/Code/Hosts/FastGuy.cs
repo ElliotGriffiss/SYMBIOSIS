@@ -70,8 +70,9 @@ public class FastGuy : BaseHost
         Invincible();
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         Vector2 force = Vector2.zero;
         animator.SetBool("IsMoving", false);
 
@@ -127,7 +128,7 @@ public class FastGuy : BaseHost
 
             Rigidbody.velocity = Vector3.zero;
             Rigidbody.angularVelocity = 0f;
-            Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+            Rigidbody.AddForce((transform.position - collision.transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
             CurrentHealth -= damage.Damage * CurrentDamageResistance;
             UpdateHealthBar(false);
@@ -156,7 +157,7 @@ public class FastGuy : BaseHost
 
                 Rigidbody.velocity = Vector3.zero;
                 Rigidbody.angularVelocity = 0f;
-                Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+                Rigidbody.AddForce((transform.position - collision.transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
                 CurrentHealth -= damage.Damage * CurrentDamageResistance;
                 UpdateHealthBar(false);

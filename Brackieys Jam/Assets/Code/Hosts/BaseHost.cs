@@ -77,6 +77,7 @@ public class BaseHost : MonoBehaviour
     protected bool AbilityIsActive;
     protected Vector2 inputValue;
     protected Vector2 direction;
+    private Vector2 EnemyKnockbackForce;
 
     public virtual void InitializeHost(int massRequiredThisLevel, bool IsTestArea = false)
     {
@@ -108,6 +109,15 @@ public class BaseHost : MonoBehaviour
         UpdateHealthBar(true);
         UpdateAbilityBar();
         UpdateLevelProgressCanvas();
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        if (EnemyKnockbackForce != Vector2.zero)
+        {
+            Rigidbody.AddForce(EnemyKnockbackForce, ForceMode2D.Impulse);
+            EnemyKnockbackForce = Vector2.zero;
+        }
     }
 
     public void SetMassRequired(int massRequiredThisLevel)
@@ -154,7 +164,7 @@ public class BaseHost : MonoBehaviour
 
             Rigidbody.velocity = Vector3.zero;
             Rigidbody.angularVelocity = 0f;
-            Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+            EnemyKnockbackForce = (transform.position - collision.transform.position).normalized * damage.KnockBackForce;
 
             CurrentHealth -= damage.Damage * CurrentDamageResistance;
             UpdateHealthBar(false);
@@ -183,7 +193,7 @@ public class BaseHost : MonoBehaviour
 
                 Rigidbody.velocity = Vector3.zero;
                 Rigidbody.angularVelocity = 0f;
-                Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+                Rigidbody.AddForce((transform.position - collision.transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
                 CurrentHealth -= damage.Damage * CurrentDamageResistance;
                 UpdateHealthBar(false);

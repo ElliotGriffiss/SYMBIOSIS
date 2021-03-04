@@ -58,8 +58,9 @@ public class HostController : BaseHost
         Invincible();
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         Vector2 force = Vector2.zero;
 
         if (inputValue.y != 0f)
@@ -106,7 +107,7 @@ public class HostController : BaseHost
 
             Rigidbody.velocity = Vector3.zero;
             Rigidbody.angularVelocity = 0f;
-            Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+            Rigidbody.AddForce((transform.position - collision.transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
             CurrentHealth -= damage.Damage;
             UpdateHealthBar(false);
@@ -135,7 +136,7 @@ public class HostController : BaseHost
 
                 Rigidbody.velocity = Vector3.zero;
                 Rigidbody.angularVelocity = 0f;
-                Rigidbody.AddForce((collision.transform.position + transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+                Rigidbody.AddForce((transform.position - collision.transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
 
                 CurrentHealth -= damage.Damage;
                 UpdateHealthBar(false);
