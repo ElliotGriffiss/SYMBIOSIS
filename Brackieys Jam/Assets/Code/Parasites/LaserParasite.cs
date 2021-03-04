@@ -9,7 +9,6 @@ public class LaserParasite : BaseParsite
     [SerializeField] private Animator animator;
 
     [SerializeField] private float ReloadTime = 1;
-    [SerializeField] private float Range = 10;
     [SerializeField] private int ClipSize;
 
     private bool IsReloading;

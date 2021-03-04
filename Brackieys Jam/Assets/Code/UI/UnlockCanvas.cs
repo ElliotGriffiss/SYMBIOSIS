@@ -12,7 +12,6 @@ public class UnlockCanvas : MonoBehaviour
     [SerializeField] private RectTransform OffSceenPosition;
     [SerializeField] private RectTransform OnSceenPosition;
 
-    private IEnumerator Sequence;
     private WaitForEndOfFrame waitForFrameEnd = new WaitForEndOfFrame();
     private float Timer;
 
@@ -51,6 +50,5 @@ public class UnlockCanvas : MonoBehaviour
         yield return waitForFrameEnd;
 
         ParentObject.gameObject.SetActive(false);
-        Sequence = null;
     }
 }
