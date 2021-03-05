@@ -8,7 +8,7 @@ public class SymbioteCreationGUI : MonoBehaviour
     [SerializeField] private GameManager GameManager;
     [SerializeField] private Transform SymbioteSpawnPoint;
     [Space]
-    [SerializeField] private Button[] HostButtons;
+    [SerializeField] private HostSelectionButton[] HostButtons;
     [SerializeField] private Button[] ParasiteButtons;
     [Space]
     [SerializeField] private BaseHost[] Hosts;
@@ -26,7 +26,7 @@ public class SymbioteCreationGUI : MonoBehaviour
     {
         for (int i = 0; i < HostButtons.Length; i++) // this will only work if they're all the same lenght
         {
-            HostButtons[i].interactable = hostsUnlocked[i];
+            HostButtons[i].SetupButton(hostsUnlocked[i]);
             ParasiteButtons[i].interactable = parasitesUnlocked[i];
         }
 
