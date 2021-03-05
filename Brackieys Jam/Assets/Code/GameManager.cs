@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private int TotalKills;
     [SerializeField] private int CurrentLevelIndex = 0;
+    [SerializeField] private int[] ParasiteUnlockRequirements = new int[4] { 0, 30, 50, 75};
     [SerializeField] private int[] TotalKillsByType = new int[4] {6, 7, 3, 5};
     [SerializeField] private bool MiamiCam = true;
     private BaseHost Host;
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
         MusicSource.Play();
 
         LoadPlayerPrefData();
-        CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
+        CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked, TotalKills, ParasiteUnlockRequirements);
         Camera.UpdateFollowTarget(TestArea.transform, false);
         TestArea.SetActive(true);
         LevelProgressionCanvas.gameObject.SetActive(false);
@@ -202,23 +203,26 @@ public class GameManager : MonoBehaviour
     {
         TotalKills++;
 
-        if (TotalKills >= 35 && ParasitesUnlocked[1] == false)
+        if (TotalKills >= ParasiteUnlockRequirements[1] && ParasitesUnlocked[1] == false)
         {
             ParasiteUnlockCanvas.ShowUnlockGUI();
             ParasitesUnlocked[1] = true;
             PlayerPrefs.SetInt("Parasite1Unlocked", 1);
+            TotalKills = 0;
         }
-        else if (TotalKills >= 65 && ParasitesUnlocked[2] == false)
+        else if (TotalKills >= ParasiteUnlockRequirements[2] && ParasitesUnlocked[2] == false)
         {
             ParasiteUnlockCanvas.ShowUnlockGUI();
             ParasitesUnlocked[2] = true;
             PlayerPrefs.SetInt("Parasite2Unlocked", 1);
+            TotalKills = 0;
         }
-        else if (TotalKills >= 85 && ParasitesUnlocked[3] == false)
+        else if (TotalKills >= ParasiteUnlockRequirements[3] && ParasitesUnlocked[3] == false)
         {
             ParasiteUnlockCanvas.ShowUnlockGUI();
             ParasitesUnlocked[3] = true;
             PlayerPrefs.SetInt("Parasite3Unlocked", 1);
+            TotalKills = 0;
         }
 
         PlayerPrefs.SetInt("TotalKills", TotalKills);
@@ -267,7 +271,7 @@ public class GameManager : MonoBehaviour
         Camera.SetCameraPositionImmediate(TestArea.transform.position, false);
         Camera.UpdateFollowTarget(TestArea.transform, false);
 
-        CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked);
+        CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked, TotalKills, ParasiteUnlockRequirements);
 
         MusicSource.clip = MenuMusic;
         MusicSource.Play();

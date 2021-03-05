@@ -9,7 +9,7 @@ public class SymbioteCreationGUI : MonoBehaviour
     [SerializeField] private Transform SymbioteSpawnPoint;
     [Space]
     [SerializeField] private HostSelectionButton[] HostButtons;
-    [SerializeField] private Button[] ParasiteButtons;
+    [SerializeField] private ParasiteSelectionButton[] ParasiteButtons;
     [Space]
     [SerializeField] private BaseHost[] Hosts;
     [SerializeField] private BaseParsite[] Parasites;
@@ -22,12 +22,27 @@ public class SymbioteCreationGUI : MonoBehaviour
     [SerializeField] protected AudioSource Click2SFX;
     private int IgnoreAudioCue = 0;
 
-    public void OpenGUI(bool[] hostsUnlocked, bool[] parasitesUnlocked)
+    public void OpenGUI(bool[] hostsUnlocked, bool[] parasitesUnlocked, int totalKills, int[] parasiteUnlockRequirements)
     {
         for (int i = 0; i < HostButtons.Length; i++) // this will only work if they're all the same lenght
         {
             HostButtons[i].SetupButton(hostsUnlocked[i]);
-            ParasiteButtons[i].interactable = parasitesUnlocked[i];
+
+            if (i > 0)
+            {
+                if (parasitesUnlocked[i - 1] == true)
+                {
+                    ParasiteButtons[i].SetupButton(parasitesUnlocked[i], totalKills, parasiteUnlockRequirements[i]);
+                }
+                else
+                {
+                    ParasiteButtons[i].SetupButton(parasitesUnlocked[i], 0, parasiteUnlockRequirements[i]);
+                }
+            }
+            else
+            {
+                ParasiteButtons[i].SetupButton(parasitesUnlocked[i], totalKills, parasiteUnlockRequirements[i]);
+            }
         }
 
         IgnoreAudioCue = 2;
