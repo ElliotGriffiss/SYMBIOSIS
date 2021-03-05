@@ -128,7 +128,7 @@ public class FastGuy : BaseHost
 
             Rigidbody.velocity = Vector3.zero;
             Rigidbody.angularVelocity = 0f;
-            Rigidbody.AddForce((transform.position - collision.transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+            EnemyKnockbackForce = (transform.position - collision.transform.position).normalized * damage.KnockBackForce;
 
             CurrentHealth -= damage.Damage * CurrentDamageResistance;
             UpdateHealthBar(false);
@@ -157,7 +157,7 @@ public class FastGuy : BaseHost
 
                 Rigidbody.velocity = Vector3.zero;
                 Rigidbody.angularVelocity = 0f;
-                Rigidbody.AddForce((transform.position - collision.transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+                EnemyKnockbackForce = (transform.position - collision.transform.position).normalized * damage.KnockBackForce;
 
                 CurrentHealth -= damage.Damage * CurrentDamageResistance;
                 UpdateHealthBar(false);

@@ -79,7 +79,7 @@ public class BaseHost : MonoBehaviour
     protected bool AbilityIsActive;
     protected Vector2 inputValue;
     protected Vector2 direction;
-    private Vector2 EnemyKnockbackForce;
+    protected Vector2 EnemyKnockbackForce;
 
     public virtual void InitializeHost(int massRequiredThisLevel, bool IsTestArea = false)
     {
@@ -200,7 +200,7 @@ public class BaseHost : MonoBehaviour
 
                 Rigidbody.velocity = Vector3.zero;
                 Rigidbody.angularVelocity = 0f;
-                Rigidbody.AddForce((transform.position - collision.transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+                EnemyKnockbackForce = (transform.position - collision.transform.position).normalized * damage.KnockBackForce;
 
                 CurrentHealth -= damage.Damage * CurrentDamageResistance;
                 UpdateHealthBar(false);

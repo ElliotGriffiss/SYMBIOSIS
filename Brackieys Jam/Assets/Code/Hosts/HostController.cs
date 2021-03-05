@@ -98,7 +98,7 @@ public class HostController : BaseHost
 
     public override void HandleCollisonEnter(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && AbilityIsActive == false && !isInvincible)
+        if (collision.gameObject.tag == "Enemy" && !isInvincible)
         {
             DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
 
@@ -107,37 +107,10 @@ public class HostController : BaseHost
 
             Rigidbody.velocity = Vector3.zero;
             Rigidbody.angularVelocity = 0f;
-            Rigidbody.AddForce((transform.position - collision.transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
+            EnemyKnockbackForce = (transform.position - collision.transform.position).normalized * damage.KnockBackForce;
 
-            CurrentHealth -= damage.Damage;
-            UpdateHealthBar(false);
-
-            if (damage.Damage > 0)
+            if (AbilityIsActive == false)
             {
-                CameraShake.TriggerShakeCamera(ShakeDuration, ShakeAmount);
-                HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
-                HurtSFX.Play();
-            }
-
-            if (CurrentHealth < 1)
-            {
-                TriggerHostDeath();
-            }
-        }
-        else if (collision.gameObject.tag == "EnemyBullet")
-        {
-            DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
-            damage.gameObject.SetActive(false);
-
-            if (AbilityIsActive == false && !isInvincible)
-            {
-                isInvincible = true;
-                currentInvTime = startingInvTime;
-
-                Rigidbody.velocity = Vector3.zero;
-                Rigidbody.angularVelocity = 0f;
-                Rigidbody.AddForce((transform.position - collision.transform.position).normalized * damage.KnockBackForce, ForceMode2D.Impulse);
-
                 CurrentHealth -= damage.Damage;
                 UpdateHealthBar(false);
 
@@ -151,6 +124,39 @@ public class HostController : BaseHost
                 if (CurrentHealth < 1)
                 {
                     TriggerHostDeath();
+                }
+            }
+        }
+        else if (collision.gameObject.tag == "EnemyBullet")
+        {
+            DamageComponent damage = collision.collider.GetComponent<DamageComponent>();
+            damage.gameObject.SetActive(false);
+
+            if (!isInvincible)
+            {
+                isInvincible = true;
+                currentInvTime = startingInvTime;
+
+                Rigidbody.velocity = Vector3.zero;
+                Rigidbody.angularVelocity = 0f;
+                EnemyKnockbackForce = (transform.position - collision.transform.position).normalized * damage.KnockBackForce;
+
+                if (AbilityIsActive == false)
+                {
+                    CurrentHealth -= damage.Damage;
+                    UpdateHealthBar(false);
+
+                    if (damage.Damage > 0)
+                    {
+                        CameraShake.TriggerShakeCamera(ShakeDuration, ShakeAmount);
+                        HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
+                        HurtSFX.Play();
+                    }
+
+                    if (CurrentHealth < 1)
+                    {
+                        TriggerHostDeath();
+                    }
                 }
             }
         }
