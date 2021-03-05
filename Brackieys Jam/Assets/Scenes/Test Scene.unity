@@ -1643,7 +1643,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.8
-  m_Text: BEAT LEVEL 3 WITH CEPHALOFORM
+  m_Text: BEAT LEVEL 3 WITH MEDUSOFORM
 --- !u!222 &38173745
 CanvasRenderer:
   m_ObjectHideFlags: 0
