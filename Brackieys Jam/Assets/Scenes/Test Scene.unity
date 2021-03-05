@@ -15840,7 +15840,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.8
-  m_Text: KILL 35 ENEMIES
+  m_Text: KILL 30 ENEMIES
 --- !u!222 &335617006
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -60164,7 +60164,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.8
-  m_Text: KILL 35 ENEMIES
+  m_Text: KILL 50 ENEMIES
 --- !u!222 &1064081127
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -99016,7 +99016,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.8
-  m_Text: KILL 35 ENEMIES
+  m_Text: KILL 75 ENEMIES
 --- !u!222 &2031716062
 CanvasRenderer:
   m_ObjectHideFlags: 0
