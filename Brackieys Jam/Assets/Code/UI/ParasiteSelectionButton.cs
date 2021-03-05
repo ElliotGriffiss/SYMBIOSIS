@@ -22,7 +22,7 @@ public class ParasiteSelectionButton : MonoBehaviour, IPointerEnterHandler, IPoi
         Button.interactable = Active;
         UnlockProgressText.text = totalKills + "/" + parasiteUnlockRequirements;
 
-        UnlockProgressSlider.fillAmount = totalKills / parasiteUnlockRequirements;
+        UnlockProgressSlider.fillAmount = (float)totalKills / parasiteUnlockRequirements;
     }
 
     public void OnButtonpressed()
