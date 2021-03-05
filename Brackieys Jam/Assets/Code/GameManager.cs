@@ -311,4 +311,10 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
     }
+
+    private void OnDestroy()
+    {
+        BaseHost.OnHostDeath -= HandleHostDeath;
+        BaseHost.OnHostLevelUp -= HandleHostLevelledUp;
+    }
 }

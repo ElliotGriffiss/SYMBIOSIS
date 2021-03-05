@@ -26,6 +26,8 @@ public class EnemyManager : MonoBehaviour
 
     public void SpawnEnemies(HealthDropObjectPool pool)
     {
+        EnemiesKilled = new int[4] { 0, 0, 0, 0 };
+
         foreach (EnemySpawnData enemyData in EnemiePrefabs)
         {
             for (int i = 0; i < enemyData.MaxNumberToSpawn; i++)
@@ -88,6 +90,10 @@ public class EnemyManager : MonoBehaviour
         }
 
         EnemyPool.Clear();
-        EnemiesKilled = new int[4] { 0, 0, 0, 0 };
+    }
+
+    private void OnDestroy()
+    {
+        DespawnAllEnemies();
     }
 }
