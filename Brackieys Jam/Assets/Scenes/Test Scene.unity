@@ -2357,7 +2357,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ABILITIE
+  m_Text: ABILITY
 --- !u!222 &63249569
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -68029,7 +68029,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ABILITIE
+  m_Text: ABILITY
 --- !u!222 &1233026533
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -76922,7 +76922,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ABILITIE
+  m_Text: ABILITY
 --- !u!222 &1443995001
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -110265,7 +110265,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ABILITIE
+  m_Text: ABILITY
 --- !u!222 &2044560608
 CanvasRenderer:
   m_ObjectHideFlags: 0
