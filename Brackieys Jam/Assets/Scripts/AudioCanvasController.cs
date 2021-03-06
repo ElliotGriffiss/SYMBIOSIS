@@ -44,6 +44,8 @@ public class AudioCanvasController : MonoBehaviour
     private bool DynamicCamera = false;
     private bool DirectionalControls = false;
 
+    private bool IsOpen = false;
+
     public void Start()
     {
         SFXVol = PlayerPrefs.GetFloat("SFXVol");
@@ -65,10 +67,17 @@ public class AudioCanvasController : MonoBehaviour
     {
         if (Sequence == null)
         {
-            ReturnToSelectionGUI.SetActive(!TestArea.activeInHierarchy);
-            ButtonSFX.Play();
-            Sequence = OpenCanvasSequence();
-            StartCoroutine(Sequence);
+            if (IsOpen)
+            {
+                CloseCanvas();
+            }
+            else
+            {
+                ReturnToSelectionGUI.SetActive(!TestArea.activeInHierarchy);
+                ButtonSFX.Play();
+                Sequence = OpenCanvasSequence();
+                StartCoroutine(Sequence);
+            }
         }
     }
 
@@ -93,6 +102,8 @@ public class AudioCanvasController : MonoBehaviour
 
         ParentObject.transform.position = OnSceenPosition.position;
         yield return waitForFrameEnd;
+
+        IsOpen = true;
         Sequence = null;
     }
 
@@ -127,6 +138,7 @@ public class AudioCanvasController : MonoBehaviour
         PlayerPrefs.Save();
 
         Time.timeScale = 1f;
+        IsOpen = false;
         Sequence = null;
     }
 

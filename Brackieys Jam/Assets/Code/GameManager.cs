@@ -107,12 +107,12 @@ public class GameManager : MonoBehaviour
 
     public void StartNextLevel()
     {
-        SettingsButton.interactable = false;
         StartCoroutine(HandleLevelTransition(false));
     }
 
     private IEnumerator HandleLevelTransition(bool firstLevel)
     {
+        SettingsButton.interactable = false;
         TransitionFollowPoint.position = (firstLevel) ? TestArea.transform.position : Host.transform.position;
         yield return Camera.ShowDisplayOverlay();
         yield return TransitionManager.PickUpHostSequence(Host.transform);
