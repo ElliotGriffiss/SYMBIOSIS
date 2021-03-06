@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator HandleLevelTransition(bool firstLevel)
     {
+        Time.timeScale = 0f;
         SettingsButton.interactable = false;
         TransitionFollowPoint.position = (firstLevel) ? TestArea.transform.position : Host.transform.position;
         yield return Camera.ShowDisplayOverlay();
