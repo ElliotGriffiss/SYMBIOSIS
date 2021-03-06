@@ -6,7 +6,8 @@ public class BulletParticleManager : MonoBehaviour
 {
     public static BulletParticleManager Instance;
 
-    [SerializeField] private ParticleSystem Deathparticle;
+    [SerializeField] private ParticleSystem BulletExplosionParticle;
+    [SerializeField] private ParticleSystem BombExplosionParticle;
     private ParticleSystem.EmitParams EmitParams;
 
     private void Start()
@@ -29,9 +30,15 @@ public class BulletParticleManager : MonoBehaviour
         }
     }
 
-    public void PlayExplosionParticle(Vector3 spawnPosition)
+    public void PlayBulletExplosionParticle(Vector3 spawnPosition)
     {
         EmitParams.position = spawnPosition;
-        Deathparticle.Emit(EmitParams, 1);
+        BulletExplosionParticle.Emit(EmitParams, 1);
+    }
+
+    public void PlayBombExplosionParticle(Vector3 spawnPosition)
+    {
+        EmitParams.position = spawnPosition;
+        BombExplosionParticle.Emit(EmitParams, 1);
     }
 }

@@ -426,7 +426,7 @@ public class BossEnemyController : MonoBehaviour
         {
             if (pooledBullet.gameObject.activeInHierarchy)
             {
-                BulletParticleManager.Instance.PlayExplosionParticle(pooledBullet.transform.position);
+                BulletParticleManager.Instance.PlayBulletExplosionParticle(pooledBullet.transform.position);
                 pooledBullet.gameObject.SetActive(false);
             }
         }
@@ -602,7 +602,7 @@ public class BossEnemyController : MonoBehaviour
             CurrentFlashTime = 0;
             HealthBar.fillAmount = CurrentHealth / Health;
 
-            BulletParticleManager.Instance.PlayExplosionParticle(collision.GetContact(0).point);
+            BulletParticleManager.Instance.PlayBulletExplosionParticle(collision.GetContact(0).point);
             HurtSFX.pitch = UnityEngine.Random.Range(MinPitch, MaxPitch);
             HurtSFX.Play();
 

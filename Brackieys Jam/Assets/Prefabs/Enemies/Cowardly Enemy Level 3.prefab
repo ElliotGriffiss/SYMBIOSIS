@@ -66,6 +66,11 @@ MonoBehaviour:
   MinPitch: 0.9
   MaxPitch: 1.1
   Animator: {fileID: 7574549225102937566}
+  BombPrefab: {fileID: 8711081843811212454, guid: 426e072b26843c4478c7d05ec18ee0a5, type: 3}
+  MaxNumberOfBullets: 10
+  FireRate: 1
+  ReloadTime: 0.5
+  ClipSize: 3
 --- !u!114 &1467527424343384520
 MonoBehaviour:
   m_ObjectHideFlags: 0

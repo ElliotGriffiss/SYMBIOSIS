@@ -6,7 +6,52 @@ using GameData;
 public class CowardlyEnemyController : BaseEnemyController
 {
     [SerializeField] private Animator Animator;
+
+    [Header("Bomb Data")]
+    [SerializeField] private EnemyBomb BombPrefab;
+    [SerializeField] private int MaxNumberOfBullets = 10;
+    [SerializeField] private float FireRate;
+    [SerializeField] private float ReloadTime = 1;
+    [SerializeField] private int ClipSize = 1;
+
+    private float LastFireTime = 0;
+    private int BulletsInClip;
+    private float CurrentReloadTime;
+    private bool IsReloading;
+
+    private List<EnemyBomb> BulletPool = new List<EnemyBomb>();
     private Transform attacker;
+
+    private void Start()
+    {
+        for (int i = 0; i < MaxNumberOfBullets; i++)
+        {
+            EnemyBomb bullet = Instantiate(BombPrefab);
+            bullet.gameObject.SetActive(false);
+
+            BulletPool.Add(bullet);
+        }
+
+        BulletsInClip = ClipSize;
+        IsReloading = false;
+    }
+
+    private EnemyBomb GetBulletFromThePool()
+    {
+        foreach (EnemyBomb pooledBullet in BulletPool)
+        {
+            if (!pooledBullet.gameObject.activeInHierarchy)
+            {
+                return pooledBullet;
+            }
+        }
+
+        EnemyBomb bullet = Instantiate(BombPrefab);
+        bullet.gameObject.SetActive(false);
+
+        BulletPool.Add(bullet);
+        return bullet;
+    }
 
     protected override void FixedUpdate()
     {
@@ -22,6 +67,33 @@ public class CowardlyEnemyController : BaseEnemyController
             Vector2 direction = transform.position - attacker.position;
             MyRigidBody.AddForce(direction * MovementSpeed);
             MyRigidBody.rotation = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+
+            if (IsReloading)
+            {
+                CurrentReloadTime += Time.deltaTime;
+
+                if (CurrentReloadTime >= ReloadTime)
+                {
+                    IsReloading = false;
+                    BulletsInClip = ClipSize;
+                    CurrentReloadTime = 0;
+                }
+            }
+            else if (Time.time - LastFireTime > FireRate && BulletsInClip > 0)
+            {
+                BulletsInClip--;
+                EnemyBomb bullet = GetBulletFromThePool();
+
+                bullet.gameObject.transform.position = transform.position;
+                bullet.gameObject.transform.rotation = Quaternion.Euler(direction);
+                bullet.gameObject.SetActive(true);
+                LastFireTime = Time.time;
+
+                if (BulletsInClip <= 0)
+                {
+                    IsReloading = true;
+                }
+            }
         }
         else if (currentStateTime > StateDuration)
         {
@@ -96,5 +168,15 @@ public class CowardlyEnemyController : BaseEnemyController
                 attacker = null;
             }
         }
+    }
+
+    public override void CleanUpEnemy()
+    {
+        for (int i = 0; i < BulletPool.Count; i++)
+        {
+            Destroy(BulletPool[i].gameObject);
+        }
+
+        BulletPool.Clear();
     }
 }
