@@ -9,6 +9,17 @@ public class AudioCanvasController : MonoBehaviour
     [SerializeField] private AudioMixer AudioMixer;
 
     [Header("GUI Data")]
+    [SerializeField] private GameManager GameManager;
+    [SerializeField] private HostController TankGuy;
+    [SerializeField] private FastGuy FastGuy;
+    [SerializeField] private GameObject TestArea;
+    [Space]
+    [SerializeField] private Button DynamicCameraToggle;
+    [SerializeField] private GameObject CameraToggleDisplay;
+    [SerializeField] private Button DirectionalControlsToggle;
+    [SerializeField] private GameObject ControlToggleDisplay;
+    [Space]
+    [SerializeField] private GameObject ReturnToSelectionGUI;
     [SerializeField] private RectTransform ParentObject;
     [SerializeField] private Image Background;
     [SerializeField] private Slider SFXSlider;
@@ -30,6 +41,9 @@ public class AudioCanvasController : MonoBehaviour
     private float SFXVol;
     private float MusicVol;
 
+    private bool DynamicCamera = false;
+    private bool DirectionalControls = false;
+
     public void Start()
     {
         SFXVol = PlayerPrefs.GetFloat("SFXVol");
@@ -39,12 +53,19 @@ public class AudioCanvasController : MonoBehaviour
         MusicVol = PlayerPrefs.GetFloat("MusicVol");
         AudioMixer.SetFloat("Music", MusicVol);
         MusicSlider.value = MusicVol;
+
+        DynamicCamera = (PlayerPrefs.GetInt("DynamicCamera")) == 1 ? true : false;
+        CameraToggleDisplay.SetActive(DynamicCamera);
+
+        DirectionalControls = (PlayerPrefs.GetInt("DirectionalControls")) == 1 ? true : false;
+        ControlToggleDisplay.SetActive(DirectionalControls);
     }
 
     public void OpenCanvas()
     {
         if (Sequence == null)
         {
+            ReturnToSelectionGUI.SetActive(!TestArea.activeInHierarchy);
             ButtonSFX.Play();
             Sequence = OpenCanvasSequence();
             StartCoroutine(Sequence);
@@ -53,6 +74,7 @@ public class AudioCanvasController : MonoBehaviour
 
     private IEnumerator OpenCanvasSequence()
     {
+        Time.timeScale = 0f;
         ParentObject.transform.position = OffSceenPosition.position;
         Background.color = BackGroundWhite;
         ParentObject.gameObject.SetActive(true);
@@ -93,7 +115,7 @@ public class AudioCanvasController : MonoBehaviour
             ParentObject.transform.position = Vector2.LerpUnclamped(OffSceenPosition.position, OnSceenPosition.position, PanelAnimationCurve.Evaluate(Timer / AnimationTime));
             Background.color = Color.Lerp(BackGroundWhite, BackGroundGreyedOut, Timer / AnimationTime);
             yield return waitForFrameEnd;
-            Timer -= Time.deltaTime;
+            Timer -= Time.unscaledDeltaTime;
         }
 
         yield return waitForFrameEnd;
@@ -104,6 +126,7 @@ public class AudioCanvasController : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVol", MusicVol);
         PlayerPrefs.Save();
 
+        Time.timeScale = 1f;
         Sequence = null;
     }
 
@@ -117,5 +140,49 @@ public class AudioCanvasController : MonoBehaviour
     {
         SFXVol = Value;
         AudioMixer.SetFloat("SFX", Value);
+    }
+
+    public void OnToggleDynamicCameraPressed()
+    {
+        DynamicCamera = !DynamicCamera;
+        CameraToggleDisplay.SetActive(DynamicCamera);
+        GameManager.ChangeCameraSetting();
+        ButtonSFX.Play();
+    }
+
+
+    public void OnToggleDirectionalControlsPressed()
+    {
+        DirectionalControls = !DirectionalControls;
+        ControlToggleDisplay.SetActive(DirectionalControls);
+
+        TankGuy.UpdateDirectionalControls(DirectionalControls);
+        FastGuy.UpdateDirectionalControls(DirectionalControls);
+        ButtonSFX.Play();
+
+        if (DirectionalControls)
+        {
+            PlayerPrefs.SetInt("DirectionalControls", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("DirectionalControls", 0);
+        }
+    }
+
+    public void OnReturnToSelectionScreenPressed()
+    {
+        Sequence = CloseCanvasSequence();
+        StartCoroutine(Sequence);
+        Time.timeScale = 1f;
+        GameManager.HandleHostDeath();
+        ButtonSFX.Play();
+    }
+
+    public void OnQuitGamePressed()
+    {
+        ButtonSFX.Play();
+        PlayerPrefs.Save();
+        Application.Quit();
     }
 }

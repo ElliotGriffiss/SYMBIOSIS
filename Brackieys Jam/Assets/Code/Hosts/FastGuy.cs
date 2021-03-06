@@ -22,6 +22,8 @@ public class FastGuy : BaseHost
     {
         base.InitializeHost(massRequiredThisLevel, IsTestArea);
         animator.SetBool("IsMoving", false);
+
+        DirectionalControls = (PlayerPrefs.GetInt("DirectionalControls")) == 1 ? true : false;
     }
 
     private void Update()
@@ -225,5 +227,10 @@ public class FastGuy : BaseHost
         {
             AbilitySFX.Play();
         }
+    }
+
+    public void UpdateDirectionalControls(bool controls)
+    {
+        DirectionalControls = controls;
     }
 }

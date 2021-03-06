@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour
 
 	[SerializeField] private float ScreenSpaceModifier = 4;
 	[SerializeField] private float MaxDistanceFromPlayer;
-	private bool MiamiCam = false;
+	public bool MiamiCam = false;
 
 	[Header("CameraShake Curve")]
 	[SerializeField] private AnimationCurve ShakeCurve;

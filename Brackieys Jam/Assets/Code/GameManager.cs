@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using GameData;
 
 public class GameManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LevelProgressCanvas LevelProgressionCanvas;
     [SerializeField] private DeathCanvas DeathCanvas;
     [SerializeField] private GameCompletedCanvas CompletedCanvas;
+    [SerializeField] private Button SettingsButton;
     [Space]
     [SerializeField] private CameraFollow Camera;
     [SerializeField] private Transform TransitionFollowPoint;
@@ -69,6 +71,7 @@ public class GameManager : MonoBehaviour
         Camera.UpdateFollowTarget(TestArea.transform, false);
         TestArea.SetActive(true);
         LevelProgressionCanvas.gameObject.SetActive(false);
+        SettingsButton.interactable = true;
     }
 
     private void LoadPlayerPrefData()
@@ -84,6 +87,7 @@ public class GameManager : MonoBehaviour
         ParasitesUnlocked[3] = PlayerPrefs.GetInt("Parasite3Unlocked") == 1 ? true : false;
 
         TotalKills = PlayerPrefs.GetInt("TotalKills");
+        MiamiCam = PlayerPrefs.GetInt("DynamicCamera") == 1 ? true : false;
     }
 
     /// <summary>
@@ -98,12 +102,12 @@ public class GameManager : MonoBehaviour
         BaseHost.OnHostDeath += HandleHostDeath;
         BaseHost.OnHostLevelUp += HandleHostLevelledUp;
 
-        Time.timeScale = 0f;
         StartCoroutine(HandleLevelTransition(true));
     }
 
     public void StartNextLevel()
     {
+        SettingsButton.interactable = false;
         StartCoroutine(HandleLevelTransition(false));
     }
 
@@ -159,6 +163,7 @@ public class GameManager : MonoBehaviour
         yield return Camera.CloseDisplayOverlay();
         Time.timeScale = 1f;
         CheckForHostUnlocks();
+        SettingsButton.interactable = true;
     }
 
     private void CheckForHostUnlocks()
@@ -196,6 +201,7 @@ public class GameManager : MonoBehaviour
             TotalKillsByType[i] += EnemiesKillThisLevel[i];
         }
 
+        SettingsButton.interactable = false;
         UpgradeCanvas.OpenUpgradeGUI(EnemiesKillThisLevel);
     }
 
@@ -242,14 +248,16 @@ public class GameManager : MonoBehaviour
             );
     }
 
-    private void HandleHostDeath()
+    public void HandleHostDeath()
     {
         PlayerDeathSFX.Play();
+        SettingsButton.interactable = false;
         StartCoroutine(HostDeathSequence());
     }
 
     private IEnumerator HostDeathSequence()
     {
+        SettingsButton.interactable = false;
         Camera.UpdateFollowTarget(Host.transform, false);
         yield return new WaitForSeconds(1f);
         yield return DeathCanvas.DeathAnimationSequence();
@@ -273,12 +281,15 @@ public class GameManager : MonoBehaviour
 
         CreationGUI.OpenGUI(HostsUnlocked, ParasitesUnlocked, TotalKills, ParasiteUnlockRequirements);
 
+        SettingsButton.interactable = true;
         MusicSource.clip = MenuMusic;
         MusicSource.Play();
     }
 
     public void TriggerGameWonSequence(int[] subBossesKilled)
     {
+        SettingsButton.interactable = false;
+
         for (int i = 0; i < subBossesKilled.Length; i++)
         {
             TotalKillsByType[i] += subBossesKilled[i];
@@ -304,6 +315,18 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         Camera.UpdateFollowTarget(Host.transform, false);
         yield return CompletedCanvas.VictoryAnimationSequence(TotalKillsByType);
+        SettingsButton.interactable = true;
+    }
+
+    public void ChangeCameraSetting()
+    {
+        MiamiCam = !MiamiCam;
+        PlayerPrefs.SetInt("DynamicCamera", (MiamiCam) ? 1 : 0);
+
+        if (!TestArea.activeInHierarchy)
+        {
+            Camera.MiamiCam = MiamiCam;
+        }
     }
 
     [ContextMenu("Delete All Player Prefs")]

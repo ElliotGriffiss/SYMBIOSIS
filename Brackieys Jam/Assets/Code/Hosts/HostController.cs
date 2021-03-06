@@ -12,6 +12,20 @@ public class HostController : BaseHost
     [SerializeField] private Vector3 AbilityActiveScale;
     [SerializeField] private bool DirectionalControls = false;
 
+    public override void InitializeHost(int massRequiredThisLevel, bool IsTestArea = false)
+    {
+        base.InitializeHost(massRequiredThisLevel, IsTestArea);
+
+        if (PlayerPrefs.HasKey("DirectionalControls"))
+        {
+            DirectionalControls = PlayerPrefs.GetInt("DirectionalControls") == 1 ? true : false;
+        }
+        else
+        {
+            DirectionalControls = false;
+        }
+    }
+
     private void Update()
     {
         LookAtMouse();
@@ -195,5 +209,10 @@ public class HostController : BaseHost
             animator.SetBool("IsArmored", false);
             transform.localScale = Vector3.one;
         }
+    }
+
+    public void UpdateDirectionalControls(bool controls)
+    {
+        DirectionalControls = controls;
     }
 }
