@@ -23,7 +23,14 @@ public class FastGuy : BaseHost
         base.InitializeHost(massRequiredThisLevel, IsTestArea);
         animator.SetBool("IsMoving", false);
 
-        DirectionalControls = (PlayerPrefs.GetInt("DirectionalControls")) == 1 ? true : false;
+        if (PlayerPrefs.HasKey("DirectionalControls"))
+        {
+            DirectionalControls = PlayerPrefs.GetInt("DirectionalControls") == 1 ? true : false;
+        }
+        else
+        {
+            DirectionalControls = false;
+        }
     }
 
     private void Update()

@@ -56,8 +56,16 @@ public class AudioCanvasController : MonoBehaviour
         AudioMixer.SetFloat("Music", MusicVol);
         MusicSlider.value = MusicVol;
 
-        DynamicCamera = (PlayerPrefs.GetInt("DynamicCamera")) == 1 ? true : false;
-        CameraToggleDisplay.SetActive(DynamicCamera);
+        if (PlayerPrefs.HasKey("DynamicCamera"))
+        {
+            DynamicCamera = (PlayerPrefs.GetInt("DynamicCamera")) == 1 ? true : false;
+            CameraToggleDisplay.SetActive(DynamicCamera);
+        }
+        else
+        {
+            DynamicCamera = true;
+            CameraToggleDisplay.SetActive(DynamicCamera);
+        }
 
         DirectionalControls = (PlayerPrefs.GetInt("DirectionalControls")) == 1 ? true : false;
         ControlToggleDisplay.SetActive(DirectionalControls);
