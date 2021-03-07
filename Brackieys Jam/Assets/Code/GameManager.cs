@@ -87,7 +87,15 @@ public class GameManager : MonoBehaviour
         ParasitesUnlocked[3] = PlayerPrefs.GetInt("Parasite3Unlocked") == 1 ? true : false;
 
         TotalKills = PlayerPrefs.GetInt("TotalKills");
-        MiamiCam = PlayerPrefs.GetInt("DynamicCamera") == 1 ? true : false;
+
+        if (PlayerPrefs.HasKey("DynamicCamera"))
+        {
+            MiamiCam = (PlayerPrefs.GetInt("DynamicCamera")) == 1 ? true : false;
+        }
+        else
+        {
+            MiamiCam = true;
+        }
     }
 
     /// <summary>

@@ -8,6 +8,9 @@ public class BulletParticleManager : MonoBehaviour
 
     [SerializeField] private ParticleSystem BulletExplosionParticle;
     [SerializeField] private ParticleSystem BombExplosionParticle;
+    [Space]
+    [SerializeField] private AudioSource ExplosionSFX;
+
     private ParticleSystem.EmitParams EmitParams;
 
     private void Start()
@@ -40,5 +43,6 @@ public class BulletParticleManager : MonoBehaviour
     {
         EmitParams.position = spawnPosition;
         BombExplosionParticle.Emit(EmitParams, 1);
+        ExplosionSFX.Play();
     }
 }
